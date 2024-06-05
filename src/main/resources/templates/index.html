@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Estoque</title>
+    <style>
+        /* Estilos básicos */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <h1>Controle de Estoque</h1>
+
+    <form id="entradaForm">
+        <label for="cliente">Cliente:</label>
+        <input type="text" id="cliente" name="cliente" required>
+        <br>
+        <label for="produto">Produto:</label>
+        <input type="text" id="produto" name="produto" required>
+        <br>
+        <label for="quantidade">Quantidade:</label>
+        <input type="number" id="quantidade" name="quantidade" required>
+        <br>
+        <label for="valorUnitario">Valor Unitário:</label>
+        <input type="number" step="0.01" id="valorUnitario" name="valorUnitario" required>
+        <br>
+        <button type="submit">Adicionar Entrada</button>
+    </form>
+
+    <h2>Lista de Entradas</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Cliente</th>
+                <th>Produto</th>
+                <th>Quantidade</th>
+                <th>Valor Unitário</th>
+                <th>Valor Total</th>
+                <th>Data/Hora</th>
+            </tr>
+        </thead>
+        <tbody id="entradasTableBody">
+            <!-- Entradas serão listadas aqui -->
+        </tbody>
+    </table>
+
+    <script>
+        // Função para buscar entradas existentes e atualizar a tabela
+        function fetchEntradas() {
+            fetch('/api/entradas')
+                .then(response => response.json())
+                .then(data => {
+                    const tableBody = document.getElementById('entradasTableBody');
+                    tableBody.innerHTML = '';
+                    data.forEach(entrada => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${entrada.id}</td>
+                            <td>${entrada.cliente}</td>
+                            <td>${entrada.produto}</td>
+                            <td>${entrada.quantidade}</td>
+                            <td>${entrada.valorUnitario}</td>
+                            <td>${entrada.valorTotal}</td>
+                            <td>${entrada.dataHora}</td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                });
+        }
+
+        // Função para adicionar uma nova entrada
+        document.getElementById('entradaForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            const data = {
+                cliente: formData.get('cliente'),
+                produto: formData.get('produto'),
+                quantidade: formData.get('quantidade'),
+                valorUnitario: formData.get('valorUnitario')
+            };
+
+            fetch('/api/entradas', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(() => {
+                fetchEntradas(); // Atualiza a lista de entradas após adicionar
+                this.reset(); // Limpa o formulário
+            });
+        });
+
+        // Carregar entradas existentes quando a página carregar
+        window.onload = fetchEntradas;
+    </script>
+</body>
+</html>
