@@ -8,7 +8,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -19,25 +18,25 @@ public class Entrada {
 	private Long id;
 	
 	@NotNull
-	@Size(min = 1, max = 255)
+	@Size(min = 1, max = 20)
 	private String cliente;
 	
 	@NotNull
-	@Size(min = 1, max = 255)
+	@Size(min = 1, max = 20)
 	private String produto;
 	
 	@NotNull
-	@Positive
 	private Integer quantidade;
 	
-	@Positive
 	private Float valorUnitario;
 	
 	private Float valorTotal;
 	
     private LocalDateTime dataHora;
+    
+    private boolean concluido;
 
-    // Getters Setters
+	// Getters Setters
 	public Long getId() {
 		return id;
 	}
@@ -67,7 +66,7 @@ public class Entrada {
 	}
 
 	public void setQuantidade(Integer quantidade) {
-	    this.quantidade = quantidade;
+		this.quantidade = quantidade;
 	    calcularValorTotal();
 	}
 
@@ -76,6 +75,9 @@ public class Entrada {
 	}
 
 	public void setValorUnitario(Float valorUnitario) {
+		if (valorUnitario == null) {
+			valorUnitario = (float) 0;
+		}
 	    this.valorUnitario = valorUnitario;
 	    calcularValorTotal();
 	}
@@ -94,6 +96,14 @@ public class Entrada {
 
 	public void setDataHora(LocalDateTime dataHora) {
 		this.dataHora = dataHora;
+	}
+	
+	public boolean isConcluido() {
+		return concluido;
+	}
+
+	public void setConcluido(boolean concluido) {
+		this.concluido = concluido;
 	}
 	
 	// calcularValorTotal = setQuantidade X setValorUnitario

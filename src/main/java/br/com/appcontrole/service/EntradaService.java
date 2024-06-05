@@ -39,8 +39,11 @@ public class EntradaService implements CRUD<Entrada, Long> {
 
 	@Override
 	public Entrada buscaPorId(Long id) {
-		// TODO Auto-generated method stub
         return entradaRepository.findById(id).orElse(null);
 	}
+	
+	public List<Entrada> buscaPorStatus(boolean status) {
+        return entradaRepository.findByConcluido(status);
+    }
 
 }
