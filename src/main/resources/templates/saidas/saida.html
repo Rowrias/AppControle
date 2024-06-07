@@ -15,7 +15,9 @@
     
     <!-- section.css -->
     <section>
+
         <div>
+
             <!-- aside.css -->
             <header th:replace="fragments/aside :: aside"></header>
             
@@ -29,43 +31,55 @@
                 
                 <!-- Lista -->
                 <div class="lista">
+
                 	<div>
-                		<h1>Controle de Saídas</h1>
-                	
-				    	<h2>Lista de Saídas</h2>
-                		<table>
-					        <thead>
-					            <tr>
-					                <th>ID</th>
-					                <th>Cliente</th>
-					                <th>Produto</th>
-					                <th>Quantidade</th>
-					                <th>Valor Unitário</th>
-					                <th>Valor Total</th>
-					                <th>Data/Hora</th>
-					            </tr>
-					        </thead>
-					        <tbody>
-					            <tr th:each="saida : ${saidas}">
-					                <td th:text="${saida.id}"></td>
-					                <td th:text="${saida.cliente}"></td>
-					                <td th:text="${saida.produto}"></td>
-					                <td th:text="${saida.quantidade}"></td>
-					                <td th:text="${saida.valorUnitario}"></td>
-					                <td th:text="${saida.valorTotal}"></td>
-					                <td th:text="${saida.dataHora}"></td>
-					                <td>
-						                <a th:href="@{/saidas/editar/{id}(id=${saida.id})}">Editar</a>
-						                <a th:href="@{/saidas/remover/{id}(id=${saida.id})}">Remover</a>
-						            </td>
-					            </tr>
-					        </tbody>
-				    	</table>
+						<div>
+							<h2>Lista de Saídas</h2>
+						</div>
+				    	<div>
+							<table>
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>Cliente</th>
+										<th>Produto</th>
+										<th>Quantidade</th>
+										<th>Valor Unitário</th>
+										<th>Valor Total</th>
+										<th>Data/Hora</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+
+						<div>
+							<table>
+								<tbody>
+									<tr th:each="saida : ${saidas}">
+										<td th:text="${saida.id}"></td>
+										<td th:text="${saida.cliente}"></td>
+										<td th:text="${saida.produto}"></td>
+										<td th:text="${saida.quantidade}"></td>
+										<td th:text="${saida.valorUnitario}"></td>
+										<td th:text="${saida.valorTotal}"></td>
+										<td th:text="${saida.dataHora}"></td>
+										<td>
+											<a th:href="@{/saidas/editar/{id}(id=${saida.id})}">Editar</a>
+											<a th:href="@{/saidas/remover/{id}(id=${saida.id})}">Remover</a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+				    	</div>
+
                 	</div>
+					
                 </div>
+
             </main>
             
         </div>
+
     </section>
     
 </body>

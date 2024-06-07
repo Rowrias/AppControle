@@ -1,10 +1,11 @@
-/* cadastro */
+/* lista */
 main .lista {
     display: flex;
     background: var(--color-secundaria);
     width: 844px;
-    height: 175px;
+    height: auto;
     border-radius: 5px;
+    margin-bottom: 10px;
 }
 
 main .lista div {
@@ -24,41 +25,25 @@ main .lista div h2 {
 
 }
 
-main .lista div form {
+main .lista div table {
     display: flex;
     margin: 0px 10px 10px 10px;
-    font-size: 12px;
-    font-weight: var(--font-weight-regular);
+    font-size: 16px;
     color: var(--color-terciaria);
 }
 
-main .lista div form p {
+main .lista div table thead tr th{
+    font-weight: var(--font-weight-bold);
     border: solid 1px;
     text-align: center;
-    width: auto;
-    height: 98px;
+    width: 150px;
+    height: 40px;
 }
 
-main .lista div form p label {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 36px;
-    margin: 10px 10px 0px 10px;
-}
-
-main .lista div form p input {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    height: 36px;
-    margin: 0px 10px 10px 10px;
-    font-size: 12px;
+main .lista div table tbody tr td {
     font-weight: var(--font-weight-regular);
-    color: var(--color-terciaria);
-}
-
-main .lista div form #adicionar {
+    border: solid 1px;
     text-align: center;
-    height: 36px;
+    width: 150px;
+    height: 40px;
 }

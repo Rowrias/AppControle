@@ -1,6 +1,6 @@
 /* cadastro */
 main .cadastro {
-    display: flex;
+    display: inline-block;
     background: var(--color-secundaria);
     width: 844px;
     height: 175px;
@@ -36,7 +36,7 @@ main .cadastro div form {
 main .cadastro div form p {
     border: solid 1px;
     text-align: center;
-    width: auto;
+    width: 150px;
     height: 98px;
 }
 
@@ -53,10 +53,15 @@ main .cadastro div form p input {
     justify-content: center;
     text-align: center;
     height: 36px;
+    width: 110px;
     margin: 0px 10px 10px 10px;
     font-size: 12px;
     font-weight: var(--font-weight-regular);
     color: var(--color-terciaria);
+}
+
+main .cadastro div form p input[type="datetime-local" i] {
+    font-size: 8px
 }
 
 main .cadastro div form #adicionar {
