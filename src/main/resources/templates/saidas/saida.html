@@ -3,61 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Controle de Saídas de Produtos/Peças</title>
-    <style>
-        /* Estilos básicos */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        form {
-            margin-bottom: 20px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 10px;
-            border: 1px solid #ddd;
-            text-align: left;
-        }
-        th {
-            background-color: #f4f4f4;
-        }
-    </style>
+    <title>Controle de Estoque</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
-    <h1>Controle de Saídas</h1>
-
-    <h2>Lista de Saídas</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Cliente</th>
-                <th>Produto</th>
-                <th>Quantidade</th>
-                <th>Valor Unitário</th>
-                <th>Valor Total</th>
-                <th>Data/Hora</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="saida : ${saidas}">
-                <td th:text="${saida.id}"></td>
-                <td th:text="${saida.cliente}"></td>
-                <td th:text="${saida.produto}"></td>
-                <td th:text="${saida.quantidade}"></td>
-                <td th:text="${saida.valorUnitario}"></td>
-                <td th:text="${saida.valorTotal}"></td>
-                <td th:text="${saida.dataHora}"></td>
-                <td>
-	                <a th:href="@{/saidas/editar/{id}(id=${saida.id})}">Editar</a>
-	                <a th:href="@{/saidas/remover/{id}(id=${saida.id})}">Remover</a>
-	            </td>
-            </tr>
-        </tbody>
-    </table>
+    <!-- header.css -->
+    <header th:replace="fragments/header :: header"></header>
+    
+    <!-- section.css -->
+    <section>
+        <div>
+            <!-- aside.css -->
+            <header th:replace="fragments/aside :: aside"></header>
+            
+            <!-- Main -->
+            <main>
+            	<!-- titulo.css -->
+                <div class="titulo">
+                    <img th:src="@{/images/entrada(grande).svg}">
+                    <h2>SAIDA</h2>
+                </div>
+                
+                <!-- Lista -->
+                <div class="lista">
+                	<div>
+                		<h1>Controle de Saídas</h1>
+                	
+				    	<h2>Lista de Saídas</h2>
+                		<table>
+					        <thead>
+					            <tr>
+					                <th>ID</th>
+					                <th>Cliente</th>
+					                <th>Produto</th>
+					                <th>Quantidade</th>
+					                <th>Valor Unitário</th>
+					                <th>Valor Total</th>
+					                <th>Data/Hora</th>
+					            </tr>
+					        </thead>
+					        <tbody>
+					            <tr th:each="saida : ${saidas}">
+					                <td th:text="${saida.id}"></td>
+					                <td th:text="${saida.cliente}"></td>
+					                <td th:text="${saida.produto}"></td>
+					                <td th:text="${saida.quantidade}"></td>
+					                <td th:text="${saida.valorUnitario}"></td>
+					                <td th:text="${saida.valorTotal}"></td>
+					                <td th:text="${saida.dataHora}"></td>
+					                <td>
+						                <a th:href="@{/saidas/editar/{id}(id=${saida.id})}">Editar</a>
+						                <a th:href="@{/saidas/remover/{id}(id=${saida.id})}">Remover</a>
+						            </td>
+					            </tr>
+					        </tbody>
+				    	</table>
+                	</div>
+                </div>
+            </main>
+            
+        </div>
+    </section>
+    
 </body>
 </html>

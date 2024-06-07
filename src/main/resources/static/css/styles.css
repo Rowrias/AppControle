@@ -1,1 +1,27 @@
-@charset "UTF-8";
+@import url(./fragments/reset.css);
+@import url(./fragments/header.css);
+@import url(./fragments/section.css);
+@import url(./fragments/aside.css);
+@import url(./fragments/titulo.css);
+@import url(./fragments/cadastro.css);
+@import url(./fragments/lista.css);
+
+:root {
+    /* color */
+    --font-primaria: 'Inter', sans-serif;
+    /* font weigth */
+    --font-weight-regular: 400;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    /* color */
+    --color-primaria: #E4E5E7;
+    --color-secundaria: #FFFFFF;
+    --color-terciaria: #43484B;
+}
+
+body {
+    height: 100vh;
+    width: 100%;
+    font-family: var(--font-primaria);
+    background: var(--color-primaria);
+}
