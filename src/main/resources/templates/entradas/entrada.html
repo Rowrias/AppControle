@@ -54,109 +54,97 @@
 								<label for="dataHora">Data da entrada:</label>
 					        	<input type="datetime-local" id="dataHora" name="dataHora"/>
 							</P>
-					        <button id="" type="submit">Adicionar Entrada</button>
+							<p id="adicionar">
+								<label></label>
+								<button type="submit" >Adicionar</button>
+							</p>
+							
 					    </form>
 					</div>
 	                	               	
                 </div>
                 
-                <!-- lista.css -->
                 <div class="lista">
-                	<div>
-						<div>
-							<h2>Lista de Entradas de Peças</h2>
-						</div>
-                		<div>
-							<table>
-								<thead>
-									<tr>
-										<th>ID</th>
-										<th>Cliente</th>
-										<th>Produto</th>
-										<th>Quantidade</th>
-										<th>Valor Unitário</th>
-										<th>Valor Total</th>
-										<th>Data/Hora</th>
-										<th>Concluído</th>
-										<th>Ações</th>
-										<th>##### #####</th>
-									</tr>
-								</thead>
-							</table>
-						</div>
-						<div>
-							<table>
-								<tbody>
-									<tr th:each="entrada : ${pendentes}">
-										<td th:text="${entrada.id}"></td>
-										<td th:text="${entrada.cliente}"></td>
-										<td th:text="${entrada.produto}"></td>
-										<td th:text="${entrada.quantidade}"></td>
-										<td th:text="${entrada.valorUnitario}"></td>
-										<td th:text="${entrada.valorTotal}"></td>
-										<td th:text="${entrada.dataHora}"></td>
-										<td>
-											<a th:href="@{/entradas/concluido/{id}(id=${entrada.id})}">Não</a>
-										</td>
-										<td>
-											<a th:href="@{/entradas/editar/{id}(id=${entrada.id})}">Editar</a>
-											<a th:href="@{/entradas/remover/{id}(id=${entrada.id})}">Remover</a>
-										</td>
-										<td></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
+					<div>
+						<h2>Entradas de Peças</h2>
+						<table>
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Cliente</th>
+									<th>Produto</th>
+									<th>Quantidade</th>
+									<th>Valor Unitário</th>
+									<th>Valor Total</th>
+									<th>Data/Hora</th>
+									<th>Concluído</th>
+									<th>Ações</th>
+									<th>#####</tr>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="entrada : ${pendentes}">
+									<td th:text="${entrada.id}"></td>
+									<td th:text="${entrada.cliente}"></td>
+									<td th:text="${entrada.produto}"></td>
+									<td th:text="${entrada.quantidade}"></td>
+									<td th:text="${entrada.valorUnitario}"></td>
+									<td th:text="${entrada.valorTotal}"></td>
+									<td th:text="${entrada.dataHora}"></td>
+									<td>
+										<a th:href="@{/entradas/concluido/{id}(id=${entrada.id})}">Não</a>
+									</td>
+									<td>
+										<a th:href="@{/entradas/editar/{id}(id=${entrada.id})}">Editar</a>
+										<a th:href="@{/entradas/remover/{id}(id=${entrada.id})}">Remover</a>
+									</td>
+									<td></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 
-						<div>
-							<h2>Peças Concluídas</h2>
-						</div>
-					    <div>
-							<table>
-								<thead>
-									<tr>
-										<th>ID</th>
-										<th>Cliente</th>
-										<th>Produto</th>
-										<th>Quantidade</th>
-										<th>Valor Unitário</th>
-										<th>Valor Total</th>
-										<th>Data/Hora</th>
-										<th>Concluído</th>
-										<th>Ações</th>
-										<th>Mover para Saída</th>
-									</tr>
-								</thead>
-							</table>	
-						</div>
-						<div>
-							<table>
-								<tbody>
-									<tr th:each="entrada : ${concluidas}">
-										<td th:text="${entrada.id}"></td>
-										<td th:text="${entrada.cliente}"></td>
-										<td th:text="${entrada.produto}"></td>
-										<td th:text="${entrada.quantidade}"></td>
-										<td th:text="${entrada.valorUnitario}"></td>
-										<td th:text="${entrada.valorTotal}"></td>
-										<td th:text="${entrada.dataHora}"></td>
-										<td>
-											<a th:href="@{/entradas/concluido/{id}(id=${entrada.id})}">Sim</a>
-										</td>
-										<td>
-											<a th:href="@{/entradas/editar/{id}(id=${entrada.id})}">Editar</a> <!-- Botão para editar -->
-											<a th:href="@{/entradas/remover/{id}(id=${entrada.id})}">Remover</a> <!-- Botão para remover -->
-										</td>
-										<td>
-											<a th:if="${entrada.concluido}" th:href="@{/entradas/moverParaSaida/{id}(id=${entrada.id})}">Mover para Saída</a>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-                	</div>
-                </div>
-            </main>
+					<div>
+						<h2>Peças Concluídas</h2>
+						<table>
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Cliente</th>
+									<th>Produto</th>
+									<th>Quantidade</th>
+									<th>Valor Unitário</th>
+									<th>Valor Total</th>
+									<th>Data/Hora</th>
+									<th>Concluído</th>
+									<th>Ações</th>
+									<th>Mover para Saída</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="entrada : ${concluidas}">
+									<td th:text="${entrada.id}"></td>
+									<td th:text="${entrada.cliente}"></td>
+									<td th:text="${entrada.produto}"></td>
+									<td th:text="${entrada.quantidade}"></td>
+									<td th:text="${entrada.valorUnitario}"></td>
+									<td th:text="${entrada.valorTotal}"></td>
+									<td th:text="${entrada.dataHora}"></td>
+									<td>
+										<a th:href="@{/entradas/concluido/{id}(id=${entrada.id})}">Sim</a>
+									</td>
+									<td>
+										<a th:href="@{/entradas/editar/{id}(id=${entrada.id})}">Editar</a>
+										<a th:href="@{/entradas/remover/{id}(id=${entrada.id})}">Remover</a>
+									</td>
+									<td>
+										<a th:if="${entrada.concluido}" th:href="@{/entradas/moverParaSaida/{id}(id=${entrada.id})}">Mover para Saída</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
 			
         </div>
     </section>

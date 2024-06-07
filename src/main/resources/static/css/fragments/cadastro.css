@@ -28,16 +28,17 @@ main .cadastro div h2 {
 main .cadastro div form {
     display: flex;
     margin: 0px 10px 10px 10px;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: var(--font-weight-regular);
     color: var(--color-terciaria);
 }
 
 main .cadastro div form p {
     border: solid 1px;
+    border-color: var(--color-primaria);
     text-align: center;
-    width: 150px;
-    height: 98px;
+    width: 138px;
+    height: 90px;
 }
 
 main .cadastro div form p label {
@@ -51,8 +52,7 @@ main .cadastro div form p label {
 main .cadastro div form p input {
     display: flex;
     justify-content: center;
-    text-align: center;
-    height: 36px;
+    height: 24px;
     width: 110px;
     margin: 0px 10px 10px 10px;
     font-size: 12px;
@@ -61,10 +61,17 @@ main .cadastro div form p input {
 }
 
 main .cadastro div form p input[type="datetime-local" i] {
-    font-size: 8px
+    font-size: 8px;
+    text-align: center;
 }
 
 main .cadastro div form #adicionar {
-    text-align: center;
-    height: 36px;
+    display: inline;
+    width: 130px;
+    height: 90px;
+}
+
+main .cadastro div form #adicionar button {
+    height: 28px;
+    width: 110px;
 }
