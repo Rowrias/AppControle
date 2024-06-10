@@ -70,10 +70,9 @@
 						<table>
 							<thead>
 								<tr>
-									<th>ID</th>
 									<th>Cliente</th>
 									<th>Produto</th>
-									<th>Quantidade</th>
+									<th>Qtd</th>
 									<th>Valor Unitário</th>
 									<th>Valor Total</th>
 									<th>Data/Hora</th>
@@ -84,13 +83,12 @@
 							</thead>
 							<tbody>
 								<tr th:each="entrada : ${pendentes}">
-									<td th:text="${entrada.id}"></td>
 									<td th:text="${entrada.cliente}"></td>
 									<td th:text="${entrada.produto}"></td>
 									<td th:text="${entrada.quantidade}"></td>
-									<td th:text="${entrada.valorUnitario}"></td>
-									<td th:text="${entrada.valorTotal}"></td>
-									<td th:text="${entrada.dataHora}"></td>
+									<td th:text="${#numbers.formatDecimal(entrada.valorUnitario, 0, 'POINT', 2, 'COMMA')}"></td>
+									<td th:text="${#numbers.formatDecimal(entrada.valorTotal, 0, 'POINT', 2, 'COMMA')}"></td>
+									<td th:text="${#temporals.format(entrada.dataHora, 'dd/MM/yyyy HH:mm')}"></td>
 									<td>
 										<a th:href="@{/entradas/concluido/{id}(id=${entrada.id})}">Não</a>
 									</td>
@@ -109,10 +107,9 @@
 						<table>
 							<thead>
 								<tr>
-									<th>ID</th>
 									<th>Cliente</th>
 									<th>Produto</th>
-									<th>Quantidade</th>
+									<th>Qtd</th>
 									<th>Valor Unitário</th>
 									<th>Valor Total</th>
 									<th>Data/Hora</th>
@@ -123,13 +120,12 @@
 							</thead>
 							<tbody>
 								<tr th:each="entrada : ${concluidas}">
-									<td th:text="${entrada.id}"></td>
 									<td th:text="${entrada.cliente}"></td>
 									<td th:text="${entrada.produto}"></td>
 									<td th:text="${entrada.quantidade}"></td>
-									<td th:text="${entrada.valorUnitario}"></td>
-									<td th:text="${entrada.valorTotal}"></td>
-									<td th:text="${entrada.dataHora}"></td>
+									<td th:text="${#numbers.formatDecimal(entrada.valorUnitario, 0, 'POINT', 2, 'COMMA')}"></td>
+									<td th:text="${#numbers.formatDecimal(entrada.valorTotal, 0, 'POINT', 2, 'COMMA')}"></td>
+									<td th:text="${#temporals.format(entrada.dataHora, 'dd/MM/yyyy HH:mm')}"></td>
 									<td>
 										<a th:href="@{/entradas/concluido/{id}(id=${entrada.id})}">Sim</a>
 									</td>

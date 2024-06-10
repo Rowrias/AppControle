@@ -33,8 +33,14 @@ public class EntradaController {
     public String listaEntradas(Model model) {
         List<Entrada> pendentes = entradaService.buscaPorStatus(false);
         List<Entrada> concluidas = entradaService.buscaPorStatus(true);
+        // Exibe os dados separando em listas diferentes (pendentes e concluídas)
         model.addAttribute("pendentes", pendentes);
         model.addAttribute("concluidas", concluidas);
+
+        // Exibe os dados pelo ordem inversa do Id
+        model.addAttribute("pendentes", entradaService.getPendentes());
+        model.addAttribute("concluidas", entradaService.getConcluidas());
+
         return "entradas/entrada";
     }
     
