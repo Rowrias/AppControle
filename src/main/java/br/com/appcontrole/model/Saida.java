@@ -34,7 +34,11 @@ public class Saida {
     
     private Float valorTotal;
     
-    private LocalDateTime dataHora;
+    private LocalDateTime dataEntrada;
+	
+	private LocalDateTime dataConcluido;
+	
+	private LocalDateTime dataSaida;
 
     // Getters e Setters
     public Long getId() {
@@ -87,15 +91,31 @@ public class Saida {
         this.valorTotal = valorTotal;
     }
 
-    public LocalDateTime getDataHora() {
-        return dataHora;
-    }
+    public LocalDateTime getDataEntrada() {
+		return dataEntrada;
+	}
 
-    public void setDataHora(LocalDateTime dataHora) {
-        this.dataHora = dataHora;
-    }
+	public void setDataEntrada(LocalDateTime dataEntrada) {
+		this.dataEntrada = dataEntrada;
+	}
 
-    // Método para calcular valor total
+	public LocalDateTime getDataConcluido() {
+		return dataConcluido;
+	}
+
+	public void setDataConcluido(LocalDateTime dataConcluido) {
+		this.dataConcluido = dataConcluido;
+	}
+
+	public LocalDateTime getDataSaida() {
+		return dataSaida;
+	}
+
+	public void setDataSaida(LocalDateTime dataSaida) {
+		this.dataSaida = dataSaida;
+	}
+
+	// Método para calcular valor total
     private void calcularValorTotal() {
         if (this.quantidade != null && this.valorUnitario != null) {
             this.valorTotal = this.quantidade * this.valorUnitario;

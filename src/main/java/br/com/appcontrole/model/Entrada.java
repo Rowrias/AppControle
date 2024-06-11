@@ -18,11 +18,11 @@ public class Entrada {
 	private Long id;
 	
 	@NotNull
-	@Size(min = 1, max = 20)
+	@Size(min = 1, max = 50)
 	private String cliente;
 	
 	@NotNull
-	@Size(min = 1, max = 20)
+	@Size(min = 1, max = 50)
 	private String produto;
 	
 	@NotNull
@@ -32,8 +32,11 @@ public class Entrada {
 	
 	private Float valorTotal;
 	
-    private LocalDateTime dataHora;
-    
+	@NotNull
+    private LocalDateTime dataEntrada;
+	
+	private LocalDateTime dataConcluido;
+
     private boolean concluido;
 
 	// Getters Setters
@@ -89,15 +92,23 @@ public class Entrada {
 	public void setValorTotal(Float valorTotal) {
 		this.valorTotal = valorTotal;
 	}
-
-	public LocalDateTime getDataHora() {
-		return dataHora;
-	}
-
-	public void setDataHora(LocalDateTime dataHora) {
-		this.dataHora = dataHora;
-	}
 	
+	public LocalDateTime getDataEntrada() {
+		return dataEntrada;
+	}
+
+	public void setDataEntrada(LocalDateTime dataEntrada) {
+		this.dataEntrada = dataEntrada;
+	}
+
+	public LocalDateTime getDataConcluido() {
+		return dataConcluido;
+	}
+
+	public void setDataConcluido(LocalDateTime dataConcluido) {
+		this.dataConcluido = dataConcluido;
+	}
+
 	public boolean isConcluido() {
 		return concluido;
 	}

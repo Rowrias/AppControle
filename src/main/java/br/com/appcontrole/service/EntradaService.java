@@ -46,11 +46,12 @@ public class EntradaService implements CRUD<Entrada, Long> {
         return entradaRepository.findByConcluido(status);
     }
 
-	public List<Entrada> getPendentes() {
-        return entradaRepository.findPendentesOrderByIdDesc();
-    }
+	public List<Entrada> getPendentesDataHoraDesc() {
+	    return entradaRepository.findByConcluidoFalseOrderByDataEntradaDesc();
+	}
 
-	public List<Entrada> getConcluidas() {
-        return entradaRepository.findConcluidasOrderByIdDesc();
-    }
+	public List<Entrada> getConcluidasDataHoraDesc() {
+	    return entradaRepository.findByConcluidoTrueOrderByDataConcluidoDesc();
+	}
+	
 }

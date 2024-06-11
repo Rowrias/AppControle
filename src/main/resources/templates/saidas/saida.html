@@ -43,7 +43,9 @@
 									<th>Qtd</th>
 									<th>Valor Unitário</th>
 									<th>Valor Total</th>
-									<th>Data/Hora</th>
+									<th>Data Entrada</th>
+									<th>Data Concluída</th>
+									<th>Data Saída</th>
 									<th>Ações</th>
 								</tr>
 							</thead>
@@ -52,9 +54,11 @@
 									<td th:text="${saida.cliente}"></td>
 									<td th:text="${saida.produto}"></td>
 									<td th:text="${saida.quantidade}"></td>
-									<td th:text="${#numbers.formatDecimal(saida.valorUnitario, 0, 'POINT', 2, 'COMMA')}"></td>
-									<td th:text="${#numbers.formatDecimal(saida.valorTotal, 0, 'POINT', 2, 'COMMA')}"></td>
-									<td th:text="${#temporals.format(saida.dataHora, 'dd/MM/yyyy HH:mm')}"></td>
+									<td th:text="'R$ ' + ${#numbers.formatDecimal(saida.valorUnitario, 0, 'POINT', 2, 'COMMA')}"></td>
+									<td th:text="'R$ ' + ${#numbers.formatDecimal(saida.valorTotal, 0, 'POINT', 2, 'COMMA')}"></td>
+									<td th:text="${#temporals.format(saida.dataEntrada, 'dd/MM/yyyy (HH:mm)')}"></td>
+									<td th:text="${#temporals.format(saida.dataConcluido, 'dd/MM/yyyy (HH:mm)')}"></td>
+									<td th:text="${#temporals.format(saida.dataSaida, 'dd/MM/yyyy (HH:mm)')}"></td>
 									<td>
 										<a th:href="@{/saidas/editar/{id}(id=${saida.id})}">Editar</a>
 										<a th:href="@{/saidas/remover/{id}(id=${saida.id})}">Remover</a>

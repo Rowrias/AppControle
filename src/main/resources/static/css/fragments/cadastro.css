@@ -3,7 +3,7 @@ main .cadastro {
     display: inline-block;
     background: var(--color-secundaria);
     width: 844px;
-    height: 175px;
+    height: auto;
     border-radius: 5px;
     margin-bottom: 10px;
 }
@@ -27,6 +27,7 @@ main .cadastro div h2 {
 
 main .cadastro div form {
     display: flex;
+    flex-wrap: wrap;
     margin: 0px 10px 10px 10px;
     font-size: 14px;
     font-weight: var(--font-weight-regular);

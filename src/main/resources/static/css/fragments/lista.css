@@ -118,3 +118,19 @@ main .lista div table thead tr th:nth-child(9),
 main .lista div table tbody tr td:nth-child(9) {
     width: 50px;
 }
+
+/* Formatação para o R$ e valor */
+td.reais {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+td.reais span:first-child {
+    text-align: left;
+}
+
+td.reais span:last-child {
+    flex-grow: 1;
+    text-align: right;
+}

@@ -1,5 +1,6 @@
 package br.com.appcontrole.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class EntradaController {
 
     @PostMapping("/entradas")
     public String novaEntrada(Entrada entrada, Model model) {
-        entradaService.insere(entrada);
+    	entradaService.insere(entrada);
         return "redirect:/entradas";
     }
     
@@ -38,8 +39,8 @@ public class EntradaController {
         model.addAttribute("concluidas", concluidas);
 
         // Exibe os dados pelo ordem inversa do Id
-        model.addAttribute("pendentes", entradaService.getPendentes());
-        model.addAttribute("concluidas", entradaService.getConcluidas());
+        model.addAttribute("pendentes", entradaService.getPendentesDataHoraDesc());
+        model.addAttribute("concluidas", entradaService.getConcluidasDataHoraDesc());
 
         return "entradas/entrada";
     }
@@ -49,6 +50,7 @@ public class EntradaController {
         Entrada entrada = entradaService.buscaPorId(id);
         if (entrada != null) {
             entrada.setConcluido(!entrada.isConcluido());
+            entrada.setDataConcluido(LocalDateTime.now());
             entradaService.atualiza(entrada);
         }
         return "redirect:/entradas";
@@ -64,7 +66,9 @@ public class EntradaController {
             saida.setQuantidade(entrada.getQuantidade());
             saida.setValorUnitario(entrada.getValorUnitario());
             saida.setValorTotal(entrada.getValorTotal());
-            saida.setDataHora(entrada.getDataHora());
+            saida.setDataEntrada(entrada.getDataEntrada());
+            saida.setDataConcluido(entrada.getDataConcluido());
+            saida.setDataSaida(LocalDateTime.now());
             
             saidaService.insere(saida);
             entradaService.remove(id);
