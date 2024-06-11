@@ -8,46 +8,48 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.appcontrole.model.Funcionario;
 import br.com.appcontrole.service.FuncionarioService;
 
 @Controller
+@RequestMapping("/funcionarios")
 public class FuncionarioController {
 	
 	@Autowired
 	private FuncionarioService funcionarioService;
 	
-	@GetMapping("/funcionarios")
+	@GetMapping("/lista")
     public String listaFuncionario(Model model) {
         List<Funcionario> funcionario = funcionarioService.buscaTodos();
         model.addAttribute("funcionarios", funcionario);
-        return "funcionarios/funcionario";
+        return "funcionarios/lista";
     }
 	
-	@PostMapping("/funcionarios")
+	@PostMapping("/lista")
     public String novoFuncionario(Funcionario funcionario, Model model) {
 		funcionarioService.insere(funcionario);
-        return "redirect:/funcionarios";
+        return "redirect:/funcionarios/lista";
     }
 	
-	@GetMapping("/funcionarios/editar/{id}")
+	@GetMapping("/editar/{id}")
     public String editarEntrada(@PathVariable Long id, Model model) {
 		Funcionario funcionario = funcionarioService.buscaPorId(id);
         model.addAttribute("funcionario", funcionario);
-        return "funcionario/editar";
+        return "funcionarios/editar";
     }
 
-    @PostMapping("/funcionarios/editar/{id}")
+    @PostMapping("/editar/{id}")
     public String atualizarEntrada(@PathVariable Long id, Funcionario funcionario) {
     	funcionario.setId(id);
         funcionarioService.atualiza(funcionario);
-        return "redirect:/funcionarios";
+        return "redirect:/funcionarios/lista";
     }
 
-    @GetMapping("/funcionarios/remover/{id}")
+    @GetMapping("/remover/{id}")
     public String removerEntrada(@PathVariable Long id) {
     	funcionarioService.remove(id);
-        return "redirect:/funcionarios";
+        return "redirect:/funcionarios/lista";
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.appcontrole.model.Entrada;
 import br.com.appcontrole.model.Saida;
@@ -16,6 +17,7 @@ import br.com.appcontrole.service.EntradaService;
 import br.com.appcontrole.service.SaidaService;
 
 @Controller
+@RequestMapping("/entradas")
 public class EntradaController {
 
     @Autowired
@@ -24,13 +26,13 @@ public class EntradaController {
     @Autowired
     private SaidaService saidaService;
 
-    @PostMapping("/entradas")
+    @PostMapping("/lista")
     public String novaEntrada(Entrada entrada, Model model) {
     	entradaService.insere(entrada);
-        return "redirect:/entradas";
+        return "redirect:/entradas/lista";
     }
     
-    @GetMapping("/entradas")
+    @GetMapping("/lista")
     public String listaEntradas(Model model) {
         List<Entrada> pendentes = entradaService.buscaPorStatus(false);
         List<Entrada> concluidas = entradaService.buscaPorStatus(true);
@@ -42,10 +44,10 @@ public class EntradaController {
         model.addAttribute("pendentes", entradaService.getPendentesDataHoraDesc());
         model.addAttribute("concluidas", entradaService.getConcluidasDataHoraDesc());
 
-        return "entradas/entrada";
+        return "entradas/lista";
     }
     
-    @GetMapping("/entradas/concluido/{id}")
+    @GetMapping("/concluido/{id}")
     public String alteraStatusConcluido(@PathVariable Long id) {
         Entrada entrada = entradaService.buscaPorId(id);
         if (entrada != null) {
@@ -53,10 +55,10 @@ public class EntradaController {
             entrada.setDataConcluido(LocalDateTime.now());
             entradaService.atualiza(entrada);
         }
-        return "redirect:/entradas";
+        return "redirect:/entradas/lista";
     }
         
-    @GetMapping("/entradas/moverParaSaida/{id}")
+    @GetMapping("/moverParaSaida/{id}")
     public String moverParaSaida(@PathVariable Long id) {
         Entrada entrada = entradaService.buscaPorId(id);
         if (entrada != null && entrada.isConcluido()) {
@@ -73,27 +75,27 @@ public class EntradaController {
             saidaService.insere(saida);
             entradaService.remove(id);
         }
-        return "redirect:/entradas";
+        return "redirect:/entradas/lista";
     }
     
-    @GetMapping("/entradas/editar/{id}")
+    @GetMapping("/editar/{id}")
     public String editarEntrada(@PathVariable Long id, Model model) {
     	Entrada entrada = entradaService.buscaPorId(id);
         model.addAttribute("entrada", entrada);
-        return "entrada/editar";
+        return "entradas/editar";
     }
 
-    @PostMapping("/entradas/editar/{id}")
+    @PostMapping("/editar/{id}")
     public String atualizarEntrada(@PathVariable Long id, Entrada entrada) {
         entrada.setId(id);
         entradaService.atualiza(entrada);
-        return "redirect:/entradas";
+        return "redirect:/entradas/lista";
     }
 
-    @GetMapping("/entradas/remover/{id}")
+    @GetMapping("/remover/{id}")
     public String removerEntrada(@PathVariable Long id) {
         entradaService.remove(id);
-        return "redirect:/entradas";
+        return "redirect:/entradas/lista";
     }
    
 }

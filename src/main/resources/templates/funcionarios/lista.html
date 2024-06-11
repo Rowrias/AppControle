@@ -24,23 +24,19 @@
             	<!-- titulo.css -->
                 <div class="titulo">
                     <img th:src="@{/images/entrada(grande).svg}">
-                    <h2>CLIENTES</h2>
+                    <h2>FUNCIONÁRIOS</h2>
                 </div>
                 
                 <!-- cadastro.css -->
                 <div class="cadastro">
 					<div>
-						<h2>Cadastro de clientes</h2>
+						<h2>Cadastro de funcionários</h2>
 					</div>
                 	<div>
-						<form action="/clientes" method="post">
+						<form action="/funcionarios/lista" method="post">
 							<p>
 								<label for="nome">Nome:</label>
-					        	<input type="text" id="nome" name="nome" required>
-							</p>
-					        <p>
-								<label for="cnpj">CNPJ:</label>
-					        	<input type="text" id="cnpj" name="cnpj">
+					        	<input type="text" id="nome" name="nome">
 							</p>
 					        <p>
 								<label for="cpf">CPF:</label>
@@ -50,50 +46,59 @@
 								<label for="email">E-mail:</label>
 					        	<input type="email" id="email" name="email">
 							</p>
-					        <P>
+							<p>
 								<label for="celular">Celular:</label>
-					        	<input type="number" id="celular" name="celular"/>
-							</P>
-							<P>
+					        	<input type="number" id="celular" name="celular">
+							</p>
+					        <P>
 								<label for="telefone">Telefone:</label>
 					        	<input type="number" id="telefone" name="telefone"/>
 							</P>
+							<P>
+								<label for="usuario">Usuário:</label>
+					        	<input type="text" id="usuario" name="usuario"/>
+							</P>
+							<P>
+								<label for="senha">Senha:</label>
+					        	<input type="text" id="senha" name="senha"/>
+							</P>
+							
 							<p id="adicionar">
 								<label></label>
 								<button type="submit" >Adicionar</button>
 							</p>
-							
 					    </form>
-					</div>
-	                	               	
+					</div>          	
                 </div>
                 
                 <div class="lista">
 					<div>
-						<h2>Lista de clientes</h2>
+						<h2>Lista de funcionários</h2>
 						<table>
 							<thead>
 								<tr>
 									<th>Nome</th>
-									<th>CNPJ</th>
 									<th>CPF</th>
 									<th>E-mail</th>
 									<th>Celular</th>
 									<th>Telefone</th>
+									<th>Usuário</th>
+									<th>Senha</th>
 									<th>Ações</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr th:each="cliente : ${clientes}">
-									<td th:text="${#strings.capitalize(cliente.nome)}"></td>
-									<td th:text="${cliente.cnpj}"></td>
-									<td th:text="${cliente.cpf}"></td>
-									<td th:text="${cliente.email}"></td>
-									<td th:text="${cliente.celular}"></td>
-									<td th:text="${cliente.telefone}"></td>
+								<tr th:each="funcionario : ${funcionarios}">
+									<td th:text="${#strings.capitalize(funcionario.nome)}"></td>
+									<td th:text="${funcionario.cpf}"></td>
+									<td th:text="${funcionario.email}"></td>
+									<td th:text="${funcionario.celular}"></td>
+									<td th:text="${funcionario.telefone}"></td>
+									<td th:text="${funcionario.usuario}"></td>
+									<td th:text="${funcionario.senha}">></td>
 									<td>
-										<a th:href="@{/clientes/editar/{id}(id=${cliente.id})}">Editar</a>
-										<a th:href="@{/clientes/remover/{id}(id=${cliente.id})}">Remover</a>
+										<a th:href="@{/funcionarios/editar/{id}(id=${funcionario.id})}">Editar</a>
+										<a th:href="@{/funcionarios/remover/{id}(id=${funcionario.id})}">Remover</a>
 									</td>
 								</tr>
 							</tbody>
