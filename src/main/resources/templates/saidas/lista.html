@@ -26,7 +26,7 @@
 
             	<!-- titulo.css -->
                 <div class="titulo">
-                    <img th:src="@{/images/entrada(grande).svg}">
+                    <img th:src="@{/images/entrada(70x70).svg}">
                     <h2>SAIDA</h2>
                 </div>
                 
@@ -54,14 +54,20 @@
 									<td th:text="${saida.cliente}"></td>
 									<td th:text="${saida.produto}"></td>
 									<td th:text="${saida.quantidade}"></td>
-									<td th:text="'R$ ' + ${#numbers.formatDecimal(saida.valorUnitario, 0, 'POINT', 2, 'COMMA')}"></td>
-									<td th:text="'R$ ' + ${#numbers.formatDecimal(saida.valorTotal, 0, 'POINT', 2, 'COMMA')}"></td>
+									<td th:text="'R$ ' + ${#numbers.formatDecimal(saida.valorUnitario, 1, 'POINT', 2, 'COMMA')}"></td>
+									<td th:text="'R$ ' + ${#numbers.formatDecimal(saida.valorTotal, 1, 'POINT', 2, 'COMMA')}"></td>
 									<td th:text="${#temporals.format(saida.dataEntrada, 'dd/MM/yyyy (HH:mm)')}"></td>
 									<td th:text="${#temporals.format(saida.dataConcluido, 'dd/MM/yyyy (HH:mm)')}"></td>
 									<td th:text="${#temporals.format(saida.dataSaida, 'dd/MM/yyyy (HH:mm)')}"></td>
 									<td>
-										<a th:href="@{/saidas/editar/{id}(id=${saida.id})}">Editar</a>
-										<a th:href="@{/saidas/remover/{id}(id=${saida.id})}">Remover</a>
+										<a id="editar" th:href="@{/saidas/editar/{id}(id=${saida.id})}">
+											<span>Editar</span>
+											<img th:src="@{/images/edit(24x24).svg}">
+										</a>
+										<a id="excluir" th:href="@{/saidas/remover/{id}(id=${saida.id})}">
+											<span>Excluir</span>
+											<img th:src="@{/images/delete(24x24).svg}">
+										</a>
 									</td>
 								</tr>
 							</tbody>

@@ -76,47 +76,47 @@ main .lista div table tbody tr td {
 /* espaço individual para cada coluna da tabela */
 main .lista div table thead tr th:nth-child(1),
 main .lista div table tbody tr td:nth-child(1) {
-    width: 164px;
+    width: auto;
 }
 
 main .lista div table thead tr th:nth-child(2),
 main .lista div table tbody tr td:nth-child(2) {
-    width: 164px;
+    width: auto;
 }
 
 main .lista div table thead tr th:nth-child(3),
 main .lista div table tbody tr td:nth-child(3) {
-    width: 62px;
+    width: auto;
 }
 
 main .lista div table thead tr th:nth-child(4),
 main .lista div table tbody tr td:nth-child(4) {
-    width: 77px;
+    width: auto;
 }
 
 main .lista div table thead tr th:nth-child(5),
 main .lista div table tbody tr td:nth-child(5) {
-    width: 77px;
+    width: auto;
 }
 
 main .lista div table thead tr th:nth-child(6),
 main .lista div table tbody tr td:nth-child(6) {
-    width: 102px;
+    width: auto;
 }
 
 main .lista div table thead tr th:nth-child(7),
 main .lista div table tbody tr td:nth-child(7) {
-    width: 60px;
+    width: auto;
 }
 
 main .lista div table thead tr th:nth-child(8),
 main .lista div table tbody tr td:nth-child(8) {
-    width: 60px;
+    width: auto;
 }
 
 main .lista div table thead tr th:nth-child(9),
 main .lista div table tbody tr td:nth-child(9) {
-    width: 50px;
+    width: auto;
 }
 
 /* Formatação para o R$ e valor */

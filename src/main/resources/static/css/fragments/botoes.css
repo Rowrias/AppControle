@@ -1,0 +1,26 @@
+/* botões */
+#adicionar button {
+	background-color: #1c84c6;
+	border-color: #0D99FF;
+	color: var(--color-secundaria);
+	border-radius: 5px;
+}
+
+ a#editar {
+ 	display: flex;
+ 	align-content: space-between;
+ 	justify-content: space-between;
+	border: 1px solid;
+	padding: 10px 10px;
+	background-color: #1ab394;
+	color: var(--color-secundaria);
+	border-radius: 5px;
+}
+
+a#excluir  {
+	border: 1px solid;
+	background-color: #FF0D0D;
+	padding: 10px 10px;
+	color: var(--color-secundaria);
+	border-radius: 5px;
+}

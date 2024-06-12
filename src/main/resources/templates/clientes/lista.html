@@ -23,7 +23,7 @@
             <main>
             	<!-- titulo.css -->
                 <div class="titulo">
-                    <img th:src="@{/images/entrada(grande).svg}">
+                    <img th:src="@{/images/entrada(70x70).svg}">
                     <h2>CLIENTES</h2>
                 </div>
                 
@@ -35,7 +35,7 @@
                 	<div>
 						<form action="/clientes/lista" method="post">
 							<p>
-								<label for="nome">Nome:</label>
+								<label for="nome">Nome: *</label>
 					        	<input type="text" id="nome" name="nome" required>
 							</p>
 					        <p>
@@ -52,11 +52,11 @@
 							</p>
 					        <P>
 								<label for="celular">Celular:</label>
-					        	<input type="number" id="celular" name="celular"/>
+					        	<input type="text" id="celular" name="celular"/>
 							</P>
 							<P>
 								<label for="telefone">Telefone:</label>
-					        	<input type="number" id="telefone" name="telefone"/>
+					        	<input type="text" id="telefone" name="telefone"/>
 							</P>
 							<p id="adicionar">
 								<label></label>
@@ -92,8 +92,14 @@
 									<td th:text="${cliente.celular}"></td>
 									<td th:text="${cliente.telefone}"></td>
 									<td>
-										<a th:href="@{/clientes/editar/{id}(id=${cliente.id})}">Editar</a>
-										<a th:href="@{/clientes/remover/{id}(id=${cliente.id})}">Remover</a>
+										<a th:href="@{/clientes/editar/{id}(id=${cliente.id})}">
+											<span>Editar</span>
+											<img th:src="@{/images/edit(24x24).svg}">
+										</a>
+										<a th:href="@{/clientes/remover/{id}(id=${cliente.id})}">
+											<span>Excluir</span>
+											<img th:src="@{/images/delete(24x24).svg}">
+										</a>
 									</td>
 								</tr>
 							</tbody>
@@ -104,5 +110,16 @@
         </div>
     </section>
 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#cnpj').mask('99.999.999/9999-99');
+			$('#cpf').mask('999.999.999-99');
+			$('#celular').mask('(99) 99999-9999');					
+			$('#telefone').mask('(99) 9999-9999');
+		});
+	</script>
 </body>
 </html>
