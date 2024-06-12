@@ -35,10 +35,12 @@ public class Funcionario {
 	@Column(length = 14)
 	private String telefone;
 	
-	private String usuario;
+	private String username;
 	
-	private String senha;
-
+    private String password;
+    
+    private String role;
+    
 	//Getters Setters
 	public Long getId() {
 		return id;
@@ -92,20 +94,28 @@ public class Funcionario {
 		this.telefone = telefone;
 	}
 
-	public String getUsuario() {
-		return usuario;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	public String getSenha() {
-		return senha;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 	
 }

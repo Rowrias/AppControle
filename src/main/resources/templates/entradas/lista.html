@@ -35,8 +35,8 @@
                 	<div>
 						<form action="/entradas/lista" method="post">
 							<p>
-								<label for="cliente">Cliente:</label>
-					        	<input type="text" id="cliente" name="cliente" required>
+								<label for="clienteNome">Cliente:</label>
+					        	<input type="text" id="clienteNome" name="cliente.nome" required>
 							</p>
 					        <p>
 								<label for="produto">Produto:</label>
@@ -83,7 +83,7 @@
 							</thead>
 							<tbody>
 								<tr th:each="entrada : ${pendentes}">
-									<td th:text="${entrada.cliente}"></td>
+									<td th:text="${#strings.capitalize(entrada.cliente)}"></td>
 									<td th:text="${entrada.produto}"></td>
 									<td th:text="${entrada.quantidade}"></td>
 									<td class="reais">
@@ -126,7 +126,7 @@
 							</thead>
 							<tbody>
 								<tr th:each="entrada : ${concluidas}">
-									<td th:text="${entrada.cliente}"></td>
+									<td th:text="${#strings.capitalize(entrada.cliente)}"></td>
 									<td th:text="${entrada.produto}"></td>
 									<td th:text="${entrada.quantidade}"></td>
 									<td class="reais">

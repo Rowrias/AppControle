@@ -41,5 +41,19 @@ public class ClienteService implements CRUD<Cliente, Long> {
 	public Cliente buscaPorId(Long id) {
 		return clienteRepository.findById(id).orElse(null);
 	}
+	
+	public List<Cliente> buscaTodosOrdenadoPorNome() {
+        return clienteRepository.findAllByOrderByNomeAsc();
+    }
+	
+	public Cliente clienteExiste(String nome) {
+		Cliente cliente = clienteRepository.findByNome(nome);
+        if (cliente == null) {
+            cliente = new Cliente();
+            cliente.setNome(nome);
+            clienteRepository.save(cliente);
+        }
+        return cliente;
+    }
 
 }

@@ -22,13 +22,16 @@ public class FuncionarioController {
 	
 	@GetMapping("/lista")
     public String listaFuncionario(Model model) {
-        List<Funcionario> funcionario = funcionarioService.buscaTodos();
+        List<Funcionario> funcionario = funcionarioService.buscaTodosOrdenadoPorNome();
         model.addAttribute("funcionarios", funcionario);
         return "funcionarios/lista";
     }
 	
 	@PostMapping("/lista")
     public String novoFuncionario(Funcionario funcionario, Model model) {
+		if (funcionario.getPassword() == null || funcionario.getPassword().isEmpty()) {
+	        funcionario.setPassword("Não vai entrar pois precisa de 'username'"); // Defina uma senha padrão aqui
+	    }
 		funcionarioService.insere(funcionario);
         return "redirect:/funcionarios/lista";
     }

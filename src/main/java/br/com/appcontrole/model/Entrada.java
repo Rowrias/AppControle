@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -18,8 +19,8 @@ public class Entrada {
 	private Long id;
 	
 	@NotNull
-	@Size(min = 1, max = 50)
-	private String cliente;
+    @ManyToOne
+    private Cliente cliente;
 	
 	@NotNull
 	@Size(min = 1, max = 50)
@@ -48,11 +49,11 @@ public class Entrada {
 		this.id = id;
 	}
 
-	public String getCliente() {
+	public Cliente getCliente() {
 		return cliente;
 	}
 
-	public void setCliente(String cliente) {
+	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
 
@@ -118,10 +119,11 @@ public class Entrada {
 	}
 	
 	// calcularValorTotal = setQuantidade X setValorUnitario
-		private void calcularValorTotal() {
-		    if (this.quantidade != null && this.valorUnitario != null) {
-		        this.valorTotal = this.quantidade * this.valorUnitario;
-		    }
-		}
+	private void calcularValorTotal() {
+	    if (this.quantidade != null && this.valorUnitario != null) {
+	        this.valorTotal = this.quantidade * this.valorUnitario;
+	    }
+	}
     
+		
 }

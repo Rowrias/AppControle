@@ -22,7 +22,7 @@ public class ClienteController {
 	
 	@GetMapping("/lista")
     public String listaClientes(Model model) {
-        List<Cliente> cliente = clienteService.buscaTodos();
+		List<Cliente> cliente = clienteService.buscaTodosOrdenadoPorNome();
         model.addAttribute("clientes", cliente);
         return "clientes/lista";
     }

@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import br.com.appcontrole.model.Cliente;
 import br.com.appcontrole.model.Entrada;
 import br.com.appcontrole.model.Saida;
+import br.com.appcontrole.service.ClienteService;
 import br.com.appcontrole.service.EntradaService;
 import br.com.appcontrole.service.SaidaService;
 
@@ -25,9 +27,14 @@ public class EntradaController {
     
     @Autowired
     private SaidaService saidaService;
+    
+    @Autowired
+    private ClienteService clienteService;
 
     @PostMapping("/lista")
     public String novaEntrada(Entrada entrada, Model model) {
+    	Cliente cliente = clienteService.clienteExiste(entrada.getCliente().getNome());
+        entrada.setCliente(cliente);
     	entradaService.insere(entrada);
         return "redirect:/entradas/lista";
     }
@@ -52,7 +59,11 @@ public class EntradaController {
         Entrada entrada = entradaService.buscaPorId(id);
         if (entrada != null) {
             entrada.setConcluido(!entrada.isConcluido());
-            entrada.setDataConcluido(LocalDateTime.now());
+            if (entrada.isConcluido()) {
+                entrada.setDataConcluido(LocalDateTime.now());
+            } else {
+                entrada.setDataConcluido(null);
+            }
             entradaService.atualiza(entrada);
         }
         return "redirect:/entradas/lista";
@@ -63,7 +74,7 @@ public class EntradaController {
         Entrada entrada = entradaService.buscaPorId(id);
         if (entrada != null && entrada.isConcluido()) {
             Saida saida = new Saida();
-            saida.setCliente(entrada.getCliente());
+            saida.setCliente(entrada.getCliente().getNome());
             saida.setProduto(entrada.getProduto());
             saida.setQuantidade(entrada.getQuantidade());
             saida.setValorUnitario(entrada.getValorUnitario());

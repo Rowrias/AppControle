@@ -3,6 +3,7 @@ package br.com.appcontrole.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.com.appcontrole.model.Funcionario;
@@ -16,8 +17,11 @@ public class FuncionarioService implements CRUD<Funcionario, Long>{
 	
 	@Override
 	public Funcionario insere(Funcionario funcionario) {
-		return funcionarioRepository.save(funcionario);
-
+		// Criptografar a senha antes de salvar
+        String encodedPassword = passwordEncoder.encode(funcionario.getPassword());
+        funcionario.setPassword(encodedPassword);
+        
+        return funcionarioRepository.save(funcionario);
 	}
 
 	@Override
@@ -42,5 +46,19 @@ public class FuncionarioService implements CRUD<Funcionario, Long>{
 	public Funcionario buscaPorId(Long id) {
 		return funcionarioRepository.findById(id).orElse(null);
 	}
+	
+	public List<Funcionario> buscaTodosOrdenadoPorNome() {
+        return funcionarioRepository.findAllByOrderByNomeAsc();
+    }
+	
+	@Autowired
+    private PasswordEncoder passwordEncoder;
+
+    // Criptografa a senha antes de salvar
+    public void inserirUsuario(Funcionario funcionario) {
+        String encodedPassword = passwordEncoder.encode(funcionario.getPassword());
+        funcionario.setPassword(encodedPassword);
+        funcionarioRepository.save(funcionario);
+    }
 
 }

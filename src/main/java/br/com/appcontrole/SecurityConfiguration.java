@@ -1,0 +1,67 @@
+package br.com.appcontrole;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import br.com.appcontrole.model.Funcionario;
+import br.com.appcontrole.repository.FuncionarioRepository;
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfiguration {
+	
+	@Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+	        .formLogin(formLogin -> formLogin
+	        		// Especifica a página de login personalizada
+	        		.loginPage("/login")
+	        		// Permite acesso à página de login sem autenticação
+	        		.permitAll()
+	        		)
+	        .logout(logout -> logout
+	        		// URL para logout
+	        		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+	        		// Redireciona para a página de login após o logout
+	        		.logoutSuccessUrl("/login")
+	        		)
+	        .authorizeHttpRequests(authorizeRequests -> authorizeRequests
+	        		.requestMatchers(HttpMethod.GET, "/funcionarios/**", "/clientes/**").hasRole("ADM")
+	        		.requestMatchers(HttpMethod.POST, "/funcionarios/**", "/clientes/**").hasRole("ADM")
+	        		// Todas as outras requisições devem ser autenticadas
+	        		.anyRequest().authenticated()
+	        		)
+            .csrf(csrf -> csrf.disable());
+
+        return http.build();
+    }
+	
+	@Bean
+    public static BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+	
+	@Bean
+	public UserDetailsService userDetailsService(FuncionarioRepository funcionarioRepository) {
+	    return username -> {
+	        Funcionario funcionario = funcionarioRepository.findByUsername(username);
+	        if (funcionario != null) {
+	            return User.withUsername(funcionario.getUsername())
+	                .password(funcionario.getPassword())
+	                .roles(funcionario.getRole())
+	                .build();
+	        } else {
+	            throw new UsernameNotFoundException("Usúario não encontrado");
+	        }
+	    };
+	}
+}

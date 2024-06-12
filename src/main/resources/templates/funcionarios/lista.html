@@ -36,7 +36,7 @@
 						<form action="/funcionarios/lista" method="post">
 							<p>
 								<label for="nome">Nome:</label>
-					        	<input type="text" id="nome" name="nome">
+					        	<input type="text" id="nome" name="nome" required>
 							</p>
 					        <p>
 								<label for="cpf">CPF:</label>
@@ -55,12 +55,16 @@
 					        	<input type="number" id="telefone" name="telefone"/>
 							</P>
 							<P>
-								<label for="usuario">Usuário:</label>
-					        	<input type="text" id="usuario" name="usuario"/>
+								<label for="username">Usuário:</label>
+					        	<input type="text" id="username" name="username"/>
 							</P>
 							<P>
-								<label for="senha">Senha:</label>
-					        	<input type="text" id="senha" name="senha"/>
+								<label for="password">Senha:</label>
+					        	<input type="text" id="password" name="password"/>
+							</P>
+							<P>
+								<label for="role">Acesso:</label>
+					        	<input type="text" id="role" name="role"/>
 							</P>
 							
 							<p id="adicionar">
@@ -83,7 +87,7 @@
 									<th>Celular</th>
 									<th>Telefone</th>
 									<th>Usuário</th>
-									<th>Senha</th>
+									<th>Acesso</th>
 									<th>Ações</th>
 								</tr>
 							</thead>
@@ -94,8 +98,8 @@
 									<td th:text="${funcionario.email}"></td>
 									<td th:text="${funcionario.celular}"></td>
 									<td th:text="${funcionario.telefone}"></td>
-									<td th:text="${funcionario.usuario}"></td>
-									<td th:text="${funcionario.senha}">></td>
+									<td th:text="${funcionario.username}"></td>
+									<td th:text="${funcionario.role}">></td>
 									<td>
 										<a th:href="@{/funcionarios/editar/{id}(id=${funcionario.id})}">Editar</a>
 										<a th:href="@{/funcionarios/remover/{id}(id=${funcionario.id})}">Remover</a>
