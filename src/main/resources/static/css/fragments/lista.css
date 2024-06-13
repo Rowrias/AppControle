@@ -1,12 +1,12 @@
 /* lista */
 main .lista {
+    background: var(--color-secundaria);
+    border-radius: 5px;
     display: flex;
     flex-direction: column;
-    background: var(--color-secundaria);
-    width: 100%;
     height: auto;
-    border-radius: 5px;
     margin-bottom: 10px;
+    width: 100%;
 }
 
 main .lista div {
@@ -15,22 +15,22 @@ main .lista div {
 }
 
 main .lista div h2 {
-    display: flex;
     align-items: center;
-    padding: 10px;
-    width: 804px;
+    color: var(--color-terciaria);
+    display: flex;
     height: 36px;
-    margin: 10px 10px 0px 10px;
     font-size: 16px;
     font-weight: var(--font-weight-bold);
-    color: var(--color-terciaria);
+    margin: 10px 10px 0px 10px;
+    padding: 10px;
+    width: 804px;
 }
 
 main .lista div table {
-    width: calc(100% - 20px);
-    margin: 0px auto 10px auto;    
-    border-collapse: collapse;
     border: 1px solid var(--color-secundaria);
+    border-collapse: collapse;
+    margin: 0px auto 10px auto;    
+    width: calc(100% - 20px);
 }
 
 main .lista div table thead {
@@ -42,12 +42,12 @@ main .lista div table thead tr {
 }
 
 main .lista div table thead tr th {
+    border: solid 1px var(--color-primaria);
+    box-sizing: border-box;
     display: table-cell;
     color: var(--color-terciaria);
     font-size: 12px;
     font-weight: var(--font-weight-bold);
-    border: solid 1px var(--color-primaria);
-    box-sizing: border-box;
     height: 50px;
     text-align: center; 
     vertical-align: middle;
@@ -62,13 +62,13 @@ main .lista div table tbody tr {
 }
 
 main .lista div table tbody tr td {
+    border: solid 1px var(--color-primaria);
+    box-sizing: border-box;
     display: table-cell;
     font-size: 12px;
     font-weight: var(--font-weight-regular);
-    border: solid 1px var(--color-primaria);
-    box-sizing: border-box;
-    padding: 5px;
     height: 50px;
+    padding: 5px;
     text-align: center; 
     vertical-align: middle;
 }

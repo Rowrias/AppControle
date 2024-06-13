@@ -20,12 +20,29 @@ public class ClienteService implements CRUD<Cliente, Long> {
 	}
 
 	@Override
-	public Cliente atualiza(Cliente cliente) {
-		if (cliente.getId() == null || !clienteRepository.existsById(cliente.getId())) {
-            throw new IllegalArgumentException("Não encontrado");
+    public Cliente atualiza(Cliente updatedCliente) {
+        if (updatedCliente.getId() == null || !clienteRepository.existsById(updatedCliente.getId())) {
+            throw new IllegalArgumentException("Cliente não encontrado");
         }
-        return clienteRepository.save(cliente);
-	}
+
+        Cliente existingCliente = clienteRepository.findById(updatedCliente.getId())
+            .orElseThrow(() -> new IllegalArgumentException("Cliente não encontrado"));
+
+        // Atualizar campos do existingCliente com campos do updatedCliente
+        existingCliente.setNome(updatedCliente.getNome());
+        existingCliente.setCnpj(updatedCliente.getCnpj());
+        existingCliente.setCpf(updatedCliente.getCpf());
+        existingCliente.setEmail(updatedCliente.getEmail());
+        existingCliente.setCelular(updatedCliente.getCelular());
+        existingCliente.setTelefone(updatedCliente.getTelefone());
+
+        // Atualizar a coleção de entradas
+        existingCliente.updateEntradas(updatedCliente.getEntradas());
+
+        // Persistir as alterações
+        return clienteRepository.save(existingCliente);
+    }
+
 
 	@Override
 	public void remove(Long id) {

@@ -1,5 +1,6 @@
 package br.com.appcontrole.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -42,8 +43,8 @@ public class Cliente {
 	private String telefone;
 	
 	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Entrada> entradas;
-	
+    private List<Entrada> entradas = new ArrayList<>();
+
 	// Getters Setters
 	public Long getId() {
 		return id;
@@ -104,6 +105,41 @@ public class Cliente {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
+	
+	public List<Entrada> getEntradas() {
+        return entradas;
+    }
+
+    public void setEntradas(List<Entrada> entradas) {
+        this.entradas = entradas;
+    }
+
+    public void addEntrada(Entrada entrada) {
+        entradas.add(entrada);
+        entrada.setCliente(this);
+    }
+    
+    public void updateEntradas(List<Entrada> newEntradas) {
+        for (Entrada newEntrada : newEntradas) {
+            boolean updated = false;
+            for (Entrada existingEntrada : this.entradas) {
+                if (existingEntrada.getId().equals(newEntrada.getId())) {
+                    existingEntrada.setProduto(newEntrada.getProduto());
+                    existingEntrada.setQuantidade(newEntrada.getQuantidade());
+                    existingEntrada.setValorUnitario(newEntrada.getValorUnitario());
+                    existingEntrada.setValorTotal(newEntrada.getValorTotal());
+                    existingEntrada.setDataEntrada(newEntrada.getDataEntrada());
+                    existingEntrada.setDataConcluido(newEntrada.getDataConcluido());
+                    existingEntrada.setConcluido(newEntrada.isConcluido());
+                    updated = true;
+                    break;
+                }
+            }
+            if (!updated) {
+                this.addEntrada(newEntrada);
+            }
+        }
+    }
 	
 	@Override
     public String toString() {

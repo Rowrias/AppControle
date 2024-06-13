@@ -1,10 +1,10 @@
 header {
-    text-align: center;
     background: var(--color-secundaria);
     padding: 3rem;
+    text-align: center;
 }
 
 header div {
-    width: 1014px;
     margin: auto;
+    width: 1014px;
 }

@@ -58,9 +58,9 @@
 								<label for="telefone">Telefone:</label>
 					        	<input type="text" id="telefone" name="telefone"/>
 							</P>
-							<p id="adicionar">
+							<p>
 								<label></label>
-								<button type="submit" >Adicionar</button>
+								<button class="adicionar" type="submit" >Adicionar</button>
 							</p>
 							
 					    </form>
@@ -92,11 +92,11 @@
 									<td th:text="${cliente.celular}"></td>
 									<td th:text="${cliente.telefone}"></td>
 									<td>
-										<a th:href="@{/clientes/editar/{id}(id=${cliente.id})}">
+										<a class="editar" th:href="@{/clientes/editar/{id}(id=${cliente.id})}">
 											<span>Editar</span>
 											<img th:src="@{/images/edit(24x24).svg}">
 										</a>
-										<a th:href="@{/clientes/remover/{id}(id=${cliente.id})}">
+										<a class="excluir" th:href="@{/clientes/remover/{id}(id=${cliente.id})}">
 											<span>Excluir</span>
 											<img th:src="@{/images/delete(24x24).svg}">
 										</a>

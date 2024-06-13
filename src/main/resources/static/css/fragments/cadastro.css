@@ -1,11 +1,11 @@
 /* cadastro */
 main .cadastro {
-    display: inline-block;
     background: var(--color-secundaria);
-    width: 844px;
-    height: auto;
     border-radius: 5px;
+    display: inline-block;
+    height: auto;
     margin-bottom: 10px;
+    width: 844px;
 }
 
 main .cadastro div {
@@ -13,63 +13,62 @@ main .cadastro div {
 }
 
 main .cadastro div h2 {
-    display: flex;
     align-items: center;
-    padding: 10px;
-    width: 804px;
-    height: 36px;
-    margin: 10px 10px 0px 10px;
+    color: var(--color-terciaria);
+    display: flex;
     font-size: 16px;
     font-weight: var(--font-weight-bold);
-    color: var(--color-terciaria);
-
+    height: 36px;
+    margin: 10px 10px 0px 10px;
+    padding: 10px;
+    width: 804px;
 }
 
 main .cadastro div form {
+    color: var(--color-terciaria);
     display: flex;
     flex-wrap: wrap;
-    margin: 0px 10px 10px 10px;
     font-size: 14px;
     font-weight: var(--font-weight-regular);
-    color: var(--color-terciaria);
+    margin: 0px 10px 10px 10px;
 }
 
 main .cadastro div form p {
     border: solid 1px;
     border-color: var(--color-primaria);
+    height: 90px;
     text-align: center;
     width: 170px;
-    height: 90px;
 }
 
 main .cadastro div form p label {
-    display: flex;
-    justify-content: center;
     align-items: center;
+    display: flex;
     height: 36px;
+    justify-content: center;
     margin: 10px 10px 0px 10px;
 }
 
 main .cadastro div form p input {
+    color: var(--color-terciaria);
     display: flex;
-    justify-content: center;
-    height: 24px;
-    width: auto;
-    margin: 0px 10px 10px 10px;
     font-size: 12px;
     font-weight: var(--font-weight-regular);
-    color: var(--color-terciaria);
+    height: 26px;
+    justify-content: center;
+    margin: 0px 10px 10px 10px;
+    width: 144px;
 }
 
 main .cadastro div form p input[type="datetime-local" i] {
     text-align: center;
-    width: auto;
+    width: 144px;
 }
 
 main .cadastro div form #adicionar {
     display: inline;
-    width: 170px;
     height: 90px;
+    width: 170px;
 }
 
 main .cadastro div form #adicionar button {

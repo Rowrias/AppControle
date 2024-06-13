@@ -15,6 +15,6 @@ aside a {
 }
 
 aside a:hover {
-    cursor: pointer;
     background: var(--color-primaria);
+    cursor: pointer;
 }

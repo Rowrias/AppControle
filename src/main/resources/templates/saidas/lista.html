@@ -60,11 +60,11 @@
 									<td th:text="${#temporals.format(saida.dataConcluido, 'dd/MM/yyyy (HH:mm)')}"></td>
 									<td th:text="${#temporals.format(saida.dataSaida, 'dd/MM/yyyy (HH:mm)')}"></td>
 									<td>
-										<a id="editar" th:href="@{/saidas/editar/{id}(id=${saida.id})}">
+										<a class="editar" th:href="@{/saidas/editar/{id}(id=${saida.id})}">
 											<span>Editar</span>
 											<img th:src="@{/images/edit(24x24).svg}">
 										</a>
-										<a id="excluir" th:href="@{/saidas/remover/{id}(id=${saida.id})}">
+										<a class="excluir" th:href="@{/saidas/remover/{id}(id=${saida.id})}">
 											<span>Excluir</span>
 											<img th:src="@{/images/delete(24x24).svg}">
 										</a>

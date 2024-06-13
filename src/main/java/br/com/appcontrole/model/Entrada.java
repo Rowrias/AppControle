@@ -2,6 +2,7 @@ package br.com.appcontrole.model;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,8 +20,8 @@ public class Entrada {
 	private Long id;
 	
 	@NotNull
-    @ManyToOne
-    private Cliente cliente;
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	private Cliente cliente;
 	
 	@NotNull
 	@Size(min = 1, max = 50)

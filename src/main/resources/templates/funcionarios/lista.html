@@ -67,9 +67,9 @@
 					        	<input type="text" id="role" name="role"/>
 							</P>
 							
-							<p id="adicionar">
+							<p>
 								<label></label>
-								<button type="submit" >Adicionar</button>
+								<button class="adicionar" type="submit" >Adicionar</button>
 							</p>
 					    </form>
 					</div>          	
@@ -101,11 +101,11 @@
 									<td th:text="${funcionario.username}"></td>
 									<td th:text="${funcionario.role}">></td>
 									<td>
-										<a th:href="@{/funcionarios/editar/{id}(id=${funcionario.id})}">
+										<a class="editar" th:href="@{/funcionarios/editar/{id}(id=${funcionario.id})}">
 											<span>Editar</span>
 											<img th:src="@{/images/edit(24x24).svg}">
 										</a>
-										<a th:href="@{/funcionarios/remover/{id}(id=${funcionario.id})}">
+										<a class="excluir" th:href="@{/funcionarios/remover/{id}(id=${funcionario.id})}">
 											<span>Excluir</span>
 											<img th:src="@{/images/delete(24x24).svg}">
 										</a>

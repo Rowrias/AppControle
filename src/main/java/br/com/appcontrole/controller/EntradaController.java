@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,10 +33,20 @@ public class EntradaController {
     private ClienteService clienteService;
 
     @PostMapping("/lista")
-    public String novaEntrada(Entrada entrada, Model model) {
-    	Cliente cliente = clienteService.clienteExiste(entrada.getCliente().getNome());
+    public String novaEntrada(@ModelAttribute("entrada") Entrada entrada, Model model) {
+        // Verifica se o cliente já existe no banco de dados
+        Cliente cliente = clienteService.clienteExiste(entrada.getCliente().getNome());
+        if (cliente == null) {
+            // Se não existe, salva o cliente antes de associá-lo à entrada
+            cliente = clienteService.insere(entrada.getCliente());
+        }
+        
+        // Associa o cliente persistido à entrada
         entrada.setCliente(cliente);
-    	entradaService.insere(entrada);
+        
+        // Salva a entrada
+        entradaService.insere(entrada);
+        
         return "redirect:/entradas/lista";
     }
     
@@ -91,8 +102,12 @@ public class EntradaController {
     
     @GetMapping("/editar/{id}")
     public String editarEntrada(@PathVariable Long id, Model model) {
-    	Entrada entrada = entradaService.buscaPorId(id);
+        Entrada entrada = entradaService.buscaPorId(id);
+        List<Cliente> clientes = clienteService.buscaTodos();
+        
         model.addAttribute("entrada", entrada);
+        model.addAttribute("clientes", clientes);
+        
         return "entradas/editar";
     }
 

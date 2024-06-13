@@ -54,9 +54,9 @@
 								<label for="dataEntrada">Data da entrada: *</label>
 					        	<input type="datetime-local" id="dataEntrada" name="dataEntrada" required/>
 							</P>
-							<p id="adicionar">
+							<p>
 								<label></label>
-								<button type="submit" >Adicionar</button>
+								<button class="adicionar" type="submit" >Adicionar</button>
 							</p>
 							
 					    </form>
@@ -102,11 +102,11 @@
 										</a>
 									</td>
 									<td>
-										<a th:href="@{/entradas/editar/{id}(id=${entrada.id})}">
+										<a class="editar" th:href="@{/entradas/editar/{id}(id=${entrada.id})}">
 											<span>Editar</span>
 											<img th:src="@{/images/edit(24x24).svg}">
 										</a>
-										<a th:href="@{/entradas/remover/{id}(id=${entrada.id})}">
+										<a class="excluir" th:href="@{/entradas/remover/{id}(id=${entrada.id})}">
 											<span>Excluir</span>
 											<img th:src="@{/images/delete(24x24).svg}">
 										</a>
@@ -158,10 +158,12 @@
 										<a th:href="@{/entradas/concluido/{id}(id=${entrada.id})}"><img th:src="@{/images/check(24x24).svg}"></a>
 									</td>
 									<td>
-										<a th:href="@{/entradas/editar/{id}(id=${entrada.id})}">
+										<a class="editar" th:href="@{/entradas/editar/{id}(id=${entrada.id})}">
+											<span>Editar</span>
 											<img th:src="@{/images/edit(24x24).svg}">
 										</a>
-										<a th:href="@{/entradas/remover/{id}(id=${entrada.id})}">
+										<a class="excluir" th:href="@{/entradas/remover/{id}(id=${entrada.id})}">
+											<span>Editar</span>
 											<img th:src="@{/images/delete(24x24).svg}">
 										</a>
 									</td>
