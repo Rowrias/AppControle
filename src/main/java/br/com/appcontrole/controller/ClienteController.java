@@ -3,12 +3,14 @@ package br.com.appcontrole.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.appcontrole.model.Cliente;
 import br.com.appcontrole.service.ClienteService;
@@ -28,8 +30,19 @@ public class ClienteController {
     }
 	
 	@PostMapping("/lista")
-    public String novoCliente(Cliente cliente, Model model) {
-		clienteService.insere(cliente);
+    public String novoCliente(Cliente cliente, RedirectAttributes attr) {
+		
+        Cliente clienteExistente = clienteService.buscaPorNome(cliente.getNome());
+        // Verifica se o cliente já existe pelo nome
+        if (clienteExistente != null) {
+            attr.addFlashAttribute("erro", "Cliente já existe.");
+
+            return "redirect:/clientes/lista";
+        } else {
+            // Cliente não existe, então insere o novo cliente
+            clienteService.insere(cliente);
+            attr.addFlashAttribute("mensagem", "Cliente adicionado com sucesso.");
+        }
         return "redirect:/clientes/lista";
     }
 	
@@ -40,16 +53,29 @@ public class ClienteController {
         return "clientes/editar";
     }
 
-    @PostMapping("/editar/{id}")
-    public String atualizarCliente(@PathVariable Long id, Cliente cliente) {
+	@PostMapping("/editar/{id}")
+    public String atualizarCliente(@PathVariable Long id, Cliente cliente, RedirectAttributes attr) {
+        // Verifica se existe outro cliente com o mesmo nome, exceto o cliente atual
+        Cliente clienteExistente = clienteService.buscaPorNome(cliente.getNome());
+        if (clienteExistente != null && !clienteExistente.getId().equals(id)) {
+            attr.addFlashAttribute("erro", "Já existe um cliente com esse nome.");
+            return "redirect:/clientes";
+        }
+        
         cliente.setId(id);
         clienteService.atualiza(cliente);
+        attr.addFlashAttribute("mensagem", "Cliente atualizado com sucesso.");
         return "redirect:/clientes/lista";
     }
     
     @GetMapping("/remover/{id}")
-    public String removerClientes(@PathVariable Long id) {
-    	clienteService.remove(id);
+    public String removerCliente(@PathVariable Long id, RedirectAttributes attr) {
+    	try {
+            clienteService.remove(id);
+            attr.addFlashAttribute("mensagem", "Cliente removido com sucesso.");
+        } catch (DataIntegrityViolationException e) {
+        	attr.addFlashAttribute("erro", "Não é possível excluir o cliente devido a registros dependentes na tabela 'saida'.");
+        }
         return "redirect:/clientes/lista";
     }
 }

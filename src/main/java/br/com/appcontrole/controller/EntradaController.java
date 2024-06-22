@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.appcontrole.model.Cliente;
 import br.com.appcontrole.model.Entrada;
@@ -33,9 +34,11 @@ public class EntradaController {
     private ClienteService clienteService;
 
     @PostMapping("/lista")
-    public String novaEntrada(@ModelAttribute("entrada") Entrada entrada, Model model) {
+    public String novaEntrada(@ModelAttribute("entrada") Entrada entrada) {
+        
+        Cliente cliente = clienteService.buscaPorNome(entrada.getCliente().getNome());
+        
         // Verifica se o cliente já existe no banco de dados
-        Cliente cliente = clienteService.clienteExiste(entrada.getCliente().getNome());
         if (cliente == null) {
             // Se não existe, salva o cliente antes de associá-lo à entrada
             cliente = clienteService.insere(entrada.getCliente());
@@ -43,7 +46,6 @@ public class EntradaController {
         
         // Associa o cliente persistido à entrada
         entrada.setCliente(cliente);
-        
         // Salva a entrada
         entradaService.insere(entrada);
         
@@ -85,7 +87,7 @@ public class EntradaController {
         Entrada entrada = entradaService.buscaPorId(id);
         if (entrada != null && entrada.isConcluido()) {
             Saida saida = new Saida();
-            saida.setCliente(entrada.getCliente().getNome());
+            saida.setCliente(entrada.getCliente());
             saida.setProduto(entrada.getProduto());
             saida.setQuantidade(entrada.getQuantidade());
             saida.setValorUnitario(entrada.getValorUnitario());
@@ -112,15 +114,46 @@ public class EntradaController {
     }
 
     @PostMapping("/editar/{id}")
-    public String atualizarEntrada(@PathVariable Long id, Entrada entrada) {
-        entrada.setId(id);
-        entradaService.atualiza(entrada);
+    public String atualizarEntrada(@PathVariable Long id, Entrada entrada, RedirectAttributes attr) {
+        // Busca a entrada existente pelo ID
+        Entrada entradaExistente = entradaService.buscaPorId(id);
+        
+        if (entradaExistente != null) {
+            // Verifica se o cliente na entrada já possui um ID
+            if (entrada.getCliente() != null && entrada.getCliente().getId() != null) {
+                // Se o cliente já existe (tem ID), simplesmente atualiza a entrada com ele
+                entrada.setId(id);
+                entradaService.atualiza(entrada);
+            } else {
+                // Se o cliente na entrada não tem ID, precisamos verificar pelo nome
+                Cliente clienteExistente = clienteService.buscaPorNome(entrada.getCliente().getNome());
+                
+                if (clienteExistente != null) {
+                    // Se encontrou o cliente pelo nome, associa ao objeto de entrada
+                    entrada.setCliente(clienteExistente);
+                } else {
+                    // Se não encontrou pelo nome, insere o novo cliente
+                    Cliente novoCliente = clienteService.insere(entrada.getCliente());
+                    entrada.setCliente(novoCliente);
+                }
+                
+                // Atualiza a entrada com as alterações
+                entrada.setId(id);
+                entradaService.atualiza(entrada);
+            }
+            
+            attr.addFlashAttribute("mensagem", "Entrada atualizada com sucesso.");
+        } else {
+            attr.addFlashAttribute("erro", "Entrada não encontrada.");
+        }
+        
         return "redirect:/entradas/lista";
     }
 
     @GetMapping("/remover/{id}")
-    public String removerEntrada(@PathVariable Long id) {
+    public String removerEntrada(@PathVariable Long id, RedirectAttributes attr) {
         entradaService.remove(id);
+        attr.addFlashAttribute("mensagem", "Entrada removida com sucesso.");
         return "redirect:/entradas/lista";
     }
    

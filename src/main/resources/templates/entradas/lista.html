@@ -95,9 +95,10 @@
 						                <span th:text="${#numbers.formatDecimal(entrada.valorTotal, 1, 'POINT', 2, 'COMMA')}"></span>
 							        </td>
 									<td th:text="${#temporals.format(entrada.dataEntrada, 'dd/MM/yyyy (HH:mm)')}"></td>
-									<td>
-										<span>Pendente</span>
-										<a th:href="@{/entradas/concluido/{id}(id=${entrada.id})}">
+									<td class="status">
+										
+										<a class="status" th:href="@{/entradas/concluido/{id}(id=${entrada.id})}">
+											<span>Pendente</span>
 											<img th:src="@{/images/uncheck(24x24).svg}">
 										</a>
 									</td>
@@ -141,21 +142,19 @@
 									<td th:text="${entrada.produto}"></td>
 									<td th:text="${entrada.quantidade}"></td>
 									<td class="reais">
-							            <div>
-							                <span>R$</span>
-							                <span th:text="${#numbers.formatDecimal(entrada.valorUnitario, 1, 'POINT', 2, 'COMMA')}"></span>
-							            </div>
+						                <span>R$</span>
+						                <span th:text="${#numbers.formatDecimal(entrada.valorUnitario, 1, 'POINT', 2, 'COMMA')}"></span>
 							        </td>
 							        <td class="reais">
-							            <div>
-							                <span>R$</span>
-							                <span th:text="${#numbers.formatDecimal(entrada.valorTotal, 1, 'POINT', 2, 'COMMA')}"></span>
-							            </div>
+						                <span>R$</span>
+						                <span th:text="${#numbers.formatDecimal(entrada.valorTotal, 1, 'POINT', 2, 'COMMA')}"></span>
 							        </td>
 									<td th:text="${#temporals.format(entrada.dataConcluido, 'dd/MM/yyyy (HH:mm)')}"></td>
 									<td>
-										<span>Concluído</span>
-										<a th:href="@{/entradas/concluido/{id}(id=${entrada.id})}"><img th:src="@{/images/check(24x24).svg}"></a>
+										<a class="status" th:href="@{/entradas/concluido/{id}(id=${entrada.id})}">
+											<span>Concluído</span>
+											<img th:src="@{/images/check(24x24).svg}">
+										</a>
 									</td>
 									<td>
 										<a class="editar" th:href="@{/entradas/editar/{id}(id=${entrada.id})}">

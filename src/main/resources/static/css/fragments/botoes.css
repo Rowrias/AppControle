@@ -36,3 +36,13 @@ a.excluir  {
 	text-decoration: none;
 	width: 80px;
 }
+
+a.status {
+	align-items: center;
+	display: flex;
+	border: 1px solid;
+	text-decoration: none;
+	padding: 5px 5px;
+	width: 80px;
+	color: #000;
+}

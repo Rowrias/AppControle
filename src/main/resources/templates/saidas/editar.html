@@ -21,17 +21,20 @@
             <main>
                 <div class="titulo">
                     <img th:src="@{/images/entrada(70x70).svg}">
-                    <h2>EDITAR ENTRADA</h2>
+                    <h2>EDITAR SAÍDA</h2>
                 </div>
                 
                 <div class="cadastro">
                 	<div>
-	                    <h2>Controle de Entrada</h2>
+	                    <h2>Controle de Saidas</h2>
                 	</div>
                 	<div>
-                		<form th:action="@{/entradas/editar/{id}(id=${entrada.id})}" th:object="${entrada}" method="post">
+                		<form th:action="@{/saidas/editar/{id}(id=${saida.id})}" th:object="${saida}" method="post">
+	                        
 	                        <input type="hidden" th:field="*{id}"/>
-	                        <input type="hidden" th:field="*{concluido}"/>
+	                        <input type="hidden" th:field="*{dataEntrada}"/>
+	                        <input type="hidden" th:field="*{dataConcluido}"/>
+								                        
 	                        
 	                        <p>
 	                            <label for="clienteNome">Cliente: *</label>
@@ -54,13 +57,8 @@
 	                        </p>
 	                        
 	                        <p>
-	                            <label for="dataEntrada">Data da entrada: *</label>
-	                            <input type="datetime-local" id="dataEntrada" th:field="*{dataEntrada}" required/>
-	                        </p>
-	                        
-	                        <p>
-	                            <label for="dataEntrada">Data Concluído:</label>
-	                            <input type="datetime-local" id="dataConcluido" th:field="*{dataConcluido}"/>
+	                            <label for="dataSaida">Data Saída *:</label>
+	                            <input type="datetime-local" id="dataSaida" th:field="*{dataSaida}" required/>
 	                        </p>
 	                        
 	                        <p>
@@ -84,25 +82,26 @@
 									<th>Valor Total</th>
 									<th>Data Entrada</th>
 									<th>Data Concluído</th>
-									<th>Status</th>
+									<th>Data Saída</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
-									<td th:text="${entrada.cliente.nome}"></td>
-									<td th:text="${entrada.produto}"></td>
-									<td th:text="${entrada.quantidade}"></td>
+									<td th:text="${saida.cliente.nome}"></td>
+									<td th:text="${saida.produto}"></td>
+									<td th:text="${saida.quantidade}"></td>
 									<td class="reais">
 						                <span>R$</span>
-						                <span th:text="${#numbers.formatDecimal(entrada.valorUnitario, 1, 'POINT', 2, 'COMMA')}"></span>
+						                <span th:text="${#numbers.formatDecimal(saida.valorUnitario, 1, 'POINT', 2, 'COMMA')}"></span>
 							        </td>
 							        <td class="reais">
 						                <span>R$</span>
-						                <span th:text="${#numbers.formatDecimal(entrada.valorTotal, 1, 'POINT', 2, 'COMMA')}"></span>
+						                <span th:text="${#numbers.formatDecimal(saida.valorTotal, 1, 'POINT', 2, 'COMMA')}"></span>
 							        </td>
-									<td th:text="${#temporals.format(entrada.dataEntrada, 'dd/MM/yyyy (HH:mm)')}"></td>
-									<td th:text="${#temporals.format(entrada.dataConcluido, 'dd/MM/yyyy (HH:mm)')}"></td>
-									<td th:text="${entrada.concluido ? 'Concluído' : 'Pendente'}"></td>								</tr>
+									<td th:text="${#temporals.format(saida.dataEntrada, 'dd/MM/yyyy (HH:mm)')}"></td>
+									<td th:text="${#temporals.format(saida.dataConcluido, 'dd/MM/yyyy (HH:mm)')}"></td>
+									<td th:text="${#temporals.format(saida.dataSaida, 'dd/MM/yyyy (HH:mm)')}"></td>
+								</tr>
 							</tbody>
 						</table>
                		</div>

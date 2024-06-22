@@ -2,13 +2,14 @@ package br.com.appcontrole.model;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -19,15 +20,14 @@ public class Saida {
     private Long id;
     
     @NotNull
-    @Size(min = 1, max = 20)
-    private String cliente;
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    private Cliente cliente;
     
     @NotNull
     @Size(min = 1, max = 20)
     private String produto;
     
     @NotNull
-    @Positive
     private Integer quantidade;
     
     private Float valorUnitario;
@@ -38,6 +38,7 @@ public class Saida {
 	
 	private LocalDateTime dataConcluido;
 	
+	@NotNull
 	private LocalDateTime dataSaida;
 
     // Getters e Setters
@@ -49,13 +50,13 @@ public class Saida {
         this.id = id;
     }
 
-    public String getCliente() {
-        return cliente;
-    }
+    public Cliente getCliente() {
+		return cliente;
+	}
 
-    public void setCliente(String cliente) {
-        this.cliente = cliente;
-    }
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
 
     public String getProduto() {
         return produto;
