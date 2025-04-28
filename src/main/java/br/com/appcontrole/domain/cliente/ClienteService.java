@@ -1,12 +1,11 @@
-package br.com.appcontrole.service;
+package br.com.appcontrole.domain.cliente;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.appcontrole.model.Cliente;
-import br.com.appcontrole.repository.ClienteRepository;
+import br.com.appcontrole.domain.CRUD;
 
 @Service
 public class ClienteService implements CRUD<Cliente, Long> {

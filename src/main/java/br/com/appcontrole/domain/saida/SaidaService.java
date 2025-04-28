@@ -1,12 +1,11 @@
-package br.com.appcontrole.service;
+package br.com.appcontrole.domain.saida;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.appcontrole.model.Saida;
-import br.com.appcontrole.repository.SaidaRepository;
+import br.com.appcontrole.domain.CRUD;
 
 @Service
 public class SaidaService implements CRUD<Saida, Long> {

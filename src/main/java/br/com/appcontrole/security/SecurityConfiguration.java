@@ -1,4 +1,4 @@
-package br.com.appcontrole;
+package br.com.appcontrole.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,8 +12,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import br.com.appcontrole.model.Funcionario;
-import br.com.appcontrole.repository.FuncionarioRepository;
+import br.com.appcontrole.domain.funcionario.Funcionario;
+import br.com.appcontrole.domain.funcionario.FuncionarioRepository;
 
 @Configuration
 @EnableWebSecurity

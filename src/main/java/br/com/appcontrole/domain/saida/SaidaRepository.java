@@ -1,11 +1,9 @@
-package br.com.appcontrole.repository;
+package br.com.appcontrole.domain.saida;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-
-import br.com.appcontrole.model.Saida;
 
 public interface SaidaRepository extends JpaRepository<Saida, Long> {
 	// Método listar DATA em ordem decrescente

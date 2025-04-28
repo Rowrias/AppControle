@@ -1,4 +1,4 @@
-package br.com.appcontrole.controller;
+package br.com.appcontrole.domain.funcionario;
 
 import java.util.List;
 
@@ -9,9 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import br.com.appcontrole.model.Funcionario;
-import br.com.appcontrole.service.FuncionarioService;
 
 @Controller
 @RequestMapping("/funcionarios")

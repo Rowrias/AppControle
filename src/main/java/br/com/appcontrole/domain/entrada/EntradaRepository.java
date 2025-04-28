@@ -1,11 +1,9 @@
-package br.com.appcontrole.repository;
+package br.com.appcontrole.domain.entrada;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-
-import br.com.appcontrole.model.Entrada;
 
 public interface EntradaRepository extends JpaRepository<Entrada, Long> {
     List<Entrada> findByConcluido(boolean status);

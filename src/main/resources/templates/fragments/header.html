@@ -2,11 +2,20 @@
 <header th:fragment="header">
     <div>
         <nav>
-            <h2>Cabeçalho</h2>
+                    
+            <a href="/index">
+		        <img th:src="@{/images/home(36x36).svg}">
+		        <h3>Início</h2>
+		    </a>
+		    <a href="/index">
+		        <img th:src="@{/images/home(36x36).svg}">
+		        <h3>Configuração</h2>
+		    </a>
             <a href="/logout">
 		        <img th:src="@{/images/home(36x36).svg}">
 		        <h3>Logout</h2>
 		    </a>
+		    
         </nav>
     </div>
 </header>

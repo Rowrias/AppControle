@@ -1,4 +1,4 @@
-package br.com.appcontrole.service;
+package br.com.appcontrole.domain;
 
 import java.util.List;
 

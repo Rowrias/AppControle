@@ -1,7 +1,8 @@
-package br.com.appcontrole.model;
+package br.com.appcontrole.domain.entrada;
 
 import java.time.LocalDateTime;
 
+import br.com.appcontrole.domain.cliente.Cliente;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

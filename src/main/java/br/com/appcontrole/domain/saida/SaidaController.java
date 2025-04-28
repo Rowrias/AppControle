@@ -1,4 +1,4 @@
-package br.com.appcontrole.controller;
+package br.com.appcontrole.domain.saida;
 
 import java.util.List;
 
@@ -11,10 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.com.appcontrole.model.Cliente;
-import br.com.appcontrole.model.Saida;
-import br.com.appcontrole.service.ClienteService;
-import br.com.appcontrole.service.SaidaService;
+import br.com.appcontrole.domain.cliente.Cliente;
+import br.com.appcontrole.domain.cliente.ClienteService;
 
 @Controller
 @RequestMapping("/saidas")

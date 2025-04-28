@@ -1,4 +1,4 @@
-package br.com.appcontrole.model;
+package br.com.appcontrole.domain.cliente;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
