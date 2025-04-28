@@ -1,0 +1,20 @@
+section {
+    margin: auto;
+    width: 1014px;
+}
+
+section div {
+    display: flex;
+    gap: 6px;
+}
+
+section div aside {
+    display: inline;
+    margin-top: 90px;
+    width: 164px;
+}
+
+section div main {
+    display: inline;
+    width: 844px;
+}

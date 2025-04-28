@@ -1,0 +1,48 @@
+/* botões */
+button.adicionar {
+	background-color: #1c84c6;
+	border-color: #1c84c6;
+	border: 1px solid;
+	border-radius: 5px;
+	color: var(--color-secundaria);
+	padding: 5px 5px;
+	text-decoration: none;
+	width: 92px;
+	height: 36px;
+}
+
+ a.editar {
+ 	align-items: center;
+	background-color: #1AB394;
+	border: 1px solid;
+	border-radius: 5px;
+	color: var(--color-secundaria);
+ 	display: flex;
+ 	justify-content: space-between;
+	padding: 5px 5px;
+	text-decoration: none;
+	width: 80px;
+}
+
+a.excluir  {
+ 	align-items: center;
+	background-color: #FF0D0D;
+	border: 1px solid;
+	border-radius: 5px;
+	color: var(--color-secundaria);
+	display: flex;
+ 	justify-content: space-between;
+	padding: 5px 5px;
+	text-decoration: none;
+	width: 80px;
+}
+
+a.status {
+	align-items: center;
+	display: flex;
+	border: 1px solid;
+	text-decoration: none;
+	padding: 5px 5px;
+	width: 80px;
+	color: #000;
+}

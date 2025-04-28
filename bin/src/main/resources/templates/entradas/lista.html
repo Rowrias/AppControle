@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Estoque</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+	<!-- header.css -->
+    <header th:replace="fragments/header :: header"></header>
+    
+    <!-- section.css -->
+    <section>
+        <div>
+            <!-- aside.css -->
+            <aside th:replace="fragments/aside :: aside"></aside>
+            
+            <!-- Main -->
+            <main>
+            	<!-- titulo.css -->
+                <div class="titulo">
+                    <img th:src="@{/images/entrada(70x70).svg}">
+                    <h2>ENTRADA</h2>
+                </div>
+                
+                <!-- cadastro.css -->
+                <div class="cadastro">
+					<div>
+						<h2>Controle de Entrada</h2>
+					</div>
+                	<div>
+						<form action="/entradas/lista" method="post">
+							<p>
+								<label for="clienteNome">Cliente: *</label>
+					        	<input type="text" id="clienteNome" name="cliente.nome" required>
+							</p>
+					        <p>
+								<label for="produto">Produto: *</label>
+					        	<input type="text" id="produto" name="produto" required>
+							</p>
+					        <p>
+								<label for="quantidade">Quantidade: *</label>
+					        	<input type="number" id="quantidade" name="quantidade" required>
+							</p>
+					        <p>
+								<label for="valorUnitario">Valor Unitário:</label>
+					        	<input type="number" step="0.01" id="valorUnitario" name="valorUnitario">
+							</p>
+					        <P>
+								<label for="dataEntrada">Data da entrada: *</label>
+					        	<input type="datetime-local" id="dataEntrada" name="dataEntrada" required/>
+							</P>
+							<p>
+								<label></label>
+								<button class="adicionar" type="submit" >Adicionar</button>
+							</p>
+							
+					    </form>
+					</div>
+	                	               	
+                </div>
+                
+                <div class="lista">
+					<div>
+						<h2>Entradas de Peças</h2>
+						<table>
+							<thead>
+								<tr>
+									<th>Cliente</th>
+									<th>Produto</th>
+									<th>Qtd</th>
+									<th>Valor Unitário</th>
+									<th>Valor Total</th>
+									<th>Data Entrada</th>
+									<th>Status</th>
+									<th>Ações</th>
+									<th>#####</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="entrada : ${pendentes}">
+									<td th:text="${#strings.capitalize(entrada.cliente)}"></td>
+									<td th:text="${entrada.produto}"></td>
+									<td th:text="${entrada.quantidade}"></td>
+									<td class="reais">
+						                <span>R$</span>
+						                <span th:text="${#numbers.formatDecimal(entrada.valorUnitario, 1, 'POINT', 2, 'COMMA')}"></span>
+							        </td>
+							        <td class="reais">
+						                <span>R$</span>
+						                <span th:text="${#numbers.formatDecimal(entrada.valorTotal, 1, 'POINT', 2, 'COMMA')}"></span>
+							        </td>
+									<td th:text="${#temporals.format(entrada.dataEntrada, 'dd/MM/yyyy (HH:mm)')}"></td>
+									<td class="status">
+										
+										<a class="status" th:href="@{/entradas/concluido/{id}(id=${entrada.id})}">
+											<span>Pendente</span>
+											<img th:src="@{/images/uncheck(24x24).svg}">
+										</a>
+									</td>
+									<td>
+										<a class="editar" th:href="@{/entradas/editar/{id}(id=${entrada.id})}">
+											<span>Editar</span>
+											<img th:src="@{/images/edit(24x24).svg}">
+										</a>
+										<a class="excluir" th:href="@{/entradas/remover/{id}(id=${entrada.id})}">
+											<span>Excluir</span>
+											<img th:src="@{/images/delete(24x24).svg}">
+										</a>
+									</td>
+									<td>
+										<span>Funcionário</span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div>
+						<h2>Peças Concluídas</h2>
+						<table>
+							<thead>
+								<tr>
+									<th>Cliente</th>
+									<th>Produto</th>
+									<th>Qtd</th>
+									<th>Valor Unitário</th>
+									<th>Valor Total</th>
+									<th>Data Concluído</th>
+									<th>Status</th>
+									<th>Ações</th>
+									<th>Mover para Saída</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="entrada : ${concluidas}">
+									<td th:text="${#strings.capitalize(entrada.cliente)}"></td>
+									<td th:text="${entrada.produto}"></td>
+									<td th:text="${entrada.quantidade}"></td>
+									<td class="reais">
+						                <span>R$</span>
+						                <span th:text="${#numbers.formatDecimal(entrada.valorUnitario, 1, 'POINT', 2, 'COMMA')}"></span>
+							        </td>
+							        <td class="reais">
+						                <span>R$</span>
+						                <span th:text="${#numbers.formatDecimal(entrada.valorTotal, 1, 'POINT', 2, 'COMMA')}"></span>
+							        </td>
+									<td th:text="${#temporals.format(entrada.dataConcluido, 'dd/MM/yyyy (HH:mm)')}"></td>
+									<td>
+										<a class="status" th:href="@{/entradas/concluido/{id}(id=${entrada.id})}">
+											<span>Concluído</span>
+											<img th:src="@{/images/check(24x24).svg}">
+										</a>
+									</td>
+									<td>
+										<a class="editar" th:href="@{/entradas/editar/{id}(id=${entrada.id})}">
+											<span>Editar</span>
+											<img th:src="@{/images/edit(24x24).svg}">
+										</a>
+										<a class="excluir" th:href="@{/entradas/remover/{id}(id=${entrada.id})}">
+											<span>Editar</span>
+											<img th:src="@{/images/delete(24x24).svg}">
+										</a>
+									</td>
+									<td>
+										<a th:if="${entrada.concluido}" th:href="@{/entradas/moverParaSaida/{id}(id=${entrada.id})}">
+											Mover para Saída
+										</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</main>
+        </div>
+    </section>
+
+</body>
+</html>

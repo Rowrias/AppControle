@@ -1,0 +1,20 @@
+aside a {
+    align-items: center;
+    background: var(--color-secundaria);
+    border-radius: 5px;
+    color: var(--color-terciaria);
+    display: flex;
+    font-size: 12px;
+    font-weight: var(--font-weight-semibold);
+    gap: 10px;
+    height: 36px;
+    margin: 0px 2px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    width: 160px;
+}
+
+aside a:hover {
+    background: var(--color-primaria);
+    cursor: pointer;
+}

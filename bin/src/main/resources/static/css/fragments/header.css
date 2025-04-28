@@ -1,0 +1,10 @@
+header {
+    background: var(--color-secundaria);
+    padding: 3rem;
+    text-align: center;
+}
+
+header div {
+    margin: auto;
+    width: 1014px;
+}

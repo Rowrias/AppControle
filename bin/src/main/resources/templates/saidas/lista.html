@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Estoque</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <!-- header.css -->
+    <header th:replace="fragments/header :: header"></header>
+    
+    <!-- section.css -->
+    <section>
+
+        <div>
+
+            <!-- aside.css -->
+            <header th:replace="fragments/aside :: aside"></header>
+            
+            <!-- Main -->
+            <main>
+
+            	<!-- titulo.css -->
+                <div class="titulo">
+                    <img th:src="@{/images/entrada(70x70).svg}">
+                    <h2>SAIDA</h2>
+                </div>
+                
+                <!-- Lista -->
+                <div class="lista">
+
+                	<div>
+						<h2>Lista de Saídas</h2>
+						<table>
+							<thead>
+								<tr>
+									<th>Cliente</th>
+									<th>Produto</th>
+									<th>Qtd</th>
+									<th>Valor Unitário</th>
+									<th>Valor Total</th>
+									<th>Data Entrada</th>
+									<th>Data Concluída</th>
+									<th>Data Saída</th>
+									<th>Ações</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="saida : ${saidas}">
+									<td th:text="${saida.cliente}"></td>
+									<td th:text="${saida.produto}"></td>
+									<td th:text="${saida.quantidade}"></td>
+									<td th:text="'R$ ' + ${#numbers.formatDecimal(saida.valorUnitario, 1, 'POINT', 2, 'COMMA')}"></td>
+									<td th:text="'R$ ' + ${#numbers.formatDecimal(saida.valorTotal, 1, 'POINT', 2, 'COMMA')}"></td>
+									<td th:text="${#temporals.format(saida.dataEntrada, 'dd/MM/yyyy (HH:mm)')}"></td>
+									<td th:text="${#temporals.format(saida.dataConcluido, 'dd/MM/yyyy (HH:mm)')}"></td>
+									<td th:text="${#temporals.format(saida.dataSaida, 'dd/MM/yyyy (HH:mm)')}"></td>
+									<td>
+										<a class="editar" th:href="@{/saidas/editar/{id}(id=${saida.id})}">
+											<span>Editar</span>
+											<img th:src="@{/images/edit(24x24).svg}">
+										</a>
+										<a class="excluir" th:href="@{/saidas/remover/{id}(id=${saida.id})}">
+											<span>Excluir</span>
+											<img th:src="@{/images/delete(24x24).svg}">
+										</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+                	</div>
+                </div>
+
+            </main>
+            
+        </div>
+
+    </section>
+    
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Cliente</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <header th:replace="fragments/header :: header"></header>
+    <section>
+        <div>
+            <aside th:replace="fragments/aside :: aside"></aside>
+            <main>
+                <div class="titulo">
+                    <img th:src="@{/images/entrada(70x70).svg}">
+                    <h2>EDITAR CLIENTE</h2>
+                </div>
+                <div class="cadastro">
+                    <div>
+                        <h2>Editar cliente</h2>
+                    </div>
+                    <div>
+                        <form th:action="@{/clientes/editar/{id}(id=${cliente.id})}" th:object="${cliente}" method="post">
+                            <p>
+                                <label for="nome">Nome: *</label>
+                                <input type="text" id="nome" name="nome" th:value="*{nome}" required>
+                            </p>
+                            <p>
+                                <label for="cnpj">CNPJ:</label>
+                                <input type="text" id="cnpj" name="cnpj" th:value="*{cnpj}">
+                            </p>
+                            <p>
+                                <label for="cpf">CPF:</label>
+                                <input type="text" id="cpf" name="cpf" th:value="*{cpf}">
+                            </p>
+                            <p>
+                                <label for="email">E-mail:</label>
+                                <input type="email" id="email" name="email" th:value="*{email}">
+                            </p>
+                            <p>
+                                <label for="celular">Celular:</label>
+                                <input type="text" id="celular" name="celular" th:value="*{celular}">
+                            </p>
+                            <p>
+                                <label for="telefone">Telefone:</label>
+                                <input type="text" id="telefone" name="telefone" th:value="*{telefone}">
+                            </p>
+                            <p>
+                                <label></label>
+                                <button class="adicionar" type="submit">Atualizar</button>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#cnpj').mask('99.999.999/9999-99');
+            $('#cpf').mask('999.999.999-99');
+            $('#celular').mask('(99) 99999-9999');                    
+            $('#telefone').mask('(99) 9999-9999');
+        });
+    </script>
+</body>
+</html>

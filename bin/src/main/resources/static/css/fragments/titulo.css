@@ -1,0 +1,12 @@
+/* titulo */
+main .titulo {
+    align-items: center;
+    display: flex;
+    margin: 10px 0px;
+}
+
+main .titulo h2 {
+    color: var(--color-terciaria);
+    font-size: 24px;
+    font-weight: var(--font-weight-semibold);
+}
