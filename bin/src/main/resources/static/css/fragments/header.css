@@ -8,3 +8,7 @@ header div {
     margin: auto;
     width: 1014px;
 }
+
+header nav {
+    display: flex;
+}

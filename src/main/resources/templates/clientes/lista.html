@@ -71,41 +71,37 @@
                 <div class="lista">
 					<div>
 						<h2>Lista de clientes</h2>
-						<table>
-							<thead>
-								<tr>
-									<th>Nome</th>
-									<th>CNPJ</th>
-									<th>CPF</th>
-									<th>E-mail</th>
-									<th>Celular</th>
-									<th>Telefone</th>
-									<th>Ações</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr th:each="cliente : ${clientes}">
-									<td th:text="${#strings.capitalize(cliente.nome)}"></td>
-									<td th:text="${cliente.cnpj}"></td>
-									<td th:text="${cliente.cpf}"></td>
-									<td th:text="${cliente.email}"></td>
-									<td th:text="${cliente.celular}"></td>
-									<td th:text="${cliente.telefone}"></td>
-									<td>
-										<a class="editar" th:href="@{/clientes/editar/{id}(id=${cliente.id})}">
-											<span>Editar</span>
-											<img th:src="@{/images/edit(24x24).svg}">
-										</a>
-										<a class="excluir" th:href="@{/clientes/remover/{id}(id=${cliente.id})}">
-											<span>Excluir</span>
-											<img th:src="@{/images/delete(24x24).svg}">
-										</a>
-									</td>
-								</tr>
-							</tbody>
-						</table>
+						<div class="titulo">
+							<span>Nome</span>
+							<span>CNPJ</span>
+							<span>CPF</span>
+							<span>E-mail</span>
+							<span>Celular</span>
+							<span>Telefone</span>
+							<span>Ações</span>
+						</div>
+						<div class="linha-dados" th:each="cliente : ${clientes}">
+							<span th:text="${#strings.capitalize(cliente.nome)}"></span>
+							<span th:text="${cliente.cnpj}"></span>
+							<span th:text="${cliente.cpf}"></span>
+							<span th:text="${cliente.email}"></span>
+							<span th:text="${cliente.celular}"></span>
+							<span th:text="${cliente.telefone}"></span>
+							
+							<div class="acoes">
+						        <a class="editar" th:href="@{/clientes/editar/{id}(id=${cliente.id})}">
+						            <span>Editar</span>
+						            <img th:src="@{/images/edit(24x24).svg}" alt="Editar">
+						        </a>
+						        <a class="excluir" th:href="@{/clientes/remover/{id}(id=${cliente.id})}">
+						            <span>Excluir</span>
+						            <img th:src="@{/images/delete(24x24).svg}" alt="Excluir">
+						        </a>
+						    </div>
+						</div>
 					</div>
-				</div>
+				</div>	
+				
 			</main>
         </div>
     </section>

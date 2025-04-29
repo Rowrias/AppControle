@@ -1,6 +1,6 @@
 section {
     margin: auto;
-    width: 1014px;
+    width: 1300px;
 }
 
 section div {
@@ -11,10 +11,10 @@ section div {
 section div aside {
     display: inline;
     margin-top: 90px;
-    width: 164px;
+    width: auto;
 }
 
 section div main {
     display: inline;
-    width: 844px;
+    width: auto;
 }

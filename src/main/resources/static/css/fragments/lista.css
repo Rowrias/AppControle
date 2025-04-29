@@ -23,114 +23,34 @@ main .lista div h2 {
     font-weight: var(--font-weight-bold);
     margin: 10px 10px 0px 10px;
     padding: 10px;
-    width: 804px;
-}
-
-main .lista div table {
-    border: 1px solid var(--color-secundaria);
-    border-collapse: collapse;
-    margin: 0px auto 10px auto;    
-    width: calc(100% - 20px);
-}
-
-main .lista div table thead {
-    display: table-header-group;
-}
-
-main .lista div table thead tr {
-    display: table-row;
-}
-
-main .lista div table thead tr th {
-    border: solid 1px var(--color-primaria);
-    box-sizing: border-box;
-    display: table-cell;
-    color: var(--color-terciaria);
-    font-size: 12px;
-    font-weight: var(--font-weight-bold);
-    height: 50px;
-    text-align: center; 
-    vertical-align: middle;
-}
-
-main .lista div table tbody {
-    display: table-row-group;
-}
-
-main .lista div table tbody tr {
-    display: table-row;
-}
-
-main .lista div table tbody tr td {
-    border: solid 1px var(--color-primaria);
-    box-sizing: border-box;
-    display: table-cell;
-    font-size: 12px;
-    font-weight: var(--font-weight-regular);
-    height: 50px;
-    padding: 5px;
-    text-align: center; 
-    vertical-align: middle;
-}
-
-/* espaço individual para cada coluna da tabela */
-main .lista div table thead tr th:nth-child(1),
-main .lista div table tbody tr td:nth-child(1) {
     width: auto;
 }
 
-main .lista div table thead tr th:nth-child(2),
-main .lista div table tbody tr td:nth-child(2) {
-    width: auto;
-}
-
-main .lista div table thead tr th:nth-child(3),
-main .lista div table tbody tr td:nth-child(3) {
-    width: auto;
-}
-
-main .lista div table thead tr th:nth-child(4),
-main .lista div table tbody tr td:nth-child(4) {
-    width: auto;
-}
-
-main .lista div table thead tr th:nth-child(5),
-main .lista div table tbody tr td:nth-child(5) {
-    width: auto;
-}
-
-main .lista div table thead tr th:nth-child(6),
-main .lista div table tbody tr td:nth-child(6) {
-    width: auto;
-}
-
-main .lista div table thead tr th:nth-child(7),
-main .lista div table tbody tr td:nth-child(7) {
-    width: auto;
-}
-
-main .lista div table thead tr th:nth-child(8),
-main .lista div table tbody tr td:nth-child(8) {
-    width: auto;
-}
-
-main .lista div table thead tr th:nth-child(9),
-main .lista div table tbody tr td:nth-child(9) {
-    width: auto;
-}
-
-/* Formatação para o R$ e valor */
-td.reais {
+main .lista div .titulo {
     display: flex;
-    justify-content: space-between;
-    width: 100%;
+    margin: 10px 0px 0px 0px;
+    padding: 10px;
+    font-size: 12px;
+    text-align: center;
 }
 
-td.reais span:first-child {
-    text-align: left;
+main .lista div .titulo span {
+	border: solid 1px var(--color-primaria);
+	font-size: 12px;
+	width: 170px;
+	height: 30px;
 }
 
-td.reais span:last-child {
-    flex-grow: 1;
-    text-align: right;
+main .lista .linha-dados {
+    display: flex;
+    
+    margin: 10px 0px 0px 0px;
+    padding: 10px;
+    font-size: 12px;
+    text-align: center;
+}
+
+main .lista .linha-dados span {
+    width: 170px;
+    border: solid 1px var(--color-primaria);
 }
