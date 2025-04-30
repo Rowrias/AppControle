@@ -76,45 +76,41 @@
                 </div>
                 
                 <div class="lista">
-					<div>
+                	<div>
 						<h2>Lista de funcionários</h2>
-						<table>
-							<thead>
-								<tr>
-									<th>Nome</th>
-									<th>CPF</th>
-									<th>E-mail</th>
-									<th>Celular</th>
-									<th>Telefone</th>
-									<th>Usuário</th>
-									<th>Acesso</th>
-									<th>Ações</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr th:each="funcionario : ${funcionarios}">
-									<td th:text="${#strings.capitalize(funcionario.nome)}"></td>
-									<td th:text="${funcionario.cpf}"></td>
-									<td th:text="${funcionario.email}"></td>
-									<td th:text="${funcionario.celular}"></td>
-									<td th:text="${funcionario.telefone}"></td>
-									<td th:text="${funcionario.username}"></td>
-									<td th:text="${funcionario.role}">></td>
-									<td>
-										<a class="editar" th:href="@{/funcionarios/editar/{id}(id=${funcionario.id})}">
-											<span>Editar</span>
-											<img th:src="@{/images/edit(24x24).svg}">
-										</a>
-										<a class="excluir" th:href="@{/funcionarios/remover/{id}(id=${funcionario.id})}">
-											<span>Excluir</span>
-											<img th:src="@{/images/delete(24x24).svg}">
-										</a>
-									</td>
-								</tr>
-							</tbody>
-						</table>
+						<div class="titulo">
+							<span class="titulo-nome">Nome</span>
+							<span class="titulo-cpf">CPF</span>
+							<span class="titulo-email">E-mail</span>
+							<span class="titulo-celular">Celular</span>
+							<span class="titulo-telefone">Telefone</span>
+							<span class="titulo-usuario">Usuário</span>
+							<span class="titulo-acesso">Acesso</span>
+							<span class="titulo-acoes">Ações</span>
+						</div>
+						<div class="linha-dados" th:each="funcionario : ${funcionarios}">
+							<span class="dados-nome" th:text="${#strings.capitalize(funcionario.nome)}"></span>
+							<span class="dados-cpf" th:text="${funcionario.cpf}"></span>
+							<span class="dados-email" th:text="${funcionario.email}"></span>
+							<span class="dados-celular" th:text="${funcionario.celular}"></span>
+							<span class="dados-telefone" th:text="${funcionario.telefone}"></span>
+							<span class="dados-usuario" th:text="${funcionario.username}"></span>
+							<span class="dados-acesso" th:text="${funcionario.role}"></span>
+							
+							<div class="acoes">
+						        <a class="editar" th:href="@{/funcionarios/editar/{id}(id=${funcionario.id})}">
+									<span>Editar</span>
+									<img th:src="@{/images/edit(24x24).svg}">
+								</a>
+								<a class="excluir" th:href="@{/funcionarios/remover/{id}(id=${funcionario.id})}">
+									<span>Excluir</span>
+									<img th:src="@{/images/delete(24x24).svg}">
+								</a>
+						    </div>
+						</div>
 					</div>
 				</div>
+				
 			</main>
         </div>
     </section>

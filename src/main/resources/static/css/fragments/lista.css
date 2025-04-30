@@ -28,29 +28,70 @@ main .lista div h2 {
 
 main .lista div .titulo {
     display: flex;
-    margin: 10px 0px 0px 0px;
-    padding: 10px;
+    padding: 0px 10px 0px 10px;
+    margin: 10px 10px 0px 10px;
     font-size: 12px;
-    text-align: center;
 }
 
 main .lista div .titulo span {
 	border: solid 1px var(--color-primaria);
 	font-size: 12px;
-	width: 170px;
+	/* width: 170px; */
 	height: 30px;
+	align-items: center;
+    display: flex;
+    justify-content: center;
 }
 
 main .lista .linha-dados {
     display: flex;
-    
-    margin: 10px 0px 0px 0px;
-    padding: 10px;
+    padding: 0px 10px 0px 10px;
+    margin: 5px 10px 0px 10px;
     font-size: 12px;
-    text-align: center;
+    height: 75px;
 }
 
-main .lista .linha-dados span {
-    width: 170px;
+main .lista .linha-dados span, .acoes {
     border: solid 1px var(--color-primaria);
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+
+/* cada campo individual */
+.titulo-nome, .dados-nome {
+	width: 200px;
+}
+
+.titulo-cnpj, .dados-cnpj {
+	width: 130px;
+}
+
+.titulo-cpf, .dados-cpf {
+	width: 115px;
+}
+
+.titulo-email, .dados-email {
+	width: 200px;
+}
+
+.titulo-celular, .dados-celular {
+	width: 115px;
+}
+
+.titulo-telefone, .dados-telefone {
+	width: 115px;
+}
+
+.titulo-acoes, .acoes {
+	width: 93px;
+}
+
+.titulo-usuario, .dados-usuario {
+	width: 115px;
+}
+
+.titulo-acesso, .dados-acesso {
+	width: 115px;
 }

@@ -64,118 +64,124 @@
 	                	               	
                 </div>
                 
+                
+                
+                
+                
+                
+                <!-- Entrada De Peças -->
                 <div class="lista">
 					<div>
 						<h2>Entradas de Peças</h2>
-						<table>
-							<thead>
-								<tr>
-									<th>Cliente</th>
-									<th>Produto</th>
-									<th>Qtd</th>
-									<th>Valor Unitário</th>
-									<th>Valor Total</th>
-									<th>Data Entrada</th>
-									<th>Status</th>
-									<th>Ações</th>
-									<th>#####</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr th:each="entrada : ${pendentes}">
-									<td th:text="${#strings.capitalize(entrada.cliente)}"></td>
-									<td th:text="${entrada.produto}"></td>
-									<td th:text="${entrada.quantidade}"></td>
-									<td class="reais">
-						                <span>R$</span>
-						                <span th:text="${#numbers.formatDecimal(entrada.valorUnitario, 1, 'POINT', 2, 'COMMA')}"></span>
-							        </td>
-							        <td class="reais">
-						                <span>R$</span>
-						                <span th:text="${#numbers.formatDecimal(entrada.valorTotal, 1, 'POINT', 2, 'COMMA')}"></span>
-							        </td>
-									<td th:text="${#temporals.format(entrada.dataEntrada, 'dd/MM/yyyy (HH:mm)')}"></td>
-									<td class="status">
-										
-										<a class="status" th:href="@{/entradas/concluido/{id}(id=${entrada.id})}">
-											<span>Pendente</span>
-											<img th:src="@{/images/uncheck(24x24).svg}">
-										</a>
-									</td>
-									<td>
-										<a class="editar" th:href="@{/entradas/editar/{id}(id=${entrada.id})}">
-											<span>Editar</span>
-											<img th:src="@{/images/edit(24x24).svg}">
-										</a>
-										<a class="excluir" th:href="@{/entradas/remover/{id}(id=${entrada.id})}">
-											<span>Excluir</span>
-											<img th:src="@{/images/delete(24x24).svg}">
-										</a>
-									</td>
-									<td>
-										<span>Funcionário</span>
-									</td>
-								</tr>
-							</tbody>
-						</table>
+						<div class="titulo">
+							<span class="titulo-nome">Cliente</span>
+							<span class="titulo-cnpj">Produto</span>
+							<span class="titulo-cpf">Qtd</span>
+							<span class="titulo-email">Valor Unitário</span>
+							<span class="titulo-email">Valor Total</span>
+							<span class="titulo-email">Data Entrada</span>
+							<span class="titulo-email">Status</span>
+							<span class="titulo-acoes">Ações</span>
+							<span class="titulo-email">Funcionário</span>
+						</div>
+						<div class="linha-dados" th:each="entrada : ${pendentes}">
+							<span class="dados-nome" th:text="${#strings.capitalize(entrada.cliente)}"></span>
+							<span class="dados-cnpj" th:text="${entrada.produto}"></span>
+							<span class="dados-cpf" th:text="${entrada.quantidade}"></span>
+							
+							
+							<div class="dados-email">
+								<span>R$</span>
+				                <span th:text="${#numbers.formatDecimal(entrada.valorUnitario, 1, 'POINT', 2, 'COMMA')}"></span>
+							</div>
+							<div class="dados-email">
+								<span>R$</span>
+				                <span th:text="${#numbers.formatDecimal(entrada.valorTotal, 1, 'POINT', 2, 'COMMA')}"></span>
+							</div>
+							<span class="dados-email" th:text="${#temporals.format(entrada.dataEntrada, 'dd/MM/yyyy (HH:mm)')}"></span>
+							
+							<span class="dados-email">
+								<a class="status" th:href="@{/entradas/concluido/{id}(id=${entrada.id})}">
+									<span>Pendente</span>
+									<img th:src="@{/images/uncheck(24x24).svg}">
+								</a>
+							</span>
+							
+							<div class="acoes">
+						        <a class="editar" th:href="@{/entradas/editar/{id}(id=${entrada.id})}">
+									<span>Editar</span>
+									<img th:src="@{/images/edit(24x24).svg}">
+								</a>
+								<a class="excluir" th:href="@{/entradas/remover/{id}(id=${entrada.id})}">
+									<span>Excluir</span>
+									<img th:src="@{/images/delete(24x24).svg}">
+								</a>
+						    </div>
+						    
+						    <span class="dados-email">Funcionário</span>
+						    
+						</div>
 					</div>
-
+					
+					<!-- Peças Concluídas -->
 					<div>
 						<h2>Peças Concluídas</h2>
-						<table>
-							<thead>
-								<tr>
-									<th>Cliente</th>
-									<th>Produto</th>
-									<th>Qtd</th>
-									<th>Valor Unitário</th>
-									<th>Valor Total</th>
-									<th>Data Concluído</th>
-									<th>Status</th>
-									<th>Ações</th>
-									<th>Mover para Saída</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr th:each="entrada : ${concluidas}">
-									<td th:text="${#strings.capitalize(entrada.cliente)}"></td>
-									<td th:text="${entrada.produto}"></td>
-									<td th:text="${entrada.quantidade}"></td>
-									<td class="reais">
-						                <span>R$</span>
-						                <span th:text="${#numbers.formatDecimal(entrada.valorUnitario, 1, 'POINT', 2, 'COMMA')}"></span>
-							        </td>
-							        <td class="reais">
-						                <span>R$</span>
-						                <span th:text="${#numbers.formatDecimal(entrada.valorTotal, 1, 'POINT', 2, 'COMMA')}"></span>
-							        </td>
-									<td th:text="${#temporals.format(entrada.dataConcluido, 'dd/MM/yyyy (HH:mm)')}"></td>
-									<td>
-										<a class="status" th:href="@{/entradas/concluido/{id}(id=${entrada.id})}">
-											<span>Concluído</span>
-											<img th:src="@{/images/check(24x24).svg}">
-										</a>
-									</td>
-									<td>
-										<a class="editar" th:href="@{/entradas/editar/{id}(id=${entrada.id})}">
-											<span>Editar</span>
-											<img th:src="@{/images/edit(24x24).svg}">
-										</a>
-										<a class="excluir" th:href="@{/entradas/remover/{id}(id=${entrada.id})}">
-											<span>Editar</span>
-											<img th:src="@{/images/delete(24x24).svg}">
-										</a>
-									</td>
-									<td>
-										<a th:if="${entrada.concluido}" th:href="@{/entradas/moverParaSaida/{id}(id=${entrada.id})}">
-											Mover para Saída
-										</a>
-									</td>
-								</tr>
-							</tbody>
-						</table>
+						<div class="titulo">
+							<span class="titulo-nome">Cliente</span>
+							<span class="titulo-cnpj">Produto</span>
+							<span class="titulo-cpf">Qtd</span>
+							<span class="titulo-email">Valor Unitário</span>
+							<span class="titulo-email">Valor Total</span>
+							<span class="titulo-email">Data Concluído</span>
+							<span class="titulo-email">Status</span>
+							<span class="titulo-acoes">Ações</span>
+							<span class="titulo-email">Mover para Saída</span>
+						</div>
+						<div class="linha-dados" th:each="entrada : ${concluidas}">
+							<span class="dados-nome" th:text="${#strings.capitalize(entrada.cliente)}"></span>
+							<span class="dados-cnpj" th:text="${entrada.produto}"></span>
+							<span class="dados-cpf" th:text="${entrada.quantidade}"></span>
+							
+							
+							<div class="dados-email">
+								<span>R$</span>
+				                <span th:text="${#numbers.formatDecimal(entrada.valorUnitario, 1, 'POINT', 2, 'COMMA')}"></span>
+							</div>
+							<div class="dados-email">
+								<span>R$</span>
+				                <span th:text="${#numbers.formatDecimal(entrada.valorTotal, 1, 'POINT', 2, 'COMMA')}"></span>
+							</div>
+							<span class="dados-email" th:text="${#temporals.format(entrada.dataConcluido, 'dd/MM/yyyy (HH:mm)')}"></span>
+							
+							<span class="dados-email">
+								<a class="status" th:href="@{/entradas/concluido/{id}(id=${entrada.id})}">
+									<span>Concluído</span>
+									<img th:src="@{/images/check(24x24).svg}">
+								</a>
+							</span>
+							
+
+							<div class="acoes">
+						        <a class="editar" th:href="@{/entradas/editar/{id}(id=${entrada.id})}">
+									<span>Editar</span>
+									<img th:src="@{/images/edit(24x24).svg}">
+								</a>
+								<a class="excluir" th:href="@{/entradas/remover/{id}(id=${entrada.id})}">
+									<span>Excluir</span>
+									<img th:src="@{/images/delete(24x24).svg}">
+								</a>
+						    </div>
+						    
+						    <span class="dados-email">
+								<a th:if="${entrada.concluido}" th:href="@{/entradas/moverParaSaida/{id}(id=${entrada.id})}">
+									Mover para Saída
+								</a>
+							</span>
+						</div>
 					</div>
+					
 				</div>
+				
 			</main>
         </div>
     </section>
