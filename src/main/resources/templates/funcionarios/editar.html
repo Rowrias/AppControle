@@ -44,11 +44,11 @@
                             </p>
                             <p>
                                 <label for="username">Usuário:</label>
-                                <input type="username" id="username" name="username" th:value="*{username}">
+                                <input type="text" id="username" name="username" th:value="*{username}">
                             </p>
                             <p>
                                 <label for="password">Senha:</label>
-                                <input type="text" id="password" name="password">
+                                <input type="password" id="password" name="password">
                             </p>
                             <p>
 							    <label for="role">Acesso:</label>
@@ -63,6 +63,30 @@
                         </form>
                     </div>
                 </div>
+                
+                <div class="lista">
+                	<div>
+						<h2>Funcionário à editar</h2>
+						<div class="titulo">
+							<span class="titulo-nome">Nome</span>
+							<span class="titulo-cpf">CPF</span>
+							<span class="titulo-email">E-mail</span>
+							<span class="titulo-celular">Celular</span>
+							<span class="titulo-telefone">Telefone</span>
+							<span class="titulo-usuario">Usuário</span>
+							<span class="titulo-acesso">Acesso</span>
+						</div>
+						<div class="linha-dados">
+							<span class="dados-nome" th:text="${#strings.capitalize(funcionario.nome)}"></span>
+							<span class="dados-cpf" th:text="${funcionario.cpf}"></span>
+							<span class="dados-email" th:text="${funcionario.email}"></span>
+							<span class="dados-celular" th:text="${funcionario.celular}"></span>
+							<span class="dados-telefone" th:text="${funcionario.telefone}"></span>
+							<span class="dados-usuario" th:text="${funcionario.username}"></span>
+							<span class="dados-acesso" th:text="${funcionario.role}"></span>
+						</div>
+					</div>
+				</div>
             </main>
         </div>
     </section>

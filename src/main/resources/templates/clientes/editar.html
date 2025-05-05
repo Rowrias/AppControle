@@ -52,7 +52,32 @@
                             </p>
                         </form>
                     </div>
-                </div>
+                    
+                    <div class="lista">
+						<div>
+							<h2>Lista de clientes</h2>
+							<div class="titulo">
+								<span class="titulo-nome">Nome</span>
+								<span class="titulo-cnpj">CNPJ</span>
+								<span class="titulo-cpf">CPF</span>
+								<span class="titulo-email">E-mail</span>
+								<span class="titulo-celular">Celular</span>
+								<span class="titulo-telefone">Telefone</span>
+								<span class="titulo-acoes">Ações</span>
+							</div>
+							<div class="linha-dados">
+								<span class="dados-nome" th:text="${#strings.capitalize(cliente.nome)}"></span>
+								<span class="dados-cnpj" th:text="${cliente.cnpj}"></span>
+								<span class="dados-cpf" th:text="${cliente.cpf}"></span>
+								<span class="dados-email" th:text="${cliente.email}"></span>
+								<span class="dados-celular" th:text="${cliente.celular}"></span>
+								<span class="dados-telefone" th:text="${cliente.telefone}"></span>
+								
+								
+							</div>
+						</div>
+                	</div>
+               	</div>
             </main>
         </div>
     </section>
