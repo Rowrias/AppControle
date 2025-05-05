@@ -48,7 +48,6 @@
 							<span class="titulo-funcionario">Funcionário</span>
 						</div>
 						
-						
 						<div class="linha-dados" th:each="saida : ${saidas}">
 							<span class="dados-nome" th:text="${#strings.capitalize(saida.cliente)}"></span>
 							<span class="dados-produto" th:text="${saida.produto}"></span>
