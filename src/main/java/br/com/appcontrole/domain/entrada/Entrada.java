@@ -3,6 +3,7 @@ package br.com.appcontrole.domain.entrada;
 import java.time.LocalDateTime;
 
 import br.com.appcontrole.domain.cliente.Cliente;
+import br.com.appcontrole.domain.funcionario.Funcionario;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -39,6 +40,9 @@ public class Entrada {
     private LocalDateTime dataEntrada;
 	
 	private LocalDateTime dataConcluido;
+	
+	@ManyToOne
+	private Funcionario funcionario;
 
     private boolean concluido;
 
@@ -111,6 +115,14 @@ public class Entrada {
 	public void setDataConcluido(LocalDateTime dataConcluido) {
 		this.dataConcluido = dataConcluido;
 	}
+	
+	public Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
+    }
 
 	public boolean isConcluido() {
 		return concluido;
