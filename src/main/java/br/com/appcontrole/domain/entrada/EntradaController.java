@@ -41,7 +41,7 @@ public class EntradaController {
             // Se não existe, salva o cliente antes de associá-lo à entrada
             cliente = clienteService.insere(entrada.getCliente());
         }
-        
+
         // Associa o cliente persistido à entrada
         entrada.setCliente(cliente);
         // Salva a entrada
@@ -93,7 +93,7 @@ public class EntradaController {
             saida.setDataEntrada(entrada.getDataEntrada());
             saida.setDataConcluido(entrada.getDataConcluido());
             saida.setDataSaida(LocalDateTime.now());
-            
+            saida.setFuncionario(entrada.getFuncionario());
             saidaService.insere(saida);
             entradaService.remove(id);
         }

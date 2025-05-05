@@ -40,4 +40,8 @@ public class SaidaService implements CRUD<Saida, Long> {
     public Saida buscaPorId(Long id) {
         return saidaRepository.findById(id).orElse(null);
     }
+    
+    public List<Saida> getDataSaidaDesc() {
+        return saidaRepository.findAllByOrderByDataSaidaDesc();
+    }
 }

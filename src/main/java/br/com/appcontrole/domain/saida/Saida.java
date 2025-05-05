@@ -3,6 +3,7 @@ package br.com.appcontrole.domain.saida;
 import java.time.LocalDateTime;
 
 import br.com.appcontrole.domain.cliente.Cliente;
+import br.com.appcontrole.domain.funcionario.Funcionario;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -41,6 +42,9 @@ public class Saida {
 	
 	@NotNull
 	private LocalDateTime dataSaida;
+	
+	@ManyToOne
+	private Funcionario funcionario;
 
     // Getters e Setters
     public Long getId() {
@@ -122,5 +126,13 @@ public class Saida {
         if (this.quantidade != null && this.valorUnitario != null) {
             this.valorTotal = this.quantidade * this.valorUnitario;
         }
+    }
+
+	public Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
     }
 }

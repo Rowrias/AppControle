@@ -63,4 +63,8 @@ public class FuncionarioService implements CRUD<Funcionario, Long>{
         funcionarioRepository.save(funcionario);
     }
 
+	public Funcionario buscaPorUsuario(String username) {
+	    return funcionarioRepository.findByUsername(username);
+	}
+
 }

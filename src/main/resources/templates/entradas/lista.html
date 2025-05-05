@@ -35,7 +35,7 @@
                 	<div>
 						<form action="/entradas/lista" method="post">
 							<p>
-								<label for="clienteNome">Cliente: *</label>
+								<label for="clienteNome">Cliente/Empresa *</label>
 					        	<input type="text" id="clienteNome" name="cliente.nome" required>
 							</p>
 					        <p>
@@ -69,15 +69,15 @@
 					<div>
 						<h2>Entradas de Peças</h2>
 						<div class="titulo">
-							<span class="titulo-nome">Cliente</span>
+							<span class="titulo-nome">Cliente/Empresa</span>
 							<span class="titulo-produto">Produto</span>
 							<span class="titulo-quantidade">Quantidade</span>
 							<span class="titulo-valorUnitario">Valor Unitário (R$)</span>
 							<span class="titulo-valorTotal">Valor Total (R$)</span>
 							<span class="titulo-dataEntrada">Data Entrada</span>
 							<span class="titulo-status">Status</span>
-							<span class="titulo-acoes">Ações</span>
 							<span class="titulo-funcionario">Funcionário</span>
+							<span class="titulo-acoes">Ações</span>
 						</div>
 						<div class="linha-dados" th:each="entrada : ${pendentes}">
 							<span class="dados-nome" th:text="${#strings.capitalize(entrada.cliente)}"></span>
@@ -96,6 +96,8 @@
 								</a>
 							</span>
 							
+							<span class="dados-funcionario" th:text="${entrada.funcionario != null ? entrada.funcionario.nome : 'Não informado'}"></span>
+							
 							<div class="acoes">
 						        <a class="editar" th:href="@{/entradas/editar/{id}(id=${entrada.id})}">
 									<p>Editar</p>
@@ -107,8 +109,6 @@
 								</a>
 						    </div>
 						    
-						    <span class="dados-funcionario">Funcionário</span>
-						    
 						</div>
 					</div>
 					
@@ -116,13 +116,14 @@
 					<div>
 						<h2>Peças Concluídas</h2>
 						<div class="titulo">
-							<span class="titulo-nome">Cliente</span>
+							<span class="titulo-nome">Cliente/Empresa</span>
 							<span class="titulo-produto">Produto</span>
-							<span class="titulo-quantidade">Qtd</span>
+							<span class="titulo-quantidade">Quantidade</span>
 							<span class="titulo-valorUnitario">Valor Unitário (R$)</span>
 							<span class="titulo-valorTotal">Valor Total (R$)</span>
 							<span class="titulo-dataConcluida">Data Concluído</span>
 							<span class="titulo-status">Status</span>
+							<span class="titulo-funcionario">Funcionário</span>
 							<span class="titulo-acoes">Ações</span>
 							<span class="titulo-moverSaida">Mover para Saída</span>
 						</div>
@@ -142,6 +143,8 @@
 									<img th:src="@{/images/check(24x24).svg}">
 								</a>
 							</span>
+							
+							<span class="dados-funcionario" th:text="${entrada.funcionario != null ? entrada.funcionario.nome : 'Não informado'}"></span>
 							
 							<div class="acoes">
 						        <a class="editar" th:href="@{/entradas/editar/{id}(id=${entrada.id})}">

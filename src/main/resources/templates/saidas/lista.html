@@ -36,16 +36,16 @@
 					<div>
 						<h2>Lista de Saídas</h2>
 						<div class="titulo">
-							<span class="titulo-nome">Cliente</span>
+							<span class="titulo-nome">Cliente/Empresa</span>
 							<span class="titulo-produto">Produto</span>
-							<span class="titulo-quantidade">Qtd</span>
+							<span class="titulo-quantidade">Quantidade</span>
 							<span class="titulo-valorUnitario">Valor Unitário (R$)</span>
 							<span class="titulo-valorTotal">Valor Total (R$)</span>
 							<span class="titulo-dataEntrada">Data Entrada</span>
 							<span class="titulo-dataConcluida">Data Concluída</span>
 							<span class="titulo-dataSaida">Data Saída</span>
-							<span class="titulo-acoes">Ações</span>
 							<span class="titulo-funcionario">Funcionário</span>
+							<span class="titulo-acoes">Ações</span>
 						</div>
 						
 						<div class="linha-dados" th:each="saida : ${saidas}">
@@ -60,6 +60,8 @@
 							<span class="dados-dataConcluida" th:text="${#temporals.format(saida.dataConcluido, 'dd/MM/yyyy (HH:mm)')}"></span>
 							<span class="dados-dataSaida" th:text="${#temporals.format(saida.dataSaida, 'dd/MM/yyyy (HH:mm)')}"></span>
 							
+						    <span class="dados-funcionario" th:text="${saida.funcionario != null ? saida.funcionario.nome : 'Não informado'}"></span>
+							
 							<div class="acoes">
 						        <a class="editar" th:href="@{/saidas/editar/{id}(id=${saida.id})}">
 									<p>Editar</p>
@@ -70,8 +72,6 @@
 									<img th:src="@{/images/delete(24x24).svg}">
 								</a>
 						    </div>
-						    
-						    <span class="dados-funcionario">Funcionário</span>
 						    
 						</div>
 					</div>

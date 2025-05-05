@@ -26,7 +26,7 @@ public class SaidaController {
 
     @GetMapping("/lista")
     public String listaSaidas(Model model) {
-        List<Saida> saidas = saidaService.buscaTodos();
+        List<Saida> saidas = saidaService.getDataSaidaDesc();
         model.addAttribute("saidas", saidas);
         return "saidas/lista";
     }

@@ -1,21 +1,24 @@
 header {
-    background: var(--color-secundaria);
     padding: 0.5rem;
     text-align: center;
+    background: var(--color-secundaria);
+    width: 100%;
 }
 
 header nav {
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
 	align-items: center;
-    width: 1300px;
-    margin: auto;
-    gap: 1000px;
+    max-width: 1300px;
+    width: 100%; 
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 
 header nav div {
 	display: flex;
 	gap: 20px;
+	
 }
 
 header nav div a {
