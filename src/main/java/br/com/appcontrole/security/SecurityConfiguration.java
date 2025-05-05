@@ -35,8 +35,8 @@ public class SecurityConfiguration {
 	        		.logoutSuccessUrl("/login")
 	        		)
 	        .authorizeHttpRequests(authorizeRequests -> authorizeRequests
-	        		.requestMatchers(HttpMethod.GET, "/funcionarios/**", "/clientes/**").hasRole("ADM")
-	        		.requestMatchers(HttpMethod.POST, "/funcionarios/**", "/clientes/**").hasRole("ADM")
+	        		.requestMatchers(HttpMethod.GET, "/funcionarios/**", "/clientes/**").hasRole("ADMIN")
+	        		.requestMatchers(HttpMethod.POST, "/funcionarios/**", "/clientes/**").hasRole("ADMIN")
 	        		// Todas as outras requisições devem ser autenticadas
 	        		.anyRequest().authenticated()
 	        		)
@@ -57,7 +57,7 @@ public class SecurityConfiguration {
 	        if (funcionario != null) {
 	            return User.withUsername(funcionario.getUsername())
 	                .password(funcionario.getPassword())
-	                .roles(funcionario.getRole())
+	                .roles(funcionario.getRole().name())
 	                .build();
 	        } else {
 	            throw new UsernameNotFoundException("Usúario não encontrado");

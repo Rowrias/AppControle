@@ -48,7 +48,6 @@ main .lista .linha-dados {
     padding: 0px 10px 0px 10px;
     margin: 5px 10px 0px 10px;
     font-size: 12px;
-    height: 75px;
 }
 
 main .lista .linha-dados span, .acoes {
@@ -56,6 +55,7 @@ main .lista .linha-dados span, .acoes {
     align-items: center;
     display: flex;
     justify-content: center;
+    height: 75px;
 }
 
 
@@ -84,14 +84,54 @@ main .lista .linha-dados span, .acoes {
 	width: 115px;
 }
 
-.titulo-acoes, .acoes {
-	width: 93px;
-}
-
 .titulo-usuario, .dados-usuario {
 	width: 115px;
 }
 
 .titulo-acesso, .dados-acesso {
 	width: 115px;
+}
+
+.titulo-produto, .dados-produto {
+	width: 200px;
+}
+
+.titulo-quantidade, .dados-quantidade {
+	width: 80px;
+}
+
+.titulo-valorUnitario, .dados-valorUnitario {
+	width: 110px;
+}
+
+.titulo-valorTotal, .dados-valorTotal {
+	width: 110px;
+}
+
+.titulo-dataEntrada, .dados-dataEntrada {
+	width: 115px;
+}
+
+.titulo-dataConcluida, .dados-dataConcluida {
+	width: 115px;
+}
+
+.titulo-dataSaida, .dados-dataSaida {
+	width: 115px;
+}
+
+.titulo-status, .dados-status {
+	width: 100px;
+}
+
+.titulo-acoes, .acoes {
+	width: 93px;
+}
+
+.titulo-funcionario, .dados-funcionario {
+	width: 130px;
+}
+
+.titulo-moverSaida, .dados-moverSaida {
+	width: 130px;
 }

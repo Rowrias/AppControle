@@ -21,6 +21,8 @@ public class FuncionarioController {
     public String listaFuncionario(Model model) {
         List<Funcionario> funcionario = funcionarioService.buscaTodosOrdenadoPorNome();
         model.addAttribute("funcionarios", funcionario);
+        model.addAttribute("roles", Role.values());
+
         return "funcionarios/lista";
     }
 	
@@ -37,6 +39,8 @@ public class FuncionarioController {
     public String editarEntrada(@PathVariable Long id, Model model) {
 		Funcionario funcionario = funcionarioService.buscaPorId(id);
         model.addAttribute("funcionario", funcionario);
+        model.addAttribute("roles", Role.values());
+
         return "funcionarios/editar";
     }
 

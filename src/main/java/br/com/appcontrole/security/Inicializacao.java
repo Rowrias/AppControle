@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import br.com.appcontrole.domain.funcionario.Funcionario;
 import br.com.appcontrole.domain.funcionario.FuncionarioRepository;
+import br.com.appcontrole.domain.funcionario.Role;
 
 @Component
 public class Inicializacao implements CommandLineRunner {
@@ -24,7 +25,7 @@ public class Inicializacao implements CommandLineRunner {
             funcionario.setNome("Administrador");
             funcionario.setUsername("adm");
             funcionario.setPassword(passwordEncoder.encode("123"));
-            funcionario.setRole("ADM");
+            funcionario.setRole(Role.ADMIN);
             funcionarioRepository.save(funcionario);
         }
     }

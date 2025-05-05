@@ -28,6 +28,9 @@ public class FuncionarioService implements CRUD<Funcionario, Long>{
 		if (funcionario.getId() == null || !funcionarioRepository.existsById(funcionario.getId())) {
             throw new IllegalArgumentException("Não encontrado");
         }
+		String encodedPassword = passwordEncoder.encode(funcionario.getPassword());
+        funcionario.setPassword(encodedPassword);
+        
         return funcionarioRepository.save(funcionario);
 	}
 

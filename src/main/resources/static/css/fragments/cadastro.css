@@ -60,6 +60,17 @@ main .cadastro div form p input {
     width: 177px;
 }
 
+main .cadastro div form p select {
+    color: var(--color-terciaria);
+    display: flex;
+    font-size: 12px;
+    font-weight: var(--font-weight-regular);
+    height: 31px;
+    justify-content: center;
+    margin: 0px 10px 10px 10px;
+    width: 177px;
+}
+
 main .cadastro div form p input[type="datetime-local" i] {
     text-align: center;
     width: 177px;

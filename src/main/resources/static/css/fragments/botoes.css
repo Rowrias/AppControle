@@ -40,7 +40,7 @@ a.excluir  {
 a.status {
 	align-items: center;
 	display: flex;
-	border: 1px solid;
+	gap: 3px;
 	text-decoration: none;
 	padding: 5px 5px;
 	width: 80px;

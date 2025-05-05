@@ -2,6 +2,8 @@ package br.com.appcontrole.domain.funcionario;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -39,7 +41,8 @@ public class Funcionario {
 	
     private String password;
     
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private Role role;
     
 	//Getters Setters
 	public Long getId() {
@@ -110,11 +113,11 @@ public class Funcionario {
 		this.password = password;
 	}
 
-	public String getRole() {
+	public Role getRole() {
 		return role;
 	}
 
-	public void setRole(String role) {
+	public void setRole(Role role) {
 		this.role = role;
 	}
 	

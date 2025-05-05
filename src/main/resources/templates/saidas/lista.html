@@ -37,49 +37,42 @@
 						<h2>Lista de Saídas</h2>
 						<div class="titulo">
 							<span class="titulo-nome">Cliente</span>
-							<span class="titulo-cnpj">Produto</span>
-							<span class="titulo-cpf">Qtd</span>
-							<span class="titulo-email">Valor Unitário</span>
-							<span class="titulo-email">Valor Total</span>
-							<span class="titulo-email">Data Entrada</span>
-							<span class="titulo-email">Data Concluída</span>
-							<span class="titulo-email">Data Saída</span>
-							<span class=titulo-acoes>Ações</span>
-							<span class="titulo-email">Funcionário</span>
+							<span class="titulo-produto">Produto</span>
+							<span class="titulo-quantidade">Qtd</span>
+							<span class="titulo-valorUnitario">Valor Unitário (R$)</span>
+							<span class="titulo-valorTotal">Valor Total (R$)</span>
+							<span class="titulo-dataEntrada">Data Entrada</span>
+							<span class="titulo-dataConcluida">Data Concluída</span>
+							<span class="titulo-dataSaida">Data Saída</span>
+							<span class="titulo-acoes">Ações</span>
+							<span class="titulo-funcionario">Funcionário</span>
 						</div>
 						
 						
 						<div class="linha-dados" th:each="saida : ${saidas}">
 							<span class="dados-nome" th:text="${#strings.capitalize(saida.cliente)}"></span>
-							<span class="dados-cnpj" th:text="${saida.produto}"></span>
-							<span class="dados-cpf" th:text="${saida.quantidade}"></span>
+							<span class="dados-produto" th:text="${saida.produto}"></span>
+							<span class="dados-quantidade" th:text="${saida.quantidade}"></span>
 							
+							<span class="dados-valorUnitario" th:text="${#numbers.formatDecimal(saida.valorUnitario, 1, 'POINT', 2, 'COMMA')}"></span>
+							<span class="dados-valorTotal" th:text="${#numbers.formatDecimal(saida.valorTotal, 1, 'POINT', 2, 'COMMA')}"></span>
 							
-							<div class="dados-email">
-								<span>R$</span>
-				                <span th:text="${#numbers.formatDecimal(saida.valorUnitario, 1, 'POINT', 2, 'COMMA')}"></span>
-							</div>
-							<div class="dados-email">
-								<span>R$</span>
-				                <span th:text="${#numbers.formatDecimal(saida.valorTotal, 1, 'POINT', 2, 'COMMA')}"></span>
-							</div>
-							
-							<span class="dados-email" th:text="${#temporals.format(saida.dataEntrada, 'dd/MM/yyyy (HH:mm)')}"></span>
-							<span class="dados-email" th:text="${#temporals.format(saida.dataConcluido, 'dd/MM/yyyy (HH:mm)')}"></span>
-							<span class="dados-email" th:text="${#temporals.format(saida.dataSaida, 'dd/MM/yyyy (HH:mm)')}"></span>
+							<span class="dados-dataEntrada" th:text="${#temporals.format(saida.dataEntrada, 'dd/MM/yyyy (HH:mm)')}"></span>
+							<span class="dados-dataConcluida" th:text="${#temporals.format(saida.dataConcluido, 'dd/MM/yyyy (HH:mm)')}"></span>
+							<span class="dados-dataSaida" th:text="${#temporals.format(saida.dataSaida, 'dd/MM/yyyy (HH:mm)')}"></span>
 							
 							<div class="acoes">
 						        <a class="editar" th:href="@{/saidas/editar/{id}(id=${saida.id})}">
-									<span>Editar</span>
+									<p>Editar</p>
 									<img th:src="@{/images/edit(24x24).svg}">
 								</a>
 								<a class="excluir" th:href="@{/saidas/remover/{id}(id=${saida.id})}">
-									<span>Excluir</span>
+									<p>Excluir</p>
 									<img th:src="@{/images/delete(24x24).svg}">
 								</a>
 						    </div>
 						    
-						    <span class="dados-email">Funcionário</span>
+						    <span class="dados-funcionario">Funcionário</span>
 						    
 						</div>
 					</div>
