@@ -23,23 +23,26 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
 	        .formLogin(formLogin -> formLogin
-	        		// Especifica a página de login personalizada
-	        		.loginPage("/login")
-	        		// Permite acesso à página de login sem autenticação
-	        		.permitAll()
-	        		)
+        		// Especifica a página de login personalizada
+        		.loginPage("/login")
+        		// Permite acesso à página de login sem autenticação
+        		.permitAll()
+    		)
 	        .logout(logout -> logout
-	        		// URL para logout
-	        		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-	        		// Redireciona para a página de login após o logout
-	        		.logoutSuccessUrl("/login")
-	        		)
+        		// URL para logout
+        		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+        		// Redireciona para a página de login após o logout
+        		.logoutSuccessUrl("/login")
+    		)
 	        .authorizeHttpRequests(authorizeRequests -> authorizeRequests
-	        		.requestMatchers(HttpMethod.GET, "/funcionarios/**", "/clientes/**").hasRole("ADMIN")
-	        		.requestMatchers(HttpMethod.POST, "/funcionarios/**", "/clientes/**").hasRole("ADMIN")
-	        		// Todas as outras requisições devem ser autenticadas
-	        		.anyRequest().authenticated()
-	        		)
+        		.requestMatchers(HttpMethod.GET, "/funcionarios/**", "/clientes/**").hasRole("ADMIN")
+        		.requestMatchers(HttpMethod.POST, "/funcionarios/**", "/clientes/**").hasRole("ADMIN")
+        		// Todas as outras requisições devem ser autenticadas
+        		.anyRequest().authenticated()
+    		)
+	        .exceptionHandling(exception -> exception
+                .accessDeniedPage("/sem-acesso")
+            )
             .csrf(csrf -> csrf.disable());
 
         return http.build();

@@ -4,15 +4,16 @@ import java.time.LocalDateTime;
 
 import br.com.appcontrole.domain.cliente.Cliente;
 import br.com.appcontrole.domain.funcionario.Funcionario;
+import br.com.appcontrole.domain.produto.Produto;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name="saida")
@@ -25,9 +26,9 @@ public class Saida {
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Cliente cliente;
     
-    @NotNull
-    @Size(min = 1, max = 20)
-    private String produto;
+    @ManyToOne
+    @JoinColumn(name = "produto_id", nullable = false)
+    private Produto produto;
     
     @NotNull
     private Integer quantidade;
@@ -63,11 +64,11 @@ public class Saida {
 		this.cliente = cliente;
 	}
 
-    public String getProduto() {
+    public Produto getProduto() {
         return produto;
     }
 
-    public void setProduto(String produto) {
+    public void setProduto(Produto produto) {
         this.produto = produto;
     }
 
@@ -135,4 +136,5 @@ public class Saida {
     public void setFuncionario(Funcionario funcionario) {
         this.funcionario = funcionario;
     }
+
 }

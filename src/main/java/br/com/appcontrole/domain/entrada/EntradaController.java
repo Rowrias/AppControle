@@ -15,6 +15,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.appcontrole.domain.cliente.Cliente;
 import br.com.appcontrole.domain.cliente.ClienteService;
+import br.com.appcontrole.domain.produto.Produto;
+import br.com.appcontrole.domain.produto.ProdutoService;
 import br.com.appcontrole.domain.saida.Saida;
 import br.com.appcontrole.domain.saida.SaidaService;
 
@@ -30,6 +32,9 @@ public class EntradaController {
     
     @Autowired
     private ClienteService clienteService;
+    
+    @Autowired
+    private ProdutoService produtoService; 
 
     @PostMapping("/lista")
     public String novaEntrada(@ModelAttribute("entrada") Entrada entrada) {
@@ -104,7 +109,9 @@ public class EntradaController {
     public String editarEntrada(@PathVariable Long id, Model model) {
         Entrada entrada = entradaService.buscaPorId(id);
         List<Cliente> clientes = clienteService.buscaTodos();
+        List<Produto> produtos = produtoService.buscaTodosOrdenadoPorNome();
         
+        model.addAttribute("produtos", produtos);
         model.addAttribute("entrada", entrada);
         model.addAttribute("clientes", clientes);
         

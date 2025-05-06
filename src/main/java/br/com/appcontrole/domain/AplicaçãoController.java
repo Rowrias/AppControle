@@ -14,4 +14,10 @@ public class AplicaçãoController {
 	public String login() {
         return "login";
     }
+	
+	@GetMapping("/sem-acesso")
+    public String acessoNegado() {
+        return "sem-acesso";
+    }
+
 }

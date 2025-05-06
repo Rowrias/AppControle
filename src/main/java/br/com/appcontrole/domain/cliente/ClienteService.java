@@ -27,7 +27,6 @@ public class ClienteService implements CRUD<Cliente, Long> {
         return clienteRepository.save(cliente);
     }
 
-
 	@Override
 	public void remove(Long id) {
 		clienteRepository.deleteById(id);
