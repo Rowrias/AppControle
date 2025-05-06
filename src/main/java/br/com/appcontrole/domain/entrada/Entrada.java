@@ -13,7 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
-
+ 
 @Entity
 @Table(name="entrada")
 public class Entrada {
