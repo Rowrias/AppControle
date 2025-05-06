@@ -50,4 +50,13 @@ public class ClienteService implements CRUD<Cliente, Long> {
 		return clienteRepository.findByNome(nome);
     }
 
+	public Cliente findByNomeIgnoreCase(String nomeCliente) {
+		return clienteRepository.findByNomeIgnoreCase(nomeCliente)
+		        .orElseGet(() -> {
+		            Cliente novo = new Cliente();
+		            novo.setNome(nomeCliente);
+		            return clienteRepository.save(novo);
+		        });
+	}
+
 }

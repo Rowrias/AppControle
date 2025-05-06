@@ -49,5 +49,14 @@ public class ProdutoService implements CRUD<Produto, Long> {
 	public Produto buscaPorNome(String nome) {
 		return produtoRepository.findByNome(nome);
 	}
+
+	public Produto findByNomeIgnoreCase(String nomeProduto) {
+		return produtoRepository.findByNomeIgnoreCase(nomeProduto)
+		        .orElseGet(() -> {
+		            Produto novo = new Produto();
+		            novo.setNome(nomeProduto);
+		            return produtoRepository.save(novo);
+		        });
+	}
 	
 }

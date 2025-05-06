@@ -36,25 +36,46 @@ public class EntradaController {
     @Autowired
     private ProdutoService produtoService; 
 
-    @PostMapping("/lista")
-    public String novaEntrada(@ModelAttribute("entrada") Entrada entrada) {
-        
-        Cliente cliente = clienteService.buscaPorNome(entrada.getCliente().getNome());
-        
-        // Verifica se o cliente já existe no banco de dados
-        if (cliente == null) {
-            // Se não existe, salva o cliente antes de associá-lo à entrada
-            cliente = clienteService.insere(entrada.getCliente());
-        }
+    // Insere
+    @PostMapping("/entrada")
+    public String novaEntrada(@ModelAttribute Entrada entrada) {
 
-        // Associa o cliente persistido à entrada
-        entrada.setCliente(cliente);
-        // Salva a entrada
-        entradaService.insere(entrada);
+        // --- CLIENTE ---
+        String nomeCliente = entrada.getCliente().getNome().trim().toLowerCase();
+        Cliente clienteExistente = clienteService.findByNomeIgnoreCase(nomeCliente);
+		if (clienteExistente == null) {
+		    Cliente novoCliente = new Cliente();
+		    novoCliente.setNome(nomeCliente);
+		    clienteExistente = clienteService.insere(novoCliente);
+		}
+
+		entrada.setCliente(clienteExistente);
+
+        // --- PRODUTO ---
+        String nomeProduto = entrada.getProduto().getNome().trim().toLowerCase();
+        Produto produtoExistente = produtoService.findByNomeIgnoreCase(nomeProduto);
+        if (produtoExistente == null) {
+		    Produto novoProduto = new Produto();
+		    novoProduto.setNome(nomeProduto);
+		    produtoExistente = produtoService.insere(novoProduto);
+		}
         
-        return "redirect:/entradas/lista";
+        // Atualiza o estoque
+        Integer estoqueAtual = produtoExistente.getEstoque();
+        produtoExistente.setEstoque(estoqueAtual + entrada.getQuantidade());
+        produtoService.insere(produtoExistente);
+
+        entrada.setProduto(produtoExistente);
+
+        // --- DATA E VALOR TOTAL ---
+        entrada.setDataEntrada(LocalDateTime.now());
+
+        entradaService.insere(entrada);
+
+        return "redirect:/entrada/sucesso";
     }
-    
+
+    // Lista
     @GetMapping("/lista")
     public String listaEntradas(Model model) {
         List<Entrada> pendentes = entradaService.buscaPorStatus(false);
@@ -69,42 +90,8 @@ public class EntradaController {
 
         return "entradas/lista";
     }
-    
-    @GetMapping("/concluido/{id}")
-    public String alteraStatusConcluido(@PathVariable Long id) {
-        Entrada entrada = entradaService.buscaPorId(id);
-        if (entrada != null) {
-            entrada.setConcluido(!entrada.isConcluido());
-            if (entrada.isConcluido()) {
-                entrada.setDataConcluido(LocalDateTime.now());
-            } else {
-                entrada.setDataConcluido(null);
-            }
-            entradaService.atualiza(entrada);
-        }
-        return "redirect:/entradas/lista";
-    }
-        
-    @GetMapping("/moverParaSaida/{id}")
-    public String moverParaSaida(@PathVariable Long id) {
-        Entrada entrada = entradaService.buscaPorId(id);
-        if (entrada != null && entrada.isConcluido()) {
-            Saida saida = new Saida();
-            saida.setCliente(entrada.getCliente());
-            saida.setProduto(entrada.getProduto());
-            saida.setQuantidade(entrada.getQuantidade());
-            saida.setValorUnitario(entrada.getValorUnitario());
-            saida.setValorTotal(entrada.getValorTotal());
-            saida.setDataEntrada(entrada.getDataEntrada());
-            saida.setDataConcluido(entrada.getDataConcluido());
-            saida.setDataSaida(LocalDateTime.now());
-            saida.setFuncionario(entrada.getFuncionario());
-            saidaService.insere(saida);
-            entradaService.remove(id);
-        }
-        return "redirect:/entradas/lista";
-    }
-    
+
+    // Editar
     @GetMapping("/editar/{id}")
     public String editarEntrada(@PathVariable Long id, Model model) {
         Entrada entrada = entradaService.buscaPorId(id);
@@ -155,10 +142,50 @@ public class EntradaController {
         return "redirect:/entradas/lista";
     }
 
+    // Remover
     @GetMapping("/remover/{id}")
     public String removerEntrada(@PathVariable Long id, RedirectAttributes attr) {
         entradaService.remove(id);
         attr.addFlashAttribute("mensagem", "Entrada removida com sucesso.");
+        return "redirect:/entradas/lista";
+    }
+    
+    // -----------------------------------------------------------
+    
+    // Altera para concluído
+    @GetMapping("/concluido/{id}")
+    public String alteraStatusConcluido(@PathVariable Long id) {
+        Entrada entrada = entradaService.buscaPorId(id);
+        if (entrada != null) {
+            entrada.setConcluido(!entrada.isConcluido());
+            if (entrada.isConcluido()) {
+                entrada.setDataConcluido(LocalDateTime.now());
+            } else {
+                entrada.setDataConcluido(null);
+            }
+            entradaService.atualiza(entrada);
+        }
+        return "redirect:/entradas/lista";
+    }
+    
+    // Mover para saida
+    @GetMapping("/moverParaSaida/{id}")
+    public String moverParaSaida(@PathVariable Long id) {
+        Entrada entrada = entradaService.buscaPorId(id);
+        if (entrada != null && entrada.isConcluido()) {
+            Saida saida = new Saida();
+            saida.setCliente(entrada.getCliente());
+            saida.setProduto(entrada.getProduto());
+            saida.setQuantidade(entrada.getQuantidade());
+            saida.setValorUnitario(entrada.getValorUnitario());
+            saida.setValorTotal(entrada.getValorTotal());
+            saida.setDataEntrada(entrada.getDataEntrada());
+            saida.setDataConcluido(entrada.getDataConcluido());
+            saida.setDataSaida(LocalDateTime.now());
+            saida.setFuncionario(entrada.getFuncionario());
+            saidaService.insere(saida);
+            entradaService.remove(id);
+        }
         return "redirect:/entradas/lista";
     }
    

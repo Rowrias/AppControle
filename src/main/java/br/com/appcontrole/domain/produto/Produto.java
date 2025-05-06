@@ -28,7 +28,7 @@ public class Produto {
 	private Double preco;
 	
 	@Min(0)
-	private Integer quantidadeEstoque;
+	private Integer estoque;
 
 	// Getters e Setters
 	public Long getId() {
@@ -55,11 +55,13 @@ public class Produto {
 	public void setPreco(Double preco) {
 		this.preco = preco;
 	}
-	public Integer getQuantidadeEstoque() {
-		return quantidadeEstoque;
+
+	public Integer getEstoque() {
+	    return estoque;
 	}
-	public void setQuantidadeEstoque(Integer quantidadeEstoque) {
-		this.quantidadeEstoque = quantidadeEstoque;
+
+	public void setEstoque(Integer estoque) {
+	    this.estoque = estoque;
 	}
 	
 }
