@@ -10,6 +10,7 @@ button.adicionar {
 	width: 92px;
 	height: 26px;
 	font-size: 10px;
+    margin: 0px 5px 10px 5px;
 }
 
  a.editar {
@@ -23,6 +24,8 @@ button.adicionar {
 	padding: 1px 10px 1px 10px;
 	text-decoration: none;
 	width: auto;
+   	margin: 0px 5px 0px 5px;
+	
 }
 
 a.excluir  {
@@ -36,6 +39,7 @@ a.excluir  {
 	padding: 1px 10px 1px 10px;
 	text-decoration: none;
 	width: auto;
+   	margin: 0px 5px 0px 5px;
 }
 
 a.status {
