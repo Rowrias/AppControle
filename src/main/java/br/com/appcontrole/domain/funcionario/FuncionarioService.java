@@ -8,6 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.com.appcontrole.domain.CRUD;
+import jakarta.transaction.Transactional;
 
 @Service
 public class FuncionarioService implements CRUD<Funcionario, UUID>{
@@ -15,7 +16,11 @@ public class FuncionarioService implements CRUD<Funcionario, UUID>{
 	@Autowired
 	private FuncionarioRepository funcionarioRepository;
 	
+	@Autowired
+    private PasswordEncoder passwordEncoder;
+	
 	@Override
+	@Transactional
 	public Funcionario insere(Funcionario funcionario) {
 		// Criptografar a senha antes de salvar
         String encodedPassword = passwordEncoder.encode(funcionario.getPassword());
@@ -25,6 +30,7 @@ public class FuncionarioService implements CRUD<Funcionario, UUID>{
 	}
 
 	@Override
+	@Transactional
 	public Funcionario atualiza(Funcionario funcionario) {
 		if (funcionario.getId() == null || !funcionarioRepository.existsById(funcionario.getId())) {
             throw new IllegalArgumentException("Não encontrado");
@@ -36,6 +42,7 @@ public class FuncionarioService implements CRUD<Funcionario, UUID>{
 	}
 
 	@Override
+	@Transactional
 	public void remove(Long id) {
 		funcionarioRepository.deleteById(id);
 	}
@@ -50,24 +57,16 @@ public class FuncionarioService implements CRUD<Funcionario, UUID>{
 		return funcionarioRepository.findById(id).orElse(null);
 	}
 	
+	//
 	public List<Funcionario> buscaTodosOrdenadoPorNome() {
         return funcionarioRepository.findAllByOrderByNomeAsc();
-    }
-	
-	@Autowired
-    private PasswordEncoder passwordEncoder;
-
-    // Criptografa a senha antes de salvar
-    public void inserirUsuario(Funcionario funcionario) {
-        String encodedPassword = passwordEncoder.encode(funcionario.getPassword());
-        funcionario.setPassword(encodedPassword);
-        funcionarioRepository.save(funcionario);
     }
 
 	public Funcionario buscaPorUsuario(String username) {
 	    return funcionarioRepository.findByUsername(username);
 	}
 
+	@Transactional
 	public void remove(UUID id) {
 		funcionarioRepository.deleteById(id);
 	}
