@@ -22,6 +22,7 @@ public class Funcionario {
 	
 	@NotNull
 	@Size(min = 1, max = 50)
+	@Column(unique = true)
 	private String nome;
 	
 	@Column(length = 14)
