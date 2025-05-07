@@ -108,20 +108,23 @@ public class EntradaController {
     }
 
     @PostMapping("/editar/{id}")
-    public String atualizarEntrada(@PathVariable Long id, Entrada entrada, RedirectAttributes attr) {
-    	// --- CLIENTE ---
-        String nomeCliente = entrada.getCliente().getNome().trim().toLowerCase();
+    public String atualizarEntrada(@PathVariable Long id, Entrada entradaAtualizada, RedirectAttributes attr) {
+        // --- Buscar entrada original ---
+        Entrada entradaOriginal = entradaService.buscaPorId(id);
+        Produto produtoOriginal = entradaOriginal.getProduto();
+
+        // --- CLIENTE ---
+        String nomeCliente = entradaAtualizada.getCliente().getNome().trim().toLowerCase();
         Cliente clienteExistente = clienteService.findByNomeIgnoreCase(nomeCliente);
         if (clienteExistente == null) {
             Cliente novoCliente = new Cliente();
             novoCliente.setNome(nomeCliente);
             clienteExistente = clienteService.insere(novoCliente);
         }
-
-        entrada.setCliente(clienteExistente);
+        entradaAtualizada.setCliente(clienteExistente);
 
         // --- PRODUTO ---
-        String nomeProduto = entrada.getProduto().getNome().trim().toLowerCase();
+        String nomeProduto = entradaAtualizada.getProduto().getNome().trim().toLowerCase();
         Produto produtoExistente = produtoService.findByNomeIgnoreCase(nomeProduto);
         if (produtoExistente == null) {
             Produto novoProduto = new Produto();
@@ -129,29 +132,29 @@ public class EntradaController {
             novoProduto.setQuantidade(0);
             produtoExistente = produtoService.insere(novoProduto);
         }
-        
-        // Atualiza o estoque do produto
-        // Busca a entrada original do banco
-        Entrada entradaOriginal = entradaService.buscaPorId(id);
-        Produto produtoOriginal = entradaOriginal.getProduto();
 
-        // Subtrai a quantidade antiga do estoque
+        // --- Atualiza o estoque corretamente ---
+        // Remove a quantidade anterior do produto original
         produtoOriginal.setQuantidade(produtoOriginal.getQuantidade() - entradaOriginal.getQuantidade());
         produtoService.insere(produtoOriginal);
-        
-        // Atualiza o novo produto com a nova quantidade
-        produtoExistente.setQuantidade(produtoExistente.getQuantidade() + entrada.getQuantidade());
+
+        // Adiciona a nova quantidade ao produto atualizado
+        produtoExistente.setQuantidade(produtoExistente.getQuantidade() + entradaAtualizada.getQuantidade());
         produtoService.insere(produtoExistente);
 
-        entrada.setProduto(produtoExistente);
+        entradaAtualizada.setProduto(produtoExistente);
 
-        // --- DATA E FUNCIONÁRIO ---
-        entrada.setDataEntrada(LocalDateTime.now());
+        // --- Preserva dados da entrada original ---
+        entradaAtualizada.setId(id);
+        entradaAtualizada.setDataEntrada(entradaOriginal.getDataEntrada()); // mantém data original
+        entradaAtualizada.setFuncionario(entradaOriginal.getFuncionario()); // mantém funcionário
+        entradaAtualizada.setConcluido(entradaOriginal.isConcluido());
+        entradaAtualizada.setDataConcluido(entradaOriginal.getDataConcluido());
 
-        // O Funcionario é atribuído diretamente dentro do Service
-        entradaService.insere(entrada);  // Salva a entrada no banco de dados
-        attr.addFlashAttribute("mensagem", "Entrada editada com sucesso.");
-        
+        // --- Atualiza entrada ---
+        entradaService.atualiza(entradaAtualizada);
+
+        attr.addFlashAttribute("mensagem", "Entrada atualizada com sucesso.");
         return "redirect:/entradas/lista";
     }
 
@@ -201,8 +204,8 @@ public class EntradaController {
         	Produto produto = entrada.getProduto();
         	
             Saida saida = new Saida();
-            saida.setCliente(entrada.getCliente());
-            saida.setProduto(entrada.getProduto());
+            saida.setCliente(entrada.getCliente().getNome());
+            saida.setProduto(produto.getNome());
             saida.setQuantidade(entrada.getQuantidade());
 
             // Valor unitário e total
@@ -217,7 +220,7 @@ public class EntradaController {
             saida.setDataEntrada(entrada.getDataEntrada());
             saida.setDataConcluido(entrada.getDataConcluido());
             saida.setDataSaida(LocalDateTime.now());
-            saida.setFuncionario(entrada.getFuncionario());
+            saida.setFuncionario(entrada.getFuncionario().getNome());
 
             if (produto != null) {
                 // Subtrai do estoque a quantidade movimentada

@@ -60,7 +60,7 @@
 							<span class="dados-dataConcluida" th:text="${#temporals.format(saida.dataConcluido, 'dd/MM/yyyy (HH:mm)')}"></span>
 							<span class="dados-dataSaida" th:text="${#temporals.format(saida.dataSaida, 'dd/MM/yyyy (HH:mm)')}"></span>
 							
-						    <span class="dados-funcionario" th:text="${saida.funcionario != null ? saida.funcionario.nome : 'Não informado'}"></span>
+						    <span class="dados-funcionario" th:text="${saida.funcionario != null ? saida.funcionario : 'Não informado'}"></span>
 							
 							<div class="acoes">
 						        <a class="editar" th:href="@{/saidas/editar/{id}(id=${saida.id})}">
