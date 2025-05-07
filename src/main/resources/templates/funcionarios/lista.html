@@ -36,7 +36,7 @@
 						<form  action="/funcionarios/lista" method="post">
 							<div class="cadastro-nome">
 								<label for="nome">Nome: *</label>
-					        	<input type="text" id="nome" name="nome" required>
+					        	<input type="text" id="nome" name="nome" minlength="3" maxlength="50" required>
 							</div>
 					        <div class="cadastro-cpf">
 								<label for="cpf">CPF:</label>
@@ -60,7 +60,7 @@
 							</div>
 							<div class="cadastro-senha">
 								<label for="password">Senha:</label>
-					        	<input type="password" id="password" name="password"/>
+					        	<input type="password" id="password" name="password" minlength="4" maxlength="8"/>
 							</div>
 							<div class="cadastro-acesso">
 							    <label for="role">Acesso:</label>

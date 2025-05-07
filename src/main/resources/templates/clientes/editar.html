@@ -22,34 +22,34 @@
                     </div>
                     <div>
                         <form th:action="@{/clientes/editar/{id}(id=${cliente.id})}" th:object="${cliente}" method="post">
-                            <p>
+                            <div class="cadastro-nome">
                                 <label for="nome">Nome: *</label>
                                 <input type="text" id="nome" name="nome" th:value="*{nome}" required>
-                            </p>
-                            <p>
+                            </div>
+                            <div class="cadastro-cnpj">
                                 <label for="cnpj">CNPJ:</label>
                                 <input type="text" id="cnpj" name="cnpj" th:value="*{cnpj}">
-                            </p>
-                            <p>
+                            </div>
+                            <div class="cadastro-cpf">
                                 <label for="cpf">CPF:</label>
                                 <input type="text" id="cpf" name="cpf" th:value="*{cpf}">
-                            </p>
-                            <p>
+                            </div>
+                            <div class="cadastro-email">
                                 <label for="email">E-mail:</label>
                                 <input type="email" id="email" name="email" th:value="*{email}">
-                            </p>
-                            <p>
+                            </div>
+                            <div class="cadastro-celular">
                                 <label for="celular">Celular:</label>
                                 <input type="text" id="celular" name="celular" th:value="*{celular}">
-                            </p>
-                            <p>
+                            </div>
+                            <div class="cadastro-telefone">
                                 <label for="telefone">Telefone:</label>
                                 <input type="text" id="telefone" name="telefone" th:value="*{telefone}">
-                            </p>
-                            <p>
+                            </div>
+                            <div>
                                 <label></label>
                                 <button class="adicionar" type="submit">Atualizar</button>
-                            </p>
+                            </div>
                         </form>
                     </div>
                     

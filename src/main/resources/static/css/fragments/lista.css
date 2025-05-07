@@ -93,8 +93,12 @@ main .lista .linha-dados span, .acoes {
 	width: 60px;
 }
 
-.titulo-produto, .dados-produto {
+.titulo-descricao, .dados-descricao {
 	width: 200px;
+}
+
+.titulo-produto, .dados-produto {
+	width: 150px;
 }
 
 .titulo-quantidade, .dados-quantidade {

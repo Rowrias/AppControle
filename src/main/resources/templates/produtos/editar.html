@@ -36,30 +36,26 @@
 						<form th:action="@{/produtos/editar/{id}(id=${produto.id})}" th:object="${produto}" method="post">
 							<input type="hidden" th:field="*{id}"/>
 							
-							<p>
+							<div class="cadastro-nome">
 								<label for="nome">Nome: *</label>
 					        	<input type="text" id="nome" th:field="*{nome}" required>
-							</p>
-							
-							<p>
+							</div>
+							<div class="cadastro-descricao">
 						        <label for="descricao">Descrição:</label>
 						        <input type="text" id="descricao" th:field="*{descricao}">
-						    </p>
-						    
-						    <p>
+						    </div>
+						    <div class="cadastro-quantidade">
 								<label for="quantidade">Quantidade:</label>
 					        	<input type="number" id="quantidade" th:field="*{quantidade}" min="0">
-							</p>
-							
-							<p>
+							</div>
+							<div class="cadastro-valorUnitario">
 								<label for="valorUnitario">Valor Unitário:</label>
 					        	<input type="number" id="valorUnitario" th:field="*{valorUnitario}" step="0.01" min="0">
-							</p>
-
-							<p>
+							</div>
+							<div>
 								<label></label>
 								<button class="adicionar" type="submit" >Atualizar</button>
-							</p>
+							</div>
 							
 					    </form>
 					</div>
@@ -71,7 +67,7 @@
 						<h2>Produto à Editar</h2>
 						<div class="titulo">
 							<span class="titulo-nome">Nome</span>
-							<span class="titulo-nome">Descrição</span>
+							<span class="titulo-descricao">Descrição</span>
 							<span class="titulo-quantidade">Quantidade</span>
 							<span class="titulo-valorUnitario">Valor Unitário (R$)</span>
 							<span class="titulo-valorTotal">Valor Total (R$)</span>
@@ -79,7 +75,7 @@
 						
 						<div class="linha-dados">
 							<span class="dados-nome" th:text="${#strings.capitalize(produto.nome)}"></span>
-							<span class="dados-nome" th:text="${#strings.capitalize(produto.descricao)}"></span>
+							<span class="dados-descricao" th:text="${#strings.capitalize(produto.descricao)}"></span>
 							<span class="dados-quantidade" th:text="${produto.quantidade}"></span>
 							<span class="dados-valorUnitario" th:text="${#numbers.formatDecimal(produto.valorUnitario, 1, 'POINT', 2, 'COMMA')}"></span>
 							<span class="dados-valorTotal" th:text="${#numbers.formatDecimal(produto.valorTotal, 1, 'POINT', 2, 'COMMA')}"></span>

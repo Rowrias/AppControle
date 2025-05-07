@@ -34,26 +34,26 @@
 					</div>
                 	<div>
 						<form action="/entradas/lista" method="post">
-							<p>
+							<div class="cadastro-nome">
 								<label for="clienteNome">Cliente *</label>
 					        	<input type="text" id="clienteNome" name="cliente.nome" required>
-							</p>
-					        <p>
+							</div>
+					        <div class="cadastro-produto">
 								<label for="produto">Produto: *</label>
 					        	<input type="text" id="produto" name="produto.nome" required>
-							</p>
-					        <p>
+							</div>
+					        <div class="cadastro-quantidade">
 								<label for="quantidade">Quantidade: *</label>
 					        	<input type="number" id="quantidade" name="quantidade" min="0" required>
-							</p>
-					        <P>
+							</div>
+					        <div class="cadastro-dataEntrada">
 								<label for="dataEntrada">Data da entrada: *</label>
 					        	<input type="datetime-local" id="dataEntrada" name="dataEntrada" required/>
-							</P>
-							<p>
+							</div>
+							<div>
 								<label></label>
 								<button class="adicionar" type="submit" >Adicionar</button>
-							</p>
+							</div>
 							
 					    </form>
 					</div>
@@ -76,10 +76,10 @@
 						
 						<div class="linha-dados" th:each="entrada : ${pendentes}">
 							<span class="dados-nome" th:text="${#strings.capitalize(entrada.cliente)}"></span>
-							<span class="dados-produto" th:text="${entrada.produto}"></span>
+							<span class="dados-produto" th:text="${#strings.capitalize(entrada.produto)}"></span>
 							<span class="dados-quantidade" th:text="${entrada.quantidade}"></span>
-							<span class="dados-dataEntrada" th:text="${#temporals.format(entrada.dataEntrada, 'dd/MM/yyyy (HH:mm)')}"></span>
-							<span class="dados-funcionario" th:text="${entrada.funcionario != null ? entrada.funcionario.nome : 'Não informado'}"></span>
+							<span class="dados-dataEntrada" th:text="${#temporals.format(entrada.dataEntrada, 'HH:mm - dd/MM/yyyy')}"></span>
+							<span class="dados-funcionario" th:text="${#strings.capitalize(entrada.funcionario != null ? entrada.funcionario.nome : 'Não informado')}"></span>
 							
 							<span class="dados-status">
 								<a class="status" th:href="@{/entradas/concluido/{id}(id=${entrada.id})}">
@@ -118,10 +118,10 @@
 						
 						<div class="linha-dados" th:each="entrada : ${concluidas}">
 							<span class="dados-nome" th:text="${#strings.capitalize(entrada.cliente)}"></span>
-							<span class="dados-produto" th:text="${entrada.produto}"></span>
+							<span class="dados-produto" th:text="${#strings.capitalize(entrada.produto)}"></span>
 							<span class="dados-quantidade" th:text="${entrada.quantidade}"></span>
-							<span class="dados-dataConcluida" th:text="${#temporals.format(entrada.dataConcluido, 'dd/MM/yyyy (HH:mm)')}"></span>
-							<span class="dados-funcionario" th:text="${entrada.funcionario != null ? entrada.funcionario.nome : 'Não informado'}"></span>
+							<span class="dados-dataConcluida" th:text="${#temporals.format(entrada.dataConcluido, 'HH:mm - dd/MM/yyyy')}"></span>
+							<span class="dados-funcionario" th:text="${#strings.capitalize(entrada.funcionario != null ? entrada.funcionario.nome : 'Não informado')}"></span>
 							
 							<span class="dados-status">
 								<a class="status" th:href="@{/entradas/concluido/{id}(id=${entrada.id})}">

@@ -50,17 +50,17 @@
 						
 						<div class="linha-dados" th:each="saida : ${saidas}">
 							<span class="dados-nome" th:text="${#strings.capitalize(saida.cliente)}"></span>
-							<span class="dados-produto" th:text="${saida.produto}"></span>
+							<span class="dados-produto" th:text="${#strings.capitalize(saida.produto)}"></span>
 							<span class="dados-quantidade" th:text="${saida.quantidade}"></span>
 							
 							<span class="dados-valorUnitario" th:text="${#numbers.formatDecimal(saida.valorUnitario, 1, 'POINT', 2, 'COMMA')}"></span>
 							<span class="dados-valorTotal" th:text="${#numbers.formatDecimal(saida.valorTotal, 1, 'POINT', 2, 'COMMA')}"></span>
 							
-							<span class="dados-dataEntrada" th:text="${#temporals.format(saida.dataEntrada, 'dd/MM/yyyy (HH:mm)')}"></span>
-							<span class="dados-dataConcluida" th:text="${#temporals.format(saida.dataConcluido, 'dd/MM/yyyy (HH:mm)')}"></span>
-							<span class="dados-dataSaida" th:text="${#temporals.format(saida.dataSaida, 'dd/MM/yyyy (HH:mm)')}"></span>
+							<span class="dados-dataEntrada" th:text="${#temporals.format(saida.dataEntrada, 'HH:mm - dd/MM/yyyy')}"></span>
+							<span class="dados-dataConcluida" th:text="${#temporals.format(saida.dataConcluido, 'HH:mm - dd/MM/yyyy')}"></span>
+							<span class="dados-dataSaida" th:text="${#temporals.format(saida.dataSaida, 'HH:mm - dd/MM/yyyy')}"></span>
 							
-						    <span class="dados-funcionario" th:text="${saida.funcionario != null ? saida.funcionario : 'Não informado'}"></span>
+						    <span class="dados-funcionario" th:text="${#strings.capitalize(saida.funcionario != null ? saida.funcionario : 'Não informado')}"></span>
 							
 							<div class="acoes">
 						        <a class="editar" th:href="@{/saidas/editar/{id}(id=${saida.id})}">

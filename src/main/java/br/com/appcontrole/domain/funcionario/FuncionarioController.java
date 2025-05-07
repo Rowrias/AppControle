@@ -1,6 +1,7 @@
 package br.com.appcontrole.domain.funcionario;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,7 +40,7 @@ public class FuncionarioController {
 	
 	// Editar
 	@GetMapping("/editar/{id}")
-    public String editarEntrada(@PathVariable Long id, Model model) {
+    public String editarEntrada(@PathVariable UUID id, Model model) {
 		Funcionario funcionario = funcionarioService.buscaPorId(id);
         model.addAttribute("funcionario", funcionario);
         model.addAttribute("roles", Role.values());
@@ -48,7 +49,7 @@ public class FuncionarioController {
     }
 
     @PostMapping("/editar/{id}")
-    public String atualizarEntrada(@PathVariable Long id, Funcionario funcionario) {
+    public String atualizarEntrada(@PathVariable UUID id, Funcionario funcionario) {
     	funcionario.setId(id);
         funcionarioService.atualiza(funcionario);
         return "redirect:/funcionarios/lista";
@@ -56,7 +57,7 @@ public class FuncionarioController {
 
     // Remover
     @GetMapping("/remover/{id}")
-    public String removerEntrada(@PathVariable Long id) {
+    public String removerEntrada(@PathVariable UUID id) {
     	funcionarioService.remove(id);
         return "redirect:/funcionarios/lista";
     }

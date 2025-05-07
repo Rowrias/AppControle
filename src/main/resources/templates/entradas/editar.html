@@ -33,35 +33,30 @@
 	                        <input type="hidden" th:field="*{id}"/>
 	                        <input type="hidden" th:field="*{concluido}"/>
 	                        
-	                        <p>
-	                            <label for="clienteNome">Cliente/Empresa *</label>
+	                        <div class="cadastro-nome">
+	                            <label for="clienteNome">Cliente *</label>
 	                            <input type="text" id="clienteNome" th:field="*{cliente.nome}" required>
-	                        </p>
-	                        
-	                        <p>
+	                        </div>
+	                        <div class="cadastro-produto">
 	                            <label for="produto">Produto: *</label>
 	                            <input type="text" id="produto" th:field="*{produto.nome}" required>
-	                        </p>
-	                        
-	                        <p>
+	                        </div>
+	                        <div class="cadastro-quantidade">
 	                            <label for="quantidade">Quantidade: *</label>
 	                            <input type="number" id="quantidade" th:field="*{quantidade}" min="0" required>
-	                        </p>
-	                        
-	                        <p>
+	                        </div>
+	                        <div class="cadastro-dataEntrada">
 	                            <label for="dataEntrada">Data da entrada: *</label>
 	                            <input type="datetime-local" id="dataEntrada" th:field="*{dataEntrada}" required/>
-	                        </p>
-	                        
-	                        <p>
-	                            <label for="dataEntrada">Data Concluído:</label>
+	                        </div>
+	                        <div class="cadastro-dataConcluido">
+	                            <label for="dataConcluido">Data Concluído:</label>
 	                            <input type="datetime-local" id="dataConcluido" th:field="*{dataConcluido}"/>
-	                        </p>
-	                        
-	                        <p>
+	                        </div>
+	                        <div>
 								<label></label>
 								<button class="adicionar" type="submit" >Atualizar</button>
-							</p>
+							</div>
                     	</form>
                 	</div>
                	</div>
@@ -79,13 +74,13 @@
 						</div>
 						<div class="linha-dados">
 							<span class="dados-nome" th:text="${#strings.capitalize(entrada.cliente)}"></span>
-							<span class="dados-produto" th:text="${entrada.produto}"></span>
+							<span class="dados-produto" th:text="${#strings.capitalize(entrada.produto)}"></span>
 							<span class="dados-quantidade" th:text="${entrada.quantidade}"></span>
 							
-							<span class="dados-dataEntrada" th:text="${#temporals.format(entrada.dataEntrada, 'dd/MM/yyyy (HH:mm)')}"></span>
-							<span class="dados-dataConcluida" th:text="${#temporals.format(entrada.dataConcluido, 'dd/MM/yyyy (HH:mm)')}"></span>
+							<span class="dados-dataEntrada" th:text="${#temporals.format(entrada.dataEntrada, 'HH:mm - dd/MM/yyyy')}"></span>
+							<span class="dados-dataConcluida" th:text="${#temporals.format(entrada.dataConcluido, 'HH:mm - dd/MM/yyyy')}"></span>
 							
-							<span class="dados-funcionario" th:text="${entrada.funcionario != null ? entrada.funcionario.nome : 'Não informado'}"></span>
+							<span class="dados-funcionario" th:text="${#strings.capitalize(entrada.funcionario != null ? entrada.funcionario.nome : 'Não informado')}"></span>
 							
                			</div>
            			</div>
