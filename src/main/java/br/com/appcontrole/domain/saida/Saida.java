@@ -11,7 +11,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.DecimalMin;
@@ -28,18 +27,17 @@ public class Saida {
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Cliente cliente;
     
-    @ManyToOne
-    @JoinColumn(name = "produto_id", nullable = false)
-    private Produto produto;
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	private Produto produto;
     
     @NotNull
     private Integer quantidade;
     
     @DecimalMin("0.0")
-	private BigDecimal valorUnitario;
+	private BigDecimal valorUnitario = BigDecimal.ZERO;
 	
 	@DecimalMin("0.0")
-	private BigDecimal valorTotal;
+	private BigDecimal valorTotal = BigDecimal.ZERO;
     
     private LocalDateTime dataEntrada;
 	
@@ -88,25 +86,26 @@ public class Saida {
     public BigDecimal getValorUnitario() {
         return valorUnitario;
     }
-
     public void setValorUnitario(BigDecimal valorUnitario) {
         this.valorUnitario = valorUnitario;
         calcularValorTotal();
     }
     
-    public BigDecimal getValorTotal() {
-        return valorTotal;
-    }
-    public void setValorTotal(BigDecimal valorTotal) {
+    
+    ////
+    public BigDecimal  getValorTotal() {
+		return valorTotal;
+	}
+	public void setValorTotal(BigDecimal  valorTotal) {
 		this.valorTotal = valorTotal;
 	}
-    
     // Método para calcular valor total
     private void calcularValorTotal() {
         if (this.quantidade != null && this.valorUnitario != null) {
             this.valorTotal = BigDecimal.valueOf(this.quantidade).multiply(this.valorUnitario);
         }
     }
+    /////
 
     public LocalDateTime getDataEntrada() {
 		return dataEntrada;
@@ -132,6 +131,7 @@ public class Saida {
 		this.dataSaida = dataSaida;
 	}
 
+
 	public Funcionario getFuncionario() {
         return funcionario;
     }
@@ -139,5 +139,6 @@ public class Saida {
     public void setFuncionario(Funcionario funcionario) {
         this.funcionario = funcionario;
     }
+
 
 }

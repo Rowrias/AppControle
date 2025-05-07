@@ -30,10 +30,10 @@ public class Produto {
 	private Integer quantidade = 0;
 	
 	@DecimalMin("0.0")
-	private BigDecimal  valorUnitario;
+	private BigDecimal  valorUnitario = BigDecimal.ZERO;
 	
 	@DecimalMin("0.0")
-	private BigDecimal  valorTotal;
+	private BigDecimal  valorTotal = BigDecimal.ZERO;
 	
 	// Getters e Setters
 	public Long getId() {
@@ -74,12 +74,15 @@ public class Produto {
 	}
 	public void setValorUnitario(BigDecimal  valorUnitario) {
 		if (valorUnitario == null) {
-			valorUnitario = BigDecimal.ZERO;
-		}
-	    this.valorUnitario = valorUnitario;
-	    calcularValorTotal();
+            this.valorUnitario = BigDecimal.ZERO;
+        } else {
+            this.valorUnitario = valorUnitario;
+        }
+        calcularValorTotal();
 	}
 	
+	
+	//////
 	public BigDecimal  getValorTotal() {
 		return valorTotal;
 	}
@@ -93,6 +96,7 @@ public class Produto {
 	        this.valorTotal = BigDecimal.valueOf(this.quantidade).multiply(this.valorUnitario);
 	    }
 	}
+	//////
 	
 	@Override
 	public String toString() {

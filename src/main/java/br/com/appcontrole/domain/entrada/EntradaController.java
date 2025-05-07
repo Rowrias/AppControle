@@ -196,6 +196,7 @@ public class EntradaController {
             saida.setDataConcluido(entrada.getDataConcluido());
             saida.setDataSaida(LocalDateTime.now());
             saida.setFuncionario(entrada.getFuncionario());
+            
             saidaService.insere(saida);
             entradaService.remove(id);
         }
