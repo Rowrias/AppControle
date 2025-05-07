@@ -16,62 +16,63 @@ main .cadastro div h2 {
     align-items: center;
     color: var(--color-terciaria);
     display: flex;
-    font-size: 16px;
+    font-size: 10px;
     font-weight: var(--font-weight-bold);
     height: 36px;
-    margin: 10px 10px 0px 10px;
-    padding: 10px;
+    margin: 5px 5px 0px 5px;
+    padding: 5px;
     width: auto;
 }
 
 main .cadastro div form {
     color: var(--color-terciaria);
     display: flex;
-    flex-wrap: wrap;
-    font-size: 14px;
+    /* flex-wrap: wrap; */
+    font-size: 10px;
     font-weight: var(--font-weight-regular);
     margin: 0px 10px 10px 10px;
 }
 
-main .cadastro div form p {
+main .cadastro div form div {
     border: solid 1px;
     border-color: var(--color-primaria);
-    height: 90px;
+    height: auto;
     text-align: center;
-    width: 203px;
+    width: 100px;
 }
 
-main .cadastro div form p label {
+main .cadastro div form div label {
     align-items: center;
     display: flex;
-    height: 36px;
+    height: 18px;
     justify-content: center;
     margin: 10px 10px 0px 10px;
 }
 
-main .cadastro div form p input {
+main .cadastro div form div input {
+    text-align: center;
     color: var(--color-terciaria);
     display: flex;
-    font-size: 12px;
+    font-size: 6px;
     font-weight: var(--font-weight-regular);
-    height: 26px;
+    height: 18px;
     justify-content: center;
     margin: 0px 10px 10px 10px;
-    width: 177px;
+    width: 50%;
 }
 
-main .cadastro div form p select {
+main .cadastro div form div select {
     color: var(--color-terciaria);
     display: flex;
-    font-size: 12px;
+    font-size: 6px;
     font-weight: var(--font-weight-regular);
-    height: 31px;
+    height: 24px;
     justify-content: center;
     margin: 0px 10px 10px 10px;
-    width: 177px;
+    width: 50%;
 }
 
-main .cadastro div form p input[type="datetime-local" i] {
+main .cadastro div form div input[type="datetime-local" i] {
     text-align: center;
     width: 177px;
 }
@@ -85,4 +86,37 @@ main .cadastro div form #adicionar {
 main .cadastro div form #adicionar button {
     height: 28px;
     width: auto;
+}
+
+/* Campos */
+main .cadastro div form .cadastro-nome {
+    width: 100px;
+}
+
+main .cadastro div form .cadastro-cpf {
+    width: 100px;
+}
+
+main .cadastro div form .cadastro-email {
+    width: 100px;
+}
+
+main .cadastro div form .cadastro-celular {
+    width: 100px;
+}
+
+main .cadastro div form .cadastro-telefone {
+    width: 100px;
+}
+
+main .cadastro div form .cadastro-usuario {
+    width: 100px;
+}
+
+main .cadastro div form .cadastro-senha {
+    width: 100px;
+}
+
+main .cadastro div form .cadastro-acesso {
+    width: 100px;
 }

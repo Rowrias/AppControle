@@ -4,14 +4,14 @@ aside a {
     border-radius: 5px;
     color: var(--color-terciaria);
     display: flex;
-    font-size: 12px;
+    font-size: 10px;
     font-weight: var(--font-weight-semibold);
     gap: 10px;
-    height: 36px;
+    height: 32px;
     margin: 0px 2px;
     margin-bottom: 10px;
     text-decoration: none;
-    width: 160px;
+    width: 130px;
 }
 
 aside a:hover {
