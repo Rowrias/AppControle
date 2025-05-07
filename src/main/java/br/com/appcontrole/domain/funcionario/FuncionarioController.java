@@ -17,15 +17,7 @@ public class FuncionarioController {
 	@Autowired
 	private FuncionarioService funcionarioService;
 	
-	@GetMapping("/lista")
-    public String listaFuncionario(Model model) {
-        List<Funcionario> funcionario = funcionarioService.buscaTodosOrdenadoPorNome();
-        model.addAttribute("funcionarios", funcionario);
-        model.addAttribute("roles", Role.values());
-
-        return "funcionarios/lista";
-    }
-	
+	// Insere
 	@PostMapping("/lista")
     public String novoFuncionario(Funcionario funcionario, Model model) {
 		if (funcionario.getPassword() == null || funcionario.getPassword().isEmpty()) {
@@ -35,6 +27,17 @@ public class FuncionarioController {
         return "redirect:/funcionarios/lista";
     }
 	
+	// Lista
+	@GetMapping("/lista")
+    public String listaFuncionario(Model model) {
+        List<Funcionario> funcionario = funcionarioService.buscaTodosOrdenadoPorNome();
+        model.addAttribute("funcionarios", funcionario);
+        model.addAttribute("roles", Role.values());
+
+        return "funcionarios/lista";
+    }
+	
+	// Editar
 	@GetMapping("/editar/{id}")
     public String editarEntrada(@PathVariable Long id, Model model) {
 		Funcionario funcionario = funcionarioService.buscaPorId(id);
@@ -51,6 +54,7 @@ public class FuncionarioController {
         return "redirect:/funcionarios/lista";
     }
 
+    // Remover
     @GetMapping("/remover/{id}")
     public String removerEntrada(@PathVariable Long id) {
     	funcionarioService.remove(id);

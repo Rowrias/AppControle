@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Estoque</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+	<!-- header.css -->
+    <header th:replace="fragments/header :: header"></header>
+    
+    <!-- section.css -->
+    <section>
+        <div>
+            <!-- aside.css -->
+            <aside th:replace="fragments/aside :: aside"></aside>
+            
+            <!-- Main -->
+            <main>
+            	<!-- titulo.css -->
+                <div class="titulo">
+                    <img th:src="@{/images/entrada(70x70).svg}">
+                    <h2>EDITAR PRODUTOS</h2>
+                </div>
+                
+                <!-- cadastro.css -->
+                <div class="cadastro">
+					<div>
+						<h2>Edição de produto</h2>
+					</div>
+                	<div>
+						<form th:action="@{/produtos/editar/{id}(id=${produto.id})}" th:object="${produto}" method="post">
+							<input type="hidden" th:field="*{id}"/>
+							
+							<p>
+								<label for="nome">Nome: *</label>
+					        	<input type="text" id="nome" th:field="*{nome}" required>
+							</p>
+							
+							<p>
+						        <label for="descricao">Descrição:</label>
+						        <input type="text" id="descricao" th:field="*{descricao}">
+						    </p>
+						    
+						    <p>
+								<label for="quantidade">Quantidade:</label>
+					        	<input type="number" id="quantidade" th:field="*{quantidade}">
+							</p>
+							
+							<p>
+								<label for="valorUnitario">Valor Unitário:</label>
+					        	<input type="number" id="valorUnitario" th:field="*{valorUnitario}" step="0.01" min="0">
+							</p>
+
+							<p>
+								<label></label>
+								<button class="adicionar" type="submit" >Atualizar</button>
+							</p>
+							
+					    </form>
+					</div>
+	                	               	
+                </div>
+                
+                <div class="lista">
+					<div>
+						<h2>Produto à Editar</h2>
+						<div class="titulo">
+							<span class="titulo-nome">Nome</span>
+							<span class="titulo-nome">Descrição</span>
+							<span class="titulo-quantidade">Quantidade</span>
+							<span class="titulo-valorUnitario">Valor Unitário (R$)</span>
+							<span class="titulo-valorTotal">Valor Total (R$)</span>
+						</div>
+						
+						<div class="linha-dados">
+							<span class="dados-nome" th:text="${#strings.capitalize(produto.nome)}"></span>
+							<span class="dados-nome" th:text="${#strings.capitalize(produto.descricao)}"></span>
+							<span class="dados-quantidade" th:text="${produto.quantidade}"></span>
+							<span class="dados-valorUnitario" th:text="${#numbers.formatDecimal(produto.valorUnitario, 1, 'POINT', 2, 'COMMA')}"></span>
+							<span class="dados-valorTotal" th:text="${#numbers.formatDecimal(produto.valorTotal, 1, 'POINT', 2, 'COMMA')}"></span>
+
+						</div>
+					</div>
+				</div>	
+				
+			</main>
+        </div>
+    </section>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	
+</body>
+</html>

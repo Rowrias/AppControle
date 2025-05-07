@@ -1,5 +1,6 @@
 package br.com.appcontrole.domain.saida;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import br.com.appcontrole.domain.cliente.Cliente;
@@ -13,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -33,9 +35,11 @@ public class Saida {
     @NotNull
     private Integer quantidade;
     
-    private Float valorUnitario;
-    
-    private Float valorTotal;
+    @DecimalMin("0.0")
+	private BigDecimal valorUnitario;
+	
+	@DecimalMin("0.0")
+	private BigDecimal valorTotal;
     
     private LocalDateTime dataEntrada;
 	
@@ -44,7 +48,7 @@ public class Saida {
 	@NotNull
 	private LocalDateTime dataSaida;
 	
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 	private Funcionario funcionario;
 
     // Getters e Setters
@@ -81,21 +85,27 @@ public class Saida {
         calcularValorTotal();
     }
 
-    public Float getValorUnitario() {
+    public BigDecimal getValorUnitario() {
         return valorUnitario;
     }
 
-    public void setValorUnitario(Float valorUnitario) {
+    public void setValorUnitario(BigDecimal valorUnitario) {
         this.valorUnitario = valorUnitario;
         calcularValorTotal();
     }
     
-    public Float getValorTotal() {
+    public BigDecimal getValorTotal() {
         return valorTotal;
     }
-
-    public void setValorTotal(Float valorTotal) {
-        this.valorTotal = valorTotal;
+    public void setValorTotal(BigDecimal valorTotal) {
+		this.valorTotal = valorTotal;
+	}
+    
+    // Método para calcular valor total
+    private void calcularValorTotal() {
+        if (this.quantidade != null && this.valorUnitario != null) {
+            this.valorTotal = BigDecimal.valueOf(this.quantidade).multiply(this.valorUnitario);
+        }
     }
 
     public LocalDateTime getDataEntrada() {
@@ -121,13 +131,6 @@ public class Saida {
 	public void setDataSaida(LocalDateTime dataSaida) {
 		this.dataSaida = dataSaida;
 	}
-
-	// Método para calcular valor total
-    private void calcularValorTotal() {
-        if (this.quantidade != null && this.valorUnitario != null) {
-            this.valorTotal = this.quantidade * this.valorUnitario;
-        }
-    }
 
 	public Funcionario getFuncionario() {
         return funcionario;

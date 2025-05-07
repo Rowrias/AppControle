@@ -39,23 +39,21 @@
 					        	<input type="text" id="nome" name="nome" required>
 							</p>
 							
-							
 							<p>
 						        <label for="descricao">Descrição:</label>
 						        <input type="text" id="descricao" name="descricao">
 						    </p>
-						
+						    
 						    <p>
-						        <label for="preco">Preço:</label>
-						        <input type="number" id="preco" name="preco" step="0.01" min="0">
-						    </p>
-						
-						    <p>
-						        <label for="quantidadeEstoque">Quantidade em estoque:</label>
-						        <input type="number" id="quantidadeEstoque" name="quantidadeEstoque" min="0">
-						    </p>
-					        
+								<label for="quantidade">Quantidade:</label>
+					        	<input type="number" id="quantidade" name="quantidade">
+							</p>
 							
+							<p>
+								<label for="valorUnitario">Valor Unitário:</label>
+					        	<input type="number" id="valorUnitario" name="valorUnitario" step="0.01" min="0">
+							</p>
+
 							<p>
 								<label></label>
 								<button class="adicionar" type="submit" >Adicionar</button>
@@ -71,12 +69,20 @@
 						<h2>Lista de produtos</h2>
 						<div class="titulo">
 							<span class="titulo-nome">Nome</span>
-							
+							<span class="titulo-nome">Descrição</span>
+							<span class="titulo-quantidade">Quantidade</span>
+							<span class="titulo-valorUnitario">Valor Unitário (R$)</span>
+							<span class="titulo-valorTotal">Valor Total (R$)</span>
 							<span class="titulo-acoes">Ações</span>
 						</div>
+						
 						<div class="linha-dados" th:each="produto : ${produtos}">
 							<span class="dados-nome" th:text="${#strings.capitalize(produto.nome)}"></span>
-							
+							<span class="dados-nome" th:text="${#strings.capitalize(produto.descricao)}"></span>
+							<span class="dados-quantidade" th:text="${produto.quantidade}"></span>
+							<span class="dados-valorUnitario" th:text="${#numbers.formatDecimal(produto.valorUnitario, 1, 'POINT', 2, 'COMMA')}"></span>
+							<span class="dados-valorTotal" th:text="${#numbers.formatDecimal(produto.valorTotal, 1, 'POINT', 2, 'COMMA')}"></span>
+														
 							<div class="acoes">
 						        <a class="editar" th:href="@{/produtos/editar/{id}(id=${produto.id})}">
 						            <p>Editar</p>

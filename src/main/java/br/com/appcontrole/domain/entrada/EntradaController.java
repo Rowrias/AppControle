@@ -1,5 +1,6 @@
 package br.com.appcontrole.domain.entrada;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -37,42 +38,43 @@ public class EntradaController {
     private ProdutoService produtoService; 
 
     // Insere
-    @PostMapping("/entrada")
+    @PostMapping("/lista")
     public String novaEntrada(@ModelAttribute Entrada entrada) {
 
-        // --- CLIENTE ---
+    	// --- CLIENTE ---
         String nomeCliente = entrada.getCliente().getNome().trim().toLowerCase();
         Cliente clienteExistente = clienteService.findByNomeIgnoreCase(nomeCliente);
-		if (clienteExistente == null) {
-		    Cliente novoCliente = new Cliente();
-		    novoCliente.setNome(nomeCliente);
-		    clienteExistente = clienteService.insere(novoCliente);
-		}
+        if (clienteExistente == null) {
+            Cliente novoCliente = new Cliente();
+            novoCliente.setNome(nomeCliente);
+            clienteExistente = clienteService.insere(novoCliente);
+        }
 
-		entrada.setCliente(clienteExistente);
+        entrada.setCliente(clienteExistente);
 
         // --- PRODUTO ---
         String nomeProduto = entrada.getProduto().getNome().trim().toLowerCase();
         Produto produtoExistente = produtoService.findByNomeIgnoreCase(nomeProduto);
         if (produtoExistente == null) {
-		    Produto novoProduto = new Produto();
-		    novoProduto.setNome(nomeProduto);
-		    produtoExistente = produtoService.insere(novoProduto);
-		}
+            Produto novoProduto = new Produto();
+            novoProduto.setNome(nomeProduto);
+            novoProduto.setQuantidade(0);
+            produtoExistente = produtoService.insere(novoProduto);
+        }
         
-        // Atualiza o estoque
-        Integer estoqueAtual = produtoExistente.getEstoque();
-        produtoExistente.setEstoque(estoqueAtual + entrada.getQuantidade());
-        produtoService.insere(produtoExistente);
+        // Atualiza o estoque do produto
+        produtoExistente.setQuantidade(produtoExistente.getQuantidade() + entrada.getQuantidade());  // Adiciona a quantidade na entrada
+        produtoService.insere(produtoExistente); // Salva o produto com a quantidade atualizada
 
         entrada.setProduto(produtoExistente);
 
-        // --- DATA E VALOR TOTAL ---
+        // --- DATA E FUNCIONÁRIO ---
         entrada.setDataEntrada(LocalDateTime.now());
 
-        entradaService.insere(entrada);
+        // O Funcionario é atribuído diretamente dentro do Service
+        entradaService.insere(entrada);  // Salva a entrada no banco de dados
 
-        return "redirect:/entrada/sucesso";
+        return "redirect:/entradas/lista";
     }
 
     // Lista
@@ -91,7 +93,7 @@ public class EntradaController {
         return "entradas/lista";
     }
 
-    // Editar
+    // Edita
     @GetMapping("/editar/{id}")
     public String editarEntrada(@PathVariable Long id, Model model) {
         Entrada entrada = entradaService.buscaPorId(id);
@@ -142,7 +144,7 @@ public class EntradaController {
         return "redirect:/entradas/lista";
     }
 
-    // Remover
+    // Remove
     @GetMapping("/remover/{id}")
     public String removerEntrada(@PathVariable Long id, RedirectAttributes attr) {
         entradaService.remove(id);
@@ -172,13 +174,24 @@ public class EntradaController {
     @GetMapping("/moverParaSaida/{id}")
     public String moverParaSaida(@PathVariable Long id) {
         Entrada entrada = entradaService.buscaPorId(id);
+        
         if (entrada != null && entrada.isConcluido()) {
+        	Produto produto = entrada.getProduto();
+        	
             Saida saida = new Saida();
             saida.setCliente(entrada.getCliente());
             saida.setProduto(entrada.getProduto());
             saida.setQuantidade(entrada.getQuantidade());
-            saida.setValorUnitario(entrada.getValorUnitario());
-            saida.setValorTotal(entrada.getValorTotal());
+
+            // Valor unitário e total
+            if (produto != null && produto.getValorUnitario() != null) {
+            	BigDecimal valorUnitario = produto.getValorUnitario();
+            	BigDecimal valorTotal = valorUnitario.multiply(BigDecimal.valueOf(entrada.getQuantidade()));
+
+                saida.setValorUnitario(valorUnitario);
+                saida.setValorTotal(valorTotal);
+            }
+            
             saida.setDataEntrada(entrada.getDataEntrada());
             saida.setDataConcluido(entrada.getDataConcluido());
             saida.setDataSaida(LocalDateTime.now());

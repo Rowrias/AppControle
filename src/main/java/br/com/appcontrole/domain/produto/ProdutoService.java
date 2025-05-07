@@ -41,7 +41,8 @@ public class ProdutoService implements CRUD<Produto, Long> {
 	public Produto buscaPorId(Long id) {
 		return produtoRepository.findById(id).orElse(null);
 	}
-
+	
+	//
 	public List<Produto> buscaTodosOrdenadoPorNome() {
 		return produtoRepository.findAllByOrderByNomeAsc();
 	}

@@ -18,8 +18,26 @@ public class ProdutoController {
 
 	@Autowired
 	private ProdutoService produtoService;
+
+	// Insere
+	@PostMapping("/lista")
+    public String novoProduto(Produto produto, RedirectAttributes attr) {
+		
+		Produto produtoExistente = produtoService.buscaPorNome(produto.getNome());
+        // Verifica se o produto já existe pelo nome
+        if (produtoExistente != null) {
+            attr.addFlashAttribute("erro", "Produto já existe.");
+
+            return "redirect:/produtos/lista";
+        } else {
+            // Produto não existe, então insere o novo cliente
+        	produtoService.insere(produto);
+            attr.addFlashAttribute("mensagem", "Produto adicionado com sucesso.");
+        }
+        return "redirect:/produtos/lista";
+    }
 	
-	// Listar
+	// Lista
 	@GetMapping("/lista")
 	public String listaProdutos(Model model) {
 		List<Produto> produto = produtoService.buscaTodosOrdenadoPorNome();
@@ -27,25 +45,7 @@ public class ProdutoController {
 		return "produtos/lista";
 	}
 	
-	// Criar
-	@PostMapping("/lista")
-    public String novoProduto(Produto produto, RedirectAttributes attr) {
-		
-		Produto produtoExistente = produtoService.buscaPorNome(produto.getNome());
-        // Verifica se o cliente já existe pelo nome
-        if (produtoExistente != null) {
-            attr.addFlashAttribute("erro", "Produto já existe.");
-
-            return "redirect:/produtos/lista";
-        } else {
-            // Cliente não existe, então insere o novo cliente
-        	produtoService.insere(produto);
-            attr.addFlashAttribute("mensagem", "Produto adicionado com sucesso.");
-        }
-        return "redirect:/produtos/lista";
-    }
-	
-	// Editar
+	// Edita
 	@GetMapping("/editar/{id}")
     public String editarProduto(@PathVariable Long id, Model model) {
 		Produto produto = produtoService.buscaPorId(id);
@@ -55,9 +55,9 @@ public class ProdutoController {
 
 	@PostMapping("/editar/{id}")
     public String atualizarProduto(@PathVariable Long id, Produto produto, RedirectAttributes attr) {
-        // Verifica se existe outro cliente com o mesmo nome, exceto o cliente atual
+        // Verifica se existe outro produto com o mesmo nome, exceto o cliente atual
 		Produto produtoExistente = produtoService.buscaPorNome(produto.getNome());
-        if (produtoService != null && !produtoExistente.getId().equals(id)) {
+        if (produtoExistente != null && !produtoExistente.getId().equals(id)) {
             attr.addFlashAttribute("erro", "Já existe um produto com esse nome.");
             return "redirect:/produtos";
         }
@@ -68,7 +68,7 @@ public class ProdutoController {
         return "redirect:/produtos/lista";
     }
 	
-	// Remover
+	// Remove
 	@GetMapping("/remover/{id}")
     public String removerProduto(@PathVariable Long id, RedirectAttributes attr) {
     	try {

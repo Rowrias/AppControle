@@ -12,7 +12,7 @@ import br.com.appcontrole.domain.funcionario.FuncionarioRepository;
 
 @Service
 public class EntradaService implements CRUD<Entrada, Long> {
-
+	
 	@Autowired
 	private EntradaRepository entradaRepository;
 	
@@ -21,14 +21,13 @@ public class EntradaService implements CRUD<Entrada, Long> {
 	
 	@Override
 	public Entrada insere(Entrada entrada) {
-		// obtem username do usuário logado
-		String username = SecurityContextHolder.getContext().getAuthentication().getName();
-		// busca o Funcionario correspondente
-		Funcionario funcionario = funcionarioRepository.findByUsername(username);
-		// associa à entrada
-		entrada.setFuncionario(funcionario);
-		
-		return entradaRepository.save(entrada);
+		// Obtém o nome do usuário logado (funcionário)
+	    String username = SecurityContextHolder.getContext().getAuthentication().getName();
+	    Funcionario funcionario = funcionarioRepository.findByUsername(username);
+	    entrada.setFuncionario(funcionario);  // Atribui o funcionário à entrada
+	    
+	    // Agora salva a entrada, já com o funcionário associado
+	    return entradaRepository.save(entrada);
 	}
 
 	@Override
@@ -54,6 +53,7 @@ public class EntradaService implements CRUD<Entrada, Long> {
         return entradaRepository.findById(id).orElse(null);
 	}
 	
+	//
 	public List<Entrada> buscaPorStatus(boolean status) {
         return entradaRepository.findByConcluido(status);
     }

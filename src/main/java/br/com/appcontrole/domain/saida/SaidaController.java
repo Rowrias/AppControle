@@ -24,6 +24,7 @@ public class SaidaController {
     @Autowired
     private ClienteService clienteService;
 
+    // Lista
     @GetMapping("/lista")
     public String listaSaidas(Model model) {
         List<Saida> saidas = saidaService.getDataSaidaDesc();
@@ -31,6 +32,7 @@ public class SaidaController {
         return "saidas/lista";
     }
     
+    // Editar
     @GetMapping("/editar/{id}")
     public String editarSaida(@PathVariable Long id, Model model) {
         Saida saida = saidaService.buscaPorId(id);
@@ -75,6 +77,7 @@ public class SaidaController {
         return "redirect:/saidas/lista"; // Redirecionar de volta para a lista de saídas após a atualização
     }
 
+    // Remove
     @GetMapping("/remover/{id}")
     public String removerSaida(@PathVariable Long id) {
         saidaService.remove(id);

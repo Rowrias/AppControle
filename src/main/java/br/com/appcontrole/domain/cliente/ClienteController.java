@@ -18,14 +18,8 @@ public class ClienteController {
 	
 	@Autowired
 	private ClienteService clienteService;
-	
-	@GetMapping("/lista")
-    public String listaClientes(Model model) {
-		List<Cliente> cliente = clienteService.buscaTodosOrdenadoPorNome();
-        model.addAttribute("clientes", cliente);
-        return "clientes/lista";
-    }
-	
+
+	// Insere
 	@PostMapping("/lista")
     public String novoCliente(Cliente cliente, RedirectAttributes attr) {
 		
@@ -43,6 +37,15 @@ public class ClienteController {
         return "redirect:/clientes/lista";
     }
 	
+	// Lista
+	@GetMapping("/lista")
+    public String listaClientes(Model model) {
+		List<Cliente> cliente = clienteService.buscaTodosOrdenadoPorNome();
+        model.addAttribute("clientes", cliente);
+        return "clientes/lista";
+    }
+	
+	// Edita
 	@GetMapping("/editar/{id}")
     public String editarCliente(@PathVariable Long id, Model model) {
     	Cliente cliente = clienteService.buscaPorId(id);
@@ -65,6 +68,7 @@ public class ClienteController {
         return "redirect:/clientes/lista";
     }
     
+	// Remove
     @GetMapping("/remover/{id}")
     public String removerCliente(@PathVariable Long id, RedirectAttributes attr) {
     	try {

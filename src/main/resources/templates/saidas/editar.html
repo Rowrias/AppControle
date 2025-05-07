@@ -37,13 +37,13 @@
 								                        
 	                        
 	                        <p>
-	                            <label for="clienteNome">Cliente/Empresa *</label>
+	                            <label for="clienteNome">Cliente *</label>
 	                            <input type="text" id="clienteNome" th:field="*{cliente.nome}" required>
 	                        </p>
 	                        
 	                        <p>
 	                            <label for="produto">Produto: *</label>
-	                            <input type="text" id="produto" th:field="*{produto}" required>
+	                            <input type="text" id="produto" th:field="*{produto.nome}" required>
 	                        </p>
 	                        
 	                        <p>
@@ -78,7 +78,7 @@
                		<div>
                			<h2>Peça à Editar</h2>
                			<div class="titulo">
-							<span class="titulo-nome">Cliente/Empresa</span>
+							<span class="titulo-nome">Cliente</span>
 							<span class="titulo-produto">Produto</span>
 							<span class="titulo-quantidade">Quantidade</span>
 							<span class="titulo-valorUnitario">Valor Unitário (R$)</span>

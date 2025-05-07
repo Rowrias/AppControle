@@ -35,7 +35,7 @@
                 	<div>
 						<form action="/entradas/lista" method="post">
 							<p>
-								<label for="clienteNome">Cliente/Empresa *</label>
+								<label for="clienteNome">Cliente *</label>
 					        	<input type="text" id="clienteNome" name="cliente.nome" required>
 							</p>
 					        <p>
@@ -45,10 +45,6 @@
 					        <p>
 								<label for="quantidade">Quantidade: *</label>
 					        	<input type="number" id="quantidade" name="quantidade" required>
-							</p>
-					        <p>
-								<label for="valorUnitario">Valor Unitário:</label>
-					        	<input type="number" step="0.01" id="valorUnitario" name="valorUnitario">
 							</p>
 					        <P>
 								<label for="dataEntrada">Data da entrada: *</label>
@@ -69,25 +65,21 @@
 					<div>
 						<h2>Entradas de Peças</h2>
 						<div class="titulo">
-							<span class="titulo-nome">Cliente/Empresa</span>
+							<span class="titulo-nome">Cliente</span>
 							<span class="titulo-produto">Produto</span>
 							<span class="titulo-quantidade">Quantidade</span>
-							<span class="titulo-valorUnitario">Valor Unitário (R$)</span>
-							<span class="titulo-valorTotal">Valor Total (R$)</span>
 							<span class="titulo-dataEntrada">Data Entrada</span>
-							<span class="titulo-status">Status</span>
 							<span class="titulo-funcionario">Funcionário</span>
+							<span class="titulo-status">Status</span>
 							<span class="titulo-acoes">Ações</span>
 						</div>
+						
 						<div class="linha-dados" th:each="entrada : ${pendentes}">
 							<span class="dados-nome" th:text="${#strings.capitalize(entrada.cliente)}"></span>
 							<span class="dados-produto" th:text="${entrada.produto}"></span>
 							<span class="dados-quantidade" th:text="${entrada.quantidade}"></span>
-							
-							<span class="dados-valorUnitario" th:text="${#numbers.formatDecimal(entrada.valorUnitario, 1, 'POINT', 2, 'COMMA')}"></span>
-							<span class="dados-valorTotal" th:text="${#numbers.formatDecimal(entrada.valorTotal, 1, 'POINT', 2, 'COMMA')}"></span>
-							
 							<span class="dados-dataEntrada" th:text="${#temporals.format(entrada.dataEntrada, 'dd/MM/yyyy (HH:mm)')}"></span>
+							<span class="dados-funcionario" th:text="${entrada.funcionario != null ? entrada.funcionario.nome : 'Não informado'}"></span>
 							
 							<span class="dados-status">
 								<a class="status" th:href="@{/entradas/concluido/{id}(id=${entrada.id})}">
@@ -95,9 +87,7 @@
 									<img th:src="@{/images/uncheck(24x24).svg}">
 								</a>
 							</span>
-							
-							<span class="dados-funcionario" th:text="${entrada.funcionario != null ? entrada.funcionario.nome : 'Não informado'}"></span>
-							
+
 							<div class="acoes">
 						        <a class="editar" th:href="@{/entradas/editar/{id}(id=${entrada.id})}">
 									<p>Editar</p>
@@ -116,26 +106,22 @@
 					<div>
 						<h2>Peças Concluídas</h2>
 						<div class="titulo">
-							<span class="titulo-nome">Cliente/Empresa</span>
+							<span class="titulo-nome">Cliente</span>
 							<span class="titulo-produto">Produto</span>
 							<span class="titulo-quantidade">Quantidade</span>
-							<span class="titulo-valorUnitario">Valor Unitário (R$)</span>
-							<span class="titulo-valorTotal">Valor Total (R$)</span>
 							<span class="titulo-dataConcluida">Data Concluído</span>
-							<span class="titulo-status">Status</span>
 							<span class="titulo-funcionario">Funcionário</span>
+							<span class="titulo-status">Status</span>
 							<span class="titulo-acoes">Ações</span>
 							<span class="titulo-moverSaida">Mover para Saída</span>
 						</div>
+						
 						<div class="linha-dados" th:each="entrada : ${concluidas}">
 							<span class="dados-nome" th:text="${#strings.capitalize(entrada.cliente)}"></span>
 							<span class="dados-produto" th:text="${entrada.produto}"></span>
 							<span class="dados-quantidade" th:text="${entrada.quantidade}"></span>
-							
-							<span class="dados-valorUnitario" th:text="${#numbers.formatDecimal(entrada.valorUnitario, 1, 'POINT', 2, 'COMMA')}"></span>
-							<span class="dados-valorTotal" th:text="${#numbers.formatDecimal(entrada.valorTotal, 1, 'POINT', 2, 'COMMA')}"></span>
-							
 							<span class="dados-dataConcluida" th:text="${#temporals.format(entrada.dataConcluido, 'dd/MM/yyyy (HH:mm)')}"></span>
+							<span class="dados-funcionario" th:text="${entrada.funcionario != null ? entrada.funcionario.nome : 'Não informado'}"></span>
 							
 							<span class="dados-status">
 								<a class="status" th:href="@{/entradas/concluido/{id}(id=${entrada.id})}">
@@ -143,9 +129,7 @@
 									<img th:src="@{/images/check(24x24).svg}">
 								</a>
 							</span>
-							
-							<span class="dados-funcionario" th:text="${entrada.funcionario != null ? entrada.funcionario.nome : 'Não informado'}"></span>
-							
+
 							<div class="acoes">
 						        <a class="editar" th:href="@{/entradas/editar/{id}(id=${entrada.id})}">
 									<p>Editar</p>

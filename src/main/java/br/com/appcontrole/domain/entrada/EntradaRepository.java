@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 public interface EntradaRepository extends JpaRepository<Entrada, Long> {
+	
     List<Entrada> findByConcluido(boolean status);
 
     // Método para encontrar todas as entradas PENDENTES ordenadas pelo ID em ordem decrescente
@@ -18,6 +19,7 @@ public interface EntradaRepository extends JpaRepository<Entrada, Long> {
 
     // Método para encontrar todas as entradas PENDENTES ordenadas pela DATA em ordem decrescente
     List<Entrada> findByConcluidoFalseOrderByDataEntradaDesc();
+    
 	// Método para encontrar todas as entradas CONCLUIDAS ordenadas pelo DATA em ordem decrescente
 	List<Entrada> findByConcluidoTrueOrderByDataConcluidoDesc();
 }

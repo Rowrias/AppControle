@@ -48,7 +48,6 @@ public class Funcionario {
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -56,7 +55,6 @@ public class Funcionario {
 	public String getNome() {
 		return nome;
 	}
-
 	public void setNome(String nome) {
 		if (nome != null) {
             this.nome = nome.toLowerCase();
@@ -68,7 +66,6 @@ public class Funcionario {
 	public String getCpf() {
 		return cpf;
 	}
-
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
@@ -76,7 +73,6 @@ public class Funcionario {
 	public String getEmail() {
 		return email;
 	}
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
@@ -84,7 +80,6 @@ public class Funcionario {
 	public String getCelular() {
 		return celular;
 	}
-
 	public void setCelular(String celular) {
 		this.celular = celular;
 	}
@@ -92,7 +87,6 @@ public class Funcionario {
 	public String getTelefone() {
 		return telefone;
 	}
-
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
@@ -100,7 +94,6 @@ public class Funcionario {
 	public String getUsername() {
 		return username;
 	}
-
 	public void setUsername(String username) {
 		this.username = username;
 	}
@@ -108,7 +101,6 @@ public class Funcionario {
 	public String getPassword() {
 		return password;
 	}
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
@@ -116,7 +108,6 @@ public class Funcionario {
 	public Role getRole() {
 		return role;
 	}
-
 	public void setRole(Role role) {
 		this.role = role;
 	}

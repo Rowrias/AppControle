@@ -1,5 +1,7 @@
 package br.com.appcontrole.domain.produto;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,12 +26,15 @@ public class Produto {
 	@Size(max = 255)
 	private String descricao;
 	
-	@DecimalMin("0.0")
-	private Double preco;
-	
 	@Min(0)
-	private Integer estoque;
-
+	private Integer quantidade = 0;
+	
+	@DecimalMin("0.0")
+	private BigDecimal  valorUnitario;
+	
+	@DecimalMin("0.0")
+	private BigDecimal  valorTotal;
+	
 	// Getters e Setters
 	public Long getId() {
 		return id;
@@ -37,31 +42,61 @@ public class Produto {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
 	public String getNome() {
 		return nome;
 	}
 	public void setNome(String nome) {
-		this.nome = nome;
+		if (nome != null) {
+            this.nome = nome.toLowerCase();
+        } else {
+            this.nome = null;
+        }
 	}
+	
 	public String getDescricao() {
 		return descricao;
 	}
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public Double getPreco() {
-		return preco;
+
+	public Integer getQuantidade() {
+		return quantidade;
 	}
-	public void setPreco(Double preco) {
-		this.preco = preco;
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
+	    calcularValorTotal();
+	}
+	
+	public BigDecimal  getValorUnitario() {
+		return valorUnitario;
+	}
+	public void setValorUnitario(BigDecimal  valorUnitario) {
+		if (valorUnitario == null) {
+			valorUnitario = BigDecimal.ZERO;
+		}
+	    this.valorUnitario = valorUnitario;
+	    calcularValorTotal();
+	}
+	
+	public BigDecimal  getValorTotal() {
+		return valorTotal;
+	}
+	public void setValorTotal(BigDecimal  valorTotal) {
+		this.valorTotal = valorTotal;
 	}
 
-	public Integer getEstoque() {
-	    return estoque;
+	// calcularValorTotal = setEstoque X setValorUnitario
+	private void calcularValorTotal() {
+	    if (this.quantidade != null && this.valorUnitario != null) {
+	        this.valorTotal = BigDecimal.valueOf(this.quantidade).multiply(this.valorUnitario);
+	    }
 	}
-
-	public void setEstoque(Integer estoque) {
-	    this.estoque = estoque;
+	
+	@Override
+	public String toString() {
+	    return this.nome;
 	}
 	
 }
