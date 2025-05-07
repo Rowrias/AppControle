@@ -98,48 +98,59 @@ public class EntradaController {
     public String editarEntrada(@PathVariable Long id, Model model) {
         Entrada entrada = entradaService.buscaPorId(id);
         List<Cliente> clientes = clienteService.buscaTodos();
-        List<Produto> produtos = produtoService.buscaTodosOrdenadoPorNome();
+        List<Produto> produtos = produtoService.buscaTodos();
         
-        model.addAttribute("produtos", produtos);
         model.addAttribute("entrada", entrada);
         model.addAttribute("clientes", clientes);
+        model.addAttribute("produtos", produtos);
         
         return "entradas/editar";
     }
 
     @PostMapping("/editar/{id}")
     public String atualizarEntrada(@PathVariable Long id, Entrada entrada, RedirectAttributes attr) {
-        // Busca a entrada existente pelo ID
-        Entrada entradaExistente = entradaService.buscaPorId(id);
-        
-        if (entradaExistente != null) {
-            // Verifica se o cliente na entrada já possui um ID
-            if (entrada.getCliente() != null && entrada.getCliente().getId() != null) {
-                // Se o cliente já existe (tem ID), simplesmente atualiza a entrada com ele
-                entrada.setId(id);
-                entradaService.atualiza(entrada);
-            } else {
-                // Se o cliente na entrada não tem ID, precisamos verificar pelo nome
-                Cliente clienteExistente = clienteService.buscaPorNome(entrada.getCliente().getNome());
-                
-                if (clienteExistente != null) {
-                    // Se encontrou o cliente pelo nome, associa ao objeto de entrada
-                    entrada.setCliente(clienteExistente);
-                } else {
-                    // Se não encontrou pelo nome, insere o novo cliente
-                    Cliente novoCliente = clienteService.insere(entrada.getCliente());
-                    entrada.setCliente(novoCliente);
-                }
-                
-                // Atualiza a entrada com as alterações
-                entrada.setId(id);
-                entradaService.atualiza(entrada);
-            }
-            
-            attr.addFlashAttribute("mensagem", "Entrada atualizada com sucesso.");
-        } else {
-            attr.addFlashAttribute("erro", "Entrada não encontrada.");
+    	// --- CLIENTE ---
+        String nomeCliente = entrada.getCliente().getNome().trim().toLowerCase();
+        Cliente clienteExistente = clienteService.findByNomeIgnoreCase(nomeCliente);
+        if (clienteExistente == null) {
+            Cliente novoCliente = new Cliente();
+            novoCliente.setNome(nomeCliente);
+            clienteExistente = clienteService.insere(novoCliente);
         }
+
+        entrada.setCliente(clienteExistente);
+
+        // --- PRODUTO ---
+        String nomeProduto = entrada.getProduto().getNome().trim().toLowerCase();
+        Produto produtoExistente = produtoService.findByNomeIgnoreCase(nomeProduto);
+        if (produtoExistente == null) {
+            Produto novoProduto = new Produto();
+            novoProduto.setNome(nomeProduto);
+            novoProduto.setQuantidade(0);
+            produtoExistente = produtoService.insere(novoProduto);
+        }
+        
+        // Atualiza o estoque do produto
+        // Busca a entrada original do banco
+        Entrada entradaOriginal = entradaService.buscaPorId(id);
+        Produto produtoOriginal = entradaOriginal.getProduto();
+
+        // Subtrai a quantidade antiga do estoque
+        produtoOriginal.setQuantidade(produtoOriginal.getQuantidade() - entradaOriginal.getQuantidade());
+        produtoService.insere(produtoOriginal);
+        
+        // Atualiza o novo produto com a nova quantidade
+        produtoExistente.setQuantidade(produtoExistente.getQuantidade() + entrada.getQuantidade());
+        produtoService.insere(produtoExistente);
+
+        entrada.setProduto(produtoExistente);
+
+        // --- DATA E FUNCIONÁRIO ---
+        entrada.setDataEntrada(LocalDateTime.now());
+
+        // O Funcionario é atribuído diretamente dentro do Service
+        entradaService.insere(entrada);  // Salva a entrada no banco de dados
+        attr.addFlashAttribute("mensagem", "Entrada editada com sucesso.");
         
         return "redirect:/entradas/lista";
     }
@@ -147,8 +158,19 @@ public class EntradaController {
     // Remove
     @GetMapping("/remover/{id}")
     public String removerEntrada(@PathVariable Long id, RedirectAttributes attr) {
-        entradaService.remove(id);
-        attr.addFlashAttribute("mensagem", "Entrada removida com sucesso.");
+    	Entrada entrada = entradaService.buscaPorId(id);
+        if (entrada != null) {
+            Produto produto = entrada.getProduto();
+            if (produto != null) {
+                // Subtrai a quantidade da entrada do estoque do produto
+                int novaQuantidade = produto.getQuantidade() - entrada.getQuantidade();
+                produto.setQuantidade(Math.max(novaQuantidade, 0));  // Evita estoque negativo
+                produtoService.insere(produto);
+            }
+
+            entradaService.remove(id);
+            attr.addFlashAttribute("mensagem", "Entrada removida com sucesso.");
+        }
         return "redirect:/entradas/lista";
     }
     
@@ -196,7 +218,14 @@ public class EntradaController {
             saida.setDataConcluido(entrada.getDataConcluido());
             saida.setDataSaida(LocalDateTime.now());
             saida.setFuncionario(entrada.getFuncionario());
-            
+
+            if (produto != null) {
+                // Subtrai do estoque a quantidade movimentada
+                int novaQuantidade = produto.getQuantidade() - entrada.getQuantidade();
+                produto.setQuantidade(Math.max(novaQuantidade, 0));  // Evita estoque negativo
+                produtoService.insere(produto);
+            }
+
             saidaService.insere(saida);
             entradaService.remove(id);
         }
