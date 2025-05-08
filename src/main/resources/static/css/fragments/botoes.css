@@ -3,51 +3,55 @@ button.adicionar {
 	background-color: #1c84c6;
 	border-color: #1c84c6;
 	border: 1px solid;
-	border-radius: 0.3125rem;			/* 5px */
+	border-radius: 0.3125rem;							/* 5px */
 	color: var(--color-secundaria);
-	padding: 5px 5px;
+	padding: 0.3125rem 0.3125rem;						/* 5px 5px */
 	text-decoration: none;
-	width: 5.75rem;						/* 92px */
-	height: 1.625rem;					/* 26px */
-	font-size: 0.625rem;				/* 10px */
-    margin: 0px 5px 10px 5px;
+	width: 5.75rem;										/* 92px */
+	height: 1.625rem;									/* 26px */
+	font-size: 0.625rem;								/* 10px */
+    /* margin: 0rem 0.3125rem 0.625rem 0.3125rem;*/			/* 0px 5px 10px 5px */
+}
+
+button.adicionar:hover {			/* 20px */
+	cursor: pointer;
 }
 
  a.editar {
  	align-items: center;
 	background-color: #1AB394;
 	border: 1px solid;
-	border-radius: 0.3125rem;			/* 5px */
+	border-radius: 0.3125rem;							/* 5px */
 	color: var(--color-secundaria);
  	display: flex;
  	justify-content: space-between;
-	padding: 1px 10px 1px 10px;
+	padding: 1px 10px 1px 10px;							/* 1px 10px 1px 10px */
 	text-decoration: none;
 	width: auto;
-   	margin: 0px 5px 0px 5px;
-	
+   	/* margin: 0px 5px 0px 5px;	*/						/* 0px 5px 0px 5px */
 }
 
 a.excluir  {
  	align-items: center;
 	background-color: #FF0D0D;
 	border: 1px solid;
-	border-radius: 0.3125rem;			/* 5px */
+	border-radius: 0.3125rem;							/* 5px */
 	color: var(--color-secundaria);
 	display: flex;
  	justify-content: space-between;
-	padding: 1px 10px 1px 10px;
+	padding: 1px 10px 1px 10px;							/* 1px 10px 1px 10px */
 	text-decoration: none;
 	width: auto;
-   	margin: 0px 5px 0px 5px;
+   	/* margin: 0px 5px 0px 5px;	*/						/* 0px 5px 0px 5px */
 }
 
 a.status {
 	align-items: center;
 	display: flex;
-	gap: 0.1875rem;						/* 5px */
+	flex-direction: column;
+	gap: 0.1875rem;										/* 5px */
 	text-decoration: none;
 	padding: 5px 5px;
-	width: 5rem;						/* 80px */
+	width: auto;										/* 80px */
 	color: #000;
 }

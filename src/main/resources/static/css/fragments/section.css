@@ -21,7 +21,11 @@ section div main {
 } 
 
 /* Telas pequenas: celulares */
-@media (max-width: 700px) {
+@media (max-width: 1300px) {
+	section {
+	    width: 50rem;	/* 1300px */ 
+	}
+	
 	section div {
         flex-direction: column;
     }
@@ -31,7 +35,4 @@ section div main {
         display: flex;
     }
     
-    section div main {
-        margin-top: 1rem;
-    }
 }

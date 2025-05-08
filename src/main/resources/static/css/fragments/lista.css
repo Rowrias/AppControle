@@ -19,17 +19,17 @@ main .lista div h2 {
     color: var(--color-terciaria);
     display: flex;
     height: 2.25rem;						/* 36px */
-    font-size: 10px;
+    font-size: 0.625rem;					/* 10px */
     font-weight: var(--font-weight-bold);
-    margin: 10px 10px 0px 10px;
+    margin: 0.625rem 0.625rem 0rem 0.625rem;/* 10px 10px 0px 10px */
     padding: 0.625rem;						/* 10px */
     width: auto;
 }
 
 main .lista div .titulo {
     display: flex;
-    padding: 0px 10px 0px 10px;
-    margin: 10px 10px 0px 10px;
+    padding: 0rem 0.625rem 0rem 0.625rem;	/* 0px 10px 0px 10px */
+    margin: 0.625rem 0.625rem 0rem 0.625rem;/* 10px 10px 0px 10px */
 }
 
 main .lista div .titulo span {
@@ -45,9 +45,9 @@ main .lista div .titulo span {
 
 main .lista .linha-dados {
     display: flex;
-    padding: 0px 10px 0px 10px;
-    margin: 5px 10px 0px 10px;
-    font-size: 0.625rem;					/* 10px */
+    padding: 0rem 0.625rem 0rem 0.625rem;		/* 0px 10px 0px 10px */
+    margin: 0.3125rem 0.625rem 0rem 0.625rem;	/* 5px 10px 0px 10px */
+    font-size: 0.625rem;						/* 10px */
 }
 
 main .lista .linha-dados span, .acoes {
@@ -55,7 +55,7 @@ main .lista .linha-dados span, .acoes {
     align-items: center;
     display: flex;
     justify-content: center;
-    height: 3.5rem;							/* 56px */
+    height: 3.5rem;								/* 56px */
    	color: var(--color-terciaria);
 }
 
@@ -86,11 +86,11 @@ main .lista .linha-dados span, .acoes {
 }
 
 .titulo-usuario, .dados-usuario {
-    width: 3.75rem;								/* 60px */
+    width: 5.625rem;							/* 90px */
 }
 
 .titulo-acesso, .dados-acesso {
-    width: 3.75rem;								/* 60px */
+    width: 5.625rem;							/* 90px */
 }
 
 .titulo-descricao, .dados-descricao {
@@ -126,7 +126,7 @@ main .lista .linha-dados span, .acoes {
 }
 
 .titulo-status, .dados-status {
-	width: 6.25rem;								/* 100px */
+	width: 4rem;								/* 100px */
 }
 
 .titulo-acoes, .acoes {
@@ -138,11 +138,12 @@ main .lista .linha-dados span, .acoes {
 }
 
 .titulo-moverSaida, .dados-moverSaida {
-	width: 8.125rem;							/* 130px */
+	width: 6rem;								/* 130px */
 }
 
 /* Telas pequenas: celulares */
-@media (max-width: 700px) {
+@media (max-width: 1300px) {
+
 	main .lista div .titulo {
 	    flex-direction: row;
 	}
@@ -151,4 +152,16 @@ main .lista .linha-dados span, .acoes {
 	    flex-direction: row;
 	}
 	
+	main .lista div h2 {
+	    font-size: 0.4rem;
+	}
+	
+	main .lista div .titulo span {
+	    font-size: 0.4rem;
+	}
+	
+	main .lista .linha-dados {
+	    font-size: 0.4rem;
+	}
+
 }

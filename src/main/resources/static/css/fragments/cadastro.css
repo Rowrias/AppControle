@@ -1,10 +1,10 @@
 /* cadastro */
 main .cadastro {
     background: var(--color-secundaria);
-    border-radius: 0.3125rem;			/* 5px */
+    border-radius: 0.3125rem;					/* 5px */
     display: inline-block;
     height: auto;
-    margin-bottom: 0.625rem;			/* 10px */
+    margin-bottom: 0.625rem;					/* 10px */
     width: 100%;
 }
 
@@ -16,22 +16,22 @@ main .cadastro div h2 {
     align-items: center;
     color: var(--color-terciaria);
     display: flex;
-    font-size: 10px;
+    font-size: 0.625rem;						/* 10px */
     font-weight: var(--font-weight-bold);
-    height: 2.25rem;						/* 36px */
-    margin: 10px 10px 0px 10px;
-    padding: 0.625rem;						/* 10px */
+    height: 2.25rem;							/* 36px */
+    margin: 0.625rem 0.625rem 0px 0.625rem;		/* 10px 10px 0px 10px */
+    padding: 0.625rem;							/* 10px */
 }
 
 main .cadastro div form {
     color: var(--color-terciaria);
     display: flex;
     /* flex-wrap: wrap; */
-  	font-size: 0.625rem;					/* 10px */
+  	font-size: 0.625rem;						/* 10px */
     font-weight: var(--font-weight-regular);
-    gap: 0.375rem;							/* 6px */
-    margin: 0px 10px 10px 10px;
-    padding: 0px 0px 0px 10px;
+    gap: 0.375rem;								/* 6px */
+    margin: 0rem 0.625rem 0.625rem 0.625rem;	/* 0px 10px 10px 10px */
+    padding: 0rem 0rem 0rem 0.625rem;			/* 0px 0px 0px 10px */
 }
 
 main .cadastro div form div {
@@ -47,42 +47,42 @@ main .cadastro div form div {
 main .cadastro div form div label {
     align-items: center;
     display: flex;
-    height: 1.125rem;						/* 18px */
+    height: 1.125rem;							/* 18px */
     justify-content: center;
-    margin: 10px 10px 0px 10px;
+    margin: 0.625rem 0.625rem 0rem 0.625rem;	/* 10px 10px 0px 10px */
 }
 
 main .cadastro div form div input {
     text-align: center;
     color: var(--color-terciaria);
     display: flex;
-    font-size: 0.625rem;					/* 10px */
+    font-size: 0.625rem;						/* 10px */
     font-weight: var(--font-weight-regular);
-    height: 1.125rem;						/* 18px */
-    margin: 0px 6px 10px 6px;
+    height: 1.125rem;							/* 18px */
+    margin: 0rem 0.375rem 0.625rem 0.375rem;	/* 0px 6px 10px 6px */
 }
 
 main .cadastro div form div select {
     color: var(--color-terciaria);
     display: flex;
-    font-size: 0.375rem;					/* 6px */
+    font-size: 0.375rem;						/* 6px */
     font-weight: var(--font-weight-regular);
-    height: 1.5rem;							/* 24px */
+    height: 1.5rem;								/* 24px */
     justify-content: center;
-    margin: 0px 6px 10px 6px;
+    margin: 0rem 0.375rem 0.625rem 0.375rem;	/* 0px 6px 10px 6px */
     text-align: center;
 
 }
 
 main .cadastro div form div input[type="datetime-local" i] {
-    font-size: 0.375rem;					/* 6px */
+    font-size: 0.375rem;						/* 6px */
     text-align: center;
 }
 
 main .cadastro div form #adicionar {
     display: inline;
-    height: 5.625rem;						/* 90px */
-    width: 10.625rem;						/* 170px */
+    height: 5.625rem;							/* 90px */
+    width: 10.625rem;							/* 170px */
 }
 
 main .cadastro div form #adicionar button {
@@ -116,15 +116,15 @@ main .cadastro div form .cadastro-telefone {
 }
 
 main .cadastro div form .cadastro-usuario {
-    width: 3.75rem;								/* 60px */
+    width: 5.625rem;							/* 90px */
 }
 
 main .cadastro div form .cadastro-senha {
-    width: 3.75rem;								/* 60px */
+    width: 5.625rem;							/* 90px */
 }
 
 main .cadastro div form .cadastro-acesso {
-    width: 3.75rem;								/* 60px */
+    width: 5.625rem;							/* 90px */
 }
 
 main .cadastro div form .cadastro-descricao {
@@ -159,3 +159,20 @@ main .cadastro div form .cadastro-dataSaida {
 	width: 7.1875rem;							/* 115px */
 }
 
+@media (max-width: 1300px) {
+	
+	main .cadastro div h2 {
+	    font-size: 0.5rem;						/* 10px */
+	}
+	
+	main .cadastro div form {
+	    font-size: 0.5rem;						/* 10px */
+	}
+	
+	main .cadastro div form .cadastro-nome {
+	    width: 5rem;							
+	}
+	
+	
+	
+}

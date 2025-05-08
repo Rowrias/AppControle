@@ -17,6 +17,7 @@ header nav {
 header nav div {
 	display: flex;
 	gap: 1.25rem;			/* 20px */
+	
 }
 
 header nav div a {
@@ -24,4 +25,20 @@ header nav div a {
     font-size: 0.625rem;	/* 10px */
     font-weight: 600;		
     text-decoration: none;
+    width: 5rem;
+}
+
+header nav div a:hover {			
+	cursor: pointer;
+}
+
+@media (max-width: 1300px) {
+	header nav {
+	    width: 50rem;
+	}
+	
+	header nav div a {
+	    font-size: 0.5rem;
+	}
+	
 }

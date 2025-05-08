@@ -2,7 +2,7 @@
 main .titulo {
     align-items: center;
     display: flex;
-    margin: 10px 0px;
+    margin: 0.625rem 0rem;						/* 10px 0px */
 }
 
 main .titulo h2 {
@@ -13,9 +13,9 @@ main .titulo h2 {
 
 
 /* Telas pequenas: celulares */
-@media (max-width: 700px) {
+@media (max-width: 1300px) {
 	main .titulo {
-    	align-items: flex-start;
+    	flex-direction: row;
 	}
 	
 }
