@@ -10,3 +10,12 @@ main .titulo h2 {
     font-size: 0.75rem;							/* 12px */
     font-weight: var(--font-weight-semibold);
 }
+
+
+/* Telas pequenas: celulares */
+@media (max-width: 700px) {
+	main .titulo {
+    	align-items: flex-start;
+	}
+	
+}

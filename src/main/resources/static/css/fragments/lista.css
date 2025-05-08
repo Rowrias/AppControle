@@ -140,3 +140,15 @@ main .lista .linha-dados span, .acoes {
 .titulo-moverSaida, .dados-moverSaida {
 	width: 8.125rem;							/* 130px */
 }
+
+/* Telas pequenas: celulares */
+@media (max-width: 700px) {
+	main .lista div .titulo {
+	    flex-direction: row;
+	}
+	
+	main .lista .linha-dados {
+	    flex-direction: row;
+	}
+	
+}

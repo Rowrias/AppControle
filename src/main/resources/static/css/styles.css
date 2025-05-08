@@ -28,7 +28,7 @@ body {
 }
 
 /* Telas pequenas: celulares */
-@media (max-width: 600px) { }
+@media (max-width: 700px) { }
 
 /* Telas médias: tablets */
 @media (max-width: 900px) { }
