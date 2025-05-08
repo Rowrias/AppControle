@@ -1,17 +1,17 @@
 aside a {
     align-items: center;
     background: var(--color-secundaria);
-    border-radius: 5px;
+    border-radius: 0.3125rem;				/* 5px */
     color: var(--color-terciaria);
     display: flex;
-    font-size: 10px;
+    font-size: 0.625rem;					/* 10px */
     font-weight: var(--font-weight-semibold);
-    gap: 10px;
-    height: 32px;
+    gap: 0.625rem;							/* 10px */
+    height: 2rem;							/* 32px */
     margin: 0px 2px;
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem;				/* 10px */
     text-decoration: none;
-    width: 130px;
+    width: 8.125rem;						/* 130px */					
 }
 
 aside a:hover {

@@ -44,7 +44,7 @@
 							<span class="titulo-dataEntrada">Data Entrada</span>
 							<span class="titulo-dataConcluida">Data Concluída</span>
 							<span class="titulo-dataSaida">Data Saída</span>
-							<span class="titulo-funcionario">Funcionário</span>
+							<!-- <span class="titulo-funcionario">Funcionário</span>  -->
 							<span class="titulo-acoes">Ações</span>
 						</div>
 						
@@ -60,7 +60,7 @@
 							<span class="dados-dataConcluida" th:text="${#temporals.format(saida.dataConcluido, 'HH:mm - dd/MM/yyyy')}"></span>
 							<span class="dados-dataSaida" th:text="${#temporals.format(saida.dataSaida, 'HH:mm - dd/MM/yyyy')}"></span>
 							
-						    <span class="dados-funcionario" th:text="${#strings.capitalize(saida.funcionario != null ? saida.funcionario : 'Não informado')}"></span>
+						    <!-- <span class="dados-funcionario" th:text="${#strings.capitalize(saida.funcionario != null ? saida.funcionario : 'Não informado')}"></span>  -->
 							
 							<div class="acoes">
 						        <a class="editar" th:href="@{/saidas/editar/{id}(id=${saida.id})}">

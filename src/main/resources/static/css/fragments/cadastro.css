@@ -1,11 +1,11 @@
 /* cadastro */
 main .cadastro {
     background: var(--color-secundaria);
-    border-radius: 5px;
+    border-radius: 0.3125rem;			/* 5px */
     display: inline-block;
     height: auto;
-    margin-bottom: 10px;
-    width: auto;
+    margin-bottom: 0.625rem;			/* 10px */
+    width: 100%;
 }
 
 main .cadastro div {
@@ -18,19 +18,18 @@ main .cadastro div h2 {
     display: flex;
     font-size: 10px;
     font-weight: var(--font-weight-bold);
-    height: 36px;
+    height: 2.25rem;						/* 36px */
     margin: 10px 10px 0px 10px;
-    padding: 10px;
-    width: auto;
+    padding: 0.625rem;						/* 10px */
 }
 
 main .cadastro div form {
     color: var(--color-terciaria);
     display: flex;
     /* flex-wrap: wrap; */
-    font-size: 10px;
+  	font-size: 0.625rem;					/* 10px */
     font-weight: var(--font-weight-regular);
-    gap: 6px;
+    gap: 0.375rem;							/* 6px */
     margin: 0px 10px 10px 10px;
     padding: 0px 0px 0px 10px;
 }
@@ -38,17 +37,17 @@ main .cadastro div form {
 main .cadastro div form div {
     border: solid 1px;
     border-color: var(--color-primaria);
-    height: auto;
-    text-align: center;
     display: flex;
     flex-direction: column;
+    height: auto;
+    text-align: center;
     /* width: 100px; */
 }
 
 main .cadastro div form div label {
     align-items: center;
     display: flex;
-    height: 18px;
+    height: 1.125rem;						/* 18px */
     justify-content: center;
     margin: 10px 10px 0px 10px;
 }
@@ -57,18 +56,18 @@ main .cadastro div form div input {
     text-align: center;
     color: var(--color-terciaria);
     display: flex;
-    font-size: 10px;
+    font-size: 0.625rem;					/* 10px */
     font-weight: var(--font-weight-regular);
-    height: 18px;
+    height: 1.125rem;						/* 18px */
     margin: 0px 6px 10px 6px;
 }
 
 main .cadastro div form div select {
     color: var(--color-terciaria);
     display: flex;
-    font-size: 6px;
+    font-size: 0.375rem;					/* 6px */
     font-weight: var(--font-weight-regular);
-    height: 24px;
+    height: 1.5rem;							/* 24px */
     justify-content: center;
     margin: 0px 6px 10px 6px;
     text-align: center;
@@ -76,87 +75,87 @@ main .cadastro div form div select {
 }
 
 main .cadastro div form div input[type="datetime-local" i] {
-    font-size: 6px;
+    font-size: 0.375rem;					/* 6px */
     text-align: center;
 }
 
 main .cadastro div form #adicionar {
     display: inline;
-    height: 90px;
-    width: 170px;
+    height: 5.625rem;						/* 90px */
+    width: 10.625rem;						/* 170px */
 }
 
 main .cadastro div form #adicionar button {
-    height: 28px;
+    height: 1.75rem;							/* 170px */
     width: auto;
 }
 
 /* Campos */
 main .cadastro div form .cadastro-nome {
-    width: 150px;
+    width: 9.375rem;							/* 150px */
 }
 
 main .cadastro div form .cadastro-cpf {
-    width: 90px;
+    width: 5.625rem;							/* 90px */
 }
 
 main .cadastro div form .cadastro-cnpj {
-    width: 90px;
+    width: 5.625rem;							/* 90px */
 }
 
 main .cadastro div form .cadastro-email {
-    width: 150px;
+    width: 9.375rem;							/* 150px */
 }
 
 main .cadastro div form .cadastro-celular {
-    width: 90px;
+    width: 5.625rem;							/* 90px */
 }
 
 main .cadastro div form .cadastro-telefone {
-    width: 90px;
+    width: 5.625rem;							/* 90px */
 }
 
 main .cadastro div form .cadastro-usuario {
-    width: 60px;
+    width: 3.75rem;								/* 60px */
 }
 
 main .cadastro div form .cadastro-senha {
-    width: 60px;
+    width: 3.75rem;								/* 60px */
 }
 
 main .cadastro div form .cadastro-acesso {
-    width: 60px;
+    width: 3.75rem;								/* 60px */
 }
 
 main .cadastro div form .cadastro-descricao {
-    width: 200px;
+    width: 12.5rem;								/* 200px */
 }
 
 main .cadastro div form .cadastro-produto {
-    width: 150px;
+    width: 9.375rem;							/* 150px */
 }
 
 main .cadastro div form .cadastro-quantidade {
-	width: 80px;
+	width: 5rem;								/* 80px */
 }
 
 main .cadastro div form .cadastro-valorUnitario {
-	width: 110px;
+	width: 6.875rem;							/* 110px */
 }
 
 main .cadastro div form .cadastro-valorTotal {
-	width: 110px;
+	width: 6.875rem;							/* 110px */
 }
 
 main .cadastro div form .cadastro-dataEntrada {
-	width: 115px;
+	width: 7.1875rem;							/* 115px */
 }
 
 main .cadastro div form .cadastro-dataConcluida {
-	width: 115px;
+	width: 7.1875rem;							/* 115px */
 }
 
 main .cadastro div form .cadastro-dataSaida {
-	width: 115px;
+	width: 7.1875rem;							/* 115px */
 }
 

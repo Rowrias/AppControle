@@ -7,6 +7,6 @@ main .titulo {
 
 main .titulo h2 {
     color: var(--color-terciaria);
-    font-size: 12px;
+    font-size: 0.75rem;							/* 12px */
     font-weight: var(--font-weight-semibold);
 }

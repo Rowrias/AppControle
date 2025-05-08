@@ -1,28 +1,28 @@
 /* lista */
 main .lista {
     background: var(--color-secundaria);
-    border-radius: 5px;
+    border-radius: 0.3125rem;				/* 5px */
     display: flex;
     flex-direction: column;
     height: auto;
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem;				/* 10px */
     width: 100%;
 }
 
 main .lista div {
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem;				/* 10px */
 }
 
 main .lista div h2 {
     align-items: center;
     color: var(--color-terciaria);
     display: flex;
-    height: 36px;
+    height: 2.25rem;						/* 36px */
     font-size: 10px;
     font-weight: var(--font-weight-bold);
     margin: 10px 10px 0px 10px;
-    padding: 10px;
+    padding: 0.625rem;						/* 10px */
     width: auto;
 }
 
@@ -35,9 +35,9 @@ main .lista div .titulo {
 main .lista div .titulo span {
 	color: var(--color-terciaria);
 	border: solid 1px var(--color-primaria);
-	font-size: 10px;
+	font-size: 0.625rem;					/* 10px */
 	/* width: 170px; */
-	height: 30px;
+	height: 1.875rem;						/* 30px */
 	align-items: center;
     display: flex;
     justify-content: center;
@@ -47,7 +47,7 @@ main .lista .linha-dados {
     display: flex;
     padding: 0px 10px 0px 10px;
     margin: 5px 10px 0px 10px;
-    font-size: 10px;
+    font-size: 0.625rem;					/* 10px */
 }
 
 main .lista .linha-dados span, .acoes {
@@ -55,88 +55,88 @@ main .lista .linha-dados span, .acoes {
     align-items: center;
     display: flex;
     justify-content: center;
-    height: 56px;
+    height: 3.5rem;							/* 56px */
    	color: var(--color-terciaria);
 }
 
 
 /* cada campo individual */
 .titulo-nome, .dados-nome {
-	width: 150px;
+	width: 9.375rem;							/* 150px */
 }
 
 .titulo-cnpj, .dados-cnpj {
-	width: 90px;
+    width: 5.625rem;							/* 90px */
 }
 
 .titulo-cpf, .dados-cpf {
-	width: 90px;
+    width: 5.625rem;							/* 90px */
 }
 
 .titulo-email, .dados-email {
-	width: 150px;
+    width: 9.375rem;							/* 150px */
 }
 
 .titulo-celular, .dados-celular {
-	width: 90px;
+    width: 5.625rem;							/* 90px */
 }
 
 .titulo-telefone, .dados-telefone {
-	width: 90px;
+    width: 5.625rem;							/* 90px */
 }
 
 .titulo-usuario, .dados-usuario {
-	width: 60px;
+    width: 3.75rem;								/* 60px */
 }
 
 .titulo-acesso, .dados-acesso {
-	width: 60px;
+    width: 3.75rem;								/* 60px */
 }
 
 .titulo-descricao, .dados-descricao {
-	width: 200px;
+    width: 12.5rem;								/* 200px */
 }
 
 .titulo-produto, .dados-produto {
-	width: 150px;
+    width: 9.375rem;							/* 150px */
 }
 
 .titulo-quantidade, .dados-quantidade {
-	width: 80px;
+	width: 5rem;								/* 80px */
 }
 
 .titulo-valorUnitario, .dados-valorUnitario {
-	width: 110px;
+	width: 6.875rem;							/* 110px */
 }
 
 .titulo-valorTotal, .dados-valorTotal {
-	width: 110px;
+	width: 6.875rem;							/* 110px */
 }
 
 .titulo-dataEntrada, .dados-dataEntrada {
-	width: 115px;
+	width: 7.1875rem;							/* 115px */
 }
 
 .titulo-dataConcluida, .dados-dataConcluida {
-	width: 115px;
+	width: 7.1875rem;							/* 115px */
 }
 
 .titulo-dataSaida, .dados-dataSaida {
-	width: 115px;
+	width: 7.1875rem;							/* 115px */
 }
 
 .titulo-status, .dados-status {
-	width: 100px;
+	width: 6.25rem;								/* 100px */
 }
 
 .titulo-acoes, .acoes {
-	width: 93px;
+	width: 5.8125rem;							/* 93px */
 }
 
 .titulo-funcionario, .dados-funcionario {
-	width: 130px;
+	width: 8.125rem;							/* 130px */
 }
 
 .titulo-moverSaida, .dados-moverSaida {
-	width: 130px;
+	width: 8.125rem;							/* 130px */
 }

@@ -3,13 +3,13 @@ button.adicionar {
 	background-color: #1c84c6;
 	border-color: #1c84c6;
 	border: 1px solid;
-	border-radius: 5px;
+	border-radius: 0.3125rem;			/* 5px */
 	color: var(--color-secundaria);
 	padding: 5px 5px;
 	text-decoration: none;
-	width: 92px;
-	height: 26px;
-	font-size: 10px;
+	width: 5.75rem;						/* 92px */
+	height: 1.625rem;					/* 26px */
+	font-size: 0.625rem;				/* 10px */
     margin: 0px 5px 10px 5px;
 }
 
@@ -17,7 +17,7 @@ button.adicionar {
  	align-items: center;
 	background-color: #1AB394;
 	border: 1px solid;
-	border-radius: 5px;
+	border-radius: 0.3125rem;			/* 5px */
 	color: var(--color-secundaria);
  	display: flex;
  	justify-content: space-between;
@@ -32,7 +32,7 @@ a.excluir  {
  	align-items: center;
 	background-color: #FF0D0D;
 	border: 1px solid;
-	border-radius: 5px;
+	border-radius: 0.3125rem;			/* 5px */
 	color: var(--color-secundaria);
 	display: flex;
  	justify-content: space-between;
@@ -45,9 +45,9 @@ a.excluir  {
 a.status {
 	align-items: center;
 	display: flex;
-	gap: 3px;
+	gap: 0.1875rem;						/* 5px */
 	text-decoration: none;
 	padding: 5px 5px;
-	width: 80px;
+	width: 5rem;						/* 80px */
 	color: #000;
 }
