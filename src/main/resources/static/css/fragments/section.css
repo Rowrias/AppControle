@@ -18,10 +18,17 @@ section div aside {
 section div main {
     display: inline;
     width: 100%;
-}
+} 
 
 /* Telas pequenas: celulares */
-@media (max-width: 600px) { }
-	section {
-	    margin: auto;
-	}
+@media (max-width: 600px) {
+	section div {
+        flex-direction: column;
+    }
+
+    section div aside,
+    section div main {
+        width: 100%;
+        margin-top: 1rem;
+    }
+}
