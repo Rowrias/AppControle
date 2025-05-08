@@ -36,7 +36,7 @@
 						<form  action="/funcionarios/lista" method="post">
 							<div class="cadastro-nome">
 								<label for="nome">Nome: *</label>
-					        	<input type="text" id="nome" name="nome" minlength="3" maxlength="50" required>
+					        	<input type="text" id="nome" name="nome" minlength="3" maxlength="30" required>
 							</div>
 					        <div class="cadastro-cpf">
 								<label for="cpf">CPF:</label>
@@ -50,13 +50,13 @@
 								<label for="celular">Celular:</label>
 					        	<input type="text" id="celular" name="celular">
 							</div>
-					        <div class="cadastro-telefone">
+					        <!--  <div class="cadastro-telefone">
 								<label for="telefone">Telefone:</label>
 					        	<input type="text" id="telefone" name="telefone"/>
-							</div>
+							</div> -->
 							<div class="cadastro-usuario">
 								<label for="username">Usuário:</label>
-					        	<input type="text" id="username" name="username"/>
+					        	<input type="text" id="username" name="username" minlength="4" maxlength="8"/>
 							</div>
 							<div class="cadastro-senha">
 								<label for="password">Senha:</label>
@@ -85,7 +85,7 @@
 							<span class="titulo-cpf">CPF</span>
 							<span class="titulo-email">E-mail</span>
 							<span class="titulo-celular">Celular</span>
-							<span class="titulo-telefone">Telefone</span>
+							<!-- <span class="titulo-telefone">Telefone</span> -->
 							<span class="titulo-usuario">Usuário</span>
 							<span class="titulo-acesso">Acesso</span>
 							<span class="titulo-acoes">Ações</span>
@@ -95,7 +95,7 @@
 							<span class="dados-cpf" th:text="${funcionario.cpf}"></span>
 							<span class="dados-email" th:text="${funcionario.email}"></span>
 							<span class="dados-celular" th:text="${funcionario.celular}"></span>
-							<span class="dados-telefone" th:text="${funcionario.telefone}"></span>
+							<!--  <span class="dados-telefone" th:text="${funcionario.telefone}"></span> -->
 							<span class="dados-usuario" th:text="${funcionario.username}"></span>
 							<span class="dados-acesso" th:text="${funcionario.role}"></span>
 							

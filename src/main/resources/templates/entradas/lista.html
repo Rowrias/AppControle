@@ -36,11 +36,11 @@
 						<form action="/entradas/lista" method="post">
 							<div class="cadastro-nome">
 								<label for="clienteNome">Cliente *</label>
-					        	<input type="text" id="clienteNome" name="cliente.nome" required>
+					        	<input type="text" id="clienteNome" name="cliente.nome" minlength="3" maxlength="30" required>
 							</div>
 					        <div class="cadastro-produto">
 								<label for="produto">Produto: *</label>
-					        	<input type="text" id="produto" name="produto.nome" required>
+					        	<input type="text" id="produto" name="produto.nome" minlength="3" maxlength="30" required>
 							</div>
 					        <div class="cadastro-quantidade">
 								<label for="quantidade">Quantidade: *</label>
@@ -113,7 +113,7 @@
 							<span class="titulo-funcionario">Funcionário</span>
 							<span class="titulo-status">Status</span>
 							<span class="titulo-acoes">Ações</span>
-							<span class="titulo-moverSaida">Mover para Saída</span>
+							<span class="titulo-moverSaida">Saída</span>
 						</div>
 						
 						<div class="linha-dados" th:each="entrada : ${concluidas}">
@@ -142,8 +142,9 @@
 						    </div>
 						    
 						    <span class="dados-moverSaida">
-								<a th:if="${entrada.concluido}" th:href="@{/entradas/moverParaSaida/{id}(id=${entrada.id})}">
-									Mover para Saída
+								<a class="status" th:if="${entrada.concluido}" th:href="@{/entradas/moverParaSaida/{id}(id=${entrada.id})}">
+									<p>Saida</p>
+									<img th:src="@{/images/uncheck(24x24).svg}">
 								</a>
 							</span>
 						</div>

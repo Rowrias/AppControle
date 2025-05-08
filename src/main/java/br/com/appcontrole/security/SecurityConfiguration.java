@@ -35,8 +35,8 @@ public class SecurityConfiguration {
         		.logoutSuccessUrl("/login")
     		)
 	        .authorizeHttpRequests(authorizeRequests -> authorizeRequests
-        		.requestMatchers(HttpMethod.GET, "/funcionarios/**", "/clientes/**", "/produtos/**").hasRole("ADMIN")
-        		.requestMatchers(HttpMethod.POST, "/funcionarios/**", "/clientes/**", "/produtos/**").hasRole("ADMIN")
+        		.requestMatchers(HttpMethod.GET, "/funcionarios/**", "/clientes/**", "/produtos/**", "/saidas/**").hasRole("ADMIN")
+        		.requestMatchers(HttpMethod.POST, "/funcionarios/**", "/clientes/**", "/produtos/**", "/saidas/**").hasRole("ADMIN")
         		// Todas as outras requisições devem ser autenticadas
         		.anyRequest().authenticated()
     		)

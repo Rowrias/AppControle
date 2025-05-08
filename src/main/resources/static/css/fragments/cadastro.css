@@ -29,7 +29,7 @@ main .cadastro div form {
     /* flex-wrap: wrap; */
   	font-size: 0.625rem;						/* 10px */
     font-weight: var(--font-weight-regular);
-    gap: 0.375rem;								/* 6px */
+    gap: 0.2rem;
     margin: 0rem 0.625rem 0.625rem 0.625rem;	/* 0px 10px 10px 10px */
     padding: 0rem 0rem 0rem 0.625rem;			/* 0px 0px 0px 10px */
 }
@@ -92,7 +92,7 @@ main .cadastro div form #adicionar button {
 
 /* Campos */
 main .cadastro div form .cadastro-nome {
-    width: 9.375rem;							/* 150px */
+    width: 11.2rem;		
 }
 
 main .cadastro div form .cadastro-cpf {
@@ -116,15 +116,15 @@ main .cadastro div form .cadastro-telefone {
 }
 
 main .cadastro div form .cadastro-usuario {
-    width: 5.625rem;							/* 90px */
+    width: 4rem;							
 }
 
 main .cadastro div form .cadastro-senha {
-    width: 5.625rem;							/* 90px */
+    width: 4rem;							
 }
 
 main .cadastro div form .cadastro-acesso {
-    width: 5.625rem;							/* 90px */
+    width: 4rem;							
 }
 
 main .cadastro div form .cadastro-descricao {
@@ -132,11 +132,11 @@ main .cadastro div form .cadastro-descricao {
 }
 
 main .cadastro div form .cadastro-produto {
-    width: 9.375rem;							/* 150px */
+    width: 11.2rem;		
 }
 
 main .cadastro div form .cadastro-quantidade {
-	width: 5rem;								/* 80px */
+	width: 6rem;								/* 80px */
 }
 
 main .cadastro div form .cadastro-valorUnitario {
@@ -162,14 +162,16 @@ main .cadastro div form .cadastro-dataSaida {
 @media (max-width: 1300px) {
 	
 	main .cadastro div h2 {
-	    font-size: 0.5rem;						/* 10px */
+	    font-size: 0.625rem;					/* 10px */
 	}
 	
 	main .cadastro div form {
-	    font-size: 0.5rem;						/* 10px */
+	    font-size: 0.625rem;					/* 10px */
+	    flex-wrap: wrap;
+	    gap: 0rem;								/* 0px */
 	}
 	
-	main .cadastro div form .cadastro-nome {
+	main .cadastro div form .cadastro-email {
 	    width: 5rem;							
 	}
 	
