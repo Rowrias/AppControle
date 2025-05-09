@@ -54,6 +54,7 @@ main .cadastro div form div label {
 
 main .cadastro div form div input {
     text-align: center;
+    background-color: var(--color-primaria);
     color: var(--color-terciaria);
     display: flex;
     font-size: 0.625rem;						/* 10px */
@@ -63,6 +64,7 @@ main .cadastro div form div input {
 }
 
 main .cadastro div form div select {
+	background-color: var(--color-primaria);
     color: var(--color-terciaria);
     display: flex;
     font-size: 0.375rem;						/* 6px */

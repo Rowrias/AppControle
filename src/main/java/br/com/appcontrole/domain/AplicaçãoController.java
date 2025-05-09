@@ -15,6 +15,11 @@ public class AplicaçãoController {
         return "login";
     }
 	
+	@GetMapping("/configuracao")
+    public String configuracao() {
+        return "configuracao";
+    }
+	
 	@GetMapping("/sem-acesso")
     public String acessoNegado() {
         return "sem-acesso";

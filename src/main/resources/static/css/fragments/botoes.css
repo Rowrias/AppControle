@@ -66,3 +66,23 @@ a.saida {
 	width: auto;										/* 80px */
 	color: #000;
 }
+
+button.tema {
+	align-items: center;
+	background: var(--color-primaria);
+	border: 1px solid var(--color-primaria);
+	border-radius: 0.3125rem;
+	color: var(--color-terciaria);
+	display: flex;
+	gap: 0.1875rem;										/* 5px */
+	padding: 5px 5px;
+	text-decoration: none;
+	width: auto;										/* 80px */
+	font: var(--font-primaria);
+	font: var(--font-weight-regular);
+}
+
+button.tema:hover {			/* 20px */
+	cursor: pointer;
+	background: var(--color-secundaria);
+}

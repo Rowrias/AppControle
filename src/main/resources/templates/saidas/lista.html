@@ -8,7 +8,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/styles.css}">
-    <script th:src="@{/scripts/fragments/theme.js}" defer></script>    
+    <script th:src="@{/scripts/fragments/theme.js}" defer></script>
+    <script th:src="@{/scripts/fragments/confirmacoes.js}" defer></script>  
 </head>
 <body>
     <!-- header.css -->
@@ -16,15 +17,12 @@
     
     <!-- section.css -->
     <section>
-
         <div>
-
             <!-- aside.css -->
-            <header th:replace="fragments/aside :: aside"></header>
+            <aside th:replace="fragments/aside :: aside"></aside>
             
             <!-- Main -->
             <main>
-
             	<!-- titulo.css -->
                 <div class="titulo">
                     <img th:src="@{/images/entrada(70x70).svg}">
@@ -32,7 +30,7 @@
                 </div>
                 
                 
-                <!-- Entrada De Peças -->
+                <!-- Saida De Peças -->
                 <div class="lista">
 					<div>
 						<h2>Lista de Saídas</h2>
@@ -84,8 +82,8 @@
         </div>
 
     </section>
+    
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-	<script th:src="@{/scripts/confirmacoes.js}"></script>
     
 </body>
 </html>

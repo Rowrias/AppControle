@@ -9,22 +9,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/styles.css}">
     <script th:src="@{/scripts/fragments/theme.js}" defer></script>
+    <script th:src="@{/scripts/fragments/confirmacoes.js}" defer></script>  
 </head>
 <body>
-    <!-- Incluindo o header -->
+    <!-- header.css -->
     <header th:replace="fragments/header :: header"></header>
     
+    <!-- section.css -->
     <section>
         <div>
-            <!-- Incluindo o aside -->
+            <!-- aside.css -->
             <aside th:replace="fragments/aside :: aside"></aside>
             
+            <!-- Main -->
             <main>
+            	<!-- titulo.css -->
                 <div class="titulo">
                     <img th:src="@{/images/entrada(70x70).svg}">
                     <h2>EDITAR SAÍDA</h2>
                 </div>
                 
+                <!-- Cadastro De Peças -->
                 <div class="cadastro">
                 	<div>
 	                    <h2>Controle de Saidas</h2>
@@ -110,8 +115,8 @@
             </main>
         </div>
     </section>
+    
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-	<script th:src="@{/scripts/confirmacoes.js}"></script>
 	
 </body>
 </html>

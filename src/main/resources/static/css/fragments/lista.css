@@ -26,6 +26,11 @@ main .lista div h2 {
     width: auto;
 }
 
+main .lista div h2 a {
+    text-decoration: none;
+    color: var(--font-primaria);
+}
+
 main .lista div .titulo {
     display: flex;
     padding: 0rem 0.625rem 0rem 0.625rem;	/* 0px 10px 0px 10px */

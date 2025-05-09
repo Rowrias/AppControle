@@ -1,8 +1,1 @@
-import { confirmarAdicao } from './fragments/confirmacoes.js';
-import { toggleTheme, aplicarTemaSalvo } from './fragments/tema.js';
-
-window.addEventListener('DOMContentLoaded', () => {
-    confirmarAdicao();
-	toggleTheme();
-    aplicarTemaSalvo();
-});
+// A ideia é fazer todos ou quase todos os scritpts do fragments serem carregados aqui para ser passado para o html unicamente este scripts.js

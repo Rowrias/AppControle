@@ -9,17 +9,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/styles.css}">
     <script th:src="@{/scripts/fragments/theme.js}" defer></script>
+    <script th:src="@{/scripts/fragments/mascaras.js}" defer></script>
+    <script th:src="@{/scripts/fragments/confirmacoes.js}" defer></script>
 </head>
-<body> 
+<body>
+	<!-- header.css -->
     <header th:replace="fragments/header :: header"></header>
+    
+    <!-- section.css -->    
     <section>
         <div>
+        	<!-- aside.css -->
             <aside th:replace="fragments/aside :: aside"></aside>
+            
+            <!-- Main -->
             <main>
+            	<!-- titulo.css -->
                 <div class="titulo">
                     <img th:src="@{/images/entrada(70x70).svg}">
                     <h2>EDITAR CLIENTE</h2>
                 </div>
+                
+                <!-- cadastro.css -->
                 <div class="cadastro">
                     <div>
                         <h2>Editar cliente</h2>
@@ -88,15 +99,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-	<script th:src="@{/scripts/confirmacoes.js}"></script>
 
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#cnpj').mask('99.999.999/9999-99');
-            $('#cpf').mask('999.999.999-99');
-            $('#celular').mask('(99) 99999-9999');                    
-            $('#telefone').mask('(99) 9999-9999');
-        });
-    </script>
 </body>
 </html>

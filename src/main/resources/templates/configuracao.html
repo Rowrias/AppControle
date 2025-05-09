@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/styles.css}">
-    <script th:src="@{/scripts/fragments/theme.js}" defer></script>
+   	<script th:src="@{/scripts/fragments/theme.js}" defer></script>
 </head>
 <body>
     <!-- header.css -->
@@ -25,27 +25,42 @@
             	<!-- titulo.css -->
                 <div class="titulo">
                     <img th:src="@{/images/entrada(70x70).svg}">
-                    <h2>INÍCIO</h2>
+                    <h2>Configuração</h2>
                 </div>
 
                 <div class="cadastro">
                     <div>
                         <div>
-                            <h2>
-                                Bem vindo a tela inicial
-                            </h2>
+                            <h2>Configuração</h2>
                         </div>
                     </div>
                 </div>
                 
                 <div class="lista">
-					<div>
-						<h2>Sem descrição...</h2>
+                	<div>
+						<div>
+						
+							<h2>
+								Configuração
+							</h2>
+							
+							<h2>
+								<button class="tema" onclick="toggleTheme()" >
+								    <img th:src="@{/images/home(36x36).svg}" alt="Alternar Tema">
+								    <h3>Modo Escuro</h3>
+								</button>
+							</h2>
+							
+							<h2>
+								<a th:href="@{/index}">Voltar para a página inicial</a>
+							</h2>
+							
+						</div>                	
                 	</div>
                 </div>
+                
             </main>
         </div>
     </section>
-    
 </body>
 </html>
