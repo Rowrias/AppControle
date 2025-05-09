@@ -63,11 +63,13 @@
 						    <!-- <span class="dados-funcionario" th:text="${#strings.capitalize(saida.funcionario != null ? saida.funcionario : 'Não informado')}"></span>  -->
 							
 							<div class="acoes">
-						        <a class="editar" th:href="@{/saidas/editar/{id}(id=${saida.id})}">
+						        <a class="editar" href="#" onclick="confirmarEdicao(this)"
+						        th:attr="data-url=@{/saidas/editar/{id}(id=${saida.id})}">
 									<p>Editar</p>
 									<img th:src="@{/images/edit(24x24).svg}">
 								</a>
-								<a class="excluir" th:href="@{/saidas/remover/{id}(id=${saida.id})}">
+						        <a class="excluir" href="#" onclick="confirmarExclusao(this)"
+								th:attr="data-url=@{/saidas/remover/{id}(id=${saida.id})}">
 									<p>Excluir</p>
 									<img th:src="@{/images/delete(24x24).svg}">
 								</a>
@@ -81,6 +83,8 @@
         </div>
 
     </section>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script th:src="@{/scripts/confirmacoes.js}"></script>
     
 </body>
 </html>

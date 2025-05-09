@@ -29,7 +29,7 @@
 	                    <h2>Controle de Saidas</h2>
                 	</div>
                 	<div>
-                		<form th:action="@{/saidas/editar/{id}(id=${saida.id})}" th:object="${saida}" method="post">
+                		<form id="form-saida-atualizacao" th:action="@{/saidas/editar/{id}(id=${saida.id})}" th:object="${saida}" method="post">
 	                        
 	                        <input type="hidden" th:field="*{id}"/>
 	                        <input type="hidden" th:field="*{dataEntrada}"/>
@@ -67,7 +67,7 @@
 	                        
 	                        <div>
 								<label></label>
-								<button class="adicionar" type="submit" >Atualizar</button>
+								<button class="adicionar" type="submit" onclick="confirmarAtualizacao()">Atualizar</button>
 							</div>
                     	</form>
                 	</div>
@@ -109,6 +109,8 @@
             </main>
         </div>
     </section>
-
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script th:src="@{/scripts/confirmacoes.js}"></script>
+	
 </body>
 </html>

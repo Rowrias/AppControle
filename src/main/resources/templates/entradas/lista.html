@@ -33,7 +33,7 @@
 						<h2>Controle de Entrada</h2>
 					</div>
                 	<div>
-						<form action="/entradas/lista" method="post">
+						<form id="form-entrada-adicao" action="/entradas/lista" method="post">
 							<div class="cadastro-nome">
 								<label for="clienteNome">Cliente *</label>
 					        	<input type="text" id="clienteNome" name="cliente.nome" minlength="3" maxlength="30" required>
@@ -52,7 +52,7 @@
 							</div>
 							<div>
 								<label></label>
-								<button class="adicionar" type="submit" >Adicionar</button>
+								<button class="adicionar" type="submit" onclick="confirmarAdicao()">Adicionar</button>
 							</div>
 							
 					    </form>
@@ -89,13 +89,15 @@
 							</span>
 
 							<div class="acoes">
-						        <a class="editar" th:href="@{/entradas/editar/{id}(id=${entrada.id})}">
-									<p>Editar</p>
-									<img th:src="@{/images/edit(24x24).svg}">
+						        <a class="editar" href="#" onclick="confirmarEdicao(this)"
+								   th:attr="data-url=@{/entradas/editar/{id}(id=${entrada.id})}">
+								    <p>Editar</p>
+								    <img th:src="@{/images/edit(24x24).svg}">
 								</a>
-								<a class="excluir" th:href="@{/entradas/remover/{id}(id=${entrada.id})}">
-									<p>Excluir</p>
-									<img th:src="@{/images/delete(24x24).svg}">
+								<a class="excluir" href="#" onclick="confirmarExclusao(this)"
+								   th:attr="data-url=@{/entradas/remover/{id}(id=${entrada.id})}">
+								    <p>Excluir</p>
+								    <img th:src="@{/images/delete(24x24).svg}">
 								</a>
 						    </div>
 						    
@@ -131,13 +133,15 @@
 							</span>
 
 							<div class="acoes">
-						        <a class="editar" th:href="@{/entradas/editar/{id}(id=${entrada.id})}">
-									<p>Editar</p>
-									<img th:src="@{/images/edit(24x24).svg}">
+						        <a class="editar" href="#" onclick="confirmarEdicao(this)"
+								   th:attr="data-url=@{/entradas/editar/{id}(id=${entrada.id})}">
+								    <p>Editar</p>
+								    <img th:src="@{/images/edit(24x24).svg}">
 								</a>
-								<a class="excluir" th:href="@{/entradas/remover/{id}(id=${entrada.id})}">
-									<p>Excluir</p>
-									<img th:src="@{/images/delete(24x24).svg}">
+								<a class="excluir" href="#" onclick="confirmarExclusao(this)"
+								   th:attr="data-url=@{/entradas/remover/{id}(id=${entrada.id})}">
+								    <p>Excluir</p>
+								    <img th:src="@{/images/delete(24x24).svg}">
 								</a>
 						    </div>
 						    
@@ -155,6 +159,8 @@
 			</main>
         </div>
     </section>
-
+    
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script th:src="@{/scripts/confirmacoes.js}"></script>
 </body>
 </html>

@@ -29,7 +29,7 @@
 	                    <h2>Controle de Entrada</h2>
                 	</div>
                 	<div>
-                		<form th:action="@{/entradas/editar/{id}(id=${entrada.id})}" th:object="${entrada}" method="post">
+                		<form id="form-entrada-atualizacao" th:action="@{/entradas/editar/{id}(id=${entrada.id})}" th:object="${entrada}" method="post">
 	                        <input type="hidden" th:field="*{id}"/>
 	                        <input type="hidden" th:field="*{concluido}"/>
 	                        
@@ -55,7 +55,7 @@
 	                        </div>
 	                        <div>
 								<label></label>
-								<button class="adicionar" type="submit" >Atualizar</button>
+								<button class="adicionar" type="submit" onclick="confirmarAtualizacao()">Atualizar</button>
 							</div>
                     	</form>
                 	</div>
@@ -88,6 +88,8 @@
             </main>
         </div>
     </section>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script th:src="@{/scripts/confirmacoes.js}"></script>
 
 </body>
 </html>
