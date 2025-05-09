@@ -1,5 +1,5 @@
 // ADICIONAR
-function confirmarAdicao(formId, mensagemAdicao) {
+export function confirmarAdicao(formId, mensagemAdicao) {
 	const form = document.getElementById(formId);
 	if (form) {
     	form.addEventListener('submit', function(event) {
@@ -30,7 +30,7 @@ confirmarAdicao('form-entrada-adicao', 'Deseja adicionar esta entrada?');
 confirmarAdicao('form-saida-adicao', 'Deseja adicionar esta saida?');
 
 // ATUALIZAR
-function confirmarAtualizacao(formId, mensagemAtualizacao) {
+export function confirmarAtualizacao(formId, mensagemAtualizacao) {
 	const form = document.getElementById(formId);
 	if (form) {
     	form.addEventListener('submit', function(event) {
@@ -61,7 +61,7 @@ confirmarAtualizacao('form-entrada-atualizacao', 'Deseja atualizar esta entrada?
 confirmarAtualizacao('form-saida-atualizacao', 'Deseja atualizar esta saida?');
 
 // VAI PARA A PAGINA DE EDIÇÃO
-function confirmarEdicao(element) {
+export function confirmarEdicao(element) {
     event.preventDefault();
     const url = element.getAttribute('data-url');
 
@@ -82,7 +82,7 @@ function confirmarEdicao(element) {
 }
 
 // EXCLUIR
-function confirmarExclusao(element) {
+export function confirmarExclusao(element) {
     event.preventDefault(); // Impede navegação imediata
     const url = element.getAttribute('data-url');
 

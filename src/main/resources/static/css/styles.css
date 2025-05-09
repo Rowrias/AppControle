@@ -8,16 +8,23 @@
 @import url(./fragments/botoes.css);
 
 :root {
-    /* color */
+    /* font */
     --font-primaria: 'Inter', sans-serif;
     /* font weigth */
     --font-weight-regular: 400;
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
-    /* color */
+    /* cores do tema claro (padrão) */
     --color-primaria: #E4E5E7;
     --color-secundaria: #FFFFFF;
     --color-terciaria: #43484B;
+}
+
+body.dark-mode {
+    /* cores do tema escuro */
+    --color-primaria: #121212;
+    --color-secundaria: #1e1e1e;
+    --color-terciaria: #e4e4e4;
 }
 
 body {
@@ -27,6 +34,7 @@ body {
     width: 100%;
 }
 
+/*                 (Testando ainda)           */
 /* Telas pequenas: celulares */
 @media (max-width: 700px) { }
 
