@@ -46,6 +46,7 @@ main .lista div .titulo span {
 	align-items: center;
     display: flex;
     justify-content: center;
+    font-weight: var(--font-weight-bold);
 }
 
 main .lista .linha-dados {
@@ -53,6 +54,7 @@ main .lista .linha-dados {
     padding: 0rem 0.625rem 0rem 0.625rem;		/* 0px 10px 0px 10px */
     margin: 0.2rem 0.625rem 0rem 0.625rem;	/* 5px 10px 0px 10px */
     font-size: 0.625rem;						/* 10px */
+    
 }
 
 main .lista .linha-dados span, .acoes {
@@ -62,6 +64,8 @@ main .lista .linha-dados span, .acoes {
     justify-content: center;
     height: 3.5rem;								/* 56px */
    	color: var(--color-terciaria);
+   	white-space: normal; /* Permite quebras de linha */
+	word-break: break-word; /* Quebra palavras para evitar overflow */
 }
 
 
@@ -135,7 +139,7 @@ main .lista .linha-dados span, .acoes {
 }
 
 .titulo-acoes, .acoes {
-	width: 4rem;							
+	width: 4.5rem;							
 }
 
 .titulo-funcionario, .dados-funcionario {
@@ -162,23 +166,23 @@ main .lista .linha-dados span, .acoes {
 	}
 	
 	main .lista div .titulo span {
-	    font-size: 0.4rem;
+	    font-size: 0.5rem;					/* 10px */
 	}
 	
 	main .lista .linha-dados {
-	    font-size: 0.4rem;
+	    font-size: 0.5rem;	
 	}
 	
 	.titulo-nome, .dados-nome {
-		width: 9rem;							
+		width: 7rem;							
 	}
 	
 	.titulo-produto, .dados-produto {
-		width: 9rem;							
+		width: 7rem;							
 	}
 	
 	.titulo-funcionario, .dados-funcionario {
-		width: 9rem;		
+		width: 7rem;		
 	}
 	
 	.titulo-quantidade, .dados-quantidade {
@@ -186,11 +190,23 @@ main .lista .linha-dados span, .acoes {
 	}
 	
 	.titulo-valorUnitario, .dados-valorUnitario {
-		width: 5rem;		
+		width: 4.5rem;		
 	}
 	
 	.titulo-valorTotal, .dados-valorTotal {
-		width: 5rem;							
+		width: 4.5rem;							
+	}
+	
+	.titulo-dataEntrada, .dados-dataEntrada {
+		width: 5rem;
+	}
+	
+	.titulo-dataConcluida, .dados-dataConcluida {
+		width: 5rem;
+	}
+	
+	.titulo-dataSaida, .dados-dataSaida {
+		width: 5rem;
 	}
 
 }

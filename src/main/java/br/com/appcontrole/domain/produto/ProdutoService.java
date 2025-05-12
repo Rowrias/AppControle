@@ -1,11 +1,13 @@
 package br.com.appcontrole.domain.produto;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.appcontrole.domain.CRUD;
+import br.com.appcontrole.domain.entrada.Entrada;
 
 @Service
 public class ProdutoService implements CRUD<Produto, Long> {
@@ -58,6 +60,10 @@ public class ProdutoService implements CRUD<Produto, Long> {
 		            novo.setNome(nomeProduto);
 		            return produtoRepository.save(novo);
 		        });
+	}
+
+	public List<Entrada> buscaPorNomeParcial(String nomeParcial) {
+		return produtoRepository.findByNomeContainingIgnoreCase(nomeParcial);
 	}
 	
 }

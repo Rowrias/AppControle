@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.appcontrole.domain.cliente.Cliente;
@@ -178,6 +179,24 @@ public class EntradaController {
     }
     
     // -----------------------------------------------------------
+    
+ // Autocomplete de cliente
+    @GetMapping("/autocomplete/clientes")
+    @ResponseBody
+    public List<String> autocompleteClientes(String query) {
+        return clienteService.buscaPorNomeParcial(query).stream()
+            .map(e -> e.getCliente().getNome())
+            .toList();
+    }
+
+    // Autocomplete de produto
+    @GetMapping("/autocomplete/produtos")
+    @ResponseBody
+    public List<String> autocompleteProdutos(String query) {
+        return produtoService.buscaPorNomeParcial(query).stream()
+            .map(e -> e.getProduto().getNome())
+            .toList();
+    }
     
     // Altera para concluído
     @GetMapping("/concluido/{id}")

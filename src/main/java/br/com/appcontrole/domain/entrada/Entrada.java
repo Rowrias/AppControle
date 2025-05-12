@@ -6,6 +6,7 @@ import br.com.appcontrole.domain.cliente.Cliente;
 import br.com.appcontrole.domain.funcionario.Funcionario;
 import br.com.appcontrole.domain.produto.Produto;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -31,6 +32,7 @@ public class Entrada {
 	
 	@NotNull
 	@Min(0)
+	@Column(nullable = false)
 	private Integer quantidade;
 
 	@NotNull

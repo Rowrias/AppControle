@@ -3,9 +3,11 @@
 @import url(./fragments/section.css);
 @import url(./fragments/aside.css);
 @import url(./fragments/titulo.css);
+@import url(./fragments/busca.css);
 @import url(./fragments/cadastro.css);
 @import url(./fragments/lista.css);
 @import url(./fragments/botoes.css);
+@import url(./fragments/paginacao.css);
 
 :root {
     /* font */

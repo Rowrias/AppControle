@@ -29,6 +29,7 @@ public class Produto {
 	private String descricao;
 	
 	@Min(0)
+	@Column(nullable = false)
 	private Integer quantidade = 0;
 	
 	@DecimalMin("0.0")
@@ -67,6 +68,9 @@ public class Produto {
 		return quantidade;
 	}
 	public void setQuantidade(Integer quantidade) {
+		if (quantidade == null) {
+			quantidade = 0;
+		}
 		this.quantidade = quantidade;
 	    calcularValorTotal();
 	}

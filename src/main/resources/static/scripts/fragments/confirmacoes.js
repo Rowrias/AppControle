@@ -101,3 +101,45 @@ function confirmarExclusao(element) {
         }
     });
 }
+
+// STATUS
+function confirmarStatus(element) {
+    event.preventDefault(); // Impede navegação imediata
+    const url = element.getAttribute('data-url');
+
+    Swal.fire({
+        title: 'Deseja mover para Concluída?',
+        text: 'Essa ação não poderá ser desfeita!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Excluir',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = url;
+        }
+    });
+}
+
+// SAIDA
+function confirmarSaida(element) {
+    event.preventDefault(); // Impede navegação imediata
+    const url = element.getAttribute('data-url');
+
+    Swal.fire({
+        title: 'Deseja mover para saida?',
+        text: 'Essa ação não poderá ser desfeita!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Excluir',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = url;
+        }
+    });
+}

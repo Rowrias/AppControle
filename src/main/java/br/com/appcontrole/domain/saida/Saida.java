@@ -19,6 +19,8 @@ public class Saida {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    private String destino;
+    
     @NotNull
     private String  cliente;
     
@@ -125,5 +127,11 @@ public class Saida {
     public void setFuncionario(String funcionario) {
         this.funcionario = funcionario;
     }
+	public String getDestino() {
+		return destino;
+	}
+	public void setDestino(String destino) {
+		this.destino = destino;
+	}
 
 }

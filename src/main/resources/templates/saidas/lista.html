@@ -33,7 +33,15 @@
                 <!-- Saida De Peças -->
                 <div class="lista">
 					<div>
-						<h2>Lista de Saídas</h2>
+						<h2>Histórico de Saídas</h2>
+						
+						<!-- Busca -->
+						<form class="busca" th:action="@{/saidas/lista}" method="get">
+						    <input type="text" name="busca" th:value="${busca}" placeholder="Buscar por cliente..." />
+						    <button type="submit">Buscar</button>
+						</form>
+						
+						<!-- titulo -->
 						<div class="titulo">
 							<span class="titulo-nome">Cliente</span>
 							<span class="titulo-produto">Produto</span>
@@ -47,7 +55,8 @@
 							<span class="titulo-acoes">Ações</span>
 						</div>
 						
-						<div class="linha-dados" th:each="saida : ${saidas}">
+						<!-- Lista -->
+						<div class="linha-dados" th:each="saida : ${paginaSaidas.content}">
 							<span class="dados-nome" th:text="${#strings.capitalize(saida.cliente)}"></span>
 							<span class="dados-produto" th:text="${#strings.capitalize(saida.produto)}"></span>
 							<span class="dados-quantidade" th:text="${saida.quantidade}"></span>
@@ -75,6 +84,29 @@
 						    </div>
 						    
 						</div>
+						
+						<!-- Paginação -->
+						<div class="paginacao">
+						    <span th:if="${paginaSaidas.totalPages > 1}">
+						        <a th:if="${paginaSaidas.hasPrevious()}" 
+						           th:href="@{/saidas/lista(page=${paginaSaidas.number - 1}, busca=${busca})}">
+						            &laquo;
+						        </a>
+						
+						        <span th:each="i : ${#numbers.sequence(0, paginaSaidas.totalPages - 1)}">
+						            <a th:href="@{/saidas/lista(page=${i}, busca=${busca})}"
+						               th:text="${i + 1}"
+						               th:classappend="${i == paginaSaidas.number} ? 'pagina-atual'">
+						            </a>
+						        </span>
+						
+						        <a th:if="${paginaSaidas.hasNext()}" 
+						           th:href="@{/saidas/lista(page=${paginaSaidas.number + 1}, busca=${busca})}">
+						            &raquo;
+						        </a>
+						    </span>
+						</div>
+						
 					</div>
 				</div>
             </main>

@@ -38,7 +38,7 @@
 						<form id="form-entrada-adicao" action="/entradas/lista" method="post">
 							<div class="cadastro-nome">
 								<label for="clienteNome">Cliente *</label>
-					        	<input type="text" id="clienteNome" name="cliente.nome" minlength="3" maxlength="30" required>
+					        	<input type="text" id="clienteNome" name="cliente.nome" minlength="3" maxlength="30" placeholder="Entre 3 a 50" required>
 							</div>
 					        <div class="cadastro-produto">
 								<label for="produto">Produto: *</label>
@@ -84,20 +84,18 @@
 							<span class="dados-funcionario" th:text="${#strings.capitalize(entrada.funcionario != null ? entrada.funcionario.nome : 'Não informado')}"></span>
 							
 							<span class="dados-status">
-								<a class="status" th:href="@{/entradas/concluido/{id}(id=${entrada.id})}">
-									<p>Pendente</p>
+								<a class="status" href="#" onclick="confirmarStatus(this)" th:attr="data-url=@{/entradas/concluido/{id}(id=${entrada.id})}">
+									<p>Concluir</p>
 									<img th:src="@{/images/uncheck(24x24).svg}">
 								</a>
 							</span>
 
 							<div class="acoes">
-						        <a class="editar" href="#" onclick="confirmarEdicao(this)"
-								   th:attr="data-url=@{/entradas/editar/{id}(id=${entrada.id})}">
+						        <a class="editar" href="#" onclick="confirmarEdicao(this)" th:attr="data-url=@{/entradas/editar/{id}(id=${entrada.id})}">
 								    <p>Editar</p>
 								    <img th:src="@{/images/edit(24x24).svg}">
 								</a>
-								<a class="excluir" href="#" onclick="confirmarExclusao(this)"
-								   th:attr="data-url=@{/entradas/remover/{id}(id=${entrada.id})}">
+								<a class="excluir" href="#" onclick="confirmarExclusao(this)" th:attr="data-url=@{/entradas/remover/{id}(id=${entrada.id})}">
 								    <p>Excluir</p>
 								    <img th:src="@{/images/delete(24x24).svg}">
 								</a>
@@ -128,27 +126,25 @@
 							<span class="dados-funcionario" th:text="${#strings.capitalize(entrada.funcionario != null ? entrada.funcionario.nome : 'Não informado')}"></span>
 							
 							<span class="dados-status">
-								<a class="status" th:href="@{/entradas/concluido/{id}(id=${entrada.id})}">
+								<a class="status" href="#" onclick="confirmarStatus(this)" th:attr="data-url=@{/entradas/concluido/{id}(id=${entrada.id})}">
 									<p>Concluído</p>
 									<img th:src="@{/images/check(24x24).svg}">
 								</a>
 							</span>
 
 							<div class="acoes">
-						        <a class="editar" href="#" onclick="confirmarEdicao(this)"
-								   th:attr="data-url=@{/entradas/editar/{id}(id=${entrada.id})}">
+						        <a class="editar" href="#" onclick="confirmarEdicao(this)" th:attr="data-url=@{/entradas/editar/{id}(id=${entrada.id})}">
 								    <p>Editar</p>
 								    <img th:src="@{/images/edit(24x24).svg}">
 								</a>
-								<a class="excluir" href="#" onclick="confirmarExclusao(this)"
-								   th:attr="data-url=@{/entradas/remover/{id}(id=${entrada.id})}">
+								<a class="excluir" href="#" onclick="confirmarExclusao(this)" th:attr="data-url=@{/entradas/remover/{id}(id=${entrada.id})}">
 								    <p>Excluir</p>
 								    <img th:src="@{/images/delete(24x24).svg}">
 								</a>
 						    </div>
 						    
 						    <span class="dados-moverSaida">
-								<a class="status" th:if="${entrada.concluido}" th:href="@{/entradas/moverParaSaida/{id}(id=${entrada.id})}">
+								<a class="status" th:if="${entrada.concluido}" href="#" onclick="confirmarSaida(this)" th:attr="data-url=@{/entradas/moverParaSaida/{id}(id=${entrada.id})}">
 									<p>Saida</p>
 									<img th:src="@{/images/uncheck(24x24).svg}">
 								</a>

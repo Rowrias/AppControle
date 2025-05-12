@@ -1,0 +1,11 @@
+.busca {
+	padding: 0rem 0.625rem 0.625rem 0.625rem;
+	margin: 0rem 0.625rem 0rem 0.625rem;
+	text-align: center;
+}
+
+
+.busca span a {
+	text-decoration: none;
+	color: var(--color-terciaria);
+}
