@@ -1,6 +1,7 @@
 package br.com.appcontrole.domain.cliente;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -47,14 +48,14 @@ public class ClienteController {
 	
 	// Edita
 	@GetMapping("/editar/{id}")
-    public String editarCliente(@PathVariable Long id, Model model) {
+    public String editarCliente(@PathVariable UUID id, Model model) {
     	Cliente cliente = clienteService.buscaPorId(id);
         model.addAttribute("cliente", cliente);
         return "clientes/editar";
     }
 
 	@PostMapping("/editar/{id}")
-    public String atualizarCliente(@PathVariable Long id, Cliente cliente, RedirectAttributes attr) {
+    public String atualizarCliente(@PathVariable UUID id, Cliente cliente, RedirectAttributes attr) {
         // Verifica se existe outro cliente com o mesmo nome, exceto o cliente atual
         Cliente clienteExistente = clienteService.buscaPorNome(cliente.getNome());
         if (clienteExistente != null && !clienteExistente.getId().equals(id)) {
@@ -70,7 +71,7 @@ public class ClienteController {
     
 	// Remove
     @GetMapping("/remover/{id}")
-    public String removerCliente(@PathVariable Long id, RedirectAttributes attr) {
+    public String removerCliente(@PathVariable UUID id, RedirectAttributes attr) {
     	try {
             clienteService.remove(id);
             attr.addFlashAttribute("mensagem", "Cliente removido com sucesso.");

@@ -43,7 +43,7 @@ public class FuncionarioService implements CRUD<Funcionario, UUID>{
 
 	@Override
 	@Transactional
-	public void remove(Long id) {
+	public void remove(UUID id) {
 		funcionarioRepository.deleteById(id);
 	}
 
@@ -53,7 +53,7 @@ public class FuncionarioService implements CRUD<Funcionario, UUID>{
 	}
 	
 	@Override
-	public Funcionario buscaPorId(Long id) {
+	public Funcionario buscaPorId(UUID id) {
 		return funcionarioRepository.findById(id).orElse(null);
 	}
 	
@@ -66,13 +66,5 @@ public class FuncionarioService implements CRUD<Funcionario, UUID>{
 	    return funcionarioRepository.findByUsername(username);
 	}
 
-	@Transactional
-	public void remove(UUID id) {
-		funcionarioRepository.deleteById(id);
-	}
-
-	public Funcionario buscaPorId(UUID id) {
-		return funcionarioRepository.findById(id).orElse(null);
-	}
-
+	
 }

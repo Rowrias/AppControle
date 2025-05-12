@@ -2,6 +2,7 @@ package br.com.appcontrole.domain.cliente;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +11,7 @@ import br.com.appcontrole.domain.CRUD;
 import br.com.appcontrole.domain.entrada.Entrada;
 
 @Service
-public class ClienteService implements CRUD<Cliente, Long> {
+public class ClienteService implements CRUD<Cliente, UUID> {
 	
 	@Autowired
 	private ClienteRepository clienteRepository;
@@ -30,7 +31,7 @@ public class ClienteService implements CRUD<Cliente, Long> {
     }
 
 	@Override
-	public void remove(Long id) {
+	public void remove(UUID id) {
 		clienteRepository.deleteById(id);
 	}
 
@@ -40,7 +41,7 @@ public class ClienteService implements CRUD<Cliente, Long> {
 	}
 
 	@Override
-	public Cliente buscaPorId(Long id) {
+	public Cliente buscaPorId(UUID id) {
 		return clienteRepository.findById(id).orElse(null);
 	}
 	

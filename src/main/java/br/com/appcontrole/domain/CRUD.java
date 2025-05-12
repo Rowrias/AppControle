@@ -1,6 +1,7 @@
 package br.com.appcontrole.domain;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface CRUD<T, ID> {
 	
@@ -8,10 +9,10 @@ public interface CRUD<T, ID> {
 	
 	T atualiza(T t);
 	
-	void remove(Long id);
+	void remove(UUID id);
 	
 	List<T> buscaTodos();
 	
-	T buscaPorId(Long id);
-	
+	T buscaPorId(UUID id);
+
 }

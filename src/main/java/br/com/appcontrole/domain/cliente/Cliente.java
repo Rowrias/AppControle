@@ -1,9 +1,10 @@
 package br.com.appcontrole.domain.cliente;
 
+import java.util.UUID;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
@@ -14,11 +15,12 @@ import jakarta.validation.constraints.Size;
 @Table(name="cliente")
 public class Cliente {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@GeneratedValue(generator = "UUID")
+	private UUID id;
 	
 	@NotNull
 	@Size(min = 1, max = 50)
+	@Column(unique = true)
 	private String nome;
 	
 	@Column(length = 18)
@@ -37,12 +39,11 @@ public class Cliente {
 	@Column(length = 14)
 	private String telefone;
 	
-	// Getters Setters
-	public Long getId() {
+	//Getters Setters
+	public UUID getId() {
 		return id;
 	}
-
-	public void setId(Long id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 

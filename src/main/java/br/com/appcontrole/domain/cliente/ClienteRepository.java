@@ -3,6 +3,7 @@ package br.com.appcontrole.domain.cliente;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -17,4 +18,10 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     Optional<Cliente> findByNomeIgnoreCase(String nome);
 
 	Collection<Entrada> findByNomeContainingIgnoreCase(String nomeParcial);
+
+	Optional<Cliente> findById(UUID id);
+
+	void deleteById(UUID id);
+
+	boolean existsById(UUID id);
 }

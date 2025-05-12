@@ -38,15 +38,15 @@
 						<form id="form-entrada-adicao" action="/entradas/lista" method="post">
 							<div class="cadastro-nome">
 								<label for="clienteNome">Cliente *</label>
-					        	<input type="text" id="clienteNome" name="cliente.nome" minlength="3" maxlength="30" placeholder="Entre 3 a 50" required>
+					        	<input type="text" id="clienteNome" name="cliente.nome" minlength="3" maxlength="50" placeholder="(Entre 3 a 50 caracteres)" required>
 							</div>
 					        <div class="cadastro-produto">
 								<label for="produto">Produto: *</label>
-					        	<input type="text" id="produto" name="produto.nome" minlength="3" maxlength="30" required>
+					        	<input type="text" id="produto" name="produto.nome" minlength="3" maxlength="50" placeholder="(Entre 3 a 50 caracteres)" required>
 							</div>
 					        <div class="cadastro-quantidade">
 								<label for="quantidade">Quantidade: *</label>
-					        	<input type="number" id="quantidade" name="quantidade" min="0" required>
+					        	<input type="number" id="quantidade" name="quantidade" min="0" placeholder="(Minimo: 0)" required>
 							</div>
 					        <div class="cadastro-dataEntrada">
 								<label for="dataEntrada">Data da entrada: *</label>
