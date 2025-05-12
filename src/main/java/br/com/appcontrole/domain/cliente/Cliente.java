@@ -19,7 +19,7 @@ public class Cliente {
 	private UUID id;
 	
 	@NotNull
-	@Size(min = 1, max = 50)
+	// @Size(min = 3, max = 50)
 	@Column(unique = true)
 	private String nome;
 	
@@ -54,8 +54,6 @@ public class Cliente {
 	public void setNome(String nome) {
 		if (nome != null) {
             this.nome = nome.toLowerCase();
-        } else {
-            this.nome = null;
         }
 	}
 

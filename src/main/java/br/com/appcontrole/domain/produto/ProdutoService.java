@@ -1,7 +1,7 @@
 package br.com.appcontrole.domain.produto;
 
-import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +10,7 @@ import br.com.appcontrole.domain.CRUD;
 import br.com.appcontrole.domain.entrada.Entrada;
 
 @Service
-public class ProdutoService implements CRUD<Produto, Long> {
+public class ProdutoService implements CRUD<Produto, UUID> {
 	
 	@Autowired
 	private ProdutoRepository produtoRepository;
@@ -30,7 +30,7 @@ public class ProdutoService implements CRUD<Produto, Long> {
 	}
 
 	@Override
-	public void remove(Long id) {
+	public void remove(UUID id) {
 		produtoRepository.deleteById(id);
 	}
 
@@ -40,7 +40,7 @@ public class ProdutoService implements CRUD<Produto, Long> {
 	}
 
 	@Override
-	public Produto buscaPorId(Long id) {
+	public Produto buscaPorId(UUID id) {
 		return produtoRepository.findById(id).orElse(null);
 	}
 	

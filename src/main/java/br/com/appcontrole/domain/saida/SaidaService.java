@@ -1,6 +1,7 @@
 package br.com.appcontrole.domain.saida;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Service;
 import br.com.appcontrole.domain.CRUD;
 
 @Service
-public class SaidaService implements CRUD<Saida, Long> {
+public class SaidaService implements CRUD<Saida, UUID> {
 
     @Autowired
     private SaidaRepository saidaRepository;
@@ -29,7 +30,7 @@ public class SaidaService implements CRUD<Saida, Long> {
     }
 
     @Override
-    public void remove(Long id) {
+    public void remove(UUID id) {
         saidaRepository.deleteById(id);
     }
 
@@ -39,7 +40,7 @@ public class SaidaService implements CRUD<Saida, Long> {
     }
 
     @Override
-    public Saida buscaPorId(Long id) {
+    public Saida buscaPorId(UUID id) {
         return saidaRepository.findById(id).orElse(null);
     }
     

@@ -1,6 +1,7 @@
 package br.com.appcontrole.domain.entrada;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -11,7 +12,7 @@ import br.com.appcontrole.domain.funcionario.Funcionario;
 import br.com.appcontrole.domain.funcionario.FuncionarioRepository;
 
 @Service
-public class EntradaService implements CRUD<Entrada, Long> {
+public class EntradaService implements CRUD<Entrada, UUID> {
 	
 	@Autowired
 	private EntradaRepository entradaRepository;
@@ -39,7 +40,7 @@ public class EntradaService implements CRUD<Entrada, Long> {
     }
 
 	@Override
-	public void remove(Long id) {
+	public void remove(UUID id) {
 		entradaRepository.deleteById(id);
 	}
 
@@ -49,7 +50,7 @@ public class EntradaService implements CRUD<Entrada, Long> {
 	}
 
 	@Override
-	public Entrada buscaPorId(Long id) {
+	public Entrada buscaPorId(UUID id) {
         return entradaRepository.findById(id).orElse(null);
 	}
 	

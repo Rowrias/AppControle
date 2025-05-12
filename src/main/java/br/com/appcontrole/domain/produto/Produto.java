@@ -1,11 +1,11 @@
 package br.com.appcontrole.domain.produto;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.DecimalMin;
@@ -18,14 +18,15 @@ import jakarta.validation.constraints.Size;
 public class Produto {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@GeneratedValue(generator = "UUID")
+	private UUID id;
 	
 	@NotBlank
+	// @Size(min = 3, max = 50)
 	@Column(unique = true)
 	private String nome;
 	
-	@Size(max = 255)
+	@Size(max = 100)
 	private String descricao;
 	
 	@Min(0)
@@ -39,10 +40,10 @@ public class Produto {
 	private BigDecimal  valorTotal = BigDecimal.ZERO;
 	
 	// Getters e Setters
-	public Long getId() {
+	public UUID getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 	
@@ -52,8 +53,6 @@ public class Produto {
 	public void setNome(String nome) {
 		if (nome != null) {
             this.nome = nome.toLowerCase();
-        } else {
-            this.nome = null;
         }
 	}
 	

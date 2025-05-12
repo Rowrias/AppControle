@@ -1,5 +1,7 @@
 package br.com.appcontrole.domain.saida;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -44,14 +46,14 @@ public class SaidaController {
     
     // Editar
     @GetMapping("/editar/{id}")
-    public String editarSaida(@PathVariable Long id, Model model) {
+    public String editarSaida(@PathVariable UUID id, Model model) {
         Saida saida = saidaService.buscaPorId(id);
         model.addAttribute("saida", saida);
         return "saidas/editar";
     }
 
     @PostMapping("/editar/{id}")
-    public String atualizarSaida(@PathVariable Long id, Saida saida, RedirectAttributes attr) {
+    public String atualizarSaida(@PathVariable UUID id, Saida saida, RedirectAttributes attr) {
         Saida saidaExistente = saidaService.buscaPorId(id);
 
         if (saidaExistente != null) {
@@ -67,7 +69,7 @@ public class SaidaController {
 
     // Remover
     @GetMapping("/remover/{id}")
-    public String removerSaida(@PathVariable Long id) {
+    public String removerSaida(@PathVariable UUID id) {
         saidaService.remove(id);
         return "redirect:/saidas/lista";
     }

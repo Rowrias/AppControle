@@ -2,32 +2,35 @@ package br.com.appcontrole.domain.saida;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-
+import java.util.UUID;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name="saida")
 public class Saida {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-    private String destino;
-    
-    @NotNull
-    private String  cliente;
+	
+	@Id
+	@GeneratedValue(generator = "UUID")
+	private UUID id;
     
     @NotNull
-	private String  produto;
+    @Size(min = 3, max = 50)
+    private String cliente;
+    
+    @NotNull
+    @Size(min = 3, max = 50)
+	private String produto;
 
     @NotNull
+    @Min(0)
     private Integer quantidade;
     
     @DecimalMin("0.0")
@@ -45,12 +48,14 @@ public class Saida {
 	
     @NotNull
 	private String  funcionario;
+    
+    private String destino;
 
     // Getters e Setters
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

@@ -1,38 +1,40 @@
 package br.com.appcontrole.domain.entrada;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import br.com.appcontrole.domain.cliente.Cliente;
 import br.com.appcontrole.domain.funcionario.Funcionario;
 import br.com.appcontrole.domain.produto.Produto;
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
  
 @Entity
 @Table(name="entrada")
 public class Entrada {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@GeneratedValue(generator = "UUID")
+	private UUID id;
 	
 	@NotNull
+	// @Size(min = 3, max = 50)
 	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 	private Cliente cliente;
 	
+	@NotNull
+	// @Size(min = 3, max = 50)
 	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 	private Produto produto;
 	
 	@NotNull
 	@Min(0)
-	@Column(nullable = false)
 	private Integer quantidade;
 
 	@NotNull
@@ -46,10 +48,10 @@ public class Entrada {
     private boolean concluido;
 
 	// Getters Setters
-	public Long getId() {
+	public UUID getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 

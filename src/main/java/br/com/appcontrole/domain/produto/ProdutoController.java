@@ -1,6 +1,7 @@
 package br.com.appcontrole.domain.produto;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -47,15 +48,15 @@ public class ProdutoController {
 	
 	// Edita
 	@GetMapping("/editar/{id}")
-    public String editarProduto(@PathVariable Long id, Model model) {
+    public String editarProduto(@PathVariable UUID id, Model model) {
 		Produto produto = produtoService.buscaPorId(id);
         model.addAttribute("produto", produto);
         return "produtos/editar";
     }
 
 	@PostMapping("/editar/{id}")
-    public String atualizarProduto(@PathVariable Long id, Produto produto, RedirectAttributes attr) {
-        // Verifica se existe outro produto com o mesmo nome, exceto o cliente atual
+    public String atualizarProduto(@PathVariable UUID id, Produto produto, RedirectAttributes attr) {
+        // Verifica se existe outro produto com o mesmo nome
 		Produto produtoExistente = produtoService.buscaPorNome(produto.getNome());
         if (produtoExistente != null && !produtoExistente.getId().equals(id)) {
             attr.addFlashAttribute("erro", "Já existe um produto com esse nome.");
@@ -70,7 +71,7 @@ public class ProdutoController {
 	
 	// Remove
 	@GetMapping("/remover/{id}")
-    public String removerProduto(@PathVariable Long id, RedirectAttributes attr) {
+    public String removerProduto(@PathVariable UUID id, RedirectAttributes attr) {
     	try {
     		produtoService.remove(id);
             attr.addFlashAttribute("mensagem", "Produto removido com sucesso.");

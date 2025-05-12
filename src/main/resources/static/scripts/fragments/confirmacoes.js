@@ -108,13 +108,13 @@ function confirmarStatus(element) {
     const url = element.getAttribute('data-url');
 
     Swal.fire({
-        title: 'Deseja mover para Concluída?',
-        text: 'Essa ação não poderá ser desfeita!',
-        icon: 'warning',
+        title: 'Deseja alterar o status?',
+        text: 'Essa ação irá alterar o status.',
+        icon: 'question',
         showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#3085d6',
-        confirmButtonText: 'Excluir',
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Confirmar',
         cancelButtonText: 'Cancelar'
     }).then((result) => {
         if (result.isConfirmed) {
@@ -130,12 +130,12 @@ function confirmarSaida(element) {
 
     Swal.fire({
         title: 'Deseja mover para saida?',
-        text: 'Essa ação não poderá ser desfeita!',
-        icon: 'warning',
+		text: 'Essa ação irá mover o produto para saida.',
+        icon: 'question',
         showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#3085d6',
-        confirmButtonText: 'Excluir',
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Confirmar',
         cancelButtonText: 'Cancelar'
     }).then((result) => {
         if (result.isConfirmed) {

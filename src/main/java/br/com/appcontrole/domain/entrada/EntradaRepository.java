@@ -1,11 +1,12 @@
 package br.com.appcontrole.domain.entrada;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-public interface EntradaRepository extends JpaRepository<Entrada, Long> {
+public interface EntradaRepository extends JpaRepository<Entrada, UUID> {
 	
     List<Entrada> findByConcluido(boolean status);
 

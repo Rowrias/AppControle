@@ -22,7 +22,7 @@ public class Funcionario {
 	private UUID id;
 	
 	@NotNull
-	@Size(min = 1, max = 50)
+	@Size(min = 3, max = 50)
 	@Column(unique = true)
 	private String nome;
 	
@@ -38,7 +38,7 @@ public class Funcionario {
 	
 	@Column(length = 14)
 	private String telefone;
-	
+
 	private String username;
 	
     private String password;

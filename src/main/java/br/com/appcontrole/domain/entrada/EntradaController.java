@@ -3,6 +3,7 @@ package br.com.appcontrole.domain.entrada;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -96,7 +97,7 @@ public class EntradaController {
 
     // Edita
     @GetMapping("/editar/{id}")
-    public String editarEntrada(@PathVariable Long id, Model model) {
+    public String editarEntrada(@PathVariable UUID id, Model model) {
         Entrada entrada = entradaService.buscaPorId(id);
         List<Cliente> clientes = clienteService.buscaTodos();
         List<Produto> produtos = produtoService.buscaTodos();
@@ -109,7 +110,7 @@ public class EntradaController {
     }
 
     @PostMapping("/editar/{id}")
-    public String atualizarEntrada(@PathVariable Long id, Entrada entradaAtualizada, RedirectAttributes attr) {
+    public String atualizarEntrada(@PathVariable UUID id, Entrada entradaAtualizada, RedirectAttributes attr) {
         // --- Buscar entrada original ---
         Entrada entradaOriginal = entradaService.buscaPorId(id);
         Produto produtoOriginal = entradaOriginal.getProduto();
@@ -161,7 +162,7 @@ public class EntradaController {
 
     // Remove
     @GetMapping("/remover/{id}")
-    public String removerEntrada(@PathVariable Long id, RedirectAttributes attr) {
+    public String removerEntrada(@PathVariable UUID id, RedirectAttributes attr) {
     	Entrada entrada = entradaService.buscaPorId(id);
         if (entrada != null) {
             Produto produto = entrada.getProduto();
@@ -200,7 +201,7 @@ public class EntradaController {
     
     // Altera para concluído
     @GetMapping("/concluido/{id}")
-    public String alteraStatusConcluido(@PathVariable Long id) {
+    public String alteraStatusConcluido(@PathVariable UUID id) {
         Entrada entrada = entradaService.buscaPorId(id);
         if (entrada != null) {
             entrada.setConcluido(!entrada.isConcluido());
@@ -216,7 +217,7 @@ public class EntradaController {
     
     // Mover para saida
     @GetMapping("/moverParaSaida/{id}")
-    public String moverParaSaida(@PathVariable Long id) {
+    public String moverParaSaida(@PathVariable UUID id) {
         Entrada entrada = entradaService.buscaPorId(id);
         
         if (entrada != null && entrada.isConcluido()) {

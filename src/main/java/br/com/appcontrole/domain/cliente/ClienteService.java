@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.appcontrole.domain.CRUD;
 import br.com.appcontrole.domain.entrada.Entrada;
+import jakarta.transaction.Transactional;
 
 @Service
 public class ClienteService implements CRUD<Cliente, UUID> {
@@ -30,6 +31,7 @@ public class ClienteService implements CRUD<Cliente, UUID> {
         return clienteRepository.save(cliente);
     }
 
+	@Transactional
 	@Override
 	public void remove(UUID id) {
 		clienteRepository.deleteById(id);
