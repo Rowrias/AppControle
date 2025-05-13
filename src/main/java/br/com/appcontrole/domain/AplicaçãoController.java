@@ -10,9 +10,9 @@ public class AplicaçãoController {
         return "index";
     }
 	
-	@GetMapping("/login") 
+	@GetMapping("/login2") 
 	public String login() {
-        return "login";
+        return "login2";
     }
 	
 	@GetMapping("/configuracao")
