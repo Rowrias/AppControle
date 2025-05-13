@@ -37,8 +37,8 @@ public class EntradaController {
     private ClienteService clienteService;
     
     @Autowired
-    private ProdutoService produtoService; 
-
+    private ProdutoService produtoService;
+        
     // Insere
     @PostMapping("/lista")
     public String novaEntrada(@ModelAttribute Entrada entrada) {

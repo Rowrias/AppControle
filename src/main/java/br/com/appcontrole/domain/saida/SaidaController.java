@@ -22,7 +22,7 @@ public class SaidaController {
 
     @Autowired
     private SaidaService saidaService;
-
+    
     // Lista
     @GetMapping("/lista")
     public String listaSaidas(Model model, 
@@ -47,8 +47,10 @@ public class SaidaController {
     // Editar
     @GetMapping("/editar/{id}")
     public String editarSaida(@PathVariable UUID id, Model model) {
-        Saida saida = saidaService.buscaPorId(id);
+    	Saida saida = saidaService.buscaPorId(id);
+    	
         model.addAttribute("saida", saida);
+        
         return "saidas/editar";
     }
 

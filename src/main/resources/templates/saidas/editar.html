@@ -61,9 +61,17 @@
 	                            <input type="number" id="valorUnitario" th:field="*{valorUnitario}" step="1.00" min="0" placeholder="(Minimo: 0,00)">
 	                        </div>
 	                        
+	                        <div class="cadastro-dataEntrada">
+	                            <label for="dataEntrada">Data da entrada *:</label>
+	                            <input type="datetime-local" id="dataEntrada" th:field="*{dataEntrada}"/>
+	                        </div>
+	                        <div class="cadastro-dataConcluido">
+	                            <label for="dataConcluido">Data Concluído *:</label>
+	                            <input type="datetime-local" id="dataConcluido" th:field="*{dataConcluido}"/>
+	                        </div>	                        
 	                        <div class="cadastro-dataSaida">
 	                            <label for="dataSaida">Data Saída *:</label>
-	                            <input type="datetime-local" id="dataSaida" th:field="*{dataSaida}" required/>
+	                            <input type="datetime-local" id="dataSaida" th:field="*{dataSaida}"/>
 	                        </div>
 	                        
 	                        <div class="cadastro-funcionario">

@@ -42,15 +42,14 @@ public class Saida {
     private LocalDateTime dataEntrada;
 	
 	private LocalDateTime dataConcluido;
-	
-	@NotNull
+
 	private LocalDateTime dataSaida;
 	
     @NotNull
 	private String  funcionario;
     
-    private String destino;
-
+	private String destino;
+    
     // Getters e Setters
     public UUID getId() {
         return id;
@@ -138,5 +137,5 @@ public class Saida {
 	public void setDestino(String destino) {
 		this.destino = destino;
 	}
-
+	
 }

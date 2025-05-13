@@ -24,7 +24,7 @@ public class SecurityConfiguration {
         http
 	        .formLogin(formLogin -> formLogin
         		// Especifica a página de login personalizada
-        		.loginPage("/login2")
+        		.loginPage("/login")
         		// Permite acesso à página de login sem autenticação
         		.permitAll()
     		)
@@ -32,9 +32,11 @@ public class SecurityConfiguration {
         		// URL para logout
         		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
         		// Redireciona para a página de login após o logout
-        		.logoutSuccessUrl("/login2")
+        		.logoutSuccessUrl("/login")
     		)
 	        .authorizeHttpRequests(authorizeRequests -> authorizeRequests
+        		// Permitir acesso público aos recursos estáticos
+                .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
         		.requestMatchers(HttpMethod.GET, "/funcionarios/**", "/clientes/**", "/produtos/**", "/saidas/**").hasRole("ADMIN")
         		.requestMatchers(HttpMethod.POST, "/funcionarios/**", "/clientes/**", "/produtos/**", "/saidas/**").hasRole("ADMIN")
         		// Todas as outras requisições devem ser autenticadas
