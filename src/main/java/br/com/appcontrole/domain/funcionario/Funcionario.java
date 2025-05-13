@@ -22,7 +22,7 @@ public class Funcionario {
 	private UUID id;
 	
 	@NotNull
-	@Size(min = 3, max = 50)
+	@Size(min = 3, max = 50, message = "Nome deve ter entre 3 e 50 caracteres")
 	@Column(unique = true)
 	private String nome;
 	
@@ -30,7 +30,7 @@ public class Funcionario {
 	private String cpf;
 	
 	@Column(length = 50)
-	@Email
+	@Email(message = "E-mail inválido")
 	private String email;
 	
 	@Column(length = 15)
@@ -39,8 +39,10 @@ public class Funcionario {
 	@Column(length = 14)
 	private String telefone;
 
+	@Size(min = 4, max = 8)
 	private String username;
 	
+	@Size(min = 4)
     private String password;
     
     @Enumerated(EnumType.STRING)
