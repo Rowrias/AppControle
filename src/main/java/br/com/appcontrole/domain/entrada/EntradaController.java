@@ -38,7 +38,7 @@ public class EntradaController {
     
     @Autowired
     private ProdutoService produtoService;
-        
+    
     // Insere
     @PostMapping("/lista")
     public String novaEntrada(@ModelAttribute Entrada entrada) {
@@ -70,10 +70,6 @@ public class EntradaController {
 
         entrada.setProduto(produtoExistente);
 
-        // --- DATA E FUNCIONÁRIO ---
-        entrada.setDataEntrada(LocalDateTime.now());
-
-        // O Funcionario é atribuído diretamente dentro do Service
         entradaService.insere(entrada);  // Salva a entrada no banco de dados
 
         return "redirect:/entradas/lista";
@@ -101,20 +97,20 @@ public class EntradaController {
         Entrada entrada = entradaService.buscaPorId(id);
         List<Cliente> clientes = clienteService.buscaTodos();
         List<Produto> produtos = produtoService.buscaTodos();
-        
+    	
         model.addAttribute("entrada", entrada);
         model.addAttribute("clientes", clientes);
         model.addAttribute("produtos", produtos);
         
         return "entradas/editar";
     }
-
+    	
     @PostMapping("/editar/{id}")
     public String atualizarEntrada(@PathVariable UUID id, Entrada entradaAtualizada, RedirectAttributes attr) {
         // --- Buscar entrada original ---
         Entrada entradaOriginal = entradaService.buscaPorId(id);
         Produto produtoOriginal = entradaOriginal.getProduto();
-
+        
         // --- CLIENTE ---
         String nomeCliente = entradaAtualizada.getCliente().getNome().trim().toLowerCase();
         Cliente clienteExistente = clienteService.findByNomeIgnoreCase(nomeCliente);
@@ -124,7 +120,7 @@ public class EntradaController {
             clienteExistente = clienteService.insere(novoCliente);
         }
         entradaAtualizada.setCliente(clienteExistente);
-
+        
         // --- PRODUTO ---
         String nomeProduto = entradaAtualizada.getProduto().getNome().trim().toLowerCase();
         Produto produtoExistente = produtoService.findByNomeIgnoreCase(nomeProduto);
@@ -134,24 +130,23 @@ public class EntradaController {
             novoProduto.setQuantidade(0);
             produtoExistente = produtoService.insere(novoProduto);
         }
-
+        
         // --- Atualiza o estoque corretamente ---
         // Remove a quantidade anterior do produto original
         produtoOriginal.setQuantidade(produtoOriginal.getQuantidade() - entradaOriginal.getQuantidade());
         produtoService.insere(produtoOriginal);
-
+        
         // Adiciona a nova quantidade ao produto atualizado
         produtoExistente.setQuantidade(produtoExistente.getQuantidade() + entradaAtualizada.getQuantidade());
         produtoService.insere(produtoExistente);
-
+        
         entradaAtualizada.setProduto(produtoExistente);
-
+        
         // --- Preserva dados da entrada original ---
         entradaAtualizada.setId(id);
-        entradaAtualizada.setDataEntrada(entradaOriginal.getDataEntrada()); // mantém data original
         entradaAtualizada.setFuncionario(entradaOriginal.getFuncionario()); // mantém funcionário
-        entradaAtualizada.setConcluido(entradaOriginal.isConcluido());
-        entradaAtualizada.setDataConcluido(entradaOriginal.getDataConcluido());
+        entradaAtualizada.setConcluido(entradaOriginal.isConcluido()); 		// mantém concluido
+        
 
         // --- Atualiza entrada ---
         entradaService.atualiza(entradaAtualizada);

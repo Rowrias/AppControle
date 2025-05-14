@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/styles.css}">
     <script th:src="@{/scripts/fragments/theme.js}" defer></script>
-    <script th:src="@{/scripts/fragments/confirmacoes.js}"></script>
+    <script th:src="@{/scripts/fragments/confirmacoes.js}" defer></script>
 </head>
 <body>
     <!-- header.css -->
@@ -51,13 +51,20 @@
 	                            <label for="quantidade">Quantidade: *</label>
 	                            <input type="number" id="quantidade" th:field="*{quantidade}" min="0" placeholder="(Minimo: 0)" required>
 	                        </div>
+	                        
 	                        <div class="cadastro-dataEntrada">
 	                            <label for="dataEntrada">Data da entrada: *</label>
-	                            <input type="datetime-local" id="dataEntrada" th:field="*{dataEntrada}" required/>
+	                            <input type="datetime-local" id="dataEntrada" 
+			                           th:value="${#temporals.format(entrada.dataEntrada, 'yyyy-MM-dd''T''HH:mm')}"
+			                           th:field="*{dataEntrada}" required/>
+	                            <span th:text="${#temporals.format(entrada.dataEntrada, 'yyyy-MM-dd''T''HH:mm')}"></span>
 	                        </div>
 	                        <div class="cadastro-dataConcluido">
 	                            <label for="dataConcluido">Data Concluído:</label>
-	                            <input type="datetime-local" id="dataConcluido" th:field="*{dataConcluido}"/>
+	                            <input type="datetime-local" id="dataConcluido" 
+			                           th:value="${#temporals.format(entrada.dataEntrada, 'yyyy-MM-dd''T''HH:mm')}"
+			                           th:field="*{dataConcluido}"/>
+	                           	<span th:text="${entrada.dataConcluido}"></span>
 	                        </div>
 	                        <div>
 								<label></label>
@@ -87,7 +94,7 @@
 							<span class="dados-dataEntrada" th:text="${#temporals.format(entrada.dataEntrada, 'HH:mm - dd/MM/yyyy')}"></span>
 							<span class="dados-dataConcluida" th:text="${#temporals.format(entrada.dataConcluido, 'HH:mm - dd/MM/yyyy')}"></span>
 							
-							<span class="dados-funcionario" th:text="${#strings.capitalize(entrada.funcionario != null ? entrada.funcionario.nome : 'Não informado')}"></span>
+							<span class="dados-funcionario" th:text="${#strings.capitalize(entrada.funcionario.nome)}"></span>
 							
                			</div>
            			</div>

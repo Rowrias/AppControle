@@ -38,9 +38,7 @@
                 		<form id="form-saida-atualizacao" th:action="@{/saidas/editar/{id}(id=${saida.id})}" th:object="${saida}" method="post">
 	                        
 	                        <input type="hidden" th:field="*{id}"/>
-	                        <input type="hidden" th:field="*{dataEntrada}"/>
-	                        <input type="hidden" th:field="*{dataConcluido}"/>
-							
+	                        							
 	                        <div class="cadastro-nome">
 	                            <label for="nome">Cliente *</label>
 	                            <input type="text" id="nome" th:field="*{cliente}" minlength="3" maxlength="50" placeholder="(Entre 3 a 50 caracteres)" required>
@@ -63,20 +61,29 @@
 	                        
 	                        <div class="cadastro-dataEntrada">
 	                            <label for="dataEntrada">Data da entrada *:</label>
-	                            <input type="datetime-local" id="dataEntrada" th:field="*{dataEntrada}"/>
+	                            <input type="datetime-local" id="dataEntrada" 
+	                            	   th:value="${#temporals.format(saida.dataEntrada, 'yyyy-MM-dd''T''HH:mm')}"	
+	                            	   th:field="*{dataEntrada}"/>
+                           	    <span th:text="${saida.dataEntrada}"></span>
 	                        </div>
 	                        <div class="cadastro-dataConcluido">
 	                            <label for="dataConcluido">Data Concluído *:</label>
-	                            <input type="datetime-local" id="dataConcluido" th:field="*{dataConcluido}"/>
+	                            <input type="datetime-local" id="dataConcluido" 
+	                            	   th:value="${#temporals.format(saida.dataConcluido, 'yyyy-MM-dd''T''HH:mm')}"
+	                            	   th:field="*{dataConcluido}"/>
+                           	    <span th:text="${saida.dataConcluido}"></span>
 	                        </div>	                        
 	                        <div class="cadastro-dataSaida">
 	                            <label for="dataSaida">Data Saída *:</label>
-	                            <input type="datetime-local" id="dataSaida" th:field="*{dataSaida}"/>
+	                            <input type="datetime-local" id="dataSaida" 
+	                            	   th:value="${#temporals.format(saida.dataSaida, 'yyyy-MM-dd''T''HH:mm')}"
+	                            	   th:field="*{dataSaida}"/>
+                           	    <span th:text="${saida.dataSaida}"></span>
 	                        </div>
 	                        
 	                        <div class="cadastro-funcionario">
 	                            <label for="funcionario">Funcionário:</label>
-	                            <input type="text" id="funcionario" th:field="*{funcionario}" readonly/>
+	                            <input type="text" id="funcionario" th:field="*{funcionario}"/>
 	                        </div>
 	                        
 	                        <div>
@@ -114,7 +121,7 @@
 							<span class="dados-dataConcluida" th:text="${#temporals.format(saida.dataConcluido, 'HH:mm - dd/MM/yyyy')}"></span>
 							<span class="dados-dataSaida" th:text="${#temporals.format(saida.dataSaida, 'HH:mm - dd/MM/yyyy')}"></span>
 							
-						    <span class="dados-funcionario" th:text="${#strings.capitalize(saida.funcionario != null ? saida.funcionario : 'Não informado')}"></span>
+						    <span class="dados-funcionario" th:text="${#strings.capitalize(saida.funcionario)}"></span>
 
 						</div>
 						
