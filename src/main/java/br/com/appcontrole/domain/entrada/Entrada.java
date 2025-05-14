@@ -3,6 +3,8 @@ package br.com.appcontrole.domain.entrada;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import br.com.appcontrole.domain.cliente.Cliente;
 import br.com.appcontrole.domain.funcionario.Funcionario;
 import br.com.appcontrole.domain.produto.Produto;
@@ -37,8 +39,10 @@ public class Entrada {
 	private Integer quantidade;
 
 	@NotNull
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime dataEntrada;
 	
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
 	private LocalDateTime dataConcluido;
 
 	@ManyToOne

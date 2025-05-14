@@ -2,6 +2,7 @@ package br.com.appcontrole.domain.entrada;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.UUID;
 
@@ -201,7 +202,7 @@ public class EntradaController {
         if (entrada != null) {
             entrada.setConcluido(!entrada.isConcluido());
             if (entrada.isConcluido()) {
-                entrada.setDataConcluido(LocalDateTime.now());
+                entrada.setDataConcluido(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
             } else {
                 entrada.setDataConcluido(null);
             }
@@ -234,7 +235,7 @@ public class EntradaController {
             
             saida.setDataEntrada(entrada.getDataEntrada());
             saida.setDataConcluido(entrada.getDataConcluido());
-            saida.setDataSaida(LocalDateTime.now());
+            saida.setDataSaida(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
             saida.setFuncionario(entrada.getFuncionario().getNome());
 
             if (produto != null) {
