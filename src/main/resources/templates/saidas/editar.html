@@ -66,19 +66,19 @@
 	                        </div>
 	                        
 	                        <div class="cadastro-dataEntrada">
-	                            <label for="dataEntrada">Data da entrada *:</label>
+	                            <label for="dataEntrada">Data da entrada: *</label>
 	                            <input type="datetime-local" id="dataEntrada" 
 	                            	   th:value="${#temporals.format(saida.dataEntrada, 'yyyy-MM-dd''T''HH:mm')}"	
 	                            	   th:field="*{dataEntrada}" required/>
 	                        </div>
 	                        <div class="cadastro-dataConcluido">
-	                            <label for="dataConcluido">Data Concluído *:</label>
+	                            <label for="dataConcluido">Data Concluído: *</label>
 	                            <input type="datetime-local" id="dataConcluido" 
 	                            	   th:value="${#temporals.format(saida.dataConcluido, 'yyyy-MM-dd''T''HH:mm')}"
 	                            	   th:field="*{dataConcluido}" required/>
 	                        </div>	                        
 	                        <div class="cadastro-dataSaida">
-	                            <label for="dataSaida">Data Saída *:</label>
+	                            <label for="dataSaida">Data Saída: *</label>
 	                            <input type="datetime-local" id="dataSaida" 
 	                            	   th:value="${#temporals.format(saida.dataSaida, 'yyyy-MM-dd''T''HH:mm')}"
 	                            	   th:field="*{dataSaida}" required/>
