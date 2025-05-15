@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import br.com.appcontrole.domain.CRUD;
@@ -47,9 +48,9 @@ public class ClienteService implements CRUD<Cliente, UUID> {
 		return clienteRepository.findById(id).orElse(null);
 	}
 	
-	//
-	public List<Cliente> buscaTodosOrdenadoPorNome() {
-        return clienteRepository.findAllByOrderByNomeAsc();
+	// ----------------
+	public List<Cliente> buscaTodosOrdenado(Sort sort) {
+        return clienteRepository.findAll(sort);
     }
 	
 	public Cliente buscaPorNome(String nome) {

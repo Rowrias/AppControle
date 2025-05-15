@@ -4,8 +4,6 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,21 +24,25 @@ public class SaidaController {
     // Lista
     @GetMapping("/lista")
     public String listaSaidas(Model model, 
-			    		@RequestParam(name = "page", defaultValue = "0") int page,
-			    	    @RequestParam(name = "size", defaultValue = "5") int size,
-			    	    @RequestParam(name = "busca", required = false) String busca) {
+    		@RequestParam(name = "page", defaultValue = "0") int page,
+            @RequestParam(name = "size", defaultValue = "5") int size,
+            @RequestParam(name = "busca", required = false) String busca,
+            @RequestParam(name = "sortBy", defaultValue = "dataSaida") String sortBy,
+            @RequestParam(name = "sortDirection", defaultValue = "desc") String sortDirection) {
         
-    	Pageable pageable = PageRequest.of(page, size);
         Page<Saida> paginaSaidas;
     	
-    	if (busca != null && !busca.isBlank()) {
-            paginaSaidas = saidaService.buscarPorDestino(busca, pageable);
+        if (busca != null && !busca.isBlank()) {
+            paginaSaidas = saidaService.buscarPorDestino(busca, page, size, sortBy, sortDirection);
         } else {
-            paginaSaidas = saidaService.listarPaginado(pageable);
+            paginaSaidas = saidaService.listarPaginado(page, size, sortBy, sortDirection);
         }
     	
-    	model.addAttribute("paginaSaidas", paginaSaidas);
-        model.addAttribute("busca", busca); // mantém o valor da busca no campo de texto
+        model.addAttribute("paginaSaidas", paginaSaidas);
+        model.addAttribute("busca", busca);
+        model.addAttribute("sortBy", sortBy);
+        model.addAttribute("sortDirection", sortDirection);
+        
         return "saidas/lista";
     }
     

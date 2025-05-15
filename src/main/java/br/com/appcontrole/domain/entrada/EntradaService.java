@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -55,8 +56,14 @@ public class EntradaService implements CRUD<Entrada, UUID> {
 	}
 	
 	//
-	public List<Entrada> buscaPorStatus(boolean status) {
-        return entradaRepository.findByConcluido(status);
+	public List<Entrada> buscaPorStatusOrdenado(boolean concluido, 
+												String sortBy, 
+												String sortDirection) {
+        Sort sort = Sort.by(sortBy);
+        if (sortDirection.equalsIgnoreCase("desc")) {
+            sort = sort.descending();
+        }
+        return entradaRepository.findByConcluido(concluido, sort);
     }
 
 	public List<Entrada> getPendentesDataHoraDesc() {

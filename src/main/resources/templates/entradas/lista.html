@@ -67,10 +67,25 @@
 					<div>
 						<h2>Entradas de Peças</h2>
 						<div class="titulo">
-							<span class="titulo-nome">Cliente</span>
-							<span class="titulo-produto">Produto</span>
+							<span class="titulo-nome">
+				                <a th:href="@{/entradas/lista(sortBy='cliente.nome', sortDirection=${sortDirection == 'asc' and sortBy == 'cliente.nome' ? 'desc' : 'asc'})}">
+				                    Cliente
+				                    <span th:if="${sortBy == 'cliente.nome'}" th:text="${sortDirection == 'asc' ? '▲' : '▼'}"></span>
+				                </a>
+				            </span>
+							<span class="titulo-produto">
+				                <a th:href="@{/entradas/lista(sortBy='produto.nome', sortDirection=${sortDirection == 'asc' and sortBy == 'produto.nome' ? 'desc' : 'asc'})}">
+				                    Produto
+				                    <span th:if="${sortBy == 'produto.nome'}" th:text="${sortDirection == 'asc' ? '▲' : '▼'}"></span>
+				                </a>
+				            </span>
 							<span class="titulo-quantidade">Quantidade</span>
-							<span class="titulo-dataEntrada">Data Entrada</span>
+							<span class="titulo-dataEntrada">
+				                <a th:href="@{/entradas/lista(sortBy='dataEntrada', sortDirection=${sortDirection == 'asc' and sortBy == 'dataEntrada' ? 'desc' : 'asc'})}">
+				                    Data Entrada
+				                    <span th:if="${sortBy == 'dataEntrada'}" th:text="${sortDirection == 'asc' ? '▲' : '▼'}"></span>
+				                </a>
+				            </span>
 							<span class="titulo-funcionario">Funcionário</span>
 							<span class="titulo-status">Status</span>
 							<span class="titulo-acoes">Ações</span>
@@ -108,10 +123,25 @@
 					<div>
 						<h2>Peças Concluídas</h2>
 						<div class="titulo">
-							<span class="titulo-nome">Cliente</span>
-							<span class="titulo-produto">Produto</span>
+							<span class="titulo-nome">
+				                <a th:href="@{/entradas/lista(sortBy='cliente.nome', sortDirection=${sortDirection == 'asc' and sortBy == 'cliente.nome' ? 'desc' : 'asc'})}">
+				                    Cliente
+				                    <span th:if="${sortBy == 'cliente.nome'}" th:text="${sortDirection == 'asc' ? '▲' : '▼'}"></span>
+				                </a>
+				            </span>
+				            <span class="titulo-produto">
+				                <a th:href="@{/entradas/lista(sortBy='produto.nome', sortDirection=${sortDirection == 'asc' and sortBy == 'produto.nome' ? 'desc' : 'asc'})}">
+				                    Produto
+				                    <span th:if="${sortBy == 'produto.nome'}" th:text="${sortDirection == 'asc' ? '▲' : '▼'}"></span>
+				                </a>
+				            </span>
 							<span class="titulo-quantidade">Quantidade</span>
-							<span class="titulo-dataConcluida">Data Concluído</span>
+							<span class="titulo-dataConcluida">
+				                <a th:href="@{/entradas/lista(sortBy='dataConcluido', sortDirection=${sortDirection == 'asc' and sortBy == 'dataConcluido' ? 'desc' : 'asc'})}">
+				                    Data Concluído
+				                    <span th:if="${sortBy == 'dataConcluido'}" th:text="${sortDirection == 'asc' ? '▲' : '▼'}"></span>
+				                </a>
+				            </span>
 							<span class="titulo-funcionario">Funcionário</span>
 							<span class="titulo-status">Status</span>
 							<span class="titulo-acoes">Ações</span>

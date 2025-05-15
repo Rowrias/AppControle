@@ -3,24 +3,19 @@ package br.com.appcontrole.domain.entrada;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 public interface EntradaRepository extends JpaRepository<Entrada, UUID> {
 	
-    List<Entrada> findByConcluido(boolean status);
-
-    // Método para encontrar todas as entradas PENDENTES ordenadas pelo ID em ordem decrescente
-    @Query("SELECT e FROM Entrada e WHERE e.concluido = false ORDER BY e.id DESC")
-    List<Entrada> findPendentesOrderByIdDesc();
-
-    // Método para encontrar todas as entradas CONCLUIDAS ordenadas pelo ID em ordem decrescente
-    @Query("SELECT e FROM Entrada e WHERE e.concluido = true ORDER BY e.id DESC")
-    List<Entrada> findConcluidasOrderByIdDesc();
-
-    // Método para encontrar todas as entradas PENDENTES ordenadas pela DATA em ordem decrescente
+    List<Entrada> findByConcluido(boolean status, Sort sort);
+    
+    // Pendente DataEntrada
+    List<Entrada> findByConcluidoFalseOrderByDataEntradaAsc();
     List<Entrada> findByConcluidoFalseOrderByDataEntradaDesc();
     
-	// Método para encontrar todas as entradas CONCLUIDAS ordenadas pelo DATA em ordem decrescente
+    // Concluido DataConcluido
+    List<Entrada> findByConcluidoTrueOrderByDataConcluidoAsc();
 	List<Entrada> findByConcluidoTrueOrderByDataConcluidoDesc();
+    
 }

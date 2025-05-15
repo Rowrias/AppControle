@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -78,16 +79,25 @@ public class EntradaController {
 
     // Lista
     @GetMapping("/lista")
-    public String listaEntradas(Model model) {
-        List<Entrada> pendentes = entradaService.buscaPorStatus(false);
-        List<Entrada> concluidas = entradaService.buscaPorStatus(true);
-        // Exibe os dados separando em listas diferentes (pendentes e concluídas)
+    public String listaEntradas(Model model,
+					@RequestParam(name = "sortBy", required = false) String sortBy,
+					@RequestParam(name = "sortDirection", defaultValue = "asc") String sortDirection) {
+        
+    	List<Entrada> pendentes;
+        List<Entrada> concluidas;
+        
+        if (sortBy != null && !sortBy.isEmpty()) {
+            pendentes = entradaService.buscaPorStatusOrdenado(false, sortBy, sortDirection);
+            concluidas = entradaService.buscaPorStatusOrdenado(true, sortBy, sortDirection);
+        } else {
+            pendentes = entradaService.getPendentesDataHoraDesc();
+            concluidas = entradaService.getConcluidasDataHoraDesc();
+        }
+
         model.addAttribute("pendentes", pendentes);
         model.addAttribute("concluidas", concluidas);
-
-        // Exibe os dados pelo ordem inversa do Id
-        model.addAttribute("pendentes", entradaService.getPendentesDataHoraDesc());
-        model.addAttribute("concluidas", entradaService.getConcluidasDataHoraDesc());
+        model.addAttribute("sortBy", sortBy);
+        model.addAttribute("sortDirection", sortDirection);
 
         return "entradas/lista";
     }

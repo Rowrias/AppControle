@@ -71,11 +71,31 @@
 					<div>
 						<h2>Lista de produtos</h2>
 						<div class="titulo">
-							<span class="titulo-nome">Nome</span>
+							<span class="titulo-nome">
+                                <a th:href="@{/produtos/lista(sortBy='nome', sortDirection=${sortBy == 'nome' and sortDirection == 'asc' ? 'desc' : 'asc'})}">
+                                    Nome
+                                    <span th:if="${sortBy == 'nome'}" th:text="${sortDirection == 'asc' ? '▲' : '▼'}"></span>
+                                </a>
+                            </span>
 							<span class="titulo-descricao">Descrição</span>
-							<span class="titulo-quantidade">Quantidade</span>
-							<span class="titulo-valorUnitario">Valor Unitário (R$)</span>
-							<span class="titulo-valorTotal">Valor Total (R$)</span>
+							<span class="titulo-quantidade">
+                                <a th:href="@{/produtos/lista(sortBy='quantidade', sortDirection=${sortBy == 'quantidade' and sortDirection == 'asc' ? 'desc' : 'asc'})}">
+                                    Quantidade
+                                    <span th:if="${sortBy == 'quantidade'}" th:text="${sortDirection == 'asc' ? '▲' : '▼'}"></span>
+                                </a>
+                            </span>
+							<span class="titulo-valorUnitario">
+                                <a th:href="@{/produtos/lista(sortBy='valorUnitario', sortDirection=${sortBy == 'valorUnitario' and sortDirection == 'asc' ? 'desc' : 'asc'})}">
+                                    Valor Unitário (R$)
+                                    <span th:if="${sortBy == 'valorUnitario'}" th:text="${sortDirection == 'asc' ? '▲' : '▼'}"></span>
+                                </a>
+                            </span>
+							<span class="titulo-valorTotal">
+                                <a th:href="@{/produtos/lista(sortBy='valorTotal', sortDirection=${sortBy == 'valorTotal' and sortDirection == 'asc' ? 'desc' : 'asc'})}">
+                                    Valor Total (R$)
+                                    <span th:if="${sortBy == 'valorTotal'}" th:text="${sortDirection == 'asc' ? '▲' : '▼'}"></span>
+                                </a>
+                            </span>
 							<span class="titulo-acoes">Ações</span>
 						</div>
 						

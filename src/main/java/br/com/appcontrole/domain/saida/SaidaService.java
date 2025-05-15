@@ -5,7 +5,9 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import br.com.appcontrole.domain.CRUD;
@@ -44,15 +46,26 @@ public class SaidaService implements CRUD<Saida, UUID> {
         return saidaRepository.findById(id).orElse(null);
     }
     
+    // ---------
     public List<Saida> getDataSaidaDesc() {
         return saidaRepository.findAllByOrderByDataSaidaDesc();
     }
 
-	public Page<Saida> listarPaginado(Pageable pageable) {
-		return saidaRepository.findAll(pageable);
-	}
+    public Page<Saida> listarPaginado(int page, int size, String sortBy, String sortDirection) {
+        Sort sort = Sort.by(sortBy);
+        if (sortDirection.equalsIgnoreCase("desc")) {
+            sort = sort.descending();
+        }
+        Pageable pageable = PageRequest.of(page, size, sort);
+        return saidaRepository.findAll(pageable);
+    }
 
-	public Page<Saida> buscarPorDestino(String destino, Pageable pageable) {
-		return saidaRepository.findByDestinoContainingIgnoreCase(destino, pageable);
-	}
+    public Page<Saida> buscarPorDestino(String destino, int page, int size, String sortBy, String sortDirection) {
+        Sort sort = Sort.by(sortBy);
+        if (sortDirection.equalsIgnoreCase("desc")) {
+            sort = sort.descending();
+        }
+        Pageable pageable = PageRequest.of(page, size, sort);
+        return saidaRepository.findByDestinoContainingIgnoreCase(destino, pageable);
+    }
 }

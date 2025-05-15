@@ -39,7 +39,7 @@ public class Funcionario {
 	@Column(length = 14)
 	private String telefone;
 
-	@Size(min = 4, max = 8)
+	@Size(min = 4, max = 14)
 	private String username;
 	
 	@Size(min = 4)

@@ -76,7 +76,12 @@
 					<div>
 						<h2>Lista de clientes</h2>
 						<div class="titulo">
-							<span class="titulo-nome">Nome</span>
+							<span class="titulo-nome">
+                                <a th:href="@{/clientes/lista(sortBy='nome', sortDirection=${sortBy == 'nome' and sortDirection == 'asc' ? 'desc' : 'asc'})}">
+                                    Nome
+                                    <span th:if="${sortBy == 'nome'}" th:text="${sortDirection == 'asc' ? '▲' : '▼'}"></span>
+                                </a>
+                            </span>
 							<span class="titulo-cnpj">CNPJ</span>
 							<span class="titulo-cpf">CPF</span>
 							<span class="titulo-email">E-mail</span>
