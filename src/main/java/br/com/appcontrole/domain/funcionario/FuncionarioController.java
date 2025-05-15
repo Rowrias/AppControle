@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/funcionarios")
@@ -28,13 +30,22 @@ public class FuncionarioController {
         return "redirect:/funcionarios/lista";
     }
 	
-	// Lista
-	@GetMapping("/lista")
-    public String listaFuncionario(Model model) {
-        List<Funcionario> funcionario = funcionarioService.buscaTodosOrdenadoPorNome();
-        model.addAttribute("funcionarios", funcionario);
-        model.addAttribute("roles", Role.values());
+	// Lista com ordenação
+    @GetMapping("/lista")
+    public String listaFuncionario(Model model,
+                       @RequestParam(name = "sortBy", required = false, defaultValue = "nome") String sortBy,
+                       @RequestParam(name = "sortDirection", required = false, defaultValue = "asc") String sortDirection) {
 
+        Sort sort = Sort.by(sortBy);
+        if (sortDirection.equalsIgnoreCase("desc")) {
+            sort = sort.descending();
+        }
+
+        List<Funcionario> funcionarios = funcionarioService.buscaTodosOrdenado(sort);
+        model.addAttribute("funcionarios", funcionarios);
+        model.addAttribute("roles", Role.values());
+        model.addAttribute("sortBy", sortBy);
+        model.addAttribute("sortDirection", sortDirection);
         return "funcionarios/lista";
     }
 	

@@ -26,20 +26,25 @@ public class SaidaController {
     public String listaSaidas(Model model, 
     		@RequestParam(name = "page", defaultValue = "0") int page,
             @RequestParam(name = "size", defaultValue = "5") int size,
-            @RequestParam(name = "busca", required = false) String busca,
+            @RequestParam(name = "buscaCliente", required = false) String buscaCliente,
+            @RequestParam(name = "buscaProduto", required = false) String buscaProduto,
             @RequestParam(name = "sortBy", defaultValue = "dataSaida") String sortBy,
             @RequestParam(name = "sortDirection", defaultValue = "desc") String sortDirection) {
         
         Page<Saida> paginaSaidas;
     	
-        if (busca != null && !busca.isBlank()) {
-            paginaSaidas = saidaService.buscarPorDestino(busca, page, size, sortBy, sortDirection);
+        if (buscaCliente != null && !buscaCliente.isBlank()) {
+            paginaSaidas = saidaService.buscarPorCliente(buscaCliente, page, size, sortBy, sortDirection);
+            model.addAttribute("busca", null); // Manter o termo na tela
+        } else if (buscaProduto != null && !buscaProduto.isBlank()) {
+            paginaSaidas = saidaService.buscarPorProduto(buscaProduto, page, size, sortBy, sortDirection);
+            model.addAttribute("busca", null); // Manter o termo na tela (você pode usar outro atributo se preferir)
         } else {
             paginaSaidas = saidaService.listarPaginado(page, size, sortBy, sortDirection);
+            model.addAttribute("busca", null); // Limpar o termo
         }
     	
         model.addAttribute("paginaSaidas", paginaSaidas);
-        model.addAttribute("busca", busca);
         model.addAttribute("sortBy", sortBy);
         model.addAttribute("sortDirection", sortDirection);
         

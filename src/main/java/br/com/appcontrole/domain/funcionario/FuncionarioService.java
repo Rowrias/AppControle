@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -57,9 +58,9 @@ public class FuncionarioService implements CRUD<Funcionario, UUID>{
 		return funcionarioRepository.findById(id).orElse(null);
 	}
 	
-	//
-	public List<Funcionario> buscaTodosOrdenadoPorNome() {
-        return funcionarioRepository.findAllByOrderByNomeAsc();
+	// -----------
+	public List<Funcionario> buscaTodosOrdenado(Sort sort) {
+        return funcionarioRepository.findAll(sort);
     }
 
 	public Funcionario buscaPorUsuario(String username) {

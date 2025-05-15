@@ -60,12 +60,21 @@ public class SaidaService implements CRUD<Saida, UUID> {
         return saidaRepository.findAll(pageable);
     }
 
-    public Page<Saida> buscarPorDestino(String destino, int page, int size, String sortBy, String sortDirection) {
+    public Page<Saida> buscarPorCliente(String cliente, int page, int size, String sortBy, String sortDirection) {
         Sort sort = Sort.by(sortBy);
         if (sortDirection.equalsIgnoreCase("desc")) {
             sort = sort.descending();
         }
         Pageable pageable = PageRequest.of(page, size, sort);
-        return saidaRepository.findByDestinoContainingIgnoreCase(destino, pageable);
+        return saidaRepository.findByClienteContainingIgnoreCase(cliente, pageable);
+    }
+    
+    public Page<Saida> buscarPorProduto(String produto, int page, int size, String sortBy, String sortDirection) {
+        Sort sort = Sort.by(sortBy);
+        if (sortDirection.equalsIgnoreCase("desc")) {
+            sort = sort.descending();
+        }
+        Pageable pageable = PageRequest.of(page, size, sort);
+        return saidaRepository.findByProdutoContainingIgnoreCase(produto, pageable);
     }
 }

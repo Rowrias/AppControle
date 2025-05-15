@@ -37,10 +37,16 @@
 						
 						<!-- Busca -->
 						<form class="busca" th:action="@{/saidas/lista}" method="get">
-                            <input type="text" name="busca" th:value="${busca}" placeholder="Buscar por cliente..." />
-                            <input type="hidden" name="page" value="0">
-                            <button type="submit">Buscar</button>
-                        </form>
+						    <input type="text" name="buscaCliente" th:value="${busca}" placeholder="Buscar por cliente..." />
+						    <input type="hidden" name="page" value="0">
+						    <button type="submit">Buscar</button>
+						</form>
+                        
+                        <form class="busca" th:action="@{/saidas/lista}" method="get">
+						    <input type="text" name="buscaProduto" th:value="${buscaProduto}" placeholder="Buscar por produto..." />
+						    <input type="hidden" name="page" value="0">
+						    <button type="submit">Buscar</button>
+						</form>
 						
 						<!-- titulo -->
 						<div class="titulo">

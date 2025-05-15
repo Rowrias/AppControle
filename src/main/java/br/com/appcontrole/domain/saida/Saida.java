@@ -53,8 +53,6 @@ public class Saida {
     @NotNull
 	private String  funcionario;
     
-	private String destino;
-    
     // Getters e Setters
     public UUID getId() {
         return id;
@@ -136,11 +134,5 @@ public class Saida {
     public void setFuncionario(String funcionario) {
         this.funcionario = funcionario;
     }
-	public String getDestino() {
-		return destino;
-	}
-	public void setDestino(String destino) {
-		this.destino = destino;
-	}
 	
 }

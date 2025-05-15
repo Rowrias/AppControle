@@ -8,10 +8,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface SaidaRepository extends JpaRepository<Saida, UUID> {
-	
-	// Filtro e paginação
-    Page<Saida> findByDestinoContainingIgnoreCase(String destino, Pageable pageable);
-	
+
 	// Data Saida Descendente
-    List<Saida> findAllByOrderByDataSaidaDesc();
+	List<Saida> findAllByOrderByDataSaidaDesc();
+	
+	// Filtro e paginação cliente
+    Page<Saida> findByClienteContainingIgnoreCase(String cliente, Pageable pageable);
+
+    // Filtro e paginação produto
+	Page<Saida> findByProdutoContainingIgnoreCase(String produto, Pageable pageable);
+	
 }
