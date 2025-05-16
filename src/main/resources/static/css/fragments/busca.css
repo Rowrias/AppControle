@@ -1,11 +1,34 @@
+
 .busca {
-	padding: 0rem 0.625rem 0.625rem 0.625rem;
-	margin: 0rem 0.625rem 0rem 0.625rem;
+	display: inline-block;
+	padding: 0rem 0rem 0.625rem 0.625rem;
+	margin: 0rem 0rem 0rem 0.625rem;
 	text-align: center;
 }
 
-
-.busca span a {
-	text-decoration: none;
+.busca input {
+	width: auto;
+	text-align: center;
+	font-size: 0.625rem;						/* 10px */
 	color: var(--color-terciaria);
+	background: var(--color-primaria);
+	border-radius: 0.3125rem;
+	border: 1px solid var(--color-primaria);
+	height: 1.125rem;							/* 18px */
+}
+
+.busca button {
+	width: auto;
+	text-align: center;
+	font-size: 0.625rem;						/* 10px */
+	color: var(--color-terciaria);
+	background: var(--color-primaria);
+	text-decoration: none;
+	border: 1px solid var(--color-primaria);
+	border-radius: 0.3125rem;
+	padding: 5px;
+}
+
+.busca button:hover {							/* 20px */
+	cursor: pointer;
 }

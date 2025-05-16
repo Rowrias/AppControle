@@ -36,18 +36,20 @@
 						<h2>Histórico de Saídas</h2>
 						
 						<!-- Busca -->
-						<form class="busca" th:action="@{/saidas/lista}" method="get">
-						    <input type="text" name="buscaCliente" th:value="${busca}" placeholder="Buscar por cliente..." />
-						    <input type="hidden" name="page" value="0">
-						    <button type="submit">Buscar</button>
-						</form>
+						<div class="busca-container">
+							<form class="busca" th:action="@{/saidas/lista}" method="get">
+							    <input type="text" name="buscaCliente" th:value="${busca}" placeholder="Buscar por cliente..." />
+							    <input type="hidden" name="page" value="0">
+							    <button type="submit">Buscar</button>
+							</form>
                         
-                        <form class="busca" th:action="@{/saidas/lista}" method="get">
-						    <input type="text" name="buscaProduto" th:value="${buscaProduto}" placeholder="Buscar por produto..." />
-						    <input type="hidden" name="page" value="0">
-						    <button type="submit">Buscar</button>
-						</form>
-						
+	                        <form class="busca" th:action="@{/saidas/lista}" method="get">
+							    <input type="text" name="buscaProduto" th:value="${buscaProduto}" placeholder="Buscar por produto..." />
+							    <input type="hidden" name="page" value="0">
+							    <button type="submit">Buscar</button>
+							</form>
+						</div>
+
 						<!-- titulo -->
 						<div class="titulo">
 							<span class="titulo-nome">

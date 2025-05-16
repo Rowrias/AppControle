@@ -54,7 +54,6 @@ main .lista .linha-dados {
     padding: 0rem 0.625rem 0rem 0.625rem;		/* 0px 10px 0px 10px */
     margin: 0.2rem 0.625rem 0rem 0.625rem;	/* 5px 10px 0px 10px */
     font-size: 0.625rem;						/* 10px */
-    
 }
 
 main .lista .linha-dados span, .acoes {
