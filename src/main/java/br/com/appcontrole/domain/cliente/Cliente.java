@@ -17,7 +17,7 @@ public class Cliente {
 	@Id
 	@GeneratedValue(generator = "UUID")
 	private UUID id;
-	
+	 
 	@NotNull
 	// @Size(min = 3, max = 50)
 	@Column(unique = true)
