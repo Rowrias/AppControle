@@ -42,7 +42,7 @@ main .cadastro div form div {
     height: auto;
     position: relative;
     text-align: center;
-    /* width: 100px; */
+    justify-content: center;
 }
 
 main .cadastro div form div label {
@@ -76,6 +76,8 @@ main .cadastro div form div select {
     justify-content: center;
     margin: 0rem 0.375rem 0.625rem 0.375rem;	/* 0px 6px 10px 6px */
     text-align: center;
+    border-radius: 0.3125rem;
+	border: 1px solid var(--color-primaria);
 
 }
 
@@ -197,10 +199,16 @@ main .cadastro div form .cadastro-dataSaida {
 	    gap: 0rem;								/* 0px */
 	}
 	
+	main .cadastro div form .cadastro-nome {
+	    width: 10rem;							
+	}
+	
+	main .cadastro div form .cadastro-produto {
+	    width: 10rem;							
+	}
+	
 	main .cadastro div form .cadastro-email {
 	    width: 5.5rem;							
 	}
-	
-	
 	
 }

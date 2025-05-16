@@ -7,9 +7,9 @@ button.adicionar {
 	padding: 0.3125rem 0.3125rem;						/* 5px 5px */
 	text-decoration: none;
 	width: 5.75rem;										/* 92px */
-	height: 1.625rem;									/* 26px */
+	height: 2.rem;									/* 26px */
 	font-size: 0.625rem;								/* 10px */
-    /* margin: 0rem 0.3125rem 0.625rem 0.3125rem;*/			/* 0px 5px 10px 5px */
+    margin: 0.3125rem 0.3125rem 0.3125rem 0.3125rem;
 }
 
 button.adicionar:hover {			/* 20px */
