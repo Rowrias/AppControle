@@ -8,7 +8,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import br.com.appcontrole.domain.CRUD;
-import br.com.appcontrole.domain.entrada.Entrada;
 
 @Service
 public class ProdutoService implements CRUD<Produto, UUID> {
@@ -63,8 +62,8 @@ public class ProdutoService implements CRUD<Produto, UUID> {
 		        });
 	}
 
-	public List<Entrada> buscaPorNomeParcial(String nomeParcial) {
-		return produtoRepository.findByNomeContainingIgnoreCase(nomeParcial);
-	}
+	public List<Produto> findByNomeContainingIgnoreCase(String nomeParcial) {
+        return produtoRepository.findByNomeContainingIgnoreCase(nomeParcial);
+    }
 	
 }

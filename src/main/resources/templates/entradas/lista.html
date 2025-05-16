@@ -10,6 +10,30 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}">
     <script th:src="@{/scripts/fragments/theme.js}" defer></script>
     <script th:src="@{/scripts/fragments/confirmacoes.js}" defer></script>
+    
+    <style>
+	    .suggestions {
+	        list-style-type: none;
+	        padding: 0;
+	        margin: 0;
+	        border: 1px solid #ccc;
+	        position: absolute;
+	        background-color: white;
+	        color: #1e1e1e;
+	        width: inherit;
+	        z-index: 10; /* Para garantir que fique acima de outros elementos */
+	    }
+	
+	    .suggestions li {
+	        padding: 8px;
+	        cursor: pointer;
+	    }
+	
+	    .suggestions li:hover {
+	        background-color: #f0f0f0;
+	    }
+	</style>
+    
 </head>
 <body>
 	<!-- header.css -->
@@ -37,12 +61,14 @@
                 	<div>
 						<form id="form-entrada-adicao" action="/entradas/lista" method="post">
 							<div class="cadastro-nome">
-								<label for="clienteNome">Cliente *</label>
-					        	<input type="text" id="clienteNome" name="cliente.nome" minlength="3" maxlength="50" placeholder="(Entre 3 a 50 caracteres)" required>
+								<label for="cliente">Cliente *</label>
+					        	<input type="text" id="cliente" name="cliente.nome" minlength="3" maxlength="50" placeholder="(Entre 3 a 50 caracteres)" required>
+					        	<ul id="cliente-suggestions" class="suggestions"></ul>
 							</div>
 					        <div class="cadastro-produto">
 								<label for="produto">Produto: *</label>
 					        	<input type="text" id="produto" name="produto.nome" minlength="3" maxlength="50" placeholder="(Entre 3 a 50 caracteres)" required>
+					        	<ul id="produto-suggestions" class="suggestions"></ul>
 							</div>
 					        <div class="cadastro-quantidade">
 								<label for="quantidade">Quantidade: *</label>
@@ -187,6 +213,60 @@
 			</main>
         </div>
     </section>
+    
+    <script>
+	    document.addEventListener('DOMContentLoaded', function() {
+	        const clienteInput = document.getElementById('cliente');
+	        const clienteSuggestions = document.getElementById('cliente-suggestions');
+	        const produtoInput = document.getElementById('produto');
+	        const produtoSuggestions = document.getElementById('produto-suggestions');
+	
+	        clienteInput.addEventListener('input', function() {
+	            const query = this.value;
+	            if (query.length >= 2) { // Disparar a busca após 2 caracteres (ajuste conforme necessário)
+	                fetch(`/entradas/autocomplete/clientes?query=${query}`)
+	                    .then(response => response.json())
+	                    .then(data => displaySuggestions(data, clienteSuggestions, clienteInput));
+	            } else {
+	                clearSuggestions(clienteSuggestions);
+	            }
+	        });
+	
+	        produtoInput.addEventListener('input', function() {
+	            const query = this.value;
+	            if (query.length >= 2) {
+	                fetch(`/entradas/autocomplete/produtos?query=${query}`)
+	                    .then(response => response.json())
+	                    .then(data => displaySuggestions(data, produtoSuggestions, produtoInput));
+	            } else {
+	                clearSuggestions(produtoSuggestions);
+	            }
+	        });
+	
+	        function displaySuggestions(suggestions, suggestionList, inputField) {
+	            suggestionList.innerHTML = ''; // Limpa as sugestões anteriores
+	            if (suggestions && suggestions.length > 0) {
+	                suggestions.forEach(item => {
+	                    const li = document.createElement('li');
+	                    li.textContent = item;
+	                    li.addEventListener('click', function() {
+	                        inputField.value = this.textContent;
+	                        clearSuggestions(suggestionList);
+	                    });
+	                    suggestionList.appendChild(li);
+	                });
+	            } else {
+	                const li = document.createElement('li');
+	                li.textContent = 'Nenhum resultado encontrado.';
+	                suggestionList.appendChild(li);
+	            }
+	        }
+	
+	        function clearSuggestions(suggestionList) {
+	            suggestionList.innerHTML = '';
+	        }
+	    });
+	</script>
     
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	

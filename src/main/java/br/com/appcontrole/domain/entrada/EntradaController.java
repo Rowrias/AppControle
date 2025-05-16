@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -187,22 +188,22 @@ public class EntradaController {
     
     // -----------------------------------------------------------
     
- // Autocomplete de cliente
+    // Autocomplete de cliente
     @GetMapping("/autocomplete/clientes")
     @ResponseBody
-    public List<String> autocompleteClientes(String query) {
-        return clienteService.buscaPorNomeParcial(query).stream()
-            .map(e -> e.getCliente().getNome())
-            .toList();
+    public List<String> autocompleteClientes(@RequestParam("query") String query) {
+        return clienteService.findByNomeContainingIgnoreCase(query).stream()
+                .map(Cliente::getNome)
+                .collect(Collectors.toList());
     }
 
     // Autocomplete de produto
     @GetMapping("/autocomplete/produtos")
     @ResponseBody
-    public List<String> autocompleteProdutos(String query) {
-        return produtoService.buscaPorNomeParcial(query).stream()
-            .map(e -> e.getProduto().getNome())
-            .toList();
+    public List<String> autocompleteProdutos(@RequestParam("query") String query) {
+        return produtoService.findByNomeContainingIgnoreCase(query).stream()
+                .map(Produto::getNome)
+                .collect(Collectors.toList());
     }
     
     // Altera para concluído

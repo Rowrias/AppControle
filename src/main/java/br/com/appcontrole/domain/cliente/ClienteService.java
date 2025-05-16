@@ -1,6 +1,5 @@
 package br.com.appcontrole.domain.cliente;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
@@ -9,7 +8,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import br.com.appcontrole.domain.CRUD;
-import br.com.appcontrole.domain.entrada.Entrada;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -66,8 +64,8 @@ public class ClienteService implements CRUD<Cliente, UUID> {
 		        });
 	}
 
-	public Collection<Entrada> buscaPorNomeParcial(String nomeParcial) {
-		return clienteRepository.findByNomeContainingIgnoreCase(nomeParcial);
-	}
+	public List<Cliente> findByNomeContainingIgnoreCase(String nomeParcial) {
+        return clienteRepository.findByNomeContainingIgnoreCase(nomeParcial);
+    }
 	
 }
