@@ -1,10 +1,12 @@
 package br.com.appcontrole.domain.produto;
 
-import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,18 +44,29 @@ public class ProdutoController {
 	
 	@GetMapping("/lista")
     public String listaProdutos(Model model,
-                                @RequestParam(name = "sortBy", required = false, defaultValue = "nome") String sortBy,
-                                @RequestParam(name = "sortDirection", required = false, defaultValue = "asc") String sortDirection) {
+                                @RequestParam(name = "page", defaultValue = "0") int page,       // Parâmetro de página
+                                @RequestParam(name = "size", defaultValue = "3") int size,       // Parâmetro de tamanho da página
+                                @RequestParam(name = "buscaNome", required = false) String buscaNome, // NOVO: Parâmetro de busca por nome
+                                @RequestParam(name = "sortBy", defaultValue = "nome") String sortBy,
+                                @RequestParam(name = "sortDirection", defaultValue = "asc") String sortDirection) {
 
-        Sort sort = Sort.by(sortBy);
-        if (sortDirection.equalsIgnoreCase("desc")) {
-            sort = sort.descending();
+        Sort sort = Sort.by(Sort.Direction.fromString(sortDirection), sortBy);
+        Pageable pageable = PageRequest.of(page, size, sort);
+        
+        Page<Produto> paginaProdutos;
+
+        // Lógica de busca e paginação
+        if (buscaNome != null && !buscaNome.isBlank()) {
+            paginaProdutos = produtoService.buscarPorNomePaginado(buscaNome, pageable);
+        } else {
+            paginaProdutos = produtoService.listarPaginado(pageable);
         }
-
-        List<Produto> produtos = produtoService.buscaTodosOrdenado(sort);
-        model.addAttribute("produtos", produtos);
+        
+        model.addAttribute("paginaProdutos", paginaProdutos); // Mude de "produtos" para "paginaProdutos"
+        model.addAttribute("buscaNome", buscaNome); // Adiciona o termo de busca de volta ao modelo
         model.addAttribute("sortBy", sortBy);
         model.addAttribute("sortDirection", sortDirection);
+        
         return "produtos/lista";
     }
 	

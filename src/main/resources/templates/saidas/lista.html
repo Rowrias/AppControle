@@ -38,7 +38,7 @@
 						<!-- Busca -->
 						<div class="busca-container">
 							<form class="busca" th:action="@{/saidas/lista}" method="get">
-							    <input type="text" name="buscaCliente" th:value="${busca}" placeholder="Buscar por cliente..." />
+							    <input type="text" name="buscaCliente" th:value="${buscaCliente}" placeholder="Buscar por cliente..." />
 							    <input type="hidden" name="page" value="0">
 							    <button type="submit">Buscar</button>
 							</form>
@@ -53,13 +53,13 @@
 						<!-- titulo -->
 						<div class="titulo">
 							<span class="titulo-nome">
-                                <a th:href="@{/saidas/lista(page=${paginaSaidas.number}, size=${paginaSaidas.size}, busca=${busca}, sortBy='cliente', sortDirection=${sortBy == 'cliente' and sortDirection == 'asc' ? 'desc' : 'asc'})}">
+                                <a th:href="@{/saidas/lista(page=${paginaSaidas.number}, size=${paginaSaidas.size}, buscaCliente=${buscaCliente}, buscaProduto=${buscaProduto}, sortBy='cliente', sortDirection=${sortBy == 'cliente' and sortDirection == 'asc' ? 'desc' : 'asc'})}">
                                     Cliente
                                     <span th:if="${sortBy == 'cliente'}" th:text="${sortDirection == 'asc' ? '▲' : '▼'}"></span>
                                 </a>
                             </span>
 							<span class="titulo-produto">
-                                <a th:href="@{/saidas/lista(page=${paginaSaidas.number}, size=${paginaSaidas.size}, busca=${busca}, sortBy='produto', sortDirection=${sortBy == 'produto' and sortDirection == 'asc' ? 'desc' : 'asc'})}">
+                                <a th:href="@{/saidas/lista(page=${paginaSaidas.number}, size=${paginaSaidas.size}, buscaCliente=${buscaCliente}, buscaProduto=${buscaProduto}, sortBy='produto', sortDirection=${sortBy == 'produto' and sortDirection == 'asc' ? 'desc' : 'asc'})}">
                                     Produto
                                     <span th:if="${sortBy == 'produto'}" th:text="${sortDirection == 'asc' ? '▲' : '▼'}"></span>
                                 </a>
@@ -68,19 +68,19 @@
 							<span class="titulo-valorUnitario">Valor Unitário (R$)</span>
 							<span class="titulo-valorTotal">Valor Total (R$)</span>
 							<span class="titulo-dataEntrada">
-                                <a th:href="@{/saidas/lista(page=${paginaSaidas.number}, size=${paginaSaidas.size}, busca=${busca}, sortBy='dataEntrada', sortDirection=${sortBy == 'dataEntrada' and sortDirection == 'asc' ? 'desc' : 'asc'})}">
+                                <a th:href="@{/saidas/lista(page=${paginaSaidas.number}, size=${paginaSaidas.size}, buscaCliente=${buscaCliente}, buscaProduto=${buscaProduto}, sortBy='dataEntrada', sortDirection=${sortBy == 'dataEntrada' and sortDirection == 'asc' ? 'desc' : 'asc'})}">
                                     Data Entrada
                                     <span th:if="${sortBy == 'dataEntrada'}" th:text="${sortDirection == 'asc' ? '▲' : '▼'}"></span>
                                 </a>
                             </span>
 							<span class="titulo-dataConcluida">
-                                <a th:href="@{/saidas/lista(page=${paginaSaidas.number}, size=${paginaSaidas.size}, busca=${busca}, sortBy='dataConcluido', sortDirection=${sortBy == 'dataConcluido' and sortDirection == 'asc' ? 'desc' : 'asc'})}">
+                                <a th:href="@{/saidas/lista(page=${paginaSaidas.number}, size=${paginaSaidas.size}, buscaCliente=${buscaCliente}, buscaProduto=${buscaProduto}, sortBy='dataConcluido', sortDirection=${sortBy == 'dataConcluido' and sortDirection == 'asc' ? 'desc' : 'asc'})}">
                                     Data Concluída
                                     <span th:if="${sortBy == 'dataConcluido'}" th:text="${sortDirection == 'asc' ? '▲' : '▼'}"></span>
                                 </a>
                             </span>
 							<span class="titulo-dataSaida">
-                                <a th:href="@{/saidas/lista(page=${paginaSaidas.number}, size=${paginaSaidas.size}, busca=${busca}, sortBy='dataSaida', sortDirection=${sortBy == 'dataSaida' and sortDirection == 'asc' ? 'desc' : 'asc'})}">
+                                <a th:href="@{/saidas/lista(page=${paginaSaidas.number}, size=${paginaSaidas.size}, buscaCliente=${buscaCliente}, buscaProduto=${buscaProduto}, sortBy='dataSaida', sortDirection=${sortBy == 'dataSaida' and sortDirection == 'asc' ? 'desc' : 'asc'})}">
                                     Data Saída
                                     <span th:if="${sortBy == 'dataSaida'}" th:text="${sortDirection == 'asc' ? '▲' : '▼'}"></span>
                                 </a>

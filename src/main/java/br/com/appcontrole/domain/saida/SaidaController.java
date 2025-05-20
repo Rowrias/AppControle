@@ -4,6 +4,9 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,26 +28,40 @@ public class SaidaController {
     @GetMapping("/lista")
     public String listaSaidas(Model model, 
     		@RequestParam(name = "page", defaultValue = "0") int page,
-            @RequestParam(name = "size", defaultValue = "5") int size,
+            @RequestParam(name = "size", defaultValue = "3") int size,
             @RequestParam(name = "buscaCliente", required = false) String buscaCliente,
             @RequestParam(name = "buscaProduto", required = false) String buscaProduto,
             @RequestParam(name = "sortBy", defaultValue = "dataSaida") String sortBy,
             @RequestParam(name = "sortDirection", defaultValue = "desc") String sortDirection) {
         
-        Page<Saida> paginaSaidas;
+    	// Criação do Pageable uma única vez
+        Sort sort = Sort.by(Sort.Direction.fromString(sortDirection), sortBy);
+        Pageable pageable = PageRequest.of(page, size, sort);
     	
-        if (buscaCliente != null && !buscaCliente.isBlank()) {
-            paginaSaidas = saidaService.buscarPorCliente(buscaCliente, page, size, sortBy, sortDirection);
-            model.addAttribute("busca", null); // Manter o termo na tela
-        } else if (buscaProduto != null && !buscaProduto.isBlank()) {
-            paginaSaidas = saidaService.buscarPorProduto(buscaProduto, page, size, sortBy, sortDirection);
-            model.addAttribute("busca", null); // Manter o termo na tela (você pode usar outro atributo se preferir)
+        Page<Saida> paginaSaidas;
+        
+        // Lógica para aplicar a busca de forma combinada ou individual
+        boolean temBuscaCliente = buscaCliente != null && !buscaCliente.isBlank();
+        boolean temBuscaProduto = buscaProduto != null && !buscaProduto.isBlank();
+
+    	
+        if (temBuscaCliente && temBuscaProduto) {
+            paginaSaidas = saidaService.buscarPorClienteEProduto(buscaCliente, buscaProduto, pageable);
+        } else if (temBuscaCliente) {
+            paginaSaidas = saidaService.buscarPorCliente(buscaCliente, pageable);
+        } else if (temBuscaProduto) {
+            paginaSaidas = saidaService.buscarPorProduto(buscaProduto, pageable);
         } else {
-            paginaSaidas = saidaService.listarPaginado(page, size, sortBy, sortDirection);
-            model.addAttribute("busca", null); // Limpar o termo
+            paginaSaidas = saidaService.listarPaginado(pageable);
         }
     	
         model.addAttribute("paginaSaidas", paginaSaidas);
+        
+        // Manter os termos de busca no modelo para os inputs e links de ordenação/paginação
+        // Isto é crucial para que os campos de busca e os links de ordenação mantenham o estado
+        model.addAttribute("buscaCliente", buscaCliente);
+        model.addAttribute("buscaProduto", buscaProduto);
+        
         model.addAttribute("sortBy", sortBy);
         model.addAttribute("sortDirection", sortDirection);
         

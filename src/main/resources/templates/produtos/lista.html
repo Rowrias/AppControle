@@ -69,28 +69,36 @@
                 <div class="lista">
 					<div>
 						<h2>Lista de produtos</h2>
+						
+						<div class="busca-container">
+                            <form class="busca" th:action="@{/produtos/lista}" method="get">
+                                <input type="text" name="buscaNome" th:value="${buscaNome}" placeholder="Buscar por nome..." />
+                                <input type="hidden" name="page" value="0"> <button type="submit">Buscar</button>
+                            </form>
+                        </div>
+						
 						<div class="titulo">
 							<span class="titulo-nome">
-                                <a th:href="@{/produtos/lista(sortBy='nome', sortDirection=${sortBy == 'nome' and sortDirection == 'asc' ? 'desc' : 'asc'})}">
+                                <a th:href="@{/produtos/lista(page=${paginaProdutos.number}, size=${paginaProdutos.size}, buscaNome=${buscaNome}, sortBy='nome', sortDirection=${sortBy == 'nome' and sortDirection == 'asc' ? 'desc' : 'asc'})}">
                                     Nome
                                     <span th:if="${sortBy == 'nome'}" th:text="${sortDirection == 'asc' ? '▲' : '▼'}"></span>
                                 </a>
                             </span>
 							<span class="titulo-descricao">Descrição</span>
 							<span class="titulo-quantidade">
-                                <a th:href="@{/produtos/lista(sortBy='quantidade', sortDirection=${sortBy == 'quantidade' and sortDirection == 'asc' ? 'desc' : 'asc'})}">
+                                <a th:href="@{/produtos/lista(page=${paginaProdutos.number}, size=${paginaProdutos.size}, buscaNome=${buscaNome}, sortBy='quantidade', sortDirection=${sortBy == 'quantidade' and sortDirection == 'asc' ? 'desc' : 'asc'})}">
                                     Quantidade
                                     <span th:if="${sortBy == 'quantidade'}" th:text="${sortDirection == 'asc' ? '▲' : '▼'}"></span>
                                 </a>
                             </span>
 							<span class="titulo-valorUnitario">
-                                <a th:href="@{/produtos/lista(sortBy='valorUnitario', sortDirection=${sortBy == 'valorUnitario' and sortDirection == 'asc' ? 'desc' : 'asc'})}">
+                                <a th:href="@{/produtos/lista(page=${paginaProdutos.number}, size=${paginaProdutos.size}, buscaNome=${buscaNome}, sortBy='valorUnitario', sortDirection=${sortBy == 'valorUnitario' and sortDirection == 'asc' ? 'desc' : 'asc'})}">
                                     Valor Unitário (R$)
                                     <span th:if="${sortBy == 'valorUnitario'}" th:text="${sortDirection == 'asc' ? '▲' : '▼'}"></span>
                                 </a>
                             </span>
 							<span class="titulo-valorTotal">
-                                <a th:href="@{/produtos/lista(sortBy='valorTotal', sortDirection=${sortBy == 'valorTotal' and sortDirection == 'asc' ? 'desc' : 'asc'})}">
+                                <a th:href="@{/produtos/lista(page=${paginaProdutos.number}, size=${paginaProdutos.size}, buscaNome=${buscaNome}, sortBy='valorTotal', sortDirection=${sortBy == 'valorTotal' and sortDirection == 'asc' ? 'desc' : 'asc'})}">
                                     Valor Total (R$)
                                     <span th:if="${sortBy == 'valorTotal'}" th:text="${sortDirection == 'asc' ? '▲' : '▼'}"></span>
                                 </a>
@@ -98,7 +106,7 @@
 							<span class="titulo-acoes">Ações</span>
 						</div>
 						
-						<div class="linha-dados" th:each="produto : ${produtos}">
+						<div class="linha-dados" th:each="produto : ${paginaProdutos.content}">
 							<span class="dados-nome" th:text="${#strings.capitalize(produto.nome)}"></span>
 							<span class="dados-descricao" th:text="${#strings.capitalize(produto.descricao)}"></span>
 							<span class="dados-quantidade" th:text="${produto.quantidade}"></span>
@@ -118,6 +126,28 @@
 						        </a>
 						    </div>
 						</div>
+						
+						 <div class="paginacao">
+                            <span th:if="${paginaProdutos.totalPages > 1}">
+                                <a th:if="${paginaProdutos.hasPrevious()}"
+                                   th:href="@{/produtos/lista(page=${paginaProdutos.number - 1}, size=${paginaProdutos.size}, buscaNome=${buscaNome}, sortBy=${sortBy}, sortDirection=${sortDirection})}">
+                                    &laquo;
+                                </a>
+
+                                <span th:each="i : ${#numbers.sequence(0, paginaProdutos.totalPages - 1)}">
+                                    <a th:href="@{/produtos/lista(page=${i}, size=${paginaProdutos.size}, buscaNome=${buscaNome}, sortBy=${sortBy}, sortDirection=${sortDirection})}"
+                                       th:text="${i + 1}"
+                                       th:classappend="${i == paginaProdutos.number} ? 'pagina-atual'">
+                                    </a>
+                                </span>
+
+                                <a th:if="${paginaProdutos.hasNext()}"
+                                   th:href="@{/produtos/lista(page=${paginaProdutos.number + 1}, size=${paginaProdutos.size}, buscaNome=${buscaNome}, sortBy=${sortBy}, sortDirection=${sortDirection})}">
+                                    &raquo;
+                                </a>
+                            </span>
+                        </div>
+                        
 					</div>
 				</div>	
 				

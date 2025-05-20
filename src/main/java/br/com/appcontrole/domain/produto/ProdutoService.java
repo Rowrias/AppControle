@@ -4,7 +4,8 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.appcontrole.domain.CRUD;
@@ -45,10 +46,16 @@ public class ProdutoService implements CRUD<Produto, UUID> {
 	}
 	
 	// ----------------
-	public List<Produto> buscaTodosOrdenado(Sort sort) {
-        return produtoRepository.findAll(sort);
-    }
+	
+	// public List<Produto> buscaTodosOrdenado(Sort sort) {
+    //    return produtoRepository.findAll(sort);
+    // }
 
+	// Método para listar produtos com paginação e ordenação
+	public Page<Produto> listarPaginado(Pageable pageable) {
+        return produtoRepository.findAll(pageable);
+    }
+	
 	public Produto buscaPorNome(String nome) {
 		return produtoRepository.findByNome(nome);
 	}
@@ -62,8 +69,14 @@ public class ProdutoService implements CRUD<Produto, UUID> {
 		        });
 	}
 
+	// Para o autocomplete
 	public List<Produto> findByNomeContainingIgnoreCase(String nomeParcial) {
         return produtoRepository.findByNomeContainingIgnoreCase(nomeParcial);
+    }
+	
+	// Método para buscar produtos por nome com paginação e ordenação
+	public Page<Produto> buscarPorNomePaginado(String nomeParcial, Pageable pageable) {
+        return produtoRepository.findByNomeContainingIgnoreCase(nomeParcial, pageable);
     }
 	
 }

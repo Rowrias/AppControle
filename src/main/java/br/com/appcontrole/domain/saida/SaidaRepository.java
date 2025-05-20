@@ -10,12 +10,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface SaidaRepository extends JpaRepository<Saida, UUID> {
 
 	// Data Saida Descendente
-	List<Saida> findAllByOrderByDataSaidaDesc();
-	
-	// Filtro e paginação cliente
+    List<Saida> findAllByOrderByDataSaidaDesc();
+    
+    // Filtro e paginação cliente
     Page<Saida> findByClienteContainingIgnoreCase(String cliente, Pageable pageable);
 
     // Filtro e paginação produto
-	Page<Saida> findByProdutoContainingIgnoreCase(String produto, Pageable pageable);
-	
+    Page<Saida> findByProdutoContainingIgnoreCase(String produto, Pageable pageable);
+
+    // Método para buscar por cliente E por produto
+    Page<Saida> findByClienteContainingIgnoreCaseAndProdutoContainingIgnoreCase(String cliente, String produto, Pageable pageable);
+
 }

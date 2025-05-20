@@ -5,9 +5,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import br.com.appcontrole.domain.CRUD;
@@ -51,30 +49,20 @@ public class SaidaService implements CRUD<Saida, UUID> {
         return saidaRepository.findAllByOrderByDataSaidaDesc();
     }
 
-    public Page<Saida> listarPaginado(int page, int size, String sortBy, String sortDirection) {
-        Sort sort = Sort.by(sortBy);
-        if (sortDirection.equalsIgnoreCase("desc")) {
-            sort = sort.descending();
-        }
-        Pageable pageable = PageRequest.of(page, size, sort);
+    public Page<Saida> listarPaginado(Pageable pageable) {
         return saidaRepository.findAll(pageable);
     }
 
-    public Page<Saida> buscarPorCliente(String cliente, int page, int size, String sortBy, String sortDirection) {
-        Sort sort = Sort.by(sortBy);
-        if (sortDirection.equalsIgnoreCase("desc")) {
-            sort = sort.descending();
-        }
-        Pageable pageable = PageRequest.of(page, size, sort);
+    public Page<Saida> buscarPorCliente(String cliente, Pageable pageable) {
         return saidaRepository.findByClienteContainingIgnoreCase(cliente, pageable);
     }
     
-    public Page<Saida> buscarPorProduto(String produto, int page, int size, String sortBy, String sortDirection) {
-        Sort sort = Sort.by(sortBy);
-        if (sortDirection.equalsIgnoreCase("desc")) {
-            sort = sort.descending();
-        }
-        Pageable pageable = PageRequest.of(page, size, sort);
+    public Page<Saida> buscarPorProduto(String produto, Pageable pageable) {
         return saidaRepository.findByProdutoContainingIgnoreCase(produto, pageable);
     }
+    
+    public Page<Saida> buscarPorClienteEProduto(String cliente, String produto, Pageable pageable) {
+        return saidaRepository.findByClienteContainingIgnoreCaseAndProdutoContainingIgnoreCase(cliente, produto, pageable);
+    }
+    
 }
