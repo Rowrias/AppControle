@@ -48,6 +48,13 @@ main .lista div .titulo span {
     justify-content: center;
     font-weight: var(--font-weight-bold);
 }
+main .lista div .titulo span a {
+	text-decoration: none;
+}
+main .lista div .titulo span a span {
+	border: none;
+	text-decoration: none;
+}
 
 main .lista .linha-dados {
     display: flex;
@@ -185,11 +192,11 @@ main .lista .linha-dados span, .acoes {
 	}
 	
 	.titulo-quantidade, .dados-quantidade {
-		width: 3rem;
+		width: 3.5rem;
 	}
 	
 	.titulo-valorUnitario, .dados-valorUnitario {
-		width: 4.7rem;		
+		width: 5.2rem;		
 	}
 	
 	.titulo-valorTotal, .dados-valorTotal {

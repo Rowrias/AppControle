@@ -27,7 +27,7 @@
             <main>
             	<!-- titulo.css -->
                 <div class="titulo">
-                    <img th:src="@{/images/entrada(70x70).svg}">
+                    <img th:src="@{/images/groups(70x70).svg}">
                     <h2>CLIENTES</h2>
                 </div>
                 
@@ -77,8 +77,9 @@
 						<div class="titulo">
 							<span class="titulo-nome">
                                 <a th:href="@{/clientes/lista(sortBy='nome', sortDirection=${sortBy == 'nome' and sortDirection == 'asc' ? 'desc' : 'asc'})}">
-                                    Nome
-                                    <span th:if="${sortBy == 'nome'}" th:text="${sortDirection == 'asc' ? '▲' : '▼'}"></span>
+                                    <span th:unless="${sortBy == 'nome'}">Nome ●</span>
+                                    <span th:if="${sortBy == 'nome' and sortDirection == 'asc'}">Nome ▲</span>
+							        <span th:if="${sortBy == 'nome' and sortDirection == 'desc'}">Nome ▼</span>
                                 </a>
                             </span>
 							<span class="titulo-cnpj">CNPJ</span>

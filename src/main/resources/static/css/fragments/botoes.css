@@ -1,4 +1,8 @@
 /* botões */
+img {
+	padding: 0.3rem;
+}
+
 button.adicionar {
 	background-color: #1c84c6;
 	border: 1px solid #1c84c6;
@@ -7,7 +11,7 @@ button.adicionar {
 	padding: 0.3125rem 0.3125rem;						/* 5px 5px */
 	text-decoration: none;
 	width: 5.75rem;										/* 92px */
-	height: 2.rem;									/* 26px */
+	height: 2.rem;										/* 26px */
 	font-size: 0.625rem;								/* 10px */
     margin: 0.3125rem 0.3125rem 0.3125rem 0.3125rem;
 }
@@ -29,6 +33,9 @@ button.adicionar:hover {			/* 20px */
 	width: auto;
    	/* margin: 0px 5px 0px 5px;	*/						/* 0px 5px 0px 5px */
 }
+a.editar img {
+	padding: 0;
+}
 
 a.excluir  {
  	align-items: center;
@@ -42,6 +49,9 @@ a.excluir  {
 	text-decoration: none;
 	width: auto;
    	/* margin: 0px 5px 0px 5px;	*/						/* 0px 5px 0px 5px */
+}
+a.excluir img {
+	padding: 0;
 }
 
 a.status {

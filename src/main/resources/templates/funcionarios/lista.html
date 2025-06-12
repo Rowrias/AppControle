@@ -26,7 +26,7 @@
             <main>
             	<!-- titulo.css -->
                 <div class="titulo">
-                    <img th:src="@{/images/entrada(70x70).svg}">
+                    <img th:src="@{/images/badge(70x70).svg}">
                     <h2>FUNCIONÁRIOS</h2>
                 </div>
                 
@@ -85,8 +85,9 @@
 						<div class="titulo">
 							<span class="titulo-nome">
                                 <a th:href="@{/funcionarios/lista(sortBy='nome', sortDirection=${sortBy == 'nome' and sortDirection == 'asc' ? 'desc' : 'asc'})}">
-                                    Nome
-                                    <span th:if="${sortBy == 'nome'}" th:text="${sortDirection == 'asc' ? '▲' : '▼'}"></span>
+                                    <span th:unless="${sortBy == 'nome'}">Nome ●</span>
+                                    <span th:if="${sortBy == 'nome' and sortDirection == 'asc'}">Nome ▲</span>
+							        <span th:if="${sortBy == 'nome' and sortDirection == 'desc'}">Nome ▼</span>
                                 </a>
                             </span>
 							<span class="titulo-cpf">CPF</span>
@@ -96,8 +97,9 @@
 							<span class="titulo-usuario">Usuário</span>
 							<span class="titulo-acesso">
                                 <a th:href="@{/funcionarios/lista(sortBy='role', sortDirection=${sortBy == 'role' and sortDirection == 'asc' ? 'desc' : 'asc'})}">
-                                    Acesso
-                                    <span th:if="${sortBy == 'role'}" th:text="${sortDirection == 'asc' ? '▲' : '▼'}"></span>
+                                    <span th:unless="${sortBy == 'role'}">Acesso ●</span>
+                                    <span th:if="${sortBy == 'role' and sortDirection == 'asc'}">Acesso ▲</span>
+							        <span th:if="${sortBy == 'role' and sortDirection == 'desc'}">Acesso ▼</span>
                                 </a>
                             </span>
 							<span class="titulo-acoes">Ações</span>

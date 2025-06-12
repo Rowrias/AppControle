@@ -10,7 +10,7 @@ header nav {
 	display: flex;
 	justify-content: space-between;
     margin: 0 auto;
-    padding: 0.5rem;
+    padding: 0.2rem 0.5rem 0.5rem 0.5rem;
     width: 81.25rem;		/* 1300px */
 }
 
