@@ -70,7 +70,7 @@ main .cadastro div form div select {
 	background-color: var(--color-primaria);
     color: var(--color-terciaria);
     display: flex;
-    font-size: 0.375rem;						/* 6px */
+    font-size: 0.6rem;							
     font-weight: var(--font-weight-regular);
     height: 1.5rem;								/* 24px */
     justify-content: center;
@@ -152,7 +152,7 @@ main .cadastro div form .cadastro-senha {
 }
 
 main .cadastro div form .cadastro-acesso {
-    width: 4rem;							
+    width: 6rem;							
 }
 
 main .cadastro div form .cadastro-descricao {

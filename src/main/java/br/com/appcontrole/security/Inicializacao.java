@@ -25,7 +25,7 @@ public class Inicializacao implements CommandLineRunner {
             funcionario.setNome("Administrador");
             funcionario.setUsername("admin");
             funcionario.setPassword(passwordEncoder.encode("1234"));
-            funcionario.setRole(Role.ADMIN);
+            funcionario.setRole(Role.Administrador);
             funcionarioRepository.save(funcionario);
         }
     }

@@ -105,7 +105,7 @@ main .lista .linha-dados span, .acoes {
 }
 
 .titulo-acesso, .dados-acesso {
-    width: 4rem;	
+    width: 6rem;	
 }
 
 .titulo-descricao, .dados-descricao {
@@ -121,7 +121,7 @@ main .lista .linha-dados span, .acoes {
 }
 
 .titulo-valorUnitario, .dados-valorUnitario {
-	width: 6rem;		
+	width: 6.4rem;		
 }
 
 .titulo-valorTotal, .dados-valorTotal {
