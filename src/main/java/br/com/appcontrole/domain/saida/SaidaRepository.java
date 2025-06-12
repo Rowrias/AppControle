@@ -1,5 +1,6 @@
 package br.com.appcontrole.domain.saida;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,5 +21,8 @@ public interface SaidaRepository extends JpaRepository<Saida, UUID> {
 
     // Método para buscar por cliente E por produto
     Page<Saida> findByClienteContainingIgnoreCaseAndProdutoContainingIgnoreCase(String cliente, String produto, Pageable pageable);
+    
+    // Metodo para deletar 'saida' com data antiga passada como parametro
+    int deleteByDataSaidaBefore(LocalDateTime data); // O 'int' retorna o número de registros deletados
 
 }

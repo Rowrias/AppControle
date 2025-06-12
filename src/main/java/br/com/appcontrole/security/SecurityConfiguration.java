@@ -37,8 +37,8 @@ public class SecurityConfiguration {
 	        .authorizeHttpRequests(authorizeRequests -> authorizeRequests
         		// Permitir acesso público aos recursos estáticos
                 .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
-        		.requestMatchers(HttpMethod.GET, "/funcionarios/**", "/clientes/**", "/produtos/**", "/saidas/**").hasRole("ADMIN")
-        		.requestMatchers(HttpMethod.POST, "/funcionarios/**", "/clientes/**", "/produtos/**", "/saidas/**").hasRole("ADMIN")
+        		.requestMatchers(HttpMethod.GET, "/funcionarios/**", "/clientes/**", "/produtos/**", "/saidas/**").hasRole("Administrador")
+        		.requestMatchers(HttpMethod.POST, "/funcionarios/**", "/clientes/**", "/produtos/**", "/saidas/**").hasRole("Administrador")
         		// Todas as outras requisições devem ser autenticadas
         		.anyRequest().authenticated()
     		)
