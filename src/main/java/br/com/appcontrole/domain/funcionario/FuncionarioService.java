@@ -62,6 +62,10 @@ public class FuncionarioService implements CRUD<Funcionario, UUID>{
 	public List<Funcionario> buscaTodosOrdenado(Sort sort) {
         return funcionarioRepository.findAll(sort);
     }
+	
+	public Funcionario buscaPorNome(String nome) {
+	    return funcionarioRepository.findByNome(nome);
+	}
 
 	public Funcionario buscaPorUsuario(String username) {
 	    return funcionarioRepository.findByUsername(username);

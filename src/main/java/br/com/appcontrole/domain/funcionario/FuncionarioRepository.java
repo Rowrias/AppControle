@@ -9,6 +9,8 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 public interface FuncionarioRepository extends JpaRepository<Funcionario, Long>, JpaSpecificationExecutor<Funcionario> {
 	
+	Funcionario findByNome(String nome);
+	
 	Funcionario findByUsername(String username);
 	
     List<Funcionario> findAllByOrderByNomeAsc();

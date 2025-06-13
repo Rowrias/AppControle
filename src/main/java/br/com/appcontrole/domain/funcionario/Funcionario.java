@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -21,8 +22,8 @@ public class Funcionario {
 	@GeneratedValue(generator = "UUID")
 	private UUID id;
 	
-	@NotNull
-	@Size(min = 3, max = 50, message = "Nome deve ter entre 3 e 50 caracteres")
+	@NotNull(message = "O nome é obrigatório.")
+	@Size(min = 3, max = 50, message = "O nome deve ter entre {min} e {max} caracteres.")
 	@Column(unique = true)
 	private String nome;
 	
@@ -39,12 +40,16 @@ public class Funcionario {
 	@Column(length = 14)
 	private String telefone;
 
-	@Size(min = 4, max = 14)
+	@NotBlank(message = "O nome de usuário é obrigatório.") // Certifica que não é nulo nem vazio
+	@Size(min = 4, max = 14, message = "O nome de usuário deve ter entre {min} e {max} caracteres.")
+	@Column(unique = true) // Assumindo que o username deve ser único
 	private String username;
 	
-	@Size(min = 4)
+	@NotBlank(message = "A senha é obrigatória.")
+	@Size(min = 4, max = 8, message = "A senha deve ter entre {min} e {max} caracteres.")
     private String password;
     
+	@NotNull(message = "O nível de acesso é obrigatório.")
     @Enumerated(EnumType.STRING)
     private Role role;
     

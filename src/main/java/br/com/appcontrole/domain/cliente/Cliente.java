@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name="cliente")
@@ -17,8 +18,8 @@ public class Cliente {
 	@GeneratedValue(generator = "UUID")
 	private UUID id;
 	
-	@NotNull
-	// @Size(min = 3, max = 50)
+	@NotNull(message = "O nome é obrigatório.")
+	@Size(min = 3, max = 50, message = "O nome deve ter entre {min} e {max} caracteres.")
 	@Column(unique = true)
 	private String nome;
 	
@@ -29,7 +30,7 @@ public class Cliente {
 	private String cpf;
 	
 	@Column(length = 50)
-	@Email
+	@Email(message = "E-mail inválido.")
 	private String email;
 	
 	@Column(length = 15)

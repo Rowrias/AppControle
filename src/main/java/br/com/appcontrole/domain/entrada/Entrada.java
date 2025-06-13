@@ -14,6 +14,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
  
@@ -25,12 +26,12 @@ public class Entrada {
 	private UUID id;
 	
 	@NotNull
-	// @Size(min = 3, max = 50)
+	@Valid
 	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 	private Cliente cliente;
 	
 	@NotNull
-	// @Size(min = 3, max = 50)
+	@Valid
 	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 	private Produto produto;
 	
