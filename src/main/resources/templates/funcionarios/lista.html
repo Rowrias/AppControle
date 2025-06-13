@@ -36,7 +36,7 @@
 						<h2>Cadastro de funcionários</h2>
 					</div>
                 	<div>
-						<form id="form-funcionario-adicao"  th:action="@{/funcionarios/lista}" th:object="${funcionario}" method="post">
+						<form id="form-funcionario-adicao" action="/funcionarios/lista" th:object="${funcionario}" method="post">
 							<div class="cadastro-nome">
 								<label for="nome">Nome: *</label>
 					        	<input type="text" id="nome" name="nome" th:field="*{nome}" placeholder="(Entre 3 a 50 caracteres)">
@@ -55,8 +55,8 @@
 							
 					        <div class="cadastro-email">
 								<label for="email">E-mail:</label>
-					        	<input type="email" id="email" name="email" th:field="*{email}" placeholder="(@email.com)">
-					        	<div th:if="${#fields.hasErrors('nome')}" class="text-danger">
+					        	<input id="email" name="email" th:field="*{email}" placeholder="(@email.com)">
+					        	<div th:if="${#fields.hasErrors('email')}" class="text-danger">
                                     <p th:errors="*{nome}"></p>
                                 </div>
 							</div>
@@ -64,8 +64,8 @@
 							<div class="cadastro-celular">
 								<label for="celular">Celular:</label>
 					        	<input type="text" id="celular" name="celular" th:field="*{celular}" placeholder="(Celular)">
-					        	<div th:if="${#fields.hasErrors('nome')}" class="text-danger">
-                                    <p th:errors="*{nome}"></p>
+					        	<div th:if="${#fields.hasErrors('celular')}" class="text-danger">
+                                    <p th:errors="*{celular}"></p>
                                 </div>
 							</div>
 							
@@ -80,16 +80,16 @@
 							<div class="cadastro-usuario">
 								<label for="username">Usuário: *</label>
 					        	<input type="text" id="username" name="username" th:field="*{username}" placeholder="(4 a 14)"/>
-					        	<div th:if="${#fields.hasErrors('nome')}" class="text-danger">
-                                    <p th:errors="*{nome}"></p>
+					        	<div th:if="${#fields.hasErrors('username')}" class="text-danger">
+                                    <p th:errors="*{username}"></p>
                                 </div>
 							</div>
 							
 							<div class="cadastro-senha">
 								<label for="password">Senha: *</label>
 					        	<input type="password" id="password" name="password" th:field="*{password}" placeholder="(4 a 8)"/>
-					        	<div th:if="${#fields.hasErrors('nome')}" class="text-danger">
-                                    <p th:errors="*{nome}"></p>
+					        	<div th:if="${#fields.hasErrors('password')}" class="text-danger">
+                                    <p th:errors="*{password}"></p>
                                 </div>
 							</div>
 							

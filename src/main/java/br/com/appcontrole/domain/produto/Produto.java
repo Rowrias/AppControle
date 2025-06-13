@@ -21,12 +21,12 @@ public class Produto {
 	@GeneratedValue(generator = "UUID")
 	private UUID id;
 	
-	@NotBlank
-	// @Size(min = 3, max = 50)
+	@NotBlank(message = "O nome do produto é obrigatório.")
+	@Size(min = 3, max = 50, message = "O nome do produto deve ter entre {min} e {max} caracteres.")
 	@Column(unique = true)
 	private String nome;
 	
-	@Size(max = 100)
+	@Size(max = 100, message = "A descrição não pode ter mais de {max} caracteres.")
 	private String descricao;
 	
 	@Min(0)

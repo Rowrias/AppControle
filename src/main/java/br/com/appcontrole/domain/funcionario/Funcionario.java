@@ -46,7 +46,7 @@ public class Funcionario {
 	private String username;
 	
 	@NotBlank(message = "A senha é obrigatória.")
-	@Size(min = 4, max = 8, message = "A senha deve ter entre {min} e {max} caracteres.")
+	@Size(min = 4, max = 60, message = "A senha deve ter entre {min} e {max} caracteres.")
     private String password;
     
 	@NotNull(message = "O nível de acesso é obrigatório.")
