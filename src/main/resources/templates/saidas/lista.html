@@ -28,12 +28,18 @@
                     <img th:src="@{/images/view_list(70x70).svg}">
                     <h2>SAIDA</h2>
                 </div>
-                
-                
+                                                
                 <!-- Saida De Peças -->
                 <div class="lista">
 					<div>
 						<h2>Histórico de Saídas</h2>
+						
+						<div th:if="${erro}" class="alert-error" role="alert">
+			            	<p th:text="${erro}"></p>
+			          	</div>
+			         	<div th:if="${mensagem}" class="alert-success" role="alert">
+			              	<p th:text="${mensagem}"></p>
+			         	</div>
 						
 						<!-- Busca -->
 						<div class="busca-container">

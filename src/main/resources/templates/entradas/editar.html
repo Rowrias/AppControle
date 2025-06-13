@@ -10,6 +10,7 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}">
     <script th:src="@{/scripts/fragments/theme.js}" defer></script>
     <script th:src="@{/scripts/fragments/confirmacoes.js}" defer></script>
+    
 </head>
 <body>
     <!-- header.css -->
@@ -41,36 +42,62 @@
 	                        
 	                        <div class="cadastro-nome">
 	                            <label for="cliente">Cliente *</label>
-	                            <input type="text" id="cliente" th:field="*{cliente.nome}" minlength="3" maxlength="50" placeholder="(Entre 3 a 50 caracteres)" required>
+	                            <input type="text" id="cliente" th:field="*{cliente.nome}" placeholder="(Entre 3 a 50 caracteres)">
 	                        	<ul id="cliente-suggestions" class="suggestions"></ul>
+	                        	<div th:if="${#fields.hasErrors('cliente.nome')}" class="text-danger">
+                                    <p th:errors="*{cliente.nome}"></p>
+                                </div>
 	                        </div>
+	                        
 	                        <div class="cadastro-produto">
 	                            <label for="produto">Produto: *</label>
-	                            <input type="text" id="produto" th:field="*{produto.nome}" minlength="3" maxlength="50" placeholder="(Entre 3 a 50 caracteres)" required>
+	                            <input type="text" id="produto" th:field="*{produto.nome}" placeholder="(Entre 3 a 50 caracteres)">
 	                        	<ul id="produto-suggestions" class="suggestions"></ul>
+	                        	<div th:if="${#fields.hasErrors('produto.nome')}" class="text-danger">
+                                    <p th:errors="*{produto.nome}"></p>
+                                </div>
 	                        </div>
+	                        
 	                        <div class="cadastro-quantidade">
 	                            <label for="quantidade">Quantidade: *</label>
-	                            <input type="number" id="quantidade" th:field="*{quantidade}" min="0" placeholder="(Minimo: 0)" required>
+	                            <input type="number" id="quantidade" th:field="*{quantidade}" placeholder="(Minimo: 0)">
+	                        	<div th:if="${#fields.hasErrors('quantidade')}" class="text-danger">
+                                    <p th:errors="*{quantidade}"></p>
+                                </div>
 	                        </div>
 	                        
 	                        <div class="cadastro-dataEntrada">
 	                            <label for="dataEntrada">Data da entrada: *</label>
 	                            <input type="datetime-local" id="dataEntrada" 
 			                           th:value="${#temporals.format(entrada.dataEntrada, 'yyyy-MM-dd''T''HH:mm')}"
-			                           th:field="*{dataEntrada}" required/>
+			                           th:field="*{dataEntrada}"/>
+	                           	<div th:if="${#fields.hasErrors('dataEntrada')}" class="text-danger">
+                                    <p th:errors="*{dataEntrada}"></p>
+                                </div>
 	                        </div>
+	                        
 	                        <div class="cadastro-dataConcluido">
 	                            <label for="dataConcluido">Data Concluído:</label>
 	                            <input type="datetime-local" id="dataConcluido" 
 			                           th:value="${#temporals.format(entrada.dataConcluido, 'yyyy-MM-dd''T''HH:mm')}"
 			                           th:field="*{dataConcluido}"/>
+	                           	<div th:if="${#fields.hasErrors('dataConcluido')}" class="text-danger">
+                                    <p th:errors="*{dataConcluido}"></p>
+                                </div>
 	                        </div>
 	                        <div>
 								<button class="adicionar" type="submit" onclick="confirmarAtualizacao()">Atualizar</button>
 							</div>
                     	</form>
                 	</div>
+                	
+                	<div th:if="${erro}" class="alert-error" role="alert">
+                       	<p th:text="${erro}"></p>
+                    </div>
+                    <div th:if="${mensagem}" class="alert-success" role="alert">
+                        <p th:text="${mensagem}"></p>
+                    </div>
+                    
                	</div>
                	
                	<!-- lista Peças -->

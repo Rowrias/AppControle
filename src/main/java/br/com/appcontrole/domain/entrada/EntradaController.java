@@ -4,12 +4,14 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.StringJoiner;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +27,7 @@ import br.com.appcontrole.domain.produto.Produto;
 import br.com.appcontrole.domain.produto.ProdutoService;
 import br.com.appcontrole.domain.saida.Saida;
 import br.com.appcontrole.domain.saida.SaidaService;
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/entradas")
@@ -44,9 +47,21 @@ public class EntradaController {
     
     // Insere
     @PostMapping("/lista")
-    public String novaEntrada(@ModelAttribute Entrada entrada) {
+    public String novaEntrada(@Valid @ModelAttribute("entrada") Entrada entrada,
+					    		BindingResult result,
+					    		RedirectAttributes attr) {
+		
+    	// Verifica erros de validação
+    	if (result.hasErrors()) {
+	    	// Adiciona o BindingResult e o objeto 'entrada' como flash attributes
+			attr.addFlashAttribute("org.springframework.validation.BindingResult.entrada", result);
+			attr.addFlashAttribute("entrada", entrada); // Para preservar os dados no formulário
+            attr.addFlashAttribute("erro", "Verifique os dados da entrada e tente novamente."); // Mensagem genérica
+			return "redirect:/entradas/lista";
+    	}
 
     	// --- CLIENTE ---
+    	// Remove espaços em branco do nome do cliente e converte para minúsculas
         String nomeCliente = entrada.getCliente().getNome().trim().toLowerCase();
         Cliente clienteExistente = clienteService.findByNomeIgnoreCase(nomeCliente);
         if (clienteExistente == null) {
@@ -54,7 +69,6 @@ public class EntradaController {
             novoCliente.setNome(nomeCliente);
             clienteExistente = clienteService.insere(novoCliente);
         }
-
         entrada.setCliente(clienteExistente);
 
         // --- PRODUTO ---
@@ -63,7 +77,7 @@ public class EntradaController {
         if (produtoExistente == null) {
             Produto novoProduto = new Produto();
             novoProduto.setNome(nomeProduto);
-            novoProduto.setQuantidade(0);
+            novoProduto.setQuantidade(0); // Inicializa quantidade para novo produto
             produtoExistente = produtoService.insere(novoProduto);
         }
         
@@ -74,6 +88,7 @@ public class EntradaController {
         entrada.setProduto(produtoExistente);
 
         entradaService.insere(entrada);  // Salva a entrada no banco de dados
+        attr.addFlashAttribute("mensagem", "Entrada adicionada com sucesso.");
 
         return "redirect:/entradas/lista";
     }
@@ -99,18 +114,31 @@ public class EntradaController {
         model.addAttribute("concluidas", concluidas);
         model.addAttribute("sortBy", sortBy);
         model.addAttribute("sortDirection", sortDirection);
-
+        
+        // Se a 'entrada' já não estiver no modelo (vindo de um flash attribute após erro de validação),
+        // adicione um novo objeto Entrada para o formulário de adição.
+        if (!model.containsAttribute("entrada")) {
+            model.addAttribute("entrada", new Entrada());
+        }
+        
         return "entradas/lista";
     }
 
     // Edita
     @GetMapping("/editar/{id}")
     public String editarEntrada(@PathVariable UUID id, Model model) {
-        Entrada entrada = entradaService.buscaPorId(id);
+    	// Se a 'entrada' já não estiver no modelo (vindo de um flash attribute após erro de validação),
+        // busque a entrada pelo ID.
+        if (!model.containsAttribute("entrada")) {
+            Entrada entrada = entradaService.buscaPorId(id);
+            model.addAttribute("entrada", entrada);
+        }
+        
+        // Listas de clientes e produtos são para dropdowns, mas seu HTML usa autocomplete
+        // De qualquer forma, mantemos elas aqui, caso o front-end mude ou você as use para algo
         List<Cliente> clientes = clienteService.buscaTodos();
         List<Produto> produtos = produtoService.buscaTodos();
     	
-        model.addAttribute("entrada", entrada);
         model.addAttribute("clientes", clientes);
         model.addAttribute("produtos", produtos);
         
@@ -118,10 +146,29 @@ public class EntradaController {
     }
     	
     @PostMapping("/editar/{id}")
-    public String atualizarEntrada(@PathVariable UUID id, Entrada entradaAtualizada, RedirectAttributes attr) {
-        // --- Buscar entrada original ---
+    public String atualizarEntrada(@PathVariable UUID id,
+    								@Valid @ModelAttribute("entrada") Entrada entradaAtualizada, 
+						    		BindingResult result,
+    								RedirectAttributes attr) {
+        
+    	// Define o ID da entrada no objeto 'entradaAtualizada' para que a validação e atualização funcionem
+        entradaAtualizada.setId(id);
+    	
+    	// Verifica erros de validação do Bean Validation primeiro
+        if (result.hasErrors()) {
+        	attr.addFlashAttribute("org.springframework.validation.BindingResult.entrada", result);
+        	attr.addFlashAttribute("entrada", entradaAtualizada); // Para preservar os dados no formulário
+                    
+            StringJoiner errorMessage = new StringJoiner(", ");
+            result.getAllErrors().forEach(error -> errorMessage.add(error.getDefaultMessage()));
+            attr.addFlashAttribute("erro", errorMessage.toString());
+            return "redirect:/entradas/editar/" + id; // Redireciona de volta para o formulário de edição
+        }
+    	
+    	
+    	// --- Buscar entrada original para comparar e ajustar estoque ---
         Entrada entradaOriginal = entradaService.buscaPorId(id);
-        Produto produtoOriginal = entradaOriginal.getProduto();
+        Produto produtoOriginalDaEntrada  = entradaOriginal.getProduto();
         
         // --- CLIENTE ---
         String nomeCliente = entradaAtualizada.getCliente().getNome().trim().toLowerCase();
@@ -135,31 +182,40 @@ public class EntradaController {
         
         // --- PRODUTO ---
         String nomeProduto = entradaAtualizada.getProduto().getNome().trim().toLowerCase();
-        Produto produtoExistente = produtoService.findByNomeIgnoreCase(nomeProduto);
-        if (produtoExistente == null) {
+        Produto produtoAtualizadoEntrada  = produtoService.findByNomeIgnoreCase(nomeProduto);
+        if (produtoAtualizadoEntrada  == null) {
             Produto novoProduto = new Produto();
             novoProduto.setNome(nomeProduto);
             novoProduto.setQuantidade(0);
-            produtoExistente = produtoService.insere(novoProduto);
+            produtoAtualizadoEntrada  = produtoService.insere(novoProduto);
         }
         
         // --- Atualiza o estoque corretamente ---
-        // Remove a quantidade anterior do produto original
-        produtoOriginal.setQuantidade(produtoOriginal.getQuantidade() - entradaOriginal.getQuantidade());
-        produtoService.insere(produtoOriginal);
-        
-        // Adiciona a nova quantidade ao produto atualizado
-        produtoExistente.setQuantidade(produtoExistente.getQuantidade() + entradaAtualizada.getQuantidade());
-        produtoService.insere(produtoExistente);
-        
-        entradaAtualizada.setProduto(produtoExistente);
-        
-        // --- Preserva dados da entrada original ---
-        entradaAtualizada.setId(id);
-        entradaAtualizada.setFuncionario(entradaOriginal.getFuncionario()); // mantém funcionário
-        entradaAtualizada.setConcluido(entradaOriginal.isConcluido()); 		// mantém concluido
-        
+        // Se o produto mudou ou a quantidade original é diferente, ajuste o estoque
+        if (!produtoOriginalDaEntrada.getId().equals(produtoAtualizadoEntrada.getId())) {
+        	// Se o produto mudou, remove do estoque do produto antigo e adiciona ao novo
+            produtoOriginalDaEntrada.setQuantidade(produtoOriginalDaEntrada.getQuantidade() - entradaOriginal.getQuantidade());
+            produtoService.insere(produtoOriginalDaEntrada);
 
+            produtoAtualizadoEntrada.setQuantidade(produtoAtualizadoEntrada.getQuantidade() + entradaAtualizada.getQuantidade());
+            produtoService.insere(produtoAtualizadoEntrada);
+        	
+        } else {
+            // Se o produto é o mesmo, ajusta apenas a diferença de quantidade
+            int diferencaQuantidade = entradaAtualizada.getQuantidade() - entradaOriginal.getQuantidade();
+            produtoAtualizadoEntrada.setQuantidade(produtoAtualizadoEntrada.getQuantidade() + diferencaQuantidade);
+            produtoService.insere(produtoAtualizadoEntrada);
+        }
+        
+        entradaAtualizada.setProduto(produtoAtualizadoEntrada);
+
+        // --- Preserva dados da entrada original que não são editáveis no formulário ---
+        entradaAtualizada.setFuncionario(entradaOriginal.getFuncionario());
+        entradaAtualizada.setConcluido(entradaOriginal.isConcluido());
+        if (entradaOriginal.getDataConcluido() != null) { // Preserva a data de conclusão se já existia
+        	entradaAtualizada.setDataConcluido(entradaOriginal.getDataConcluido());
+    	}
+        
         // --- Atualiza entrada ---
         entradaService.atualiza(entradaAtualizada);
 
@@ -182,6 +238,8 @@ public class EntradaController {
 
             entradaService.remove(id);
             attr.addFlashAttribute("mensagem", "Entrada removida com sucesso.");
+        } else {
+        	attr.addFlashAttribute("erro", "Entrada não encontrada para remoção.");
         }
         return "redirect:/entradas/lista";
     }

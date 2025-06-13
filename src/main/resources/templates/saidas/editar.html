@@ -41,52 +41,76 @@
 	                        							
 	                        <div class="cadastro-nome">
 	                            <label for="nome">Cliente *</label>
-	                            <input type="text" id="nome" th:field="*{cliente}" 
-	                            	   minlength="3" maxlength="50" 
-	                            	   placeholder="(Entre 3 a 50 caracteres)" required>
+	                            <input type="text" id="nome" th:field="*{cliente}"
+	                            	   placeholder="(Entre 3 a 50 caracteres)">
+                           	   <div th:if="${#fields.hasErrors('cliente')}" class="text-danger">
+		                            <p th:errors="*{cliente}"></p>
+		                        </div>
 	                        </div>
 	                        
 	                        <div class="cadastro-produto">
 	                            <label for="produto">Produto: *</label>
-	                            <input type="text" id="produto" th:field="*{produto}" 
-			                           minlength="3" maxlength="50" 
-			                           placeholder="(Entre 3 a 50 caracteres)" required>
+	                            <input type="text" id="produto" th:field="*{produto}"
+			                           placeholder="(Entre 3 a 50 caracteres)">
+	                           	<div th:if="${#fields.hasErrors('produto')}" class="text-danger">
+		                            <p th:errors="*{produto}"></p>
+		                        </div>
 	                        </div>
 	                        
 	                        <div class="cadastro-quantidade">
 	                            <label for="quantidade">Quantidade: *</label>
 	                            <input type="number" id="quantidade" th:field="*{quantidade}" 
-	                            	   min="0" placeholder="(Minimo: 0)" required>
+	                            	   placeholder="(Minimo: 0)">
+                           	   	<div th:if="${#fields.hasErrors('quantidade')}" class="text-danger">
+	                            	<p th:errors="*{quantidade}"></p>
+		                        </div>
 	                        </div>
 	                        
 	                        <div class="cadastro-valorUnitario">
 	                            <label for="valorUnitario">Valor Unitário:</label>
 	                            <input type="number" id="valorUnitario" th:field="*{valorUnitario}" 
-	                            	   step="1.00" min="0" placeholder="(Minimo: 0,00)">
+	                            	   step="1.00" placeholder="(Minimo: 0,00)">
+                           	   	<div th:if="${#fields.hasErrors('valorUnitario')}" class="text-danger">
+                           			<p th:errors="*{valorUnitario}"></p>
+		                        </div>
 	                        </div>
 	                        
 	                        <div class="cadastro-dataEntrada">
 	                            <label for="dataEntrada">Data da entrada *:</label>
 	                            <input type="datetime-local" id="dataEntrada" 
 	                            	   th:value="${#temporals.format(saida.dataEntrada, 'yyyy-MM-dd''T''HH:mm')}"	
-	                            	   th:field="*{dataEntrada}" required/>
+	                            	   th:field="*{dataEntrada}"/>
+                           	   	<div th:if="${#fields.hasErrors('dataEntrada')}" class="text-danger">
+                       				<p th:errors="*{dataEntrada}"></p>
+		                        </div>
 	                        </div>
+	                        
 	                        <div class="cadastro-dataConcluido">
 	                            <label for="dataConcluido">Data Concluído *:</label>
 	                            <input type="datetime-local" id="dataConcluido" 
 	                            	   th:value="${#temporals.format(saida.dataConcluido, 'yyyy-MM-dd''T''HH:mm')}"
-	                            	   th:field="*{dataConcluido}" required/>
-	                        </div>	                        
+	                            	   th:field="*{dataConcluido}"/>
+                           	   	<div th:if="${#fields.hasErrors('dataConcluido')}" class="text-danger">
+                       				<p th:errors="*{dataConcluido}"></p>
+		                        </div>
+	                        </div>	
+	                                                
 	                        <div class="cadastro-dataSaida">
 	                            <label for="dataSaida">Data Saída *:</label>
 	                            <input type="datetime-local" id="dataSaida" 
 	                            	   th:value="${#temporals.format(saida.dataSaida, 'yyyy-MM-dd''T''HH:mm')}"
-	                            	   th:field="*{dataSaida}" required/>
+	                            	   th:field="*{dataSaida}"/>
+                           	   	<div th:if="${#fields.hasErrors('dataSaida')}" class="text-danger">
+                       				<p th:errors="*{dataSaida}"></p>
+		                        </div>
 	                        </div>
 	                        
 	                        <div class="cadastro-funcionario">
-	                            <label for="funcionario">Funcionário:</label>
+	                            <label for="funcionario">Funcionário: *</label>
 	                            <input type="text" id="funcionario" th:field="*{funcionario}"/>
+	                            <div th:if="${#fields.hasErrors('funcionario')}" class="text-danger">
+                       				<p th:errors="*{funcionario}"></p>
+		                        </div>
 	                        </div>
 	                        
 	                        <div>
@@ -94,6 +118,13 @@
 							</div>
                     	</form>
                 	</div>
+                	
+                	<div th:if="${erro}" class="alert-error" role="alert">
+                       	<p th:text="${erro}"></p>
+                    </div>
+                    <div th:if="${mensagem}" class="alert-success" role="alert">
+                        <p th:text="${mensagem}"></p>
+                    </div>
                	</div>
                	
                	<div class="lista">
