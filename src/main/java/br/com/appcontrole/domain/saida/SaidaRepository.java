@@ -23,6 +23,6 @@ public interface SaidaRepository extends JpaRepository<Saida, UUID> {
     Page<Saida> findByClienteContainingIgnoreCaseAndProdutoContainingIgnoreCase(String cliente, String produto, Pageable pageable);
     
     // Metodo para deletar 'saida' com data antiga passada como parametro
-    int deleteByDataSaidaBefore(LocalDateTime data); // O 'int' retorna o número de registros deletados
+    int deleteByDataSaidaBefore(LocalDateTime data); // O 'int' é para retornar o número de registros deletados
 
 }

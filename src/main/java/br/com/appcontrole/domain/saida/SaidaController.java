@@ -28,7 +28,7 @@ public class SaidaController {
     @GetMapping("/lista")
     public String listaSaidas(Model model, 
     		@RequestParam(name = "page", defaultValue = "0") int page,
-            @RequestParam(name = "size", defaultValue = "3") int size,
+            @RequestParam(name = "size", defaultValue = "20") int size,
             @RequestParam(name = "buscaCliente", required = false) String buscaCliente,
             @RequestParam(name = "buscaProduto", required = false) String buscaProduto,
             @RequestParam(name = "sortBy", defaultValue = "dataSaida") String sortBy,

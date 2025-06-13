@@ -44,9 +44,9 @@ public class ProdutoController {
 	
 	@GetMapping("/lista")
     public String listaProdutos(Model model,
-                                @RequestParam(name = "page", defaultValue = "0") int page,       // Parâmetro de página
-                                @RequestParam(name = "size", defaultValue = "3") int size,       // Parâmetro de tamanho da página
-                                @RequestParam(name = "buscaNome", required = false) String buscaNome, // NOVO: Parâmetro de busca por nome
+                                @RequestParam(name = "page", defaultValue = "0") int page,       		// Parâmetro de página
+                                @RequestParam(name = "size", defaultValue = "20") int size,       		// Parâmetro de tamanho da página
+                                @RequestParam(name = "buscaNome", required = false) String buscaNome, 	// Parâmetro de busca por nome
                                 @RequestParam(name = "sortBy", defaultValue = "nome") String sortBy,
                                 @RequestParam(name = "sortDirection", defaultValue = "asc") String sortDirection) {
 
