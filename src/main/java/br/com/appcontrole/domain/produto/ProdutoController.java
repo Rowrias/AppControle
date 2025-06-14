@@ -1,6 +1,5 @@
 package br.com.appcontrole.domain.produto;
 
-import java.util.StringJoiner;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +34,7 @@ public class ProdutoController {
 					    		BindingResult result,
 					    		RedirectAttributes attr) {
 		
+		// Verifica erros de validação primeiro
 		if (result.hasErrors()) {
 			attr.addFlashAttribute("org.springframework.validation.BindingResult.produto", result);
 			attr.addFlashAttribute("produto", produto); // Para manter os dados preenchidos no formulário
@@ -42,7 +42,6 @@ public class ProdutoController {
             return "redirect:/produtos/lista"; // Redireciona de volta para a página de lista/cadastro
 		
 		}
-		
 		
 		// Verifica se o produto já existe pelo nome
 		Produto produtoExistente = produtoService.buscaPorNome(produto.getNome());
@@ -115,12 +114,9 @@ public class ProdutoController {
 
 		// Validação
 		if (result.hasErrors()) {
-            attr.addFlashAttribute("org.springframework.validation.BindingResult.produto", result);
-            attr.addFlashAttribute("produto", produto); // Para manter os dados preenchidos no formulário
-
-            StringJoiner errorMessage = new StringJoiner(", ");
-            result.getAllErrors().forEach(error -> errorMessage.add(error.getDefaultMessage()));
-            attr.addFlashAttribute("erro", errorMessage.toString());            
+			attr.addFlashAttribute("org.springframework.validation.BindingResult.produto", result);
+			attr.addFlashAttribute("produto", produto); // Para manter os dados preenchidos no formulário
+            attr.addFlashAttribute("erro", "Verifique os dados do produto e tente novamente."); // Mensagem genérica           
             return "redirect:/produtos/editar/" + id; // Redireciona de volta para a página de edição
         }
 		
@@ -146,7 +142,7 @@ public class ProdutoController {
     		produtoService.remove(id);
             attr.addFlashAttribute("mensagem", "Produto removido com sucesso.");
         } catch (DataIntegrityViolationException e) {
-        	attr.addFlashAttribute("erro", "Não é possível excluir o produto devido a registros dependentes na tabela 'saida'.");
+        	attr.addFlashAttribute("erro", "Não é possível excluir o produto devido a registros dependentes na tabela 'Entrada'.");
         }
         return "redirect:/produtos/lista";
     }

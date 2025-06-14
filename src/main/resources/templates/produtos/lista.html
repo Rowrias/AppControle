@@ -10,16 +10,17 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}">
     <script th:src="@{/scripts/fragments/theme.js}" defer></script>
     <script th:src="@{/scripts/fragments/confirmacoes.js}" defer></script>
+    
 </head>
 <body>
 	<!-- header.css -->
-    <header th:replace="fragments/header :: header"></header>
+    <header th:replace="~{fragments/header :: header}"></header>
     
     <!-- section.css -->
     <section>
         <div>
             <!-- aside.css -->
-            <aside th:replace="fragments/aside :: aside"></aside>
+            <aside th:replace="~{fragments/aside :: aside}"></aside>
             
             <!-- Main -->
             <main>
@@ -40,33 +41,29 @@
 							<div class="cadastro-nome">
 								<label for="nome">Nome: *</label>
 					        	<input type="text" id="nome" name="nome" th:field="*{nome}" placeholder="(Entre 3 a 50 caracteres)">
-								<div th:if="${#fields.hasErrors('nome')}" class="text-danger">
-									<p th:errors="*{nome}"></p>
-								</div>
+								
+								<p th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="text-danger"></p>
 							</div>
 							
 							<div class="cadastro-descricao">
 						        <label for="descricao">Descrição:</label>
 						        <input type="text" id="descricao" name="descricao" th:field="*{descricao}" placeholder="(100 caracteres)">
-						    	<div th:if="${#fields.hasErrors('descricao')}" class="text-danger">
-									<p th:errors="*{descricao}"></p>
-								</div>
+						    	
+								<p th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}" class="text-danger"></p>
 						    </div>
 						    
 						    <div class="cadastro-quantidade">
 								<label for="quantidade">Quantidade:</label>
 					        	<input type="number" id="quantidade" name="quantidade" th:field="*{quantidade}" min="0" placeholder="(Minimo: 0)">
-								<div th:if="${#fields.hasErrors('quantidade')}" class="text-danger">
-									<p th:errors="*{quantidade}"></p>
-								</div>
+								
+								<p th:if="${#fields.hasErrors('quantidade')}" th:errors="*{quantidade}" class="text-danger"></p>
 							</div>
 							
 							<div class="cadastro-valorUnitario">
 								<label for="valorUnitario">Valor Unitário:</label>
 					        	<input type="number" id="valorUnitario" name="valorUnitario" th:field="*{valorUnitario}" step="1.00" min="0" placeholder="(Minimo: 0,00)">
-								<div th:if="${#fields.hasErrors('valorUnitario')}" class="text-danger">
-									<p th:errors="*{valorUnitario}"></p>
-								</div>
+								
+								<p th:if="${#fields.hasErrors('valorUnitario')}" th:errors="*{valorUnitario}" class="text-danger"></p>
 							</div>
 
 							<div>

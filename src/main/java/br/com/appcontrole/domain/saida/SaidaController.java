@@ -1,6 +1,5 @@
 package br.com.appcontrole.domain.saida;
 
-import java.util.StringJoiner;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -101,16 +100,11 @@ public class SaidaController {
         // pois o ID vem do PathVariable e não do formulário diretamente.
         saida.setId(id);
     	
-     // --- Validação ---
+        // --- Validação ---
         if (result.hasErrors()) {
-            attr.addFlashAttribute("org.springframework.validation.BindingResult.saida", result);
-            attr.addFlashAttribute("saida", saida); // Para manter os dados preenchidos
-
-            StringJoiner errorMessage = new StringJoiner(", ");
-            result.getAllErrors().forEach(error -> errorMessage.add(error.getDefaultMessage()));
-            attr.addFlashAttribute("erro", "Erro de validação: " + errorMessage.toString());
-
-            // Redireciona de volta para a página de edição para mostrar os erros
+        	attr.addFlashAttribute("org.springframework.validation.BindingResult.saida", result);
+			attr.addFlashAttribute("saida", saida); // Para manter os dados preenchidos no formulário
+            attr.addFlashAttribute("erro", "Verifique os dados do saida e tente novamente."); // Mensagem genérica
             return "redirect:/saidas/editar/" + id;
         }
     	
@@ -136,7 +130,7 @@ public class SaidaController {
             attr.addFlashAttribute("mensagem", "Saída removida com sucesso.");
         } catch (DataIntegrityViolationException e) {
             // Adicionado: Tratamento para erro de integridade referencial
-            // Isso acontece se você tentar remover uma Saída que está ligada a outros registros (ex: relatório).
+            // Isso acontece se você tentar remover uma Saída que está ligada a outros registros.
             attr.addFlashAttribute("erro", "Não é possível excluir a saída devido a registros dependentes.");
         }
         return "redirect:/saidas/lista";

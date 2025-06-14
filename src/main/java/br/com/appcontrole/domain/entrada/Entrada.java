@@ -25,21 +25,21 @@ public class Entrada {
 	@GeneratedValue(generator = "UUID")
 	private UUID id;
 	
-	@NotNull(message = "O cliente é obrigatório.")
+	@NotNull(message = "- O cliente é obrigatório.")
 	@Valid // Valida o objeto Cliente aninhado
 	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 	private Cliente cliente;
 	
-	@NotNull(message = "O produto é obrigatório.")
+	@NotNull(message = "- O produto é obrigatório.")
 	@Valid // Valida o objeto Cliente aninhado
 	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 	private Produto produto;
 	
-	@NotNull(message = "A quantidade é obrigatória.")
-	@Min(value = 0, message = "A quantidade deve ser no mínimo {value}.")
+	@Min(value = 0, message = "- A quantidade deve ser no mínimo {value}.")
+	@NotNull(message = "- A quantidade é obrigatória.")
 	private Integer quantidade;
 
-	@NotNull(message = "A data de entrada é obrigatória.")
+	@NotNull(message = "- A data de entrada é obrigatória.")
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime dataEntrada;
 	

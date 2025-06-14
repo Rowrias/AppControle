@@ -22,16 +22,16 @@ public class Funcionario {
 	@GeneratedValue(generator = "UUID")
 	private UUID id;
 	
-	@NotNull(message = "O nome é obrigatório.")
-	@Size(min = 3, max = 50, message = "O nome deve ter entre {min} e {max} caracteres.")
 	@Column(unique = true)
+	@NotBlank(message = "- O nome é obrigatório.")
+	@Size(min = 3, max = 50, message = "- O nome deve ter entre {min} e {max} caracteres.")
 	private String nome;
 	
 	@Column(length = 14)
 	private String cpf;
 	
 	@Column(length = 50)
-	@Email(message = "E-mail inválido")
+	@Email(message = "- E-mail inválido")
 	private String email;
 	
 	@Column(length = 15)
@@ -40,17 +40,17 @@ public class Funcionario {
 	@Column(length = 14)
 	private String telefone;
 
-	@NotBlank(message = "O nome de usuário é obrigatório.") // Certifica que não é nulo nem vazio
-	@Size(min = 4, max = 14, message = "O nome de usuário deve ter entre {min} e {max} caracteres.")
-	@Column(unique = true) // Assumindo que o username deve ser único
+	@Column(unique = true)
+	@NotBlank(message = "- O nome de usuário é obrigatório.")
+	@Size(min = 4, max = 14, message = "- O nome de usuário deve ter entre {min} e {max} caracteres.")
 	private String username;
 	
-	@NotBlank(message = "A senha é obrigatória.")
-	@Size(min = 4, max = 60, message = "A senha deve ter entre {min} e {max} caracteres.")
+	@NotBlank(message = "- A senha é obrigatória.")
+	@Size(min = 4, max = 60, message = "- A senha deve ter entre {min} e {max} caracteres.")
     private String password;
     
-	@NotNull(message = "O nível de acesso é obrigatório.")
-    @Enumerated(EnumType.STRING)
+	@Enumerated(EnumType.STRING)
+	@NotNull(message = "- O nível de acesso é obrigatório.")
     private Role role;
     
 	//Getters Setters

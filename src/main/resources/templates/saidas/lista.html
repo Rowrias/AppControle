@@ -10,16 +10,17 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}">
     <script th:src="@{/scripts/fragments/theme.js}" defer></script>
     <script th:src="@{/scripts/fragments/confirmacoes.js}" defer></script>  
+    
 </head>
 <body>
     <!-- header.css -->
-    <header th:replace="fragments/header :: header"></header>
+    <header th:replace="~{fragments/header :: header}"></header>
     
     <!-- section.css -->
     <section>
         <div>
             <!-- aside.css -->
-            <aside th:replace="fragments/aside :: aside"></aside>
+            <aside th:replace="~{fragments/aside :: aside}"></aside>
             
             <!-- Main -->
             <main>

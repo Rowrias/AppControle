@@ -21,22 +21,22 @@ public class Produto {
 	@GeneratedValue(generator = "UUID")
 	private UUID id;
 	
-	@NotBlank(message = "O nome do produto é obrigatório.")
-	@Size(min = 3, max = 50, message = "O nome do produto deve ter entre {min} e {max} caracteres.")
 	@Column(unique = true)
+	@Size(min = 3, max = 50, message = "- O nome do produto deve ter entre {min} e {max} caracteres.")
+	@NotBlank(message = "- O nome do produto é obrigatório.")
 	private String nome;
 	
-	@Size(max = 100, message = "A descrição não pode ter mais de {max} caracteres.")
+	@Size(max = 100, message = "- A descrição não pode ter mais de {max} caracteres.")
 	private String descricao;
 	
-	@Min(0)
 	@Column(nullable = false)
+	@Min(value = 0, message = "- A quantidade deve ser no mínimo {value}.")
 	private Integer quantidade = 0;
 	
-	@DecimalMin("0.0")
+	@DecimalMin(value = "0.0", message = "- O valor total deve ser no mínimo {value}.")
 	private BigDecimal  valorUnitario = BigDecimal.ZERO;
 	
-	@DecimalMin("0.0")
+	@DecimalMin(value = "0.0", message = "- O valor total deve ser no mínimo {value}.")
 	private BigDecimal  valorTotal = BigDecimal.ZERO;
 	
 	// Getters e Setters

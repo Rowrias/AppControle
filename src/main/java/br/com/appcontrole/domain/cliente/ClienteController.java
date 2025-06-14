@@ -124,7 +124,7 @@ public class ClienteController {
             clienteService.remove(id);
             attr.addFlashAttribute("mensagem", "Cliente removido com sucesso.");
         } catch (DataIntegrityViolationException e) {
-        	attr.addFlashAttribute("erro", "Não é possível excluir o cliente devido a registros dependentes na tabela 'saida'.");
+        	attr.addFlashAttribute("erro", "Não é possível excluir o cliente devido a registros dependentes na tabela 'Entrada'.");
         }
         return "redirect:/clientes/lista";
     }

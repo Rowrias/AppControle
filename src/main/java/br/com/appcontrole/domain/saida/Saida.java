@@ -26,40 +26,37 @@ public class Saida {
 	@GeneratedValue(generator = "UUID")
 	private UUID id;
     
-	@NotNull(message = "O nome do cliente é obrigatório.") // Mensagem de erro personalizada
-    @NotBlank(message = "O nome do cliente não pode estar vazio.") // Melhor que @NotNull para Strings
-    @Size(min = 3, max = 50, message = "O nome do cliente deve ter entre 3 e 50 caracteres.")
+	@NotBlank(message = "- O nome do cliente é obrigatório.")
+	@Size(min = 3, max = 50, message = "- O nome do cliente deve ter entre {min} e {max} caracteres.")
     private String cliente;
     
-	@NotNull(message = "O nome do produto é obrigatório.")
-    @NotBlank(message = "O nome do produto não pode estar vazio.")
-    @Size(min = 3, max = 50, message = "O nome do produto deve ter entre 3 e 50 caracteres.")
+	@NotBlank(message = "- O nome do produto é obrigatório.")
+	@Size(min = 3, max = 50, message = "- O nome do produto deve ter entre {min} e {max} caracteres.")
     private String produto;
 	
-	@NotNull(message = "A quantidade é obrigatória.")
-    @Min(value = 0, message = "A quantidade deve ser no mínimo {value}.")
+	@NotNull(message = "- A quantidade é obrigatória.")
+    @Min(value = 0, message = "- A quantidade deve ser no mínimo {value}.")
     private Integer quantidade;
     
-	@DecimalMin(value = "0.0", message = "O valor total deve ser no mínimo {value}.")
+	@DecimalMin(value = "0.0", message = "- O valor total deve ser no mínimo {value}.")
 	private BigDecimal valorUnitario = BigDecimal.ZERO;
 	
-	@DecimalMin(value = "0.0", message = "O valor total deve ser no mínimo {value}.")
+	@DecimalMin(value = "0.0", message = "- O valor total deve ser no mínimo {value}.")
 	private BigDecimal valorTotal = BigDecimal.ZERO;
     
-	@NotNull(message = "A data de entrada é obrigatória.")
+	@NotNull(message = "- A data de entrada é obrigatória.")
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime dataEntrada;
 	
-	@NotNull(message = "A data de conclusão é obrigatória.")
+	@NotNull(message = "- A data de conclusão é obrigatória.")
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
 	private LocalDateTime dataConcluido;
 
-	@NotNull(message = "A data de saída é obrigatória.")
+	@NotNull(message = "- A data de saída é obrigatória.")
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
 	private LocalDateTime dataSaida;
 	
-	@NotNull(message = "O nome do funcionário é obrigatório.")
-    @NotBlank(message = "O nome do funcionário não pode estar vazio.")
+	@NotBlank(message = "- O nome do produto é obrigatório.")
 	private String  funcionario;
     
 	// Construtor padrão (necessário para JPA)

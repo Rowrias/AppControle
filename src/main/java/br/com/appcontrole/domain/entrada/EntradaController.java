@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
-import java.util.StringJoiner;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -147,22 +146,48 @@ public class EntradaController {
     	
     @PostMapping("/editar/{id}")
     public String atualizarEntrada(@PathVariable UUID id,
-    								@Valid @ModelAttribute("entrada") Entrada entradaAtualizada, 
+    								@Valid @ModelAttribute("entrada") Entrada entrada, 
 						    		BindingResult result,
-    								RedirectAttributes attr) {
+    								RedirectAttributes attr,
+    								Model model) {
         
     	// Define o ID da entrada no objeto 'entradaAtualizada' para que a validação e atualização funcionem
-        entradaAtualizada.setId(id);
+    	entrada.setId(id);
     	
     	// Verifica erros de validação do Bean Validation primeiro
         if (result.hasErrors()) {
-        	attr.addFlashAttribute("org.springframework.validation.BindingResult.entrada", result);
-        	attr.addFlashAttribute("entrada", entradaAtualizada); // Para preservar os dados no formulário
-                    
-            StringJoiner errorMessage = new StringJoiner(", ");
-            result.getAllErrors().forEach(error -> errorMessage.add(error.getDefaultMessage()));
-            attr.addFlashAttribute("erro", errorMessage.toString());
-            return "redirect:/entradas/editar/" + id; // Redireciona de volta para o formulário de edição
+        	Entrada entradaOriginal = entradaService.buscaPorId(id); // Recarrega a entrada original
+        	
+        	// Se 'funcionario' é uma associação (Objeto Funcionario):
+            // Garante que o objeto Funcionario original seja reassociado à 'entrada'
+            // que será exibida no formulário.
+            if (entradaOriginal != null && entradaOriginal.getFuncionario() != null) {
+                entrada.setFuncionario(entradaOriginal.getFuncionario());
+            } else {
+                // Se o funcionário original for nulo, e você não quer que seja, trate aqui.
+                // Para evitar o EL1007E, a solução do safe navigation no HTML já ajuda.
+                // Mas se a lógica da sua aplicação *exige* um funcionário, você pode adicionar um erro
+                // específico para isso ou garantir que o formulário sempre envie um ID de funcionário válido.
+            }
+            
+            // Você também pode querer redefinir cliente/produto se eles forem objetos complexos
+            // e o formulário enviar apenas nomes, por exemplo.
+            if (entradaOriginal != null && entradaOriginal.getCliente() != null) {
+                entrada.setCliente(entradaOriginal.getCliente());
+            }
+            if (entradaOriginal != null && entradaOriginal.getProduto() != null) {
+                entrada.setProduto(entradaOriginal.getProduto());
+            }
+            
+            model.addAttribute("entrada", entrada);
+            model.addAttribute("erro", "Verifique os dados da entrada e tente novamente."); // Mensagem de erro
+
+            // Adicione as listas de clientes e produtos novamente para os dropdowns (se usados)
+            model.addAttribute("clientes", clienteService.buscaTodos());
+            model.addAttribute("produtos", produtoService.buscaTodos());
+
+            return "entradas/editar";
+        	
         }
     	
     	
@@ -171,17 +196,17 @@ public class EntradaController {
         Produto produtoOriginalDaEntrada  = entradaOriginal.getProduto();
         
         // --- CLIENTE ---
-        String nomeCliente = entradaAtualizada.getCliente().getNome().trim().toLowerCase();
+        String nomeCliente = entrada.getCliente().getNome().trim().toLowerCase();
         Cliente clienteExistente = clienteService.findByNomeIgnoreCase(nomeCliente);
         if (clienteExistente == null) {
             Cliente novoCliente = new Cliente();
             novoCliente.setNome(nomeCliente);
             clienteExistente = clienteService.insere(novoCliente);
         }
-        entradaAtualizada.setCliente(clienteExistente);
+        entrada.setCliente(clienteExistente);
         
         // --- PRODUTO ---
-        String nomeProduto = entradaAtualizada.getProduto().getNome().trim().toLowerCase();
+        String nomeProduto = entrada.getProduto().getNome().trim().toLowerCase();
         Produto produtoAtualizadoEntrada  = produtoService.findByNomeIgnoreCase(nomeProduto);
         if (produtoAtualizadoEntrada  == null) {
             Produto novoProduto = new Produto();
@@ -197,27 +222,27 @@ public class EntradaController {
             produtoOriginalDaEntrada.setQuantidade(produtoOriginalDaEntrada.getQuantidade() - entradaOriginal.getQuantidade());
             produtoService.insere(produtoOriginalDaEntrada);
 
-            produtoAtualizadoEntrada.setQuantidade(produtoAtualizadoEntrada.getQuantidade() + entradaAtualizada.getQuantidade());
+            produtoAtualizadoEntrada.setQuantidade(produtoAtualizadoEntrada.getQuantidade() + entrada.getQuantidade());
             produtoService.insere(produtoAtualizadoEntrada);
         	
         } else {
             // Se o produto é o mesmo, ajusta apenas a diferença de quantidade
-            int diferencaQuantidade = entradaAtualizada.getQuantidade() - entradaOriginal.getQuantidade();
+            int diferencaQuantidade = entrada.getQuantidade() - entradaOriginal.getQuantidade();
             produtoAtualizadoEntrada.setQuantidade(produtoAtualizadoEntrada.getQuantidade() + diferencaQuantidade);
             produtoService.insere(produtoAtualizadoEntrada);
         }
         
-        entradaAtualizada.setProduto(produtoAtualizadoEntrada);
+        entrada.setProduto(produtoAtualizadoEntrada);
 
         // --- Preserva dados da entrada original que não são editáveis no formulário ---
-        entradaAtualizada.setFuncionario(entradaOriginal.getFuncionario());
-        entradaAtualizada.setConcluido(entradaOriginal.isConcluido());
+        entrada.setFuncionario(entradaOriginal.getFuncionario());
+        entrada.setConcluido(entradaOriginal.isConcluido());
         if (entradaOriginal.getDataConcluido() != null) { // Preserva a data de conclusão se já existia
-        	entradaAtualizada.setDataConcluido(entradaOriginal.getDataConcluido());
+        	entrada.setDataConcluido(entradaOriginal.getDataConcluido());
     	}
         
         // --- Atualiza entrada ---
-        entradaService.atualiza(entradaAtualizada);
+        entradaService.atualiza(entrada);
 
         attr.addFlashAttribute("mensagem", "Entrada atualizada com sucesso.");
         return "redirect:/entradas/lista";

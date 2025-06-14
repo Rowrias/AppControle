@@ -43,50 +43,44 @@
 							<div class="cadastro-nome">
 								<label for="nome">Nome: *</label>
 					        	<input type="text" id="nome" name="nome" th:field="*{nome}" placeholder="(Entre 3 a 50 caracteres)">
-								<div th:if="${#fields.hasErrors('nome')}" class="text-danger">
-		                            <p th:errors="*{nome}"></p>
-		                        </div>
+								
+								<p th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="text-danger"></p>
 							</div>
 							
 					        <div class="cadastro-cnpj">
 								<label for="cnpj">CNPJ:</label>
 					        	<input type="text" id="cnpj" name="cnpj" th:field="*{cnpj}" placeholder="(CNPJ)">
-								<div th:if="${#fields.hasErrors('cnpj')}" class="text-danger">
-                                    <p th:errors="*{cnpj}"></p>
-                                </div>
+								
+								<p th:if="${#fields.hasErrors('cnpj')}" th:errors="*{cnpj}" class="text-danger"></p>
 							</div>
 							
 					        <div class="cadastro-cpf">
 								<label for="cpf">CPF:</label>
 					        	<input type="text" id="cpf" name="cpf" th:field="*{cpf}" placeholder="(CPF)">
-					        	<div th:if="${#fields.hasErrors('cpf')}" class="text-danger">
-                                    <p th:errors="*{cpf}"></p>
-                                </div>
+					        	
+								<p th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}" class="text-danger"></p>
 							</div>
 							
 							
 					        <div class="cadastro-email">
 								<label for="email">E-mail:</label>
 					        	<input id="email" name="email" th:field="*{email}" placeholder="(@email.com)">
-					        	<div th:if="${#fields.hasErrors('email')}" class="text-danger">
-                                    <p th:errors="*{email}"></p>
-                                </div>
+					        	
+								<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></p>
 							</div>
 							
 					        <div class="cadastro-celular">
 								<label for="celular">Celular:</label>
 					        	<input type="text" id="celular" name="celular" th:field="*{celular}" placeholder="(Celular)"/>
-					        	<div th:if="${#fields.hasErrors('celular')}" class="text-danger">
-                                    <p th:errors="*{celular}"></p>
-                                </div>
+					        	
+								<p th:if="${#fields.hasErrors('celular')}" th:errors="*{celular}" class="text-danger"></p>
 							</div>
 							
 							<div class="cadastro-telefone">
 								<label for="telefone">Telefone:</label>
 					        	<input type="text" id="telefone" name="telefone" th:field="*{telefone}" placeholder="(Telefone)"/>
-								<div th:if="${#fields.hasErrors('telefone')}" class="text-danger">
-                                    <p th:errors="*{telefone}"></p>
-                                </div>
+								
+								<p th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}" class="text-danger"></p>
 							</div>
 							
 							<div>
