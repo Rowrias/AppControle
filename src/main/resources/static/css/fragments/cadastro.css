@@ -118,6 +118,45 @@ main .cadastro div form #adicionar button {
     width: auto;
 }
 
+main .cadastro div form div .text-danger {
+    text-align: center;
+    /* background-color: var(--color-primaria); */
+    color: #FF0D0D;
+    display: flex;
+    font-size: 0.625rem;						
+    font-weight: var(--font-weight-regular);
+    margin: 0rem 0.375rem 0.625rem 0.375rem;	
+    padding: 0.3rem 0rem;
+    border-radius: 0.3125rem;
+	border: 1px solid #FF0D0D;
+}
+
+main .cadastro .alert-error {
+	text-align: center;
+    background-color: #FF0D0D;
+    color: #FFFFFF;
+    display: flex;
+    font-size: 0.625rem;						
+    font-weight: #FF0D0D;
+    margin: 0rem 0.375rem 0.625rem 0.375rem;
+    padding: 0.3rem 0rem;
+    border-radius: 0.3125rem;
+	border: 1px solid #FF0D0D;
+}
+
+main .cadastro .alert-success {
+	text-align: center;
+    background-color: #1AB394;
+    color: #FFFFFF;
+    display: flex;
+    font-size: 0.625rem;						
+    font-weight: var(--font-weight-regular);
+    margin: 0rem 0.375rem 0.625rem 0.375rem;
+    padding: 0.3rem 0rem;
+    border-radius: 0.3125rem;
+	border: 1px solid #1AB394;
+}
+
 /* Campos */
 main .cadastro div form .cadastro-nome {
     width: 11.2rem;		
