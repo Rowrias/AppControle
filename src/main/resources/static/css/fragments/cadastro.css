@@ -121,40 +121,43 @@ main .cadastro div form #adicionar button {
 main .cadastro div form div .text-danger {
     text-align: center;
     /* background-color: var(--color-primaria); */
-    color: #FF0D0D;
-    display: flex;
-    font-size: 0.625rem;						
-    font-weight: var(--font-weight-regular);
-    margin: 0rem 0.375rem 0.625rem 0.375rem;	
-    padding: 0.3rem 0rem;
     border-radius: 0.3125rem;
 	border: 1px solid #FF0D0D;
+    color: #FF0D0D;
+    display: flex;
+    flex-direction: column;
+    font-size: 0.625rem;						
+    font-weight: var(--font-weight-regular);
+    padding: 0.3rem 0rem;
+    margin: 0rem 0.375rem 0.625rem 0.375rem;	
 }
 
 main .cadastro .alert-error {
 	text-align: center;
+    border-radius: 0.3125rem;
+	border: 1px solid #FF0D0D;
     background-color: #FF0D0D;
     color: #FFFFFF;
     display: flex;
+    flex-direction: column;
     font-size: 0.625rem;						
-    font-weight: #FF0D0D;
-    margin: 0rem 0.375rem 0.625rem 0.375rem;
+    font-weight:var(--font-weight-regular);
     padding: 0.3rem 0rem;
-    border-radius: 0.3125rem;
-	border: 1px solid #FF0D0D;
+    margin: 0rem 0.375rem 0.625rem 0.375rem;
 }
 
 main .cadastro .alert-success {
 	text-align: center;
+    border-radius: 0.3125rem;
+	border: 1px solid #1AB394;
     background-color: #1AB394;
     color: #FFFFFF;
     display: flex;
+    flex-direction: column;
     font-size: 0.625rem;						
     font-weight: var(--font-weight-regular);
-    margin: 0rem 0.375rem 0.625rem 0.375rem;
     padding: 0.3rem 0rem;
-    border-radius: 0.3125rem;
-	border: 1px solid #1AB394;
+    margin: 0rem 0.375rem 0.625rem 0.375rem;
 }
 
 /* Campos */
@@ -251,3 +254,30 @@ main .cadastro div form .cadastro-dataSaida {
 	}
 	
 }
+
+@media (max-width: 800px) {
+	
+	main .cadastro div h2 {
+	    font-size: 0.625rem;					/* 10px */
+	}
+	
+	main .cadastro div form {
+	    font-size: 0.625rem;					/* 10px */
+	    flex-wrap: wrap;
+	    gap: 0rem;								/* 0px */
+	}
+	
+	main .cadastro div form .cadastro-nome {
+	    width: 10rem;							
+	}
+	
+	main .cadastro div form .cadastro-produto {
+	    width: 10rem;							
+	}
+	
+	main .cadastro div form .cadastro-email {
+	    width: 5.5rem;							
+	}
+	
+}
+

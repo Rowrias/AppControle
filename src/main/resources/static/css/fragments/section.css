@@ -23,7 +23,24 @@ section div main {
 /* Telas pequenas: celulares */
 @media (max-width: 1300px) {
 	section {
-	    width: 50rem;	/* 1300px */ 
+	    width: 50rem;
+	}
+	
+	section div {
+        flex-direction: column;
+        gap: 0rem;
+    }
+
+    section div aside{
+    	margin-top: 1rem;
+        display: flex;
+    }
+    
+}
+
+@media (max-width: 800px) {
+	section {
+	    width: 22rem;
 	}
 	
 	section div {

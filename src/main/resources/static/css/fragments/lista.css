@@ -216,3 +216,64 @@ main .lista .linha-dados span, .acoes {
 	}
 
 }
+
+/* Telas pequenas: celulares */
+@media (max-width: 800px) {
+
+	main .lista div .titulo {
+	    flex-direction: row;
+	}
+	
+	main .lista .linha-dados {
+	    flex-direction: row;
+	}
+	
+	main .lista div h2 {
+	    font-size: 0.625rem;					/* 10px */
+	}
+	
+	main .lista div .titulo span {
+	    font-size: 0.5rem;					/* 10px */
+	}
+	
+	main .lista .linha-dados {
+	    font-size: 0.5rem;	
+	}
+	
+	.titulo-nome, .dados-nome {
+		width: 7rem;							
+	}
+	
+	.titulo-produto, .dados-produto {
+		width: 7rem;							
+	}
+	
+	.titulo-funcionario, .dados-funcionario {
+		width: 7rem;		
+	}
+	
+	.titulo-quantidade, .dados-quantidade {
+		width: 3.5rem;
+	}
+	
+	.titulo-valorUnitario, .dados-valorUnitario {
+		width: 5.2rem;		
+	}
+	
+	.titulo-valorTotal, .dados-valorTotal {
+		width: 4.7rem;							
+	}
+	
+	.titulo-dataEntrada, .dados-dataEntrada {
+		width: 5rem;
+	}
+	
+	.titulo-dataConcluida, .dados-dataConcluida {
+		width: 5rem;
+	}
+	
+	.titulo-dataSaida, .dados-dataSaida {
+		width: 5rem;
+	}
+
+}
