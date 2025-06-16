@@ -36,6 +36,14 @@
 					<div>
 						<h2>Cadastro de funcionários</h2>
 					</div>
+					
+					<div th:if="${erro}" class="alert-error" role="alert">
+                        <p th:text="${erro}"></p>
+                    </div>
+                    <div th:if="${mensagem}" class="alert-success" role="alert">
+                        <p th:text="${mensagem}"></p>
+                    </div> 
+					                	
                 	<div>
 						<form id="form-funcionario-adicao" action="/funcionarios/lista" th:object="${funcionario}" method="post">
 							<div class="cadastro-nome">
@@ -76,14 +84,14 @@
 							
 							<div class="cadastro-usuario">
 								<label for="username">Usuário: *</label>
-					        	<input type="text" id="username" name="username" th:field="*{username}" placeholder="(4 a 14)"/>
+					        	<input type="text" id="username" name="username" th:field="*{username}" placeholder="(Min 4)"/>
 					        	
 					        	<p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="text-danger"></p>
 							</div>
 							
 							<div class="cadastro-senha">
 								<label for="password">Senha: *</label>
-					        	<input type="password" id="password" name="password" th:field="*{password}" placeholder="(4 a 8)"/>
+					        	<input type="password" id="password" name="password" th:field="*{password}" placeholder="(Min 4)"/>
 					        	
 					        	<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></p>
 							</div>
@@ -103,12 +111,6 @@
 					    </form>
 					</div>
 					
-					<div th:if="${erro}" class="alert-error" role="alert">
-                        <p th:text="${erro}"></p>
-                    </div>
-                    <div th:if="${mensagem}" class="alert-success" role="alert">
-                        <p th:text="${mensagem}"></p>
-                    </div>          	
                 </div>
                 
                 <div class="lista">

@@ -10,7 +10,7 @@ button.adicionar {
 	color: #FFFFFF;
 	padding: 0.3125rem 0.3125rem;						/* 5px 5px */
 	text-decoration: none;
-	width: 4rem;										
+	width: auto;										
 	height: 1.6rem;										/* 26px */
 	font-size: 0.625rem;								/* 10px */
     margin: 0.3125rem 0.3125rem 0.3125rem 0.3125rem;

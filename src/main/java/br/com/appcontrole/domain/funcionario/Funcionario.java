@@ -42,11 +42,11 @@ public class Funcionario {
 
 	@Column(unique = true)
 	@NotBlank(message = "- O nome de usuário é obrigatório.")
-	@Size(min = 4, max = 14, message = "- O nome de usuário deve ter entre {min} e {max} caracteres.")
+	@Size(min = 4, message = "- O nome de usuário deve ter no minímo {min} caracteres.")
 	private String username;
 	
 	@NotBlank(message = "- A senha é obrigatória.")
-	@Size(min = 4, max = 60, message = "- A senha deve ter entre {min} e {max} caracteres.")
+	@Size(min = 4, max = 60, message = "- A senha deve ter no minímo {min} caracteres.")
     private String password;
     
 	@Enumerated(EnumType.STRING)

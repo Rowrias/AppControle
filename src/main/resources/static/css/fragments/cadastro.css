@@ -263,20 +263,78 @@ main .cadastro div form .cadastro-dataSaida {
 	
 	main .cadastro div form {
 	    font-size: 0.625rem;					/* 10px */
+	    flex-direction: column;
 	    flex-wrap: wrap;
 	    gap: 0rem;								/* 0px */
 	}
 	
+	/* Campos */
 	main .cadastro div form .cadastro-nome {
-	    width: 10rem;							
+	    width: auto;		
 	}
 	
-	main .cadastro div form .cadastro-produto {
-	    width: 10rem;							
+	main .cadastro div form .cadastro-cpf {
+	    width: auto;		
+	}
+	
+	main .cadastro div form .cadastro-cnpj {
+	    width: auto;		
 	}
 	
 	main .cadastro div form .cadastro-email {
-	    width: 5.5rem;							
+	    width: auto;		
+	}
+	
+	main .cadastro div form .cadastro-celular {
+	    width: auto;		
+	}
+	
+	main .cadastro div form .cadastro-telefone {
+	    width: auto;		
+	}
+	
+	main .cadastro div form .cadastro-usuario {
+	    width: auto;		
+	}
+	
+	main .cadastro div form .cadastro-senha {
+	    width: auto;		
+	}
+	
+	main .cadastro div form .cadastro-acesso {
+	    width: auto;		
+	}
+	
+	main .cadastro div form .cadastro-descricao {
+	    width: auto;		
+	}
+	
+	main .cadastro div form .cadastro-produto {
+	    width: auto;		
+	}
+	
+	main .cadastro div form .cadastro-quantidade {
+	    width: auto;		
+	}
+	
+	main .cadastro div form .cadastro-valorUnitario {
+	    width: auto;		
+	}
+	
+	main .cadastro div form .cadastro-valorTotal {
+	    width: auto;		
+	}
+	
+	main .cadastro div form .cadastro-dataEntrada {
+	    width: auto;		
+	}
+	
+	main .cadastro div form .cadastro-dataConcluida {
+	    width: auto;		
+	}
+	
+	main .cadastro div form .cadastro-dataSaida {
+	    width: auto;		
 	}
 	
 }

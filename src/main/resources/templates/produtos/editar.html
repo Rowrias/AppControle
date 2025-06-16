@@ -62,7 +62,7 @@
 							
 							<div class="cadastro-valorUnitario">
 								<label for="valorUnitario">Valor Unitário:</label>
-					        	<input type="number" id="valorUnitario" name="valorUnitario" th:field="*{valorUnitario}" step="1.00" min="0" placeholder="(Minimo: 0,00)">
+					        	<input type="number" id="valorUnitario" name="valorUnitario" th:field="*{valorUnitario}" step="0.01" min="0" placeholder="(Minimo: 0,00)">
 								
 								<p th:if="${#fields.hasErrors('valorUnitario')}" th:errors="*{valorUnitario}" class="text-danger"></p>
 							</div>
