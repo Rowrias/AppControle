@@ -228,12 +228,16 @@ main .lista .linha-dados span, .acoes {
 	    flex-direction: row;
 	}
 	
+	main .lista .linha-dados span, .acoes {
+	    font-size: 0.4rem;
+	}
+	
 	main .lista div h2 {
-	    font-size: 0.625rem;					/* 10px */
+	    font-size: 0.625rem;
 	}
 	
 	main .lista div .titulo span {
-	    font-size: 0.5rem;					/* 10px */
+	    font-size: 0.4rem;
 	}
 	
 	main .lista .linha-dados {

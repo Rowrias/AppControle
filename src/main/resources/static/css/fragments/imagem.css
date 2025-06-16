@@ -1,0 +1,10 @@
+@media (max-width: 800px) {
+	img {
+	    width: 1rem;
+	}
+	
+	aside a img {
+	    width: 0.8rem;
+	}
+	
+}

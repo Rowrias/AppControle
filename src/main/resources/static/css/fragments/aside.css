@@ -31,7 +31,10 @@ aside a:hover {
 
 @media (max-width: 800px) {
 	aside a {
-	    font-size: 0.5rem;
+	    font-size: 0.4rem;
+	    gap: 0rem;
+	    height: 1.3rem;
+    	margin-bottom: 0.3rem;
 	    width: 4.1rem;
 	}
 	

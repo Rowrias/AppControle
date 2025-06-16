@@ -19,3 +19,15 @@ main .titulo h2 {
 	}
 	
 }
+
+@media (max-width: 800px) {
+	main .titulo {
+    	flex-direction: row;
+    	margin: 0.3rem 0rem;
+	}
+	
+	main .titulo h2 {
+    	font-size: 0.5rem;
+	}
+	
+}

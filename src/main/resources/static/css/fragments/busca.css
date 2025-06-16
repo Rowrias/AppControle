@@ -32,3 +32,16 @@
 .busca button:hover {							/* 20px */
 	cursor: pointer;
 }
+
+/* Telas pequenas: celulares */
+@media (max-width: 800px) {
+	.busca input {
+		font-size: 0.4rem;
+		height: 1rem;
+	}
+	
+	.busca button {
+		font-size: 0.4rem;
+		height: 1.3rem;
+	}
+}

@@ -16,7 +16,7 @@ header nav {
 
 header nav div {
 	display: flex;
-	gap: 1.25rem;			/* 20px */
+	gap: 0.2rem;
 	
 }
 
@@ -25,7 +25,7 @@ header nav div a {
     font-size: 0.625rem;	/* 10px */
     font-weight: 600;		
     text-decoration: none;
-    width: 5rem;
+    width: 4rem;
 }
 
 header nav div a:hover {			
@@ -49,7 +49,7 @@ header nav div a:hover {
 	}
 	
 	header nav div a {
-	    font-size: 0.5rem;
+	    font-size: 0.4rem;
 	}
 	
 }

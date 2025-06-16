@@ -95,3 +95,42 @@ button.tema:hover {			/* 20px */
 	cursor: pointer;
 	background: var(--color-secundaria);
 }
+
+/* Tela menores */
+@media (max-width: 800px) {
+	button.adicionar {
+		padding: 0.15rem 0.15rem;									
+		height: 1.2rem;
+		font-size: 0.4rem;
+	    margin: 0.3125rem 0.3125rem 0.3125rem 0.3125rem;
+	}
+	
+	a.editar {
+		padding: 1px 5px 1px 5px;
+	}
+	a.editar img {
+		width: 0.5rem;
+	}
+	
+	a.excluir  {
+		padding: 1px 5px 1px 5px;
+	}
+	a.excluir img {
+		width: 0.5rem;
+	}
+	
+	a.status {
+		padding: 1px 1px;
+	}
+	a.status img {
+		width: 0.5rem;
+	}
+	
+	a.saida {
+		padding: 1px 1px;
+	}
+	a.saida img {
+		width: 0.5rem;
+	}
+    
+}
