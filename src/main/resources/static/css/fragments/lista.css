@@ -10,10 +10,6 @@ main .lista {
     padding-bottom: 0.625rem;				/* 10px */
 }
 
-main .lista div {
-    display: block;
-}
-
 main .lista div h2 {
     align-items: center;
     color: var(--color-terciaria);
@@ -29,6 +25,7 @@ main .lista div h2 {
 main .lista div h2 a {
     text-decoration: none;
     color: var(--font-primaria);
+    font-size: 0.625rem;					/* 10px */
 }
 
 main .lista div .titulo {
@@ -38,15 +35,16 @@ main .lista div .titulo {
 }
 
 main .lista div .titulo span {
+	align-items: center;
 	color: var(--color-terciaria);
 	border: solid 1px var(--color-primaria);
-	font-size: 0.625rem;					/* 10px */
-	/* width: 170px; */
-	height: 1.875rem;						/* 30px */
-	align-items: center;
     display: flex;
-    justify-content: center;
+	font-size: 0.625rem;					/* 10px */
     font-weight: var(--font-weight-bold);
+	height: 1.875rem;						/* 30px */
+    justify-content: center;
+    padding: 0.01rem 0.02rem;
+	/* width: 170px; */
 }
 main .lista div .titulo span a {
 	text-decoration: none;
@@ -66,10 +64,11 @@ main .lista .linha-dados {
 main .lista .linha-dados span, .acoes {
     border: solid 1px var(--color-primaria);
     align-items: center;
+   	color: var(--color-terciaria);
     display: flex;
     justify-content: center;
-    height: 3.5rem;								/* 56px */
-   	color: var(--color-terciaria);
+    height: auto;
+    padding: 0.01rem 0.02rem;
    	white-space: normal; /* Permite quebras de linha */
 	word-break: break-word; /* Quebra palavras para evitar overflow */
 }
@@ -220,6 +219,15 @@ main .lista .linha-dados span, .acoes {
 /* Telas pequenas: celulares */
 @media (max-width: 800px) {
 
+	main .lista div h2 {
+		font-size: 0.4rem;
+	    height: 0.4rem;
+	}
+	
+	main .lista div h2 a {
+	    font-size: 0.4rem;
+	}
+
 	main .lista div .titulo {
 	    flex-direction: row;
 	}
@@ -227,13 +235,9 @@ main .lista .linha-dados span, .acoes {
 	main .lista .linha-dados {
 	    flex-direction: row;
 	}
-	
+		
 	main .lista .linha-dados span, .acoes {
-	    font-size: 0.4rem;
-	}
-	
-	main .lista div h2 {
-	    font-size: 0.625rem;
+	    font-size: 0.3rem;
 	}
 	
 	main .lista div .titulo span {

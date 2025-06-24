@@ -10,7 +10,7 @@ button.adicionar {
 	color: #FFFFFF;
 	padding: 0.3125rem 0.3125rem;						/* 5px 5px */
 	text-decoration: none;
-	width: auto;										
+	width: 69rem;										
 	height: 1.6rem;										/* 26px */
 	font-size: 0.625rem;								/* 10px */
     margin: 0.3125rem 0.3125rem 0.3125rem 0.3125rem;
@@ -97,33 +97,55 @@ button.tema:hover {			/* 20px */
 }
 
 /* Tela menores */
+@media (max-width: 1300px) {
+	button.adicionar {
+		width: 47rem;
+	}
+	
+}
+
+
+/* Tela menores */
 @media (max-width: 800px) {
 	button.adicionar {
 		padding: 0.15rem 0.15rem;									
 		height: 1.2rem;
 		font-size: 0.4rem;
 	    margin: 0.3125rem 0.3125rem 0.3125rem 0.3125rem;
+	    width: auto;
 	}
 	
 	a.editar {
+		display: flex;
+		justify-content: center;
 		padding: 1px 5px 1px 5px;
+		margin: 1px;
+	}
+	a.editar p {
+		display: none;
 	}
 	a.editar img {
-		width: 0.5rem;
+		width: 0.8rem;
 	}
 	
 	a.excluir  {
+		display: flex;
+		justify-content: center;
 		padding: 1px 5px 1px 5px;
+		margin: 1px;
+	}
+	a.excluir p {
+		display: none;
 	}
 	a.excluir img {
-		width: 0.5rem;
+		width: 0.8rem;
 	}
 	
 	a.status {
 		padding: 1px 1px;
 	}
 	a.status img {
-		width: 0.5rem;
+		width: 0.8rem;
 	}
 	
 	a.saida {
@@ -131,6 +153,15 @@ button.tema:hover {			/* 20px */
 	}
 	a.saida img {
 		width: 0.5rem;
+	}
+	
+	button.tema {
+		flex-direction: column;
+		font-size: 0.4rem;
+		width: auto;
+	}
+	button.tema img {
+		width: 0.7rem;
 	}
     
 }

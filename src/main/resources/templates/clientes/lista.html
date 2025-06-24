@@ -105,9 +105,9 @@
 						<div class="titulo">
 							<span class="titulo-nome">
                                 <a th:href="@{/clientes/lista(sortBy='nome', sortDirection=${sortBy == 'nome' and sortDirection == 'asc' ? 'desc' : 'asc'})}">
-                                    <span th:unless="${sortBy == 'nome'}">Nome ●</span>
-                                    <span th:if="${sortBy == 'nome' and sortDirection == 'asc'}">Nome ▲</span>
-							        <span th:if="${sortBy == 'nome' and sortDirection == 'desc'}">Nome ▼</span>
+                                    <span th:unless="${sortBy == 'nome'}">● Nome</span>
+                                    <span th:if="${sortBy == 'nome' and sortDirection == 'asc'}">▲ Nome</span>
+							        <span th:if="${sortBy == 'nome' and sortDirection == 'desc'}">▼ Nome</span>
                                 </a>
                             </span>
 							<span class="titulo-cnpj">CNPJ</span>
