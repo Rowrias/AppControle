@@ -10,6 +10,11 @@ main .lista {
     padding-bottom: 0.625rem;				/* 10px */
 }
 
+main .lista div {
+	display: flex;
+	flex-direction: column;
+}
+
 main .lista div h2 {
     align-items: center;
     color: var(--color-terciaria);
@@ -30,6 +35,7 @@ main .lista div h2 a {
 
 main .lista div .titulo {
     display: flex;
+    flex-direction: row;
     padding: 0rem 0.625rem 0rem 0.625rem;	/* 0px 10px 0px 10px */
     margin: 0.625rem 0.625rem 0rem 0.625rem;/* 10px 10px 0px 10px */
 }
@@ -56,6 +62,7 @@ main .lista div .titulo span a span {
 
 main .lista .linha-dados {
     display: flex;
+    flex-direction: row;
     padding: 0rem 0.625rem 0rem 0.625rem;		/* 0px 10px 0px 10px */
     margin: 0.2rem 0.625rem 0rem 0.625rem;	/* 5px 10px 0px 10px */
     font-size: 0.625rem;						/* 10px */
@@ -67,7 +74,7 @@ main .lista .linha-dados span, .acoes {
    	color: var(--color-terciaria);
     display: flex;
     justify-content: center;
-    height: auto;
+    height: 3.5rem;
     padding: 0.01rem 0.02rem;
    	white-space: normal; /* Permite quebras de linha */
 	word-break: break-word; /* Quebra palavras para evitar overflow */
@@ -238,6 +245,7 @@ main .lista .linha-dados span, .acoes {
 		
 	main .lista .linha-dados span, .acoes {
 	    font-size: 0.3rem;
+	    height: 2.2rem;
 	}
 	
 	main .lista div .titulo span {

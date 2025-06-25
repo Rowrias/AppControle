@@ -35,6 +35,14 @@
 					<div>
 						<h2>Cadastro de produtos</h2>
 					</div>
+					
+					<div th:if="${erro}" class="alert-error" role="alert">
+                        <p th:text="${erro}"></p>
+                    </div>
+                    <div th:if="${mensagem}" class="alert-success" role="alert">
+                        <p th:text="${mensagem}"></p>
+                    </div>
+					
                 	<div>
 						<form id="form-produto-adicao" action="/produtos/lista" th:object="${produto}" method="post">
 							
@@ -72,14 +80,7 @@
 							
 					    </form>
 					</div>
-					
-					<div th:if="${erro}" class="alert-error" role="alert">
-                        <p th:text="${erro}"></p>
-                    </div>
-                    <div th:if="${mensagem}" class="alert-success" role="alert">
-                        <p th:text="${mensagem}"></p>
-                    </div>
-	                	               	
+					             	
                 </div>
                 
                 <!-- lista -->

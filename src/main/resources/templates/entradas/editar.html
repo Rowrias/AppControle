@@ -35,6 +35,14 @@
                 	<div>
 	                    <h2>Controle de Entrada</h2>
                 	</div>
+                	
+                	<div th:if="${erro}" class="alert-error" role="alert">
+                       	<p th:text="${erro}"></p>
+                    </div>
+                    <div th:if="${mensagem}" class="alert-success" role="alert">
+                        <p th:text="${mensagem}"></p>
+                    </div>
+                	
                 	<div>
                 		<form id="form-entrada-atualizacao" th:action="@{/entradas/editar/{id}(id=${entrada.id})}" th:object="${entrada}" method="post">
 	                        <input type="hidden" th:field="*{id}"/>
@@ -88,13 +96,6 @@
                     	</form>
                 	</div>
                 	
-                	<div th:if="${erro}" class="alert-error" role="alert">
-                       	<p th:text="${erro}"></p>
-                    </div>
-                    <div th:if="${mensagem}" class="alert-success" role="alert">
-                        <p th:text="${mensagem}"></p>
-                    </div>
-                    
                	</div>
                	
                	<!-- lista Peças -->

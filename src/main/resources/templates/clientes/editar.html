@@ -36,6 +36,14 @@
                     <div>
                         <h2>Editar cliente</h2>
                     </div>
+                    
+                    <div th:if="${erro}" class="alert-error" role="alert">
+                       	<p th:text="${erro}"></p>
+                    </div>
+                    <div th:if="${mensagem}" class="alert-success" role="alert">
+                        <p th:text="${mensagem}"></p>
+                    </div>
+                    
                     <div>
                         <form id="form-cliente-atualizacao" th:action="@{/clientes/editar/{id}(id=${cliente.id})}" th:object="${cliente}" method="post">
                             <div class="cadastro-nome">
@@ -87,12 +95,6 @@
                         </form>
                     </div>
                     
-                    <div th:if="${erro}" class="alert-error" role="alert">
-                       	<p th:text="${erro}"></p>
-                    </div>
-                    <div th:if="${mensagem}" class="alert-success" role="alert">
-                        <p th:text="${mensagem}"></p>
-                    </div>
               </div>
                     
                     <div class="lista">

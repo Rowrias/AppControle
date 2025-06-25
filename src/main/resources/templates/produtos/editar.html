@@ -35,6 +35,14 @@
 					<div>
 						<h2>Edição de produto</h2>
 					</div>
+					
+					<div th:if="${erro}" class="alert-error" role="alert">
+                        <p th:text="${erro}"></p>
+                    </div>
+                    <div th:if="${mensagem}" class="alert-success" role="alert">
+                        <p th:text="${mensagem}"></p>
+                    </div>
+					
                 	<div>
 						<form id="form-produto-atualizacao" th:action="@{/produtos/editar/{id}(id=${produto.id})}" th:object="${produto}" method="post">
 							<input type="hidden" th:field="*{id}"/>
@@ -73,14 +81,7 @@
 							
 					    </form>
 					</div>
-					
-					<div th:if="${erro}" class="alert-error" role="alert">
-                        <p th:text="${erro}"></p>
-                    </div>
-                    <div th:if="${mensagem}" class="alert-success" role="alert">
-                        <p th:text="${mensagem}"></p>
-                    </div>
-	                	               	
+					               	
                 </div>
                 
                 <!-- lista -->
