@@ -1,8 +1,10 @@
+.busca-container {
+	display: flex;
+}
 
 .busca {
-	display: inline-block;
-	padding: 0rem 0rem 0.625rem 0.625rem;
-	margin: 0rem 0rem 0rem 0.625rem;
+	padding: 0.3rem 0.3rem 0.3rem 0.3rem;
+	margin: 0rem 0.3rem 0rem 0.3rem;
 	text-align: center;
 }
 

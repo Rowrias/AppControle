@@ -22,9 +22,9 @@ public class Inicializacao implements CommandLineRunner {
     public void run(String... args) throws Exception {
         if (funcionarioRepository.count() == 0) {
             Funcionario funcionario = new Funcionario();
-            funcionario.setNome("Administrador");
-            funcionario.setUsername("admin");
-            funcionario.setPassword(passwordEncoder.encode("12345"));
+            funcionario.setNome("Backup");
+            funcionario.setUsername("backup");
+            funcionario.setPassword(passwordEncoder.encode("#backup"));
             funcionario.setRole(Role.Administrador);
             funcionarioRepository.save(funcionario);
         }

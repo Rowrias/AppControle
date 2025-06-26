@@ -138,7 +138,7 @@
                             </span>
 							<span class="titulo-acoes">Ações</span>
 						</div>
-						<div class="linha-dados" th:each="funcionario : ${funcionarios}" th:if="${funcionario.username != 'admin'}">
+						<div class="linha-dados" th:each="funcionario : ${funcionarios}" th:if="${funcionario.username != 'backup'}">
 							<span class="dados-nome" th:text="${#strings.capitalize(funcionario.nome)}"></span>
 							<span class="dados-cpf" th:text="${funcionario.cpf}"></span>
 							<span class="dados-email" th:text="${funcionario.email}"></span>

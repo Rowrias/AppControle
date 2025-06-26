@@ -36,6 +36,13 @@
 						<h2>Controle de Entrada</h2>
 					</div>
 					
+					<div th:if="${erro}" class="alert-error" role="alert">
+                       	<p th:text="${erro}"></p>
+                    </div>
+                    <div th:if="${mensagem}" class="alert-success" role="alert">
+                        <p th:text="${mensagem}"></p>
+                    </div>
+					
                 	<div>
 						<form id="form-entrada-adicao" action="/entradas/lista" th:object="${entrada}" method="post">
 							<div class="cadastro-nome">
@@ -74,14 +81,7 @@
 							 
 					    </form>
 					</div>
-					
-					<div th:if="${erro}" class="alert-error" role="alert">
-                       	<p th:text="${erro}"></p>
-                    </div>
-                    <div th:if="${mensagem}" class="alert-success" role="alert">
-                        <p th:text="${mensagem}"></p>
-                    </div>
-	                	               	
+					         	
                 </div>
                 
                 <!-- Entrada De Peças -->
