@@ -14,5 +14,5 @@ public interface CRUD<T, ID> {
 	List<T> buscaTodos();
 	
 	T buscaPorId(UUID id);
-
+ 
 }
