@@ -45,6 +45,7 @@
 					
                 	<div>
 						<form id="form-entrada-adicao" action="/entradas/lista" th:object="${entrada}" method="post">
+							
 							<div class="cadastro-nome">
 								<label for="cliente">Cliente *</label>
 					        	<input type="text" id="cliente" name="cliente.nome" th:field="*{cliente.nome}" placeholder="(Entre 3 a 50 caracteres)">

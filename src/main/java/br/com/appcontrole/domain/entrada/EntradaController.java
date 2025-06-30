@@ -8,6 +8,9 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,6 +25,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.appcontrole.domain.cliente.Cliente;
 import br.com.appcontrole.domain.cliente.ClienteService;
+import br.com.appcontrole.domain.funcionario.Funcionario;
+import br.com.appcontrole.domain.funcionario.FuncionarioService;
 import br.com.appcontrole.domain.produto.Produto;
 import br.com.appcontrole.domain.produto.ProdutoService;
 import br.com.appcontrole.domain.saida.Saida;
@@ -40,6 +45,9 @@ public class EntradaController {
     
     @Autowired
     private ClienteService clienteService;
+    
+    @Autowired
+    private FuncionarioService funcionarioService;
     
     @Autowired
     private ProdutoService produtoService;
@@ -85,6 +93,16 @@ public class EntradaController {
         produtoService.insere(produtoExistente); // Salva o produto com a quantidade atualizada
 
         entrada.setProduto(produtoExistente);
+        
+        // --- ATRIBUIR FUNCIONÁRIO LOGADO NA CRIAÇÃO ---
+        Funcionario funcionarioLogado = getFuncionarioLogado();
+        if (funcionarioLogado != null) {
+            entrada.setFuncionario(funcionarioLogado);
+        } else {
+            // Opcional: Tratar caso o funcionário não seja encontrado (talvez um erro ou um funcionário padrão)
+            // attr.addFlashAttribute("erro", "Não foi possível identificar o funcionário logado.");
+            // return "redirect:/entradas/lista";
+        }
 
         entradaService.insere(entrada);  // Salva a entrada no banco de dados
         attr.addFlashAttribute("mensagem", "Entrada adicionada com sucesso.");
@@ -158,24 +176,10 @@ public class EntradaController {
         if (result.hasErrors()) {
         	Entrada entradaOriginal = entradaService.buscaPorId(id); // Recarrega a entrada original
         	
-        	// Se 'funcionario' é uma associação (Objeto Funcionario):
-            // Garante que o objeto Funcionario original seja reassociado à 'entrada'
-            // que será exibida no formulário.
-            if (entradaOriginal != null && entradaOriginal.getFuncionario() != null) {
+        	// Reassocia o funcionario, cliente e produto originais para exibir no formulário em caso de erro
+            if (entradaOriginal != null) {
                 entrada.setFuncionario(entradaOriginal.getFuncionario());
-            } else {
-                // Se o funcionário original for nulo, e você não quer que seja, trate aqui.
-                // Para evitar o EL1007E, a solução do safe navigation no HTML já ajuda.
-                // Mas se a lógica da sua aplicação *exige* um funcionário, você pode adicionar um erro
-                // específico para isso ou garantir que o formulário sempre envie um ID de funcionário válido.
-            }
-            
-            // Você também pode querer redefinir cliente/produto se eles forem objetos complexos
-            // e o formulário enviar apenas nomes, por exemplo.
-            if (entradaOriginal != null && entradaOriginal.getCliente() != null) {
                 entrada.setCliente(entradaOriginal.getCliente());
-            }
-            if (entradaOriginal != null && entradaOriginal.getProduto() != null) {
                 entrada.setProduto(entradaOriginal.getProduto());
             }
             
@@ -215,7 +219,6 @@ public class EntradaController {
             produtoAtualizadoEntrada  = produtoService.insere(novoProduto);
         }
         
-        // --- Atualiza o estoque corretamente ---
         // Se o produto mudou ou a quantidade original é diferente, ajuste o estoque
         if (!produtoOriginalDaEntrada.getId().equals(produtoAtualizadoEntrada.getId())) {
         	// Se o produto mudou, remove do estoque do produto antigo e adiciona ao novo
@@ -231,11 +234,18 @@ public class EntradaController {
             produtoAtualizadoEntrada.setQuantidade(produtoAtualizadoEntrada.getQuantidade() + diferencaQuantidade);
             produtoService.insere(produtoAtualizadoEntrada);
         }
-        
         entrada.setProduto(produtoAtualizadoEntrada);
+        
+        // --- ATRIBUIR FUNCIONÁRIO LOGADO NA ATUALIZAÇÃO ---
+        Funcionario funcionarioLogado = getFuncionarioLogado();
+        if (funcionarioLogado != null) {
+            entrada.setFuncionario(funcionarioLogado); // SOBRESCREVE o funcionário original
+        } else {
+            // Opcional: Se não encontrar o funcionário logado, pode manter o original
+            entrada.setFuncionario(entradaOriginal.getFuncionario());
+        }
 
         // --- Preserva dados da entrada original que não são editáveis no formulário ---
-        entrada.setFuncionario(entradaOriginal.getFuncionario());
         entrada.setConcluido(entradaOriginal.isConcluido());
         if (entradaOriginal.getDataConcluido() != null) { // Preserva a data de conclusão se já existia
         	entrada.setDataConcluido(entradaOriginal.getDataConcluido());
@@ -287,6 +297,27 @@ public class EntradaController {
         return produtoService.findByNomeContainingIgnoreCase(query).stream()
                 .map(Produto::getNome)
                 .collect(Collectors.toList());
+    }
+    
+    // Método para obter o funcionário logado
+    private Funcionario getFuncionarioLogado() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || !authentication.isAuthenticated()) {
+            return null; // Ninguém logado ou autenticado anonimamente
+        }
+
+        // Dependendo de como você implementou UserDetails para Funcionario
+        Object principal = authentication.getPrincipal();
+        if (principal instanceof UserDetails) {
+            String username = ((UserDetails) principal).getUsername();
+            return funcionarioService.buscaPorNome(username); // Ou findByUsername, findById, etc.
+                                                          // Você precisaria de um método no FuncionarioService
+                                                          // que encontra o funcionário pelo nome de usuário.
+        } else if (principal instanceof String) { // Caso seja um nome de usuário puro (menos comum)
+            String username = (String) principal;
+            return funcionarioService.buscaPorNome(username);
+        }
+        return null;
     }
     
     // Altera para concluído
