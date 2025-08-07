@@ -69,7 +69,7 @@ http://localhost:8080
 - Usuário: backup
 - Senha: #backup
 
-Esses dados podem ser alterados. No arquivo Inicializacao.java.
+Esses dados podem ser alterados no arquivo Inicializacao.java.
 
 ---
 
